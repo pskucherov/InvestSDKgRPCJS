@@ -4,7 +4,7 @@ import { UsersServiceDefinition } from './generated/users';
 import { StopOrdersServiceDefinition } from './generated/stoporders';
 import { API_URL } from './constants';
 import { InstrumentsServiceDefinition } from './generated/instruments';
-import { MarketDataServiceDefinition, MarketDataStreamServiceDefinition } from './generated/marketdata';
+import { MarketDataServiceDefinition, MarketDataStreamServiceDefinition, CandleInterval } from './generated/marketdata';
 import { OperationsServiceDefinition } from './generated/operations';
 import { OrdersServiceDefinition, OrdersStreamServiceDefinition } from './generated/orders';
 import { SandboxServiceDefinition } from './generated/sandbox';
@@ -29,5 +29,7 @@ export const createSdk = (token: string, appName?: string) => {
     sandbox: clientFactory.create(SandboxServiceDefinition, channel),
     stopOrders: clientFactory.create(StopOrdersServiceDefinition, channel),
     users: clientFactory.create(UsersServiceDefinition, channel),
+
+    CandleInterval,
   };
 };

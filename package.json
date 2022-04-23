@@ -1,24 +1,19 @@
 {
-  "name": "invest-nodejs-grpc-sdk",
-  "version": "1.2.0",
+  "name": "tinkoff-sdk-grpc-js",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/sdk.js",
   "scripts": {
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint": "eslint \"src/**/{*.ts,*.tsx}\"",
-    "start": "tsc && node dist/index.js",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/test.ts",
-    "build": "rm -rf ./dist && npx tsc"
+    "build": "npx tsc"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mtvkand/invest-nodejs-grpc-sdk.git"
+    "url": "https://github.com/pskucherov/InvestSDKgRPCJS.git"
   },
   "keywords": [
     "trading",
     "investment",
-    "strategy",
-    "bot"
+    "strategy"
   ],
   "author": "mtvkand",
   "license": "Apache-2.0",
