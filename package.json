@@ -1,6 +1,6 @@
 {
   "name": "tinkoff-sdk-grpc-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "dist/sdk.js",
   "scripts": {
@@ -36,6 +36,7 @@
     "prettier": "^2.6.1",
     "ts-node": "^10.7.0",
     "ts-proto": "^1.110.2",
+    "tsc": "^2.0.4",
     "typescript": "^4.6.3"
   }
 }

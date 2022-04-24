@@ -1,78 +1,39 @@
-# НЕОФИЦИАЛЬНОЕ Tinkoff Invest APIv2 - Typescript NodeJS SDK
+# Tinkoff Invest APIv2 - Typescript NodeJS SDK
 
-## Документация
+## Оригинал документации
 
-Доступна по [ссылке](https://tinkoff.github.io/investAPI/)
+* [SDK](https://github.com/mtvkand/invest-nodejs-grpc-sdk/blob/master/README.md)
+* [TinkoffApi](https://tinkoff.github.io/investAPI/)
 
-## Пример
+## Установка пакета
+```
+npm i tinkoff-sdk-grpc-js
+```
 
-Примеры для каждого метода есть в папке [examples](./src/examples)
+## Пример использования
+```
+// https://tinkoff.github.io/investAPI/token/
+const token = 'Токен TINKOFF INVEST API';
 
-```typescript
-import { createSdk } from '../sdk';
-import { CandleInterval } from '../generated/marketdata';
+// https://tinkoff.github.io/investAPI/grpc/
+const appName = 'example.InvestSDKgRPCJS'; 
 
-!(async function example() {
-   const { marketData } = createSdk('YOUR_TOKEN');
-   
-   const candles = await marketData.getCandles({
-      figi: 'BBG0047315Y7',
-      from: new Date('2022-04-04T11:00:00Z'),
-      to: new Date('2022-04-04T11:20:59Z'),
-      interval: CandleInterval.CANDLE_INTERVAL_5_MIN,
-   });
-   
-   const lastPrice = await marketData.getLastPrices({
-      figi: ['BBG0047315Y7'],
-   });
+const { createSdk } = require('tinkoff-sdk-grpc-js');
+const sdk = createSdk(token, appName);
 
-   const orderBook = await marketData.getOrderBook({
-      figi: 'BBG0047315Y7',
-      depth: 5,
-   });
+(async () => {
+  const candles = await sdk.marketData.getCandles({
+    figi: 'BBG0047315Y7',
+    from: new Date('2022-04-04T11:00:00Z'),
+    to: new Date('2022-04-04T11:20:59Z'),
+    interval: sdk.CandleInterval.CANDLE_INTERVAL_5_MIN,
+  });
 
-   const tradingStatus = await marketData.getTradingStatus({
-      figi: 'BBG0047315Y7',
-   });
-
-   console.log('Запрос исторических свечей по инструменту: ', candles);
-   console.log('Запрос последних цен по инструментам: ', lastPrice);
-   console.log('Получение стакана по инструменту: ', orderBook);
-   console.log('Запрос статуса торгов по инструментам: ', tradingStatus);
+  console.log('Запрос исторических свечей по инструменту: ', candles);
 })();
 ```
 
-## Sandbox
+## Что дальше?
+Чтобы полноценно использовать методы и константы из proto — нужно их [экспортировать](src/sdk.ts). Буду делать по мере использования. Работа с proto напрямую возможна в [оригинальном sdk](https://github.com/mtvkand/invest-nodejs-grpc-sdk).
 
-Для использования _Sandbox_ необходимо передать токен для песочницы.
-
-## Преимущества
-
-- Написано на _Typescript_ для Typescript
-- Используются Promise и Async Generators
-- Логирование и обработка ошибок с подробным описанием
-- Автоматическая генерация proto-файлов
-- Возможность добавлять свои middleware для работы с данными перед отправкой или после. (Пока только через Pull Request)
-```typescript
-type CallOptions = {
-  /**
-   * Request metadata.
-   */
-  metadata?: Metadata;
-  /**
-   * Signal that cancels the call once aborted.
-   */
-  signal?: AbortSignal;
-  /**
-   * Called when header is received.
-   */
-  onHeader?(header: Metadata): void;
-  /**
-   * Called when trailer is received.
-   */
-  onTrailer?(trailer: Metadata): void;
-};
-```
-## Сообщество
-
-[Telegram-чат](https://t.me/joinchat/VaW05CDzcSdsPULM)
+Пример торгового робота на javascript для Tinkoff Api v2 (grpc) появится здесь: https://github.com/pskucherov/TinkoffTradingBot
