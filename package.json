@@ -1,10 +1,11 @@
 {
   "name": "tinkoff-sdk-grpc-js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "dist/sdk.js",
   "scripts": {
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "lint-fix": "eslint \"src/**/{*.ts,*.tsx}\" --fix"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,6 @@
     "ts-node": "^10.7.0",
     "ts-proto": "^1.110.2",
     "tsc": "^2.0.4",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.4"
   }
 }

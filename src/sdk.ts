@@ -3,10 +3,17 @@ import { createClientFactory } from 'nice-grpc';
 import { UsersServiceDefinition } from './generated/users';
 import { StopOrdersServiceDefinition } from './generated/stoporders';
 import { API_URL } from './constants';
-import { InstrumentsServiceDefinition } from './generated/instruments';
-import { MarketDataServiceDefinition, MarketDataStreamServiceDefinition, CandleInterval } from './generated/marketdata';
+import { InstrumentsServiceDefinition, InstrumentStatus, InstrumentIdType } from './generated/instruments';
+import {
+  MarketDataServiceDefinition,
+  MarketDataStreamServiceDefinition,
+  CandleInterval,
+  MarketDataRequest,
+  SubscriptionAction,
+  SubscriptionInterval,
+} from './generated/marketdata';
 import { OperationsServiceDefinition } from './generated/operations';
-import { OrdersServiceDefinition, OrdersStreamServiceDefinition } from './generated/orders';
+import { OrdersServiceDefinition, OrdersStreamServiceDefinition, OrderDirection, OrderType } from './generated/orders';
 import { SandboxServiceDefinition } from './generated/sandbox';
 import { responseMiddleware } from './middlewares/response';
 
@@ -31,5 +38,15 @@ export const createSdk = (token: string, appName?: string) => {
     users: clientFactory.create(UsersServiceDefinition, channel),
 
     CandleInterval,
+
+    InstrumentStatus,
+    InstrumentIdType,
+
+    MarketDataRequest,
+    SubscriptionAction,
+    SubscriptionInterval,
+
+    OrderDirection,
+    OrderType,
   };
 };
