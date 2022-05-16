@@ -656,6 +656,8 @@ export interface GetTradingStatusResponse {
   limitOrderAvailableFlag: boolean;
   /** Признак доступности выставления рыночной заявки по инструменту. */
   marketOrderAvailableFlag: boolean;
+  /** Признак доступности торгов через API. */
+  apiTradeAvailableFlag: boolean;
 }
 
 /** Запрос последних обезличенных сделок по инструменту. */
@@ -3395,7 +3397,13 @@ export const GetTradingStatusRequest = {
 };
 
 function createBaseGetTradingStatusResponse(): GetTradingStatusResponse {
-  return { figi: '', tradingStatus: 0, limitOrderAvailableFlag: false, marketOrderAvailableFlag: false };
+  return {
+    figi: '',
+    tradingStatus: 0,
+    limitOrderAvailableFlag: false,
+    marketOrderAvailableFlag: false,
+    apiTradeAvailableFlag: false,
+  };
 }
 
 export const GetTradingStatusResponse = {
@@ -3411,6 +3419,9 @@ export const GetTradingStatusResponse = {
     }
     if (message.marketOrderAvailableFlag === true) {
       writer.uint32(32).bool(message.marketOrderAvailableFlag);
+    }
+    if (message.apiTradeAvailableFlag === true) {
+      writer.uint32(40).bool(message.apiTradeAvailableFlag);
     }
     return writer;
   },
@@ -3434,6 +3445,9 @@ export const GetTradingStatusResponse = {
         case 4:
           message.marketOrderAvailableFlag = reader.bool();
           break;
+        case 5:
+          message.apiTradeAvailableFlag = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -3450,6 +3464,7 @@ export const GetTradingStatusResponse = {
       marketOrderAvailableFlag: isSet(object.marketOrderAvailableFlag)
         ? Boolean(object.marketOrderAvailableFlag)
         : false,
+      apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
     };
   },
 
@@ -3459,6 +3474,7 @@ export const GetTradingStatusResponse = {
     message.tradingStatus !== undefined && (obj.tradingStatus = securityTradingStatusToJSON(message.tradingStatus));
     message.limitOrderAvailableFlag !== undefined && (obj.limitOrderAvailableFlag = message.limitOrderAvailableFlag);
     message.marketOrderAvailableFlag !== undefined && (obj.marketOrderAvailableFlag = message.marketOrderAvailableFlag);
+    message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     return obj;
   },
 
@@ -3468,6 +3484,7 @@ export const GetTradingStatusResponse = {
     message.tradingStatus = object.tradingStatus ?? 0;
     message.limitOrderAvailableFlag = object.limitOrderAvailableFlag ?? false;
     message.marketOrderAvailableFlag = object.marketOrderAvailableFlag ?? false;
+    message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     return message;
   },
 };
@@ -3593,6 +3610,7 @@ export const GetLastTradesResponse = {
 };
 
 /** Сервис получения биржевой информации:</br> **1**. свечи;</br> **2**. стаканы;</br> **3**. торговые статусы;</br> **4**. лента сделок. */
+export type MarketDataServiceDefinition = typeof MarketDataServiceDefinition;
 export const MarketDataServiceDefinition = {
   name: 'MarketDataService',
   fullName: 'tinkoff.public.invest.api.contract.v1.MarketDataService',
@@ -3645,6 +3663,7 @@ export const MarketDataServiceDefinition = {
   },
 } as const;
 
+export type MarketDataStreamServiceDefinition = typeof MarketDataStreamServiceDefinition;
 export const MarketDataStreamServiceDefinition = {
   name: 'MarketDataStreamService',
   fullName: 'tinkoff.public.invest.api.contract.v1.MarketDataStreamService',

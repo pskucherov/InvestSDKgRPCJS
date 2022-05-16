@@ -362,6 +362,97 @@ export function structuredProductTypeToJSON(object: StructuredProductType): stri
   }
 }
 
+/** Тип действия со списком избранных инструментов. */
+export enum EditFavoritesActionType {
+  /** EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED - Тип не определён. */
+  EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED = 0,
+  /** EDIT_FAVORITES_ACTION_TYPE_ADD - Добавить в список. */
+  EDIT_FAVORITES_ACTION_TYPE_ADD = 1,
+  /** EDIT_FAVORITES_ACTION_TYPE_DEL - Удалить из списка. */
+  EDIT_FAVORITES_ACTION_TYPE_DEL = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function editFavoritesActionTypeFromJSON(object: any): EditFavoritesActionType {
+  switch (object) {
+    case 0:
+    case 'EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED':
+      return EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED;
+    case 1:
+    case 'EDIT_FAVORITES_ACTION_TYPE_ADD':
+      return EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_ADD;
+    case 2:
+    case 'EDIT_FAVORITES_ACTION_TYPE_DEL':
+      return EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_DEL;
+    case -1:
+    case 'UNRECOGNIZED':
+    default:
+      return EditFavoritesActionType.UNRECOGNIZED;
+  }
+}
+
+export function editFavoritesActionTypeToJSON(object: EditFavoritesActionType): string {
+  switch (object) {
+    case EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED:
+      return 'EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED';
+    case EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_ADD:
+      return 'EDIT_FAVORITES_ACTION_TYPE_ADD';
+    case EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_DEL:
+      return 'EDIT_FAVORITES_ACTION_TYPE_DEL';
+    default:
+      return 'UNKNOWN';
+  }
+}
+
+/** Реальная площадка исполнения расчётов. */
+export enum RealExchange {
+  /** REAL_EXCHANGE_UNSPECIFIED - Тип не определён. */
+  REAL_EXCHANGE_UNSPECIFIED = 0,
+  /** REAL_EXCHANGE_MOEX - Московская биржа. */
+  REAL_EXCHANGE_MOEX = 1,
+  /** REAL_EXCHANGE_RTS - Санкт-Петербургская биржа. */
+  REAL_EXCHANGE_RTS = 2,
+  /** REAL_EXCHANGE_OTC - Внебиржевой инструмент. */
+  REAL_EXCHANGE_OTC = 3,
+  UNRECOGNIZED = -1,
+}
+
+export function realExchangeFromJSON(object: any): RealExchange {
+  switch (object) {
+    case 0:
+    case 'REAL_EXCHANGE_UNSPECIFIED':
+      return RealExchange.REAL_EXCHANGE_UNSPECIFIED;
+    case 1:
+    case 'REAL_EXCHANGE_MOEX':
+      return RealExchange.REAL_EXCHANGE_MOEX;
+    case 2:
+    case 'REAL_EXCHANGE_RTS':
+      return RealExchange.REAL_EXCHANGE_RTS;
+    case 3:
+    case 'REAL_EXCHANGE_OTC':
+      return RealExchange.REAL_EXCHANGE_OTC;
+    case -1:
+    case 'UNRECOGNIZED':
+    default:
+      return RealExchange.UNRECOGNIZED;
+  }
+}
+
+export function realExchangeToJSON(object: RealExchange): string {
+  switch (object) {
+    case RealExchange.REAL_EXCHANGE_UNSPECIFIED:
+      return 'REAL_EXCHANGE_UNSPECIFIED';
+    case RealExchange.REAL_EXCHANGE_MOEX:
+      return 'REAL_EXCHANGE_MOEX';
+    case RealExchange.REAL_EXCHANGE_RTS:
+      return 'REAL_EXCHANGE_RTS';
+    case RealExchange.REAL_EXCHANGE_OTC:
+      return 'REAL_EXCHANGE_OTC';
+    default:
+      return 'UNKNOWN';
+  }
+}
+
 /** Запрос расписания торгов */
 export interface TradingSchedulesRequest {
   /** Наименование биржи или расчетного календаря. </br>Если не передаётся, возвращается информация по всем доступным торговым площадкам. */
@@ -607,6 +698,8 @@ export interface Bond {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
+  /** Реальная площадка исполнения расчётов. */
+  realExchange: RealExchange;
 }
 
 /** Объект передачи информации о валюте. */
@@ -663,6 +756,8 @@ export interface Currency {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
+  /** Реальная площадка исполнения расчётов. */
+  realExchange: RealExchange;
 }
 
 /** Объект передачи информации об инвестиционном фонде. */
@@ -727,6 +822,8 @@ export interface Etf {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
+  /** Реальная площадка исполнения расчётов. */
+  realExchange: RealExchange;
 }
 
 /** Объект передачи информации о фьючерсе. */
@@ -793,6 +890,8 @@ export interface Future {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
+  /** Реальная площадка исполнения расчётов. */
+  realExchange: RealExchange;
 }
 
 /** Объект передачи информации об акции. */
@@ -859,6 +958,8 @@ export interface Share {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
+  /** Реальная площадка исполнения расчётов. */
+  realExchange: RealExchange;
 }
 
 /** Запрос НКД по облигации */
@@ -965,6 +1066,8 @@ export interface Instrument {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
+  /** Реальная площадка исполнения расчётов. */
+  realExchange: RealExchange;
 }
 
 /** Запрос дивидендов. */
@@ -1328,6 +1431,53 @@ export interface InstrumentLink {
   type: string;
   /** uid идентификатор связанного инструмента. */
   instrumentUid: string;
+}
+
+/** Запрос избранных инструментов. */
+export interface GetFavoritesRequest {}
+
+/** Ответ избранных инструментов. */
+export interface GetFavoritesResponse {
+  /** Массив инструментов */
+  favoriteInstruments: FavoriteInstrument[];
+}
+
+/** Избранный инструмент. */
+export interface FavoriteInstrument {
+  /** Figi-идентификатор инструмента. */
+  figi: string;
+  /** Тикер инструмента. */
+  ticker: string;
+  /** Класс-код инструмента. */
+  classCode: string;
+  /** Isin-идентификатор инструмента. */
+  isin: string;
+  /** Тип инструмента. */
+  instrumentType: string;
+  /** Признак внебиржевой ценной бумаги. */
+  otcFlag: boolean;
+  /** Признак доступности торгов через API. */
+  apiTradeAvailableFlag: boolean;
+}
+
+/** Запрос редактирования избранных инструментов. */
+export interface EditFavoritesRequest {
+  /** Массив инструментов. */
+  instruments: EditFavoritesRequestInstrument[];
+  /** Тип действия со списком. */
+  actionType: EditFavoritesActionType;
+}
+
+/** Избранный инструмент для редактирования. */
+export interface EditFavoritesRequestInstrument {
+  /** Figi-идентификатор инструмента. */
+  figi: string;
+}
+
+/** Результат редактирования избранных инструментов. */
+export interface EditFavoritesResponse {
+  /** Массив инструментов */
+  favoriteInstruments: FavoriteInstrument[];
 }
 
 function createBaseTradingSchedulesRequest(): TradingSchedulesRequest {
@@ -2625,6 +2775,7 @@ function createBaseBond(): Bond {
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
     uid: '',
+    realExchange: 0,
   };
 }
 
@@ -2743,6 +2894,9 @@ export const Bond = {
     }
     if (message.uid !== '') {
       writer.uint32(322).string(message.uid);
+    }
+    if (message.realExchange !== 0) {
+      writer.uint32(328).int32(message.realExchange);
     }
     return writer;
   },
@@ -2868,6 +3022,9 @@ export const Bond = {
         case 40:
           message.uid = reader.string();
           break;
+        case 41:
+          message.realExchange = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -2916,6 +3073,7 @@ export const Bond = {
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
       uid: isSet(object.uid) ? String(object.uid) : '',
+      realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
     };
   },
 
@@ -2965,6 +3123,7 @@ export const Bond = {
       (obj.minPriceIncrement = message.minPriceIncrement ? Quotation.toJSON(message.minPriceIncrement) : undefined);
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
+    message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
     return obj;
   },
 
@@ -3022,6 +3181,7 @@ export const Bond = {
         : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     message.uid = object.uid ?? '';
+    message.realExchange = object.realExchange ?? 0;
     return message;
   },
 };
@@ -3054,6 +3214,7 @@ function createBaseCurrency(): Currency {
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
     uid: '',
+    realExchange: 0,
   };
 }
 
@@ -3136,6 +3297,9 @@ export const Currency = {
     }
     if (message.uid !== '') {
       writer.uint32(218).string(message.uid);
+    }
+    if (message.realExchange !== 0) {
+      writer.uint32(224).int32(message.realExchange);
     }
     return writer;
   },
@@ -3225,6 +3389,9 @@ export const Currency = {
         case 27:
           message.uid = reader.string();
           break;
+        case 28:
+          message.realExchange = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -3261,6 +3428,7 @@ export const Currency = {
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
       uid: isSet(object.uid) ? String(object.uid) : '',
+      realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
     };
   },
 
@@ -3295,6 +3463,7 @@ export const Currency = {
       (obj.minPriceIncrement = message.minPriceIncrement ? Quotation.toJSON(message.minPriceIncrement) : undefined);
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
+    message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
     return obj;
   },
 
@@ -3336,6 +3505,7 @@ export const Currency = {
         : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     message.uid = object.uid ?? '';
+    message.realExchange = object.realExchange ?? 0;
     return message;
   },
 };
@@ -3372,6 +3542,7 @@ function createBaseEtf(): Etf {
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
     uid: '',
+    realExchange: 0,
   };
 }
 
@@ -3466,6 +3637,9 @@ export const Etf = {
     }
     if (message.uid !== '') {
       writer.uint32(250).string(message.uid);
+    }
+    if (message.realExchange !== 0) {
+      writer.uint32(256).int32(message.realExchange);
     }
     return writer;
   },
@@ -3567,6 +3741,9 @@ export const Etf = {
         case 31:
           message.uid = reader.string();
           break;
+        case 32:
+          message.realExchange = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -3607,6 +3784,7 @@ export const Etf = {
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
       uid: isSet(object.uid) ? String(object.uid) : '',
+      realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
     };
   },
 
@@ -3647,6 +3825,7 @@ export const Etf = {
       (obj.minPriceIncrement = message.minPriceIncrement ? Quotation.toJSON(message.minPriceIncrement) : undefined);
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
+    message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
     return obj;
   },
 
@@ -3695,6 +3874,7 @@ export const Etf = {
         : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     message.uid = object.uid ?? '';
+    message.realExchange = object.realExchange ?? 0;
     return message;
   },
 };
@@ -3732,6 +3912,7 @@ function createBaseFuture(): Future {
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
     uid: '',
+    realExchange: 0,
   };
 }
 
@@ -3829,6 +4010,9 @@ export const Future = {
     }
     if (message.uid !== '') {
       writer.uint32(250).string(message.uid);
+    }
+    if (message.realExchange !== 0) {
+      writer.uint32(256).int32(message.realExchange);
     }
     return writer;
   },
@@ -3933,6 +4117,9 @@ export const Future = {
         case 31:
           message.uid = reader.string();
           break;
+        case 32:
+          message.realExchange = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -3974,6 +4161,7 @@ export const Future = {
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
       uid: isSet(object.uid) ? String(object.uid) : '',
+      realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
     };
   },
 
@@ -4014,6 +4202,7 @@ export const Future = {
       (obj.minPriceIncrement = message.minPriceIncrement ? Quotation.toJSON(message.minPriceIncrement) : undefined);
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
+    message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
     return obj;
   },
 
@@ -4062,6 +4251,7 @@ export const Future = {
         : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     message.uid = object.uid ?? '';
+    message.realExchange = object.realExchange ?? 0;
     return message;
   },
 };
@@ -4099,6 +4289,7 @@ function createBaseShare(): Share {
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
     uid: '',
+    realExchange: 0,
   };
 }
 
@@ -4196,6 +4387,9 @@ export const Share = {
     }
     if (message.uid !== '') {
       writer.uint32(266).string(message.uid);
+    }
+    if (message.realExchange !== 0) {
+      writer.uint32(272).int32(message.realExchange);
     }
     return writer;
   },
@@ -4300,6 +4494,9 @@ export const Share = {
         case 33:
           message.uid = reader.string();
           break;
+        case 34:
+          message.realExchange = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -4341,6 +4538,7 @@ export const Share = {
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
       uid: isSet(object.uid) ? String(object.uid) : '',
+      realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
     };
   },
 
@@ -4380,6 +4578,7 @@ export const Share = {
       (obj.minPriceIncrement = message.minPriceIncrement ? Quotation.toJSON(message.minPriceIncrement) : undefined);
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
+    message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
     return obj;
   },
 
@@ -4426,6 +4625,7 @@ export const Share = {
         : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     message.uid = object.uid ?? '';
+    message.realExchange = object.realExchange ?? 0;
     return message;
   },
 };
@@ -4868,6 +5068,7 @@ function createBaseInstrument(): Instrument {
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
     uid: '',
+    realExchange: 0,
   };
 }
 
@@ -4947,6 +5148,9 @@ export const Instrument = {
     }
     if (message.uid !== '') {
       writer.uint32(202).string(message.uid);
+    }
+    if (message.realExchange !== 0) {
+      writer.uint32(208).int32(message.realExchange);
     }
     return writer;
   },
@@ -5033,6 +5237,9 @@ export const Instrument = {
         case 25:
           message.uid = reader.string();
           break;
+        case 26:
+          message.realExchange = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -5068,6 +5275,7 @@ export const Instrument = {
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
       uid: isSet(object.uid) ? String(object.uid) : '',
+      realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
     };
   },
 
@@ -5101,6 +5309,7 @@ export const Instrument = {
       (obj.minPriceIncrement = message.minPriceIncrement ? Quotation.toJSON(message.minPriceIncrement) : undefined);
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
+    message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
     return obj;
   },
 
@@ -5140,6 +5349,7 @@ export const Instrument = {
         : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     message.uid = object.uid ?? '';
+    message.realExchange = object.realExchange ?? 0;
     return message;
   },
 };
@@ -7494,11 +7704,385 @@ export const InstrumentLink = {
   },
 };
 
+function createBaseGetFavoritesRequest(): GetFavoritesRequest {
+  return {};
+}
+
+export const GetFavoritesRequest = {
+  encode(_: GetFavoritesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetFavoritesRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetFavoritesRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): GetFavoritesRequest {
+    return {};
+  },
+
+  toJSON(_: GetFavoritesRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<GetFavoritesRequest>): GetFavoritesRequest {
+    const message = createBaseGetFavoritesRequest();
+    return message;
+  },
+};
+
+function createBaseGetFavoritesResponse(): GetFavoritesResponse {
+  return { favoriteInstruments: [] };
+}
+
+export const GetFavoritesResponse = {
+  encode(message: GetFavoritesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.favoriteInstruments) {
+      FavoriteInstrument.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetFavoritesResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetFavoritesResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.favoriteInstruments.push(FavoriteInstrument.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetFavoritesResponse {
+    return {
+      favoriteInstruments: Array.isArray(object?.favoriteInstruments)
+        ? object.favoriteInstruments.map((e: any) => FavoriteInstrument.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: GetFavoritesResponse): unknown {
+    const obj: any = {};
+    if (message.favoriteInstruments) {
+      obj.favoriteInstruments = message.favoriteInstruments.map(e => (e ? FavoriteInstrument.toJSON(e) : undefined));
+    } else {
+      obj.favoriteInstruments = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetFavoritesResponse>): GetFavoritesResponse {
+    const message = createBaseGetFavoritesResponse();
+    message.favoriteInstruments = object.favoriteInstruments?.map(e => FavoriteInstrument.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseFavoriteInstrument(): FavoriteInstrument {
+  return {
+    figi: '',
+    ticker: '',
+    classCode: '',
+    isin: '',
+    instrumentType: '',
+    otcFlag: false,
+    apiTradeAvailableFlag: false,
+  };
+}
+
+export const FavoriteInstrument = {
+  encode(message: FavoriteInstrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.figi !== '') {
+      writer.uint32(10).string(message.figi);
+    }
+    if (message.ticker !== '') {
+      writer.uint32(18).string(message.ticker);
+    }
+    if (message.classCode !== '') {
+      writer.uint32(26).string(message.classCode);
+    }
+    if (message.isin !== '') {
+      writer.uint32(34).string(message.isin);
+    }
+    if (message.instrumentType !== '') {
+      writer.uint32(90).string(message.instrumentType);
+    }
+    if (message.otcFlag === true) {
+      writer.uint32(128).bool(message.otcFlag);
+    }
+    if (message.apiTradeAvailableFlag === true) {
+      writer.uint32(136).bool(message.apiTradeAvailableFlag);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): FavoriteInstrument {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFavoriteInstrument();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.figi = reader.string();
+          break;
+        case 2:
+          message.ticker = reader.string();
+          break;
+        case 3:
+          message.classCode = reader.string();
+          break;
+        case 4:
+          message.isin = reader.string();
+          break;
+        case 11:
+          message.instrumentType = reader.string();
+          break;
+        case 16:
+          message.otcFlag = reader.bool();
+          break;
+        case 17:
+          message.apiTradeAvailableFlag = reader.bool();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FavoriteInstrument {
+    return {
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      ticker: isSet(object.ticker) ? String(object.ticker) : '',
+      classCode: isSet(object.classCode) ? String(object.classCode) : '',
+      isin: isSet(object.isin) ? String(object.isin) : '',
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : '',
+      otcFlag: isSet(object.otcFlag) ? Boolean(object.otcFlag) : false,
+      apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
+    };
+  },
+
+  toJSON(message: FavoriteInstrument): unknown {
+    const obj: any = {};
+    message.figi !== undefined && (obj.figi = message.figi);
+    message.ticker !== undefined && (obj.ticker = message.ticker);
+    message.classCode !== undefined && (obj.classCode = message.classCode);
+    message.isin !== undefined && (obj.isin = message.isin);
+    message.instrumentType !== undefined && (obj.instrumentType = message.instrumentType);
+    message.otcFlag !== undefined && (obj.otcFlag = message.otcFlag);
+    message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<FavoriteInstrument>): FavoriteInstrument {
+    const message = createBaseFavoriteInstrument();
+    message.figi = object.figi ?? '';
+    message.ticker = object.ticker ?? '';
+    message.classCode = object.classCode ?? '';
+    message.isin = object.isin ?? '';
+    message.instrumentType = object.instrumentType ?? '';
+    message.otcFlag = object.otcFlag ?? false;
+    message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
+    return message;
+  },
+};
+
+function createBaseEditFavoritesRequest(): EditFavoritesRequest {
+  return { instruments: [], actionType: 0 };
+}
+
+export const EditFavoritesRequest = {
+  encode(message: EditFavoritesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.instruments) {
+      EditFavoritesRequestInstrument.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.actionType !== 0) {
+      writer.uint32(48).int32(message.actionType);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EditFavoritesRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEditFavoritesRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.instruments.push(EditFavoritesRequestInstrument.decode(reader, reader.uint32()));
+          break;
+        case 6:
+          message.actionType = reader.int32() as any;
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EditFavoritesRequest {
+    return {
+      instruments: Array.isArray(object?.instruments)
+        ? object.instruments.map((e: any) => EditFavoritesRequestInstrument.fromJSON(e))
+        : [],
+      actionType: isSet(object.actionType) ? editFavoritesActionTypeFromJSON(object.actionType) : 0,
+    };
+  },
+
+  toJSON(message: EditFavoritesRequest): unknown {
+    const obj: any = {};
+    if (message.instruments) {
+      obj.instruments = message.instruments.map(e => (e ? EditFavoritesRequestInstrument.toJSON(e) : undefined));
+    } else {
+      obj.instruments = [];
+    }
+    message.actionType !== undefined && (obj.actionType = editFavoritesActionTypeToJSON(message.actionType));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<EditFavoritesRequest>): EditFavoritesRequest {
+    const message = createBaseEditFavoritesRequest();
+    message.instruments = object.instruments?.map(e => EditFavoritesRequestInstrument.fromPartial(e)) || [];
+    message.actionType = object.actionType ?? 0;
+    return message;
+  },
+};
+
+function createBaseEditFavoritesRequestInstrument(): EditFavoritesRequestInstrument {
+  return { figi: '' };
+}
+
+export const EditFavoritesRequestInstrument = {
+  encode(message: EditFavoritesRequestInstrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.figi !== '') {
+      writer.uint32(10).string(message.figi);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EditFavoritesRequestInstrument {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEditFavoritesRequestInstrument();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.figi = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EditFavoritesRequestInstrument {
+    return {
+      figi: isSet(object.figi) ? String(object.figi) : '',
+    };
+  },
+
+  toJSON(message: EditFavoritesRequestInstrument): unknown {
+    const obj: any = {};
+    message.figi !== undefined && (obj.figi = message.figi);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<EditFavoritesRequestInstrument>): EditFavoritesRequestInstrument {
+    const message = createBaseEditFavoritesRequestInstrument();
+    message.figi = object.figi ?? '';
+    return message;
+  },
+};
+
+function createBaseEditFavoritesResponse(): EditFavoritesResponse {
+  return { favoriteInstruments: [] };
+}
+
+export const EditFavoritesResponse = {
+  encode(message: EditFavoritesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.favoriteInstruments) {
+      FavoriteInstrument.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): EditFavoritesResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEditFavoritesResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.favoriteInstruments.push(FavoriteInstrument.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EditFavoritesResponse {
+    return {
+      favoriteInstruments: Array.isArray(object?.favoriteInstruments)
+        ? object.favoriteInstruments.map((e: any) => FavoriteInstrument.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: EditFavoritesResponse): unknown {
+    const obj: any = {};
+    if (message.favoriteInstruments) {
+      obj.favoriteInstruments = message.favoriteInstruments.map(e => (e ? FavoriteInstrument.toJSON(e) : undefined));
+    } else {
+      obj.favoriteInstruments = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<EditFavoritesResponse>): EditFavoritesResponse {
+    const message = createBaseEditFavoritesResponse();
+    message.favoriteInstruments = object.favoriteInstruments?.map(e => FavoriteInstrument.fromPartial(e)) || [];
+    return message;
+  },
+};
+
 /**
  * Сервис предназначен для получения:</br>**1**. информации об инструментах;</br>**2**.
  * расписания торговых сессий;</br>**3**. календаря выплат купонов по облигациям;</br>**4**.
  * размера гарантийного обеспечения по фьючерсам;</br>**5**. дивидендов по ценной бумаге.
  */
+export type InstrumentsServiceDefinition = typeof InstrumentsServiceDefinition;
 export const InstrumentsServiceDefinition = {
   name: 'InstrumentsService',
   fullName: 'tinkoff.public.invest.api.contract.v1.InstrumentsService',
@@ -7662,6 +8246,24 @@ export const InstrumentsServiceDefinition = {
       requestType: AssetsRequest,
       requestStream: false,
       responseType: AssetsResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод получения избранных инструментов. */
+    getFavorites: {
+      name: 'GetFavorites',
+      requestType: GetFavoritesRequest,
+      requestStream: false,
+      responseType: GetFavoritesResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод редактирования избранных инструментов. */
+    editFavorites: {
+      name: 'EditFavorites',
+      requestType: EditFavoritesRequest,
+      requestStream: false,
+      responseType: EditFavoritesResponse,
       responseStream: false,
       options: {},
     },

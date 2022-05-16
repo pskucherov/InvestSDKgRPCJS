@@ -52,9 +52,9 @@ export function operationStateToJSON(object: OperationState): string {
 export enum OperationType {
   /** OPERATION_TYPE_UNSPECIFIED - Тип операции не определён. */
   OPERATION_TYPE_UNSPECIFIED = 0,
-  /** OPERATION_TYPE_INPUT - Завод денежных средств. */
+  /** OPERATION_TYPE_INPUT - Пополнение брокерского счёта. */
   OPERATION_TYPE_INPUT = 1,
-  /** OPERATION_TYPE_BOND_TAX - Удержание налога по купонам. */
+  /** OPERATION_TYPE_BOND_TAX - Удержание НДФЛ по купонам. */
   OPERATION_TYPE_BOND_TAX = 2,
   /** OPERATION_TYPE_OUTPUT_SECURITIES - Вывод ЦБ. */
   OPERATION_TYPE_OUTPUT_SECURITIES = 3,
@@ -84,7 +84,7 @@ export enum OperationType {
   OPERATION_TYPE_BUY = 15,
   /** OPERATION_TYPE_BUY_CARD - Покупка ЦБ с карты. */
   OPERATION_TYPE_BUY_CARD = 16,
-  /** OPERATION_TYPE_INPUT_SECURITIES - Завод ЦБ. */
+  /** OPERATION_TYPE_INPUT_SECURITIES - Завод ценных бумаг из другого депозитария. */
   OPERATION_TYPE_INPUT_SECURITIES = 17,
   /** OPERATION_TYPE_SELL_MARGIN - Продажа в результате Margin-call. */
   OPERATION_TYPE_SELL_MARGIN = 18,
@@ -3272,6 +3272,7 @@ export const DividendsForeignIssuerReport = {
  * портфеля по счёту;</br> **3**. позиций ценных бумаг на счёте;</br> **4**.
  * доступного остатка для вывода средств;</br> **4**. получения различных отчётов.
  */
+export type OperationsServiceDefinition = typeof OperationsServiceDefinition;
 export const OperationsServiceDefinition = {
   name: 'OperationsService',
   fullName: 'tinkoff.public.invest.api.contract.v1.OperationsService',

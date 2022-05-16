@@ -153,7 +153,10 @@ export function orderExecutionReportStatusToJSON(object: OrderExecutionReportSta
 }
 
 /** Запрос установки соединения. */
-export interface TradesStreamRequest {}
+export interface TradesStreamRequest {
+  /** Идентификаторы счетов. */
+  accounts: string[];
+}
 
 /** Информация о торговых поручениях. */
 export interface TradesStreamResponse {
@@ -328,11 +331,14 @@ export interface OrderStage {
 }
 
 function createBaseTradesStreamRequest(): TradesStreamRequest {
-  return {};
+  return { accounts: [] };
 }
 
 export const TradesStreamRequest = {
-  encode(_: TradesStreamRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(message: TradesStreamRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.accounts) {
+      writer.uint32(10).string(v!);
+    }
     return writer;
   },
 
@@ -343,6 +349,9 @@ export const TradesStreamRequest = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.accounts.push(reader.string());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -351,17 +360,25 @@ export const TradesStreamRequest = {
     return message;
   },
 
-  fromJSON(_: any): TradesStreamRequest {
-    return {};
+  fromJSON(object: any): TradesStreamRequest {
+    return {
+      accounts: Array.isArray(object?.accounts) ? object.accounts.map((e: any) => String(e)) : [],
+    };
   },
 
-  toJSON(_: TradesStreamRequest): unknown {
+  toJSON(message: TradesStreamRequest): unknown {
     const obj: any = {};
+    if (message.accounts) {
+      obj.accounts = message.accounts.map(e => e);
+    } else {
+      obj.accounts = [];
+    }
     return obj;
   },
 
-  fromPartial(_: DeepPartial<TradesStreamRequest>): TradesStreamRequest {
+  fromPartial(object: DeepPartial<TradesStreamRequest>): TradesStreamRequest {
     const message = createBaseTradesStreamRequest();
+    message.accounts = object.accounts?.map(e => e) || [];
     return message;
   },
 };
@@ -1543,6 +1560,7 @@ export const OrderStage = {
   },
 };
 
+export type OrdersStreamServiceDefinition = typeof OrdersStreamServiceDefinition;
 export const OrdersStreamServiceDefinition = {
   name: 'OrdersStreamService',
   fullName: 'tinkoff.public.invest.api.contract.v1.OrdersStreamService',
@@ -1564,6 +1582,7 @@ export const OrdersStreamServiceDefinition = {
  * выставление;</br> **2**. отмена;</br> **3**. получение статуса;</br> **4**.
  * расчёт полной стоимости;</br> **5**. получение списка заявок.
  */
+export type OrdersServiceDefinition = typeof OrdersServiceDefinition;
 export const OrdersServiceDefinition = {
   name: 'OrdersService',
   fullName: 'tinkoff.public.invest.api.contract.v1.OrdersService',

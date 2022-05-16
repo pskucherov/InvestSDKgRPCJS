@@ -772,6 +772,7 @@ export const StopOrder = {
  * Сервис предназначен для работы со стоп-заявками:</br> **1**.
  * выставление;</br> **2**. отмена;</br> **3**. получение списка стоп-заявок.
  */
+export type StopOrdersServiceDefinition = typeof StopOrdersServiceDefinition;
 export const StopOrdersServiceDefinition = {
   name: 'StopOrdersService',
   fullName: 'tinkoff.public.invest.api.contract.v1.StopOrdersService',

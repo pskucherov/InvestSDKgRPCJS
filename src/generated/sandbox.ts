@@ -342,6 +342,7 @@ export const SandboxPayInResponse = {
 };
 
 /** Сервис для работы с песочницей TINKOFF INVEST API */
+export type SandboxServiceDefinition = typeof SandboxServiceDefinition;
 export const SandboxServiceDefinition = {
   name: 'SandboxService',
   fullName: 'tinkoff.public.invest.api.contract.v1.SandboxService',

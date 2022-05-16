@@ -961,6 +961,7 @@ export const GetInfoResponse = {
  * Сервис предназначен для получения: </br> **1**.
  * списка счетов пользователя; </br> **2**. маржинальных показателе по счёту.
  */
+export type UsersServiceDefinition = typeof UsersServiceDefinition;
 export const UsersServiceDefinition = {
   name: 'UsersService',
   fullName: 'tinkoff.public.invest.api.contract.v1.UsersService',
