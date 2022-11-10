@@ -12,7 +12,7 @@ import {
   SubscriptionAction,
   SubscriptionInterval,
 } from './generated/marketdata';
-import { OperationsServiceDefinition } from './generated/operations';
+import { OperationsServiceDefinition, OperationsStreamServiceDefinition } from './generated/operations';
 import { OrdersServiceDefinition, OrdersStreamServiceDefinition, OrderDirection, OrderType } from './generated/orders';
 import { SandboxServiceDefinition } from './generated/sandbox';
 import { getMiddleware, TypeLoggerCb } from './middlewares/response';
@@ -30,6 +30,7 @@ export const createSdk = (token: string, appName?: string, loggerCb?: TypeLogger
     marketData: clientFactory.create(MarketDataServiceDefinition, channel),
     marketDataStream: clientFactory.create(MarketDataStreamServiceDefinition, channel),
     operations: clientFactory.create(OperationsServiceDefinition, channel),
+    operationsStream: clientFactory.create(OperationsStreamServiceDefinition, channel),
     orders: clientFactory.create(OrdersServiceDefinition, channel),
     ordersStream: clientFactory.create(OrdersStreamServiceDefinition, channel),
     sandbox: clientFactory.create(SandboxServiceDefinition, channel),
