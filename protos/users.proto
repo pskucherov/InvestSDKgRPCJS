@@ -13,7 +13,7 @@ import "google/protobuf/timestamp.proto";
 import "common.proto";
 
 service UsersService { /*Сервис предназначен для получения: </br> **1**.
-                       списка счетов пользователя; </br> **2**. маржинальных показателе по счёту.*/
+                       списка счетов пользователя; </br> **2**. маржинальных показателей по счёту.*/
 
   //Метод получения счетов пользователя.
   rpc GetAccounts (GetAccountsRequest) returns (GetAccountsResponse);
@@ -102,6 +102,9 @@ message GetMarginAttributesResponse {
 
   // Объем недостающих средств. Разница между стартовой маржой и ликвидной стоимости портфеля.
   MoneyValue amount_of_missing_funds = 5;
+
+  // Скорректированная маржа.Начальная маржа, в которой плановые позиции рассчитываются с учётом активных заявок на покупку позиций лонг или продажу позиций шорт.
+  MoneyValue corrected_margin = 6;
 }
 
 //Запрос текущих лимитов пользователя.
@@ -134,7 +137,7 @@ message GetInfoRequest {
 message GetInfoResponse {
   bool prem_status = 1; //Признак премиум клиента.
   bool qual_status = 2; //Признак квалифицированного инвестора.
-  repeated string qualified_for_work_with = 3; //Набор требующих тестирования инструментов и возможностей, с которыми может работать пользователь.
+  repeated string qualified_for_work_with = 3; //Набор требующих тестирования инструментов и возможностей, с которыми может работать пользователь. [Подробнее](https://tinkoff.github.io/investAPI/faq_users/).
   string tariff = 4; //Наименование тарифа пользователя.
 }
 

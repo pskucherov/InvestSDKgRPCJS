@@ -1,10 +1,10 @@
 /* eslint-disable */
-import Long from 'long';
-import * as _m0 from 'protobufjs/minimal';
-import { Timestamp } from './google/protobuf/timestamp';
-import { Quotation, MoneyValue } from './common';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { MoneyValue, Quotation } from "./common";
+import { Timestamp } from "./google/protobuf/timestamp";
 
-export const protobufPackage = 'tinkoff.public.invest.api.contract.v1';
+export const protobufPackage = "tinkoff.public.invest.api.contract.v1";
 
 /** Направление сделки стоп-заявки. */
 export enum StopOrderDirection {
@@ -20,16 +20,16 @@ export enum StopOrderDirection {
 export function stopOrderDirectionFromJSON(object: any): StopOrderDirection {
   switch (object) {
     case 0:
-    case 'STOP_ORDER_DIRECTION_UNSPECIFIED':
+    case "STOP_ORDER_DIRECTION_UNSPECIFIED":
       return StopOrderDirection.STOP_ORDER_DIRECTION_UNSPECIFIED;
     case 1:
-    case 'STOP_ORDER_DIRECTION_BUY':
+    case "STOP_ORDER_DIRECTION_BUY":
       return StopOrderDirection.STOP_ORDER_DIRECTION_BUY;
     case 2:
-    case 'STOP_ORDER_DIRECTION_SELL':
+    case "STOP_ORDER_DIRECTION_SELL":
       return StopOrderDirection.STOP_ORDER_DIRECTION_SELL;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return StopOrderDirection.UNRECOGNIZED;
   }
@@ -38,13 +38,14 @@ export function stopOrderDirectionFromJSON(object: any): StopOrderDirection {
 export function stopOrderDirectionToJSON(object: StopOrderDirection): string {
   switch (object) {
     case StopOrderDirection.STOP_ORDER_DIRECTION_UNSPECIFIED:
-      return 'STOP_ORDER_DIRECTION_UNSPECIFIED';
+      return "STOP_ORDER_DIRECTION_UNSPECIFIED";
     case StopOrderDirection.STOP_ORDER_DIRECTION_BUY:
-      return 'STOP_ORDER_DIRECTION_BUY';
+      return "STOP_ORDER_DIRECTION_BUY";
     case StopOrderDirection.STOP_ORDER_DIRECTION_SELL:
-      return 'STOP_ORDER_DIRECTION_SELL';
+      return "STOP_ORDER_DIRECTION_SELL";
+    case StopOrderDirection.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -62,16 +63,16 @@ export enum StopOrderExpirationType {
 export function stopOrderExpirationTypeFromJSON(object: any): StopOrderExpirationType {
   switch (object) {
     case 0:
-    case 'STOP_ORDER_EXPIRATION_TYPE_UNSPECIFIED':
+    case "STOP_ORDER_EXPIRATION_TYPE_UNSPECIFIED":
       return StopOrderExpirationType.STOP_ORDER_EXPIRATION_TYPE_UNSPECIFIED;
     case 1:
-    case 'STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_CANCEL':
+    case "STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_CANCEL":
       return StopOrderExpirationType.STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_CANCEL;
     case 2:
-    case 'STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_DATE':
+    case "STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_DATE":
       return StopOrderExpirationType.STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_DATE;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return StopOrderExpirationType.UNRECOGNIZED;
   }
@@ -80,13 +81,14 @@ export function stopOrderExpirationTypeFromJSON(object: any): StopOrderExpiratio
 export function stopOrderExpirationTypeToJSON(object: StopOrderExpirationType): string {
   switch (object) {
     case StopOrderExpirationType.STOP_ORDER_EXPIRATION_TYPE_UNSPECIFIED:
-      return 'STOP_ORDER_EXPIRATION_TYPE_UNSPECIFIED';
+      return "STOP_ORDER_EXPIRATION_TYPE_UNSPECIFIED";
     case StopOrderExpirationType.STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_CANCEL:
-      return 'STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_CANCEL';
+      return "STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_CANCEL";
     case StopOrderExpirationType.STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_DATE:
-      return 'STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_DATE';
+      return "STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_DATE";
+    case StopOrderExpirationType.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -106,19 +108,19 @@ export enum StopOrderType {
 export function stopOrderTypeFromJSON(object: any): StopOrderType {
   switch (object) {
     case 0:
-    case 'STOP_ORDER_TYPE_UNSPECIFIED':
+    case "STOP_ORDER_TYPE_UNSPECIFIED":
       return StopOrderType.STOP_ORDER_TYPE_UNSPECIFIED;
     case 1:
-    case 'STOP_ORDER_TYPE_TAKE_PROFIT':
+    case "STOP_ORDER_TYPE_TAKE_PROFIT":
       return StopOrderType.STOP_ORDER_TYPE_TAKE_PROFIT;
     case 2:
-    case 'STOP_ORDER_TYPE_STOP_LOSS':
+    case "STOP_ORDER_TYPE_STOP_LOSS":
       return StopOrderType.STOP_ORDER_TYPE_STOP_LOSS;
     case 3:
-    case 'STOP_ORDER_TYPE_STOP_LIMIT':
+    case "STOP_ORDER_TYPE_STOP_LIMIT":
       return StopOrderType.STOP_ORDER_TYPE_STOP_LIMIT;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return StopOrderType.UNRECOGNIZED;
   }
@@ -127,15 +129,16 @@ export function stopOrderTypeFromJSON(object: any): StopOrderType {
 export function stopOrderTypeToJSON(object: StopOrderType): string {
   switch (object) {
     case StopOrderType.STOP_ORDER_TYPE_UNSPECIFIED:
-      return 'STOP_ORDER_TYPE_UNSPECIFIED';
+      return "STOP_ORDER_TYPE_UNSPECIFIED";
     case StopOrderType.STOP_ORDER_TYPE_TAKE_PROFIT:
-      return 'STOP_ORDER_TYPE_TAKE_PROFIT';
+      return "STOP_ORDER_TYPE_TAKE_PROFIT";
     case StopOrderType.STOP_ORDER_TYPE_STOP_LOSS:
-      return 'STOP_ORDER_TYPE_STOP_LOSS';
+      return "STOP_ORDER_TYPE_STOP_LOSS";
     case StopOrderType.STOP_ORDER_TYPE_STOP_LIMIT:
-      return 'STOP_ORDER_TYPE_STOP_LIMIT';
+      return "STOP_ORDER_TYPE_STOP_LIMIT";
+    case StopOrderType.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -146,9 +149,13 @@ export interface PostStopOrderRequest {
   /** Количество лотов. */
   quantity: number;
   /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
-  price: Quotation | undefined;
+  price:
+    | Quotation
+    | undefined;
   /** Стоп-цена заявки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
-  stopPrice: Quotation | undefined;
+  stopPrice:
+    | Quotation
+    | undefined;
   /** Направление операции. */
   direction: StopOrderDirection;
   /** Номер счёта. */
@@ -208,25 +215,33 @@ export interface StopOrder {
   /** Тип стоп-заявки. */
   orderType: StopOrderType;
   /** Дата и время выставления заявки в часовом поясе UTC. */
-  createDate: Date | undefined;
+  createDate:
+    | Date
+    | undefined;
   /** Дата и время конвертации стоп-заявки в биржевую в часовом поясе UTC. */
-  activationDateTime: Date | undefined;
+  activationDateTime:
+    | Date
+    | undefined;
   /** Дата и время снятия заявки в часовом поясе UTC. */
-  expirationTime: Date | undefined;
+  expirationTime:
+    | Date
+    | undefined;
   /** Цена заявки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
-  price: MoneyValue | undefined;
+  price:
+    | MoneyValue
+    | undefined;
   /** Цена активации стоп-заявки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
   stopPrice: MoneyValue | undefined;
 }
 
 function createBasePostStopOrderRequest(): PostStopOrderRequest {
   return {
-    figi: '',
+    figi: "",
     quantity: 0,
     price: undefined,
     stopPrice: undefined,
     direction: 0,
-    accountId: '',
+    accountId: "",
     expirationType: 0,
     stopOrderType: 0,
     expireDate: undefined,
@@ -235,7 +250,7 @@ function createBasePostStopOrderRequest(): PostStopOrderRequest {
 
 export const PostStopOrderRequest = {
   encode(message: PostStopOrderRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
     if (message.quantity !== 0) {
@@ -250,7 +265,7 @@ export const PostStopOrderRequest = {
     if (message.direction !== 0) {
       writer.uint32(40).int32(message.direction);
     }
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(50).string(message.accountId);
     }
     if (message.expirationType !== 0) {
@@ -309,12 +324,12 @@ export const PostStopOrderRequest = {
 
   fromJSON(object: any): PostStopOrderRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
       price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
       stopPrice: isSet(object.stopPrice) ? Quotation.fromJSON(object.stopPrice) : undefined,
       direction: isSet(object.direction) ? stopOrderDirectionFromJSON(object.direction) : 0,
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
+      accountId: isSet(object.accountId) ? String(object.accountId) : "",
       expirationType: isSet(object.expirationType) ? stopOrderExpirationTypeFromJSON(object.expirationType) : 0,
       stopOrderType: isSet(object.stopOrderType) ? stopOrderTypeFromJSON(object.stopOrderType) : 0,
       expireDate: isSet(object.expireDate) ? fromJsonTimestamp(object.expireDate) : undefined,
@@ -339,14 +354,16 @@ export const PostStopOrderRequest = {
 
   fromPartial(object: DeepPartial<PostStopOrderRequest>): PostStopOrderRequest {
     const message = createBasePostStopOrderRequest();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? "";
     message.quantity = object.quantity ?? 0;
-    message.price =
-      object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
-    message.stopPrice =
-      object.stopPrice !== undefined && object.stopPrice !== null ? Quotation.fromPartial(object.stopPrice) : undefined;
+    message.price = (object.price !== undefined && object.price !== null)
+      ? Quotation.fromPartial(object.price)
+      : undefined;
+    message.stopPrice = (object.stopPrice !== undefined && object.stopPrice !== null)
+      ? Quotation.fromPartial(object.stopPrice)
+      : undefined;
     message.direction = object.direction ?? 0;
-    message.accountId = object.accountId ?? '';
+    message.accountId = object.accountId ?? "";
     message.expirationType = object.expirationType ?? 0;
     message.stopOrderType = object.stopOrderType ?? 0;
     message.expireDate = object.expireDate ?? undefined;
@@ -355,12 +372,12 @@ export const PostStopOrderRequest = {
 };
 
 function createBasePostStopOrderResponse(): PostStopOrderResponse {
-  return { stopOrderId: '' };
+  return { stopOrderId: "" };
 }
 
 export const PostStopOrderResponse = {
   encode(message: PostStopOrderResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.stopOrderId !== '') {
+    if (message.stopOrderId !== "") {
       writer.uint32(10).string(message.stopOrderId);
     }
     return writer;
@@ -385,9 +402,7 @@ export const PostStopOrderResponse = {
   },
 
   fromJSON(object: any): PostStopOrderResponse {
-    return {
-      stopOrderId: isSet(object.stopOrderId) ? String(object.stopOrderId) : '',
-    };
+    return { stopOrderId: isSet(object.stopOrderId) ? String(object.stopOrderId) : "" };
   },
 
   toJSON(message: PostStopOrderResponse): unknown {
@@ -398,18 +413,18 @@ export const PostStopOrderResponse = {
 
   fromPartial(object: DeepPartial<PostStopOrderResponse>): PostStopOrderResponse {
     const message = createBasePostStopOrderResponse();
-    message.stopOrderId = object.stopOrderId ?? '';
+    message.stopOrderId = object.stopOrderId ?? "";
     return message;
   },
 };
 
 function createBaseGetStopOrdersRequest(): GetStopOrdersRequest {
-  return { accountId: '' };
+  return { accountId: "" };
 }
 
 export const GetStopOrdersRequest = {
   encode(message: GetStopOrdersRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(10).string(message.accountId);
     }
     return writer;
@@ -434,9 +449,7 @@ export const GetStopOrdersRequest = {
   },
 
   fromJSON(object: any): GetStopOrdersRequest {
-    return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
-    };
+    return { accountId: isSet(object.accountId) ? String(object.accountId) : "" };
   },
 
   toJSON(message: GetStopOrdersRequest): unknown {
@@ -447,7 +460,7 @@ export const GetStopOrdersRequest = {
 
   fromPartial(object: DeepPartial<GetStopOrdersRequest>): GetStopOrdersRequest {
     const message = createBaseGetStopOrdersRequest();
-    message.accountId = object.accountId ?? '';
+    message.accountId = object.accountId ?? "";
     return message;
   },
 };
@@ -491,7 +504,7 @@ export const GetStopOrdersResponse = {
   toJSON(message: GetStopOrdersResponse): unknown {
     const obj: any = {};
     if (message.stopOrders) {
-      obj.stopOrders = message.stopOrders.map(e => (e ? StopOrder.toJSON(e) : undefined));
+      obj.stopOrders = message.stopOrders.map((e) => e ? StopOrder.toJSON(e) : undefined);
     } else {
       obj.stopOrders = [];
     }
@@ -500,21 +513,21 @@ export const GetStopOrdersResponse = {
 
   fromPartial(object: DeepPartial<GetStopOrdersResponse>): GetStopOrdersResponse {
     const message = createBaseGetStopOrdersResponse();
-    message.stopOrders = object.stopOrders?.map(e => StopOrder.fromPartial(e)) || [];
+    message.stopOrders = object.stopOrders?.map((e) => StopOrder.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseCancelStopOrderRequest(): CancelStopOrderRequest {
-  return { accountId: '', stopOrderId: '' };
+  return { accountId: "", stopOrderId: "" };
 }
 
 export const CancelStopOrderRequest = {
   encode(message: CancelStopOrderRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(10).string(message.accountId);
     }
-    if (message.stopOrderId !== '') {
+    if (message.stopOrderId !== "") {
       writer.uint32(18).string(message.stopOrderId);
     }
     return writer;
@@ -543,8 +556,8 @@ export const CancelStopOrderRequest = {
 
   fromJSON(object: any): CancelStopOrderRequest {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
-      stopOrderId: isSet(object.stopOrderId) ? String(object.stopOrderId) : '',
+      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      stopOrderId: isSet(object.stopOrderId) ? String(object.stopOrderId) : "",
     };
   },
 
@@ -557,8 +570,8 @@ export const CancelStopOrderRequest = {
 
   fromPartial(object: DeepPartial<CancelStopOrderRequest>): CancelStopOrderRequest {
     const message = createBaseCancelStopOrderRequest();
-    message.accountId = object.accountId ?? '';
-    message.stopOrderId = object.stopOrderId ?? '';
+    message.accountId = object.accountId ?? "";
+    message.stopOrderId = object.stopOrderId ?? "";
     return message;
   },
 };
@@ -594,9 +607,7 @@ export const CancelStopOrderResponse = {
   },
 
   fromJSON(object: any): CancelStopOrderResponse {
-    return {
-      time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
-    };
+    return { time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined };
   },
 
   toJSON(message: CancelStopOrderResponse): unknown {
@@ -614,11 +625,11 @@ export const CancelStopOrderResponse = {
 
 function createBaseStopOrder(): StopOrder {
   return {
-    stopOrderId: '',
+    stopOrderId: "",
     lotsRequested: 0,
-    figi: '',
+    figi: "",
     direction: 0,
-    currency: '',
+    currency: "",
     orderType: 0,
     createDate: undefined,
     activationDateTime: undefined,
@@ -630,19 +641,19 @@ function createBaseStopOrder(): StopOrder {
 
 export const StopOrder = {
   encode(message: StopOrder, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.stopOrderId !== '') {
+    if (message.stopOrderId !== "") {
       writer.uint32(10).string(message.stopOrderId);
     }
     if (message.lotsRequested !== 0) {
       writer.uint32(16).int64(message.lotsRequested);
     }
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(26).string(message.figi);
     }
     if (message.direction !== 0) {
       writer.uint32(32).int32(message.direction);
     }
-    if (message.currency !== '') {
+    if (message.currency !== "") {
       writer.uint32(42).string(message.currency);
     }
     if (message.orderType !== 0) {
@@ -716,11 +727,11 @@ export const StopOrder = {
 
   fromJSON(object: any): StopOrder {
     return {
-      stopOrderId: isSet(object.stopOrderId) ? String(object.stopOrderId) : '',
+      stopOrderId: isSet(object.stopOrderId) ? String(object.stopOrderId) : "",
       lotsRequested: isSet(object.lotsRequested) ? Number(object.lotsRequested) : 0,
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
       direction: isSet(object.direction) ? stopOrderDirectionFromJSON(object.direction) : 0,
-      currency: isSet(object.currency) ? String(object.currency) : '',
+      currency: isSet(object.currency) ? String(object.currency) : "",
       orderType: isSet(object.orderType) ? stopOrderTypeFromJSON(object.orderType) : 0,
       createDate: isSet(object.createDate) ? fromJsonTimestamp(object.createDate) : undefined,
       activationDateTime: isSet(object.activationDateTime) ? fromJsonTimestamp(object.activationDateTime) : undefined,
@@ -749,21 +760,21 @@ export const StopOrder = {
 
   fromPartial(object: DeepPartial<StopOrder>): StopOrder {
     const message = createBaseStopOrder();
-    message.stopOrderId = object.stopOrderId ?? '';
+    message.stopOrderId = object.stopOrderId ?? "";
     message.lotsRequested = object.lotsRequested ?? 0;
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? "";
     message.direction = object.direction ?? 0;
-    message.currency = object.currency ?? '';
+    message.currency = object.currency ?? "";
     message.orderType = object.orderType ?? 0;
     message.createDate = object.createDate ?? undefined;
     message.activationDateTime = object.activationDateTime ?? undefined;
     message.expirationTime = object.expirationTime ?? undefined;
-    message.price =
-      object.price !== undefined && object.price !== null ? MoneyValue.fromPartial(object.price) : undefined;
-    message.stopPrice =
-      object.stopPrice !== undefined && object.stopPrice !== null
-        ? MoneyValue.fromPartial(object.stopPrice)
-        : undefined;
+    message.price = (object.price !== undefined && object.price !== null)
+      ? MoneyValue.fromPartial(object.price)
+      : undefined;
+    message.stopPrice = (object.stopPrice !== undefined && object.stopPrice !== null)
+      ? MoneyValue.fromPartial(object.stopPrice)
+      : undefined;
     return message;
   },
 };
@@ -774,12 +785,12 @@ export const StopOrder = {
  */
 export type StopOrdersServiceDefinition = typeof StopOrdersServiceDefinition;
 export const StopOrdersServiceDefinition = {
-  name: 'StopOrdersService',
-  fullName: 'tinkoff.public.invest.api.contract.v1.StopOrdersService',
+  name: "StopOrdersService",
+  fullName: "tinkoff.public.invest.api.contract.v1.StopOrdersService",
   methods: {
     /** Метод выставления стоп-заявки. */
     postStopOrder: {
-      name: 'PostStopOrder',
+      name: "PostStopOrder",
       requestType: PostStopOrderRequest,
       requestStream: false,
       responseType: PostStopOrderResponse,
@@ -788,7 +799,7 @@ export const StopOrdersServiceDefinition = {
     },
     /** Метод получения списка активных стоп заявок по счёту. */
     getStopOrders: {
-      name: 'GetStopOrders',
+      name: "GetStopOrders",
       requestType: GetStopOrdersRequest,
       requestStream: false,
       responseType: GetStopOrdersResponse,
@@ -797,7 +808,7 @@ export const StopOrdersServiceDefinition = {
     },
     /** Метод отмены стоп-заявки. */
     cancelStopOrder: {
-      name: 'CancelStopOrder',
+      name: "CancelStopOrder",
       requestType: CancelStopOrderRequest,
       requestStream: false,
       responseType: CancelStopOrderResponse,
@@ -811,23 +822,26 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') return globalThis;
-  if (typeof self !== 'undefined') return self;
-  if (typeof window !== 'undefined') return window;
-  if (typeof global !== 'undefined') return global;
-  throw 'Unable to locate global object';
+  if (typeof globalThis !== "undefined") {
+    return globalThis;
+  }
+  if (typeof self !== "undefined") {
+    return self;
+  }
+  if (typeof window !== "undefined") {
+    return window;
+  }
+  if (typeof global !== "undefined") {
+    return global;
+  }
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-  ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 function toTimestamp(date: Date): Timestamp {
@@ -845,7 +859,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === 'string') {
+  } else if (typeof o === "string") {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -854,7 +868,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

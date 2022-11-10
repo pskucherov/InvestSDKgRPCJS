@@ -1,16 +1,16 @@
 /* eslint-disable */
-import Long from 'long';
-import * as _m0 from 'protobufjs/minimal';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 import {
-  SecurityTradingStatus,
   MoneyValue,
   Quotation,
+  SecurityTradingStatus,
   securityTradingStatusFromJSON,
   securityTradingStatusToJSON,
-} from './common';
-import { Timestamp } from './google/protobuf/timestamp';
+} from "./common";
+import { Timestamp } from "./google/protobuf/timestamp";
 
-export const protobufPackage = 'tinkoff.public.invest.api.contract.v1';
+export const protobufPackage = "tinkoff.public.invest.api.contract.v1";
 
 /** Тип купонов. */
 export enum CouponType {
@@ -36,31 +36,31 @@ export enum CouponType {
 export function couponTypeFromJSON(object: any): CouponType {
   switch (object) {
     case 0:
-    case 'COUPON_TYPE_UNSPECIFIED':
+    case "COUPON_TYPE_UNSPECIFIED":
       return CouponType.COUPON_TYPE_UNSPECIFIED;
     case 1:
-    case 'COUPON_TYPE_CONSTANT':
+    case "COUPON_TYPE_CONSTANT":
       return CouponType.COUPON_TYPE_CONSTANT;
     case 2:
-    case 'COUPON_TYPE_FLOATING':
+    case "COUPON_TYPE_FLOATING":
       return CouponType.COUPON_TYPE_FLOATING;
     case 3:
-    case 'COUPON_TYPE_DISCOUNT':
+    case "COUPON_TYPE_DISCOUNT":
       return CouponType.COUPON_TYPE_DISCOUNT;
     case 4:
-    case 'COUPON_TYPE_MORTGAGE':
+    case "COUPON_TYPE_MORTGAGE":
       return CouponType.COUPON_TYPE_MORTGAGE;
     case 5:
-    case 'COUPON_TYPE_FIX':
+    case "COUPON_TYPE_FIX":
       return CouponType.COUPON_TYPE_FIX;
     case 6:
-    case 'COUPON_TYPE_VARIABLE':
+    case "COUPON_TYPE_VARIABLE":
       return CouponType.COUPON_TYPE_VARIABLE;
     case 7:
-    case 'COUPON_TYPE_OTHER':
+    case "COUPON_TYPE_OTHER":
       return CouponType.COUPON_TYPE_OTHER;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return CouponType.UNRECOGNIZED;
   }
@@ -69,23 +69,184 @@ export function couponTypeFromJSON(object: any): CouponType {
 export function couponTypeToJSON(object: CouponType): string {
   switch (object) {
     case CouponType.COUPON_TYPE_UNSPECIFIED:
-      return 'COUPON_TYPE_UNSPECIFIED';
+      return "COUPON_TYPE_UNSPECIFIED";
     case CouponType.COUPON_TYPE_CONSTANT:
-      return 'COUPON_TYPE_CONSTANT';
+      return "COUPON_TYPE_CONSTANT";
     case CouponType.COUPON_TYPE_FLOATING:
-      return 'COUPON_TYPE_FLOATING';
+      return "COUPON_TYPE_FLOATING";
     case CouponType.COUPON_TYPE_DISCOUNT:
-      return 'COUPON_TYPE_DISCOUNT';
+      return "COUPON_TYPE_DISCOUNT";
     case CouponType.COUPON_TYPE_MORTGAGE:
-      return 'COUPON_TYPE_MORTGAGE';
+      return "COUPON_TYPE_MORTGAGE";
     case CouponType.COUPON_TYPE_FIX:
-      return 'COUPON_TYPE_FIX';
+      return "COUPON_TYPE_FIX";
     case CouponType.COUPON_TYPE_VARIABLE:
-      return 'COUPON_TYPE_VARIABLE';
+      return "COUPON_TYPE_VARIABLE";
     case CouponType.COUPON_TYPE_OTHER:
-      return 'COUPON_TYPE_OTHER';
+      return "COUPON_TYPE_OTHER";
+    case CouponType.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
+  }
+}
+
+/** Тип опциона по направлению сделки. */
+export enum OptionDirection {
+  OPTION_DIRECTION_UNSPECIFIED = 0,
+  OPTION_DIRECTION_PUT = 1,
+  OPTION_DIRECTION_CALL = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function optionDirectionFromJSON(object: any): OptionDirection {
+  switch (object) {
+    case 0:
+    case "OPTION_DIRECTION_UNSPECIFIED":
+      return OptionDirection.OPTION_DIRECTION_UNSPECIFIED;
+    case 1:
+    case "OPTION_DIRECTION_PUT":
+      return OptionDirection.OPTION_DIRECTION_PUT;
+    case 2:
+    case "OPTION_DIRECTION_CALL":
+      return OptionDirection.OPTION_DIRECTION_CALL;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return OptionDirection.UNRECOGNIZED;
+  }
+}
+
+export function optionDirectionToJSON(object: OptionDirection): string {
+  switch (object) {
+    case OptionDirection.OPTION_DIRECTION_UNSPECIFIED:
+      return "OPTION_DIRECTION_UNSPECIFIED";
+    case OptionDirection.OPTION_DIRECTION_PUT:
+      return "OPTION_DIRECTION_PUT";
+    case OptionDirection.OPTION_DIRECTION_CALL:
+      return "OPTION_DIRECTION_CALL";
+    case OptionDirection.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+/** Тип расчетов по опциону. */
+export enum OptionPaymentType {
+  OPTION_PAYMENT_TYPE_UNSPECIFIED = 0,
+  OPTION_PAYMENT_TYPE_PREMIUM = 1,
+  OPTION_PAYMENT_TYPE_MARGINAL = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function optionPaymentTypeFromJSON(object: any): OptionPaymentType {
+  switch (object) {
+    case 0:
+    case "OPTION_PAYMENT_TYPE_UNSPECIFIED":
+      return OptionPaymentType.OPTION_PAYMENT_TYPE_UNSPECIFIED;
+    case 1:
+    case "OPTION_PAYMENT_TYPE_PREMIUM":
+      return OptionPaymentType.OPTION_PAYMENT_TYPE_PREMIUM;
+    case 2:
+    case "OPTION_PAYMENT_TYPE_MARGINAL":
+      return OptionPaymentType.OPTION_PAYMENT_TYPE_MARGINAL;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return OptionPaymentType.UNRECOGNIZED;
+  }
+}
+
+export function optionPaymentTypeToJSON(object: OptionPaymentType): string {
+  switch (object) {
+    case OptionPaymentType.OPTION_PAYMENT_TYPE_UNSPECIFIED:
+      return "OPTION_PAYMENT_TYPE_UNSPECIFIED";
+    case OptionPaymentType.OPTION_PAYMENT_TYPE_PREMIUM:
+      return "OPTION_PAYMENT_TYPE_PREMIUM";
+    case OptionPaymentType.OPTION_PAYMENT_TYPE_MARGINAL:
+      return "OPTION_PAYMENT_TYPE_MARGINAL";
+    case OptionPaymentType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+/** Тип опциона по стилю. */
+export enum OptionStyle {
+  OPTION_STYLE_UNSPECIFIED = 0,
+  OPTION_STYLE_AMERICAN = 1,
+  OPTION_STYLE_EUROPEAN = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function optionStyleFromJSON(object: any): OptionStyle {
+  switch (object) {
+    case 0:
+    case "OPTION_STYLE_UNSPECIFIED":
+      return OptionStyle.OPTION_STYLE_UNSPECIFIED;
+    case 1:
+    case "OPTION_STYLE_AMERICAN":
+      return OptionStyle.OPTION_STYLE_AMERICAN;
+    case 2:
+    case "OPTION_STYLE_EUROPEAN":
+      return OptionStyle.OPTION_STYLE_EUROPEAN;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return OptionStyle.UNRECOGNIZED;
+  }
+}
+
+export function optionStyleToJSON(object: OptionStyle): string {
+  switch (object) {
+    case OptionStyle.OPTION_STYLE_UNSPECIFIED:
+      return "OPTION_STYLE_UNSPECIFIED";
+    case OptionStyle.OPTION_STYLE_AMERICAN:
+      return "OPTION_STYLE_AMERICAN";
+    case OptionStyle.OPTION_STYLE_EUROPEAN:
+      return "OPTION_STYLE_EUROPEAN";
+    case OptionStyle.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+/** Тип опциона по способу исполнения. */
+export enum OptionSettlementType {
+  OPTION_EXECUTION_TYPE_UNSPECIFIED = 0,
+  OPTION_EXECUTION_TYPE_PHYSICAL_DELIVERY = 1,
+  OPTION_EXECUTION_TYPE_CASH_SETTLEMENT = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function optionSettlementTypeFromJSON(object: any): OptionSettlementType {
+  switch (object) {
+    case 0:
+    case "OPTION_EXECUTION_TYPE_UNSPECIFIED":
+      return OptionSettlementType.OPTION_EXECUTION_TYPE_UNSPECIFIED;
+    case 1:
+    case "OPTION_EXECUTION_TYPE_PHYSICAL_DELIVERY":
+      return OptionSettlementType.OPTION_EXECUTION_TYPE_PHYSICAL_DELIVERY;
+    case 2:
+    case "OPTION_EXECUTION_TYPE_CASH_SETTLEMENT":
+      return OptionSettlementType.OPTION_EXECUTION_TYPE_CASH_SETTLEMENT;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return OptionSettlementType.UNRECOGNIZED;
+  }
+}
+
+export function optionSettlementTypeToJSON(object: OptionSettlementType): string {
+  switch (object) {
+    case OptionSettlementType.OPTION_EXECUTION_TYPE_UNSPECIFIED:
+      return "OPTION_EXECUTION_TYPE_UNSPECIFIED";
+    case OptionSettlementType.OPTION_EXECUTION_TYPE_PHYSICAL_DELIVERY:
+      return "OPTION_EXECUTION_TYPE_PHYSICAL_DELIVERY";
+    case OptionSettlementType.OPTION_EXECUTION_TYPE_CASH_SETTLEMENT:
+      return "OPTION_EXECUTION_TYPE_CASH_SETTLEMENT";
+    case OptionSettlementType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
   }
 }
 
@@ -99,25 +260,30 @@ export enum InstrumentIdType {
   INSTRUMENT_ID_TYPE_TICKER = 2,
   /** INSTRUMENT_ID_TYPE_UID - Уникальный идентификатор. */
   INSTRUMENT_ID_TYPE_UID = 3,
+  /** INSTRUMENT_ID_TYPE_POSITION_UID - Идентификатор позиции. */
+  INSTRUMENT_ID_TYPE_POSITION_UID = 4,
   UNRECOGNIZED = -1,
 }
 
 export function instrumentIdTypeFromJSON(object: any): InstrumentIdType {
   switch (object) {
     case 0:
-    case 'INSTRUMENT_ID_UNSPECIFIED':
+    case "INSTRUMENT_ID_UNSPECIFIED":
       return InstrumentIdType.INSTRUMENT_ID_UNSPECIFIED;
     case 1:
-    case 'INSTRUMENT_ID_TYPE_FIGI':
+    case "INSTRUMENT_ID_TYPE_FIGI":
       return InstrumentIdType.INSTRUMENT_ID_TYPE_FIGI;
     case 2:
-    case 'INSTRUMENT_ID_TYPE_TICKER':
+    case "INSTRUMENT_ID_TYPE_TICKER":
       return InstrumentIdType.INSTRUMENT_ID_TYPE_TICKER;
     case 3:
-    case 'INSTRUMENT_ID_TYPE_UID':
+    case "INSTRUMENT_ID_TYPE_UID":
       return InstrumentIdType.INSTRUMENT_ID_TYPE_UID;
+    case 4:
+    case "INSTRUMENT_ID_TYPE_POSITION_UID":
+      return InstrumentIdType.INSTRUMENT_ID_TYPE_POSITION_UID;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return InstrumentIdType.UNRECOGNIZED;
   }
@@ -126,15 +292,18 @@ export function instrumentIdTypeFromJSON(object: any): InstrumentIdType {
 export function instrumentIdTypeToJSON(object: InstrumentIdType): string {
   switch (object) {
     case InstrumentIdType.INSTRUMENT_ID_UNSPECIFIED:
-      return 'INSTRUMENT_ID_UNSPECIFIED';
+      return "INSTRUMENT_ID_UNSPECIFIED";
     case InstrumentIdType.INSTRUMENT_ID_TYPE_FIGI:
-      return 'INSTRUMENT_ID_TYPE_FIGI';
+      return "INSTRUMENT_ID_TYPE_FIGI";
     case InstrumentIdType.INSTRUMENT_ID_TYPE_TICKER:
-      return 'INSTRUMENT_ID_TYPE_TICKER';
+      return "INSTRUMENT_ID_TYPE_TICKER";
     case InstrumentIdType.INSTRUMENT_ID_TYPE_UID:
-      return 'INSTRUMENT_ID_TYPE_UID';
+      return "INSTRUMENT_ID_TYPE_UID";
+    case InstrumentIdType.INSTRUMENT_ID_TYPE_POSITION_UID:
+      return "INSTRUMENT_ID_TYPE_POSITION_UID";
+    case InstrumentIdType.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -152,16 +321,16 @@ export enum InstrumentStatus {
 export function instrumentStatusFromJSON(object: any): InstrumentStatus {
   switch (object) {
     case 0:
-    case 'INSTRUMENT_STATUS_UNSPECIFIED':
+    case "INSTRUMENT_STATUS_UNSPECIFIED":
       return InstrumentStatus.INSTRUMENT_STATUS_UNSPECIFIED;
     case 1:
-    case 'INSTRUMENT_STATUS_BASE':
+    case "INSTRUMENT_STATUS_BASE":
       return InstrumentStatus.INSTRUMENT_STATUS_BASE;
     case 2:
-    case 'INSTRUMENT_STATUS_ALL':
+    case "INSTRUMENT_STATUS_ALL":
       return InstrumentStatus.INSTRUMENT_STATUS_ALL;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return InstrumentStatus.UNRECOGNIZED;
   }
@@ -170,13 +339,14 @@ export function instrumentStatusFromJSON(object: any): InstrumentStatus {
 export function instrumentStatusToJSON(object: InstrumentStatus): string {
   switch (object) {
     case InstrumentStatus.INSTRUMENT_STATUS_UNSPECIFIED:
-      return 'INSTRUMENT_STATUS_UNSPECIFIED';
+      return "INSTRUMENT_STATUS_UNSPECIFIED";
     case InstrumentStatus.INSTRUMENT_STATUS_BASE:
-      return 'INSTRUMENT_STATUS_BASE';
+      return "INSTRUMENT_STATUS_BASE";
     case InstrumentStatus.INSTRUMENT_STATUS_ALL:
-      return 'INSTRUMENT_STATUS_ALL';
+      return "INSTRUMENT_STATUS_ALL";
+    case InstrumentStatus.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -206,34 +376,34 @@ export enum ShareType {
 export function shareTypeFromJSON(object: any): ShareType {
   switch (object) {
     case 0:
-    case 'SHARE_TYPE_UNSPECIFIED':
+    case "SHARE_TYPE_UNSPECIFIED":
       return ShareType.SHARE_TYPE_UNSPECIFIED;
     case 1:
-    case 'SHARE_TYPE_COMMON':
+    case "SHARE_TYPE_COMMON":
       return ShareType.SHARE_TYPE_COMMON;
     case 2:
-    case 'SHARE_TYPE_PREFERRED':
+    case "SHARE_TYPE_PREFERRED":
       return ShareType.SHARE_TYPE_PREFERRED;
     case 3:
-    case 'SHARE_TYPE_ADR':
+    case "SHARE_TYPE_ADR":
       return ShareType.SHARE_TYPE_ADR;
     case 4:
-    case 'SHARE_TYPE_GDR':
+    case "SHARE_TYPE_GDR":
       return ShareType.SHARE_TYPE_GDR;
     case 5:
-    case 'SHARE_TYPE_MLP':
+    case "SHARE_TYPE_MLP":
       return ShareType.SHARE_TYPE_MLP;
     case 6:
-    case 'SHARE_TYPE_NY_REG_SHRS':
+    case "SHARE_TYPE_NY_REG_SHRS":
       return ShareType.SHARE_TYPE_NY_REG_SHRS;
     case 7:
-    case 'SHARE_TYPE_CLOSED_END_FUND':
+    case "SHARE_TYPE_CLOSED_END_FUND":
       return ShareType.SHARE_TYPE_CLOSED_END_FUND;
     case 8:
-    case 'SHARE_TYPE_REIT':
+    case "SHARE_TYPE_REIT":
       return ShareType.SHARE_TYPE_REIT;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return ShareType.UNRECOGNIZED;
   }
@@ -242,25 +412,26 @@ export function shareTypeFromJSON(object: any): ShareType {
 export function shareTypeToJSON(object: ShareType): string {
   switch (object) {
     case ShareType.SHARE_TYPE_UNSPECIFIED:
-      return 'SHARE_TYPE_UNSPECIFIED';
+      return "SHARE_TYPE_UNSPECIFIED";
     case ShareType.SHARE_TYPE_COMMON:
-      return 'SHARE_TYPE_COMMON';
+      return "SHARE_TYPE_COMMON";
     case ShareType.SHARE_TYPE_PREFERRED:
-      return 'SHARE_TYPE_PREFERRED';
+      return "SHARE_TYPE_PREFERRED";
     case ShareType.SHARE_TYPE_ADR:
-      return 'SHARE_TYPE_ADR';
+      return "SHARE_TYPE_ADR";
     case ShareType.SHARE_TYPE_GDR:
-      return 'SHARE_TYPE_GDR';
+      return "SHARE_TYPE_GDR";
     case ShareType.SHARE_TYPE_MLP:
-      return 'SHARE_TYPE_MLP';
+      return "SHARE_TYPE_MLP";
     case ShareType.SHARE_TYPE_NY_REG_SHRS:
-      return 'SHARE_TYPE_NY_REG_SHRS';
+      return "SHARE_TYPE_NY_REG_SHRS";
     case ShareType.SHARE_TYPE_CLOSED_END_FUND:
-      return 'SHARE_TYPE_CLOSED_END_FUND';
+      return "SHARE_TYPE_CLOSED_END_FUND";
     case ShareType.SHARE_TYPE_REIT:
-      return 'SHARE_TYPE_REIT';
+      return "SHARE_TYPE_REIT";
+    case ShareType.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -282,22 +453,22 @@ export enum AssetType {
 export function assetTypeFromJSON(object: any): AssetType {
   switch (object) {
     case 0:
-    case 'ASSET_TYPE_UNSPECIFIED':
+    case "ASSET_TYPE_UNSPECIFIED":
       return AssetType.ASSET_TYPE_UNSPECIFIED;
     case 1:
-    case 'ASSET_TYPE_CURRENCY':
+    case "ASSET_TYPE_CURRENCY":
       return AssetType.ASSET_TYPE_CURRENCY;
     case 2:
-    case 'ASSET_TYPE_COMMODITY':
+    case "ASSET_TYPE_COMMODITY":
       return AssetType.ASSET_TYPE_COMMODITY;
     case 3:
-    case 'ASSET_TYPE_INDEX':
+    case "ASSET_TYPE_INDEX":
       return AssetType.ASSET_TYPE_INDEX;
     case 4:
-    case 'ASSET_TYPE_SECURITY':
+    case "ASSET_TYPE_SECURITY":
       return AssetType.ASSET_TYPE_SECURITY;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return AssetType.UNRECOGNIZED;
   }
@@ -306,17 +477,18 @@ export function assetTypeFromJSON(object: any): AssetType {
 export function assetTypeToJSON(object: AssetType): string {
   switch (object) {
     case AssetType.ASSET_TYPE_UNSPECIFIED:
-      return 'ASSET_TYPE_UNSPECIFIED';
+      return "ASSET_TYPE_UNSPECIFIED";
     case AssetType.ASSET_TYPE_CURRENCY:
-      return 'ASSET_TYPE_CURRENCY';
+      return "ASSET_TYPE_CURRENCY";
     case AssetType.ASSET_TYPE_COMMODITY:
-      return 'ASSET_TYPE_COMMODITY';
+      return "ASSET_TYPE_COMMODITY";
     case AssetType.ASSET_TYPE_INDEX:
-      return 'ASSET_TYPE_INDEX';
+      return "ASSET_TYPE_INDEX";
     case AssetType.ASSET_TYPE_SECURITY:
-      return 'ASSET_TYPE_SECURITY';
+      return "ASSET_TYPE_SECURITY";
+    case AssetType.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -334,16 +506,16 @@ export enum StructuredProductType {
 export function structuredProductTypeFromJSON(object: any): StructuredProductType {
   switch (object) {
     case 0:
-    case 'SP_TYPE_UNSPECIFIED':
+    case "SP_TYPE_UNSPECIFIED":
       return StructuredProductType.SP_TYPE_UNSPECIFIED;
     case 1:
-    case 'SP_TYPE_DELIVERABLE':
+    case "SP_TYPE_DELIVERABLE":
       return StructuredProductType.SP_TYPE_DELIVERABLE;
     case 2:
-    case 'SP_TYPE_NON_DELIVERABLE':
+    case "SP_TYPE_NON_DELIVERABLE":
       return StructuredProductType.SP_TYPE_NON_DELIVERABLE;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return StructuredProductType.UNRECOGNIZED;
   }
@@ -352,13 +524,14 @@ export function structuredProductTypeFromJSON(object: any): StructuredProductTyp
 export function structuredProductTypeToJSON(object: StructuredProductType): string {
   switch (object) {
     case StructuredProductType.SP_TYPE_UNSPECIFIED:
-      return 'SP_TYPE_UNSPECIFIED';
+      return "SP_TYPE_UNSPECIFIED";
     case StructuredProductType.SP_TYPE_DELIVERABLE:
-      return 'SP_TYPE_DELIVERABLE';
+      return "SP_TYPE_DELIVERABLE";
     case StructuredProductType.SP_TYPE_NON_DELIVERABLE:
-      return 'SP_TYPE_NON_DELIVERABLE';
+      return "SP_TYPE_NON_DELIVERABLE";
+    case StructuredProductType.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -376,16 +549,16 @@ export enum EditFavoritesActionType {
 export function editFavoritesActionTypeFromJSON(object: any): EditFavoritesActionType {
   switch (object) {
     case 0:
-    case 'EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED':
+    case "EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED":
       return EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED;
     case 1:
-    case 'EDIT_FAVORITES_ACTION_TYPE_ADD':
+    case "EDIT_FAVORITES_ACTION_TYPE_ADD":
       return EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_ADD;
     case 2:
-    case 'EDIT_FAVORITES_ACTION_TYPE_DEL':
+    case "EDIT_FAVORITES_ACTION_TYPE_DEL":
       return EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_DEL;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return EditFavoritesActionType.UNRECOGNIZED;
   }
@@ -394,13 +567,14 @@ export function editFavoritesActionTypeFromJSON(object: any): EditFavoritesActio
 export function editFavoritesActionTypeToJSON(object: EditFavoritesActionType): string {
   switch (object) {
     case EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED:
-      return 'EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED';
+      return "EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED";
     case EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_ADD:
-      return 'EDIT_FAVORITES_ACTION_TYPE_ADD';
+      return "EDIT_FAVORITES_ACTION_TYPE_ADD";
     case EditFavoritesActionType.EDIT_FAVORITES_ACTION_TYPE_DEL:
-      return 'EDIT_FAVORITES_ACTION_TYPE_DEL';
+      return "EDIT_FAVORITES_ACTION_TYPE_DEL";
+    case EditFavoritesActionType.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -420,19 +594,19 @@ export enum RealExchange {
 export function realExchangeFromJSON(object: any): RealExchange {
   switch (object) {
     case 0:
-    case 'REAL_EXCHANGE_UNSPECIFIED':
+    case "REAL_EXCHANGE_UNSPECIFIED":
       return RealExchange.REAL_EXCHANGE_UNSPECIFIED;
     case 1:
-    case 'REAL_EXCHANGE_MOEX':
+    case "REAL_EXCHANGE_MOEX":
       return RealExchange.REAL_EXCHANGE_MOEX;
     case 2:
-    case 'REAL_EXCHANGE_RTS':
+    case "REAL_EXCHANGE_RTS":
       return RealExchange.REAL_EXCHANGE_RTS;
     case 3:
-    case 'REAL_EXCHANGE_OTC':
+    case "REAL_EXCHANGE_OTC":
       return RealExchange.REAL_EXCHANGE_OTC;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return RealExchange.UNRECOGNIZED;
   }
@@ -441,29 +615,32 @@ export function realExchangeFromJSON(object: any): RealExchange {
 export function realExchangeToJSON(object: RealExchange): string {
   switch (object) {
     case RealExchange.REAL_EXCHANGE_UNSPECIFIED:
-      return 'REAL_EXCHANGE_UNSPECIFIED';
+      return "REAL_EXCHANGE_UNSPECIFIED";
     case RealExchange.REAL_EXCHANGE_MOEX:
-      return 'REAL_EXCHANGE_MOEX';
+      return "REAL_EXCHANGE_MOEX";
     case RealExchange.REAL_EXCHANGE_RTS:
-      return 'REAL_EXCHANGE_RTS';
+      return "REAL_EXCHANGE_RTS";
     case RealExchange.REAL_EXCHANGE_OTC:
-      return 'REAL_EXCHANGE_OTC';
+      return "REAL_EXCHANGE_OTC";
+    case RealExchange.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
-/** Запрос расписания торгов */
+/** Запрос расписания торгов. */
 export interface TradingSchedulesRequest {
   /** Наименование биржи или расчетного календаря. </br>Если не передаётся, возвращается информация по всем доступным торговым площадкам. */
   exchange: string;
   /** Начало периода по часовому поясу UTC. */
-  from: Date | undefined;
+  from:
+    | Date
+    | undefined;
   /** Окончание периода по часовому поясу UTC. */
   to: Date | undefined;
 }
 
-/** Список торговых площадок */
+/** Список торговых площадок. */
 export interface TradingSchedulesResponse {
   /** Список торговых площадок и режимов торгов. */
   exchanges: TradingSchedule[];
@@ -480,29 +657,51 @@ export interface TradingSchedule {
 /** Информация о времени торгов. */
 export interface TradingDay {
   /** Дата. */
-  date: Date | undefined;
+  date:
+    | Date
+    | undefined;
   /** Признак торгового дня на бирже. */
   isTradingDay: boolean;
   /** Время начала торгов по часовому поясу UTC. */
-  startTime: Date | undefined;
+  startTime:
+    | Date
+    | undefined;
   /** Время окончания торгов по часовому поясу UTC. */
-  endTime: Date | undefined;
+  endTime:
+    | Date
+    | undefined;
   /** Время начала аукциона открытия в часовом поясе UTC. */
-  openingAuctionStartTime: Date | undefined;
+  openingAuctionStartTime:
+    | Date
+    | undefined;
   /** Время окончания аукциона закрытия в часовом поясе UTC. */
-  closingAuctionEndTime: Date | undefined;
+  closingAuctionEndTime:
+    | Date
+    | undefined;
   /** Время начала аукциона открытия вечерней сессии в часовом поясе UTC. */
-  eveningOpeningAuctionStartTime: Date | undefined;
+  eveningOpeningAuctionStartTime:
+    | Date
+    | undefined;
   /** Время начала вечерней сессии в часовом поясе UTC. */
-  eveningStartTime: Date | undefined;
+  eveningStartTime:
+    | Date
+    | undefined;
   /** Время окончания вечерней сессии в часовом поясе UTC. */
-  eveningEndTime: Date | undefined;
+  eveningEndTime:
+    | Date
+    | undefined;
   /** Время начала основного клиринга в часовом поясе UTC. */
-  clearingStartTime: Date | undefined;
+  clearingStartTime:
+    | Date
+    | undefined;
   /** Время окончания основного клиринга в часовом поясе UTC. */
-  clearingEndTime: Date | undefined;
+  clearingEndTime:
+    | Date
+    | undefined;
   /** Время начала премаркета в часовом поясе UTC. */
-  premarketStartTime: Date | undefined;
+  premarketStartTime:
+    | Date
+    | undefined;
   /** Время окончания премаркета в часовом поясе UTC. */
   premarketEndTime: Date | undefined;
 }
@@ -540,7 +739,9 @@ export interface GetBondCouponsRequest {
   /** Figi-идентификатор инструмента. */
   figi: string;
   /** Начало запрашиваемого периода в часовом поясе UTC. Фильтрация по coupon_date (дата выплаты купона) */
-  from: Date | undefined;
+  from:
+    | Date
+    | undefined;
   /** Окончание запрашиваемого периода в часовом поясе UTC. Фильтрация по coupon_date (дата выплаты купона) */
   to: Date | undefined;
 }
@@ -554,20 +755,30 @@ export interface GetBondCouponsResponse {
 export interface Coupon {
   /** Figi-идентификатор инструмента. */
   figi: string;
-  /** Дата выплаты купона */
-  couponDate: Date | undefined;
-  /** Номер купона */
+  /** Дата выплаты купона. */
+  couponDate:
+    | Date
+    | undefined;
+  /** Номер купона. */
   couponNumber: number;
-  /** (Опционально) Дата фиксации реестра для выплаты купона */
-  fixDate: Date | undefined;
-  /** Выплата на одну облигацию */
-  payOneBond: MoneyValue | undefined;
-  /** Тип купона */
+  /** (Опционально) Дата фиксации реестра для выплаты купона. */
+  fixDate:
+    | Date
+    | undefined;
+  /** Выплата на одну облигацию. */
+  payOneBond:
+    | MoneyValue
+    | undefined;
+  /** Тип купона. */
   couponType: CouponType;
   /** Начало купонного периода. */
-  couponStartDate: Date | undefined;
+  couponStartDate:
+    | Date
+    | undefined;
   /** Окончание купонного периода. */
-  couponEndDate: Date | undefined;
+  couponEndDate:
+    | Date
+    | undefined;
   /** Купонный период в днях. */
   couponPeriod: number;
 }
@@ -608,6 +819,132 @@ export interface FuturesResponse {
   instruments: Future[];
 }
 
+/** Данные по опциону. */
+export interface OptionResponse {
+  /** Информация по опциону. */
+  instrument: Option | undefined;
+}
+
+/** Данные по опционам. */
+export interface OptionsResponse {
+  /** Массив данных по опциону. */
+  instruments: Option[];
+}
+
+/** Опцион. */
+export interface Option {
+  /** Уникальный идентификатор инструмента. */
+  uid: string;
+  /** Уникальный идентификатор позиции. */
+  positionUid: string;
+  /** Тикер инструмента. */
+  ticker: string;
+  /** Класс-код. */
+  classCode: string;
+  /** Уникальный идентификатор позиции основного инструмента. */
+  basicAssetPositionUid: string;
+  /** Текущий режим торгов инструмента. */
+  tradingStatus: SecurityTradingStatus;
+  /** Реальная площадка исполнения расчётов. Допустимые значения: [REAL_EXCHANGE_MOEX, REAL_EXCHANGE_RTS] */
+  realExchange: RealExchange;
+  /** Направление опциона. */
+  direction: OptionDirection;
+  /** Тип расчетов по опциону. */
+  paymentType: OptionPaymentType;
+  /** Стиль опциона. */
+  style: OptionStyle;
+  /** Способ исполнения опциона. */
+  settlementType: OptionSettlementType;
+  /** Название инструмента. */
+  name: string;
+  /** Валюта. */
+  currency: string;
+  /** Валюта, в которой оценивается контракт. */
+  settlementCurrency: string;
+  /** Тип актива. */
+  assetType: string;
+  /** Основной актив. */
+  basicAsset: string;
+  /** Биржа. */
+  exchange: string;
+  /** Код страны рисков. */
+  countryOfRisk: string;
+  /** Наименование страны рисков. */
+  countryOfRiskName: string;
+  /** Сектор экономики. */
+  sector: string;
+  /** Количество бумаг в лоте. */
+  lot: number;
+  /** Размер основного актива. */
+  basicAssetSize:
+    | Quotation
+    | undefined;
+  /** Коэффициент ставки риска длинной позиции по клиенту. */
+  klong:
+    | Quotation
+    | undefined;
+  /** Коэффициент ставки риска короткой позиции по клиенту. */
+  kshort:
+    | Quotation
+    | undefined;
+  /** Ставка риска минимальной маржи лонг. */
+  dlong:
+    | Quotation
+    | undefined;
+  /** Ставка риска минимальной маржи шорт. */
+  dshort:
+    | Quotation
+    | undefined;
+  /** Ставка риска начальной маржи лонг. */
+  dlongMin:
+    | Quotation
+    | undefined;
+  /** Ставка риска начальной маржи шорт. */
+  dshortMin:
+    | Quotation
+    | undefined;
+  /** Минимальный шаг цены. */
+  minPriceIncrement:
+    | Quotation
+    | undefined;
+  /** Цена страйка. */
+  strikePrice:
+    | MoneyValue
+    | undefined;
+  /** Дата истечения срока в формате UTC. */
+  expirationDate:
+    | Date
+    | undefined;
+  /** Дата начала обращения контракта в формате UTC. */
+  firstTradeDate:
+    | Date
+    | undefined;
+  /** Дата исполнения в формате UTC. */
+  lastTradeDate:
+    | Date
+    | undefined;
+  /** Дата первой минутной свечи в формате UTC. */
+  first1minCandleDate:
+    | Date
+    | undefined;
+  /** Дата первой дневной свечи в формате UTC. */
+  first1dayCandleDate:
+    | Date
+    | undefined;
+  /** Признак доступности для операций шорт. */
+  shortEnabledFlag: boolean;
+  /** Возможность покупки/продажи на ИИС. */
+  forIisFlag: boolean;
+  /** Признак внебиржевой ценной бумаги. */
+  otcFlag: boolean;
+  /** Признак доступности для покупки. */
+  buyAvailableFlag: boolean;
+  /** Признак доступности для продажи. */
+  sellAvailableFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
+  forQualInvestorFlag: boolean;
+}
+
 /** Данные по акции. */
 export interface ShareResponse {
   /** Информация об акции. */
@@ -635,17 +972,29 @@ export interface Bond {
   /** Валюта расчётов. */
   currency: string;
   /** Коэффициент ставки риска длинной позиции по инструменту. */
-  klong: Quotation | undefined;
+  klong:
+    | Quotation
+    | undefined;
   /** Коэффициент ставки риска короткой позиции по инструменту. */
-  kshort: Quotation | undefined;
+  kshort:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlong: Quotation | undefined;
+  dlong:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshort: Quotation | undefined;
+  dshort:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlongMin: Quotation | undefined;
+  dlongMin:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshortMin: Quotation | undefined;
+  dshortMin:
+    | Quotation
+    | undefined;
   /** Признак доступности для операций в шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
@@ -655,17 +1004,33 @@ export interface Bond {
   /** Количество выплат по купонам в год. */
   couponQuantityPerYear: number;
   /** Дата погашения облигации в часовом поясе UTC. */
-  maturityDate: Date | undefined;
+  maturityDate:
+    | Date
+    | undefined;
   /** Номинал облигации. */
-  nominal: MoneyValue | undefined;
+  nominal:
+    | MoneyValue
+    | undefined;
+  /** Первоначальный номинал облигации. */
+  initialNominal:
+    | MoneyValue
+    | undefined;
   /** Дата выпуска облигации в часовом поясе UTC. */
-  stateRegDate: Date | undefined;
+  stateRegDate:
+    | Date
+    | undefined;
   /** Дата размещения в часовом поясе UTC. */
-  placementDate: Date | undefined;
+  placementDate:
+    | Date
+    | undefined;
   /** Цена размещения. */
-  placementPrice: MoneyValue | undefined;
+  placementPrice:
+    | MoneyValue
+    | undefined;
   /** Значение НКД (накопленного купонного дохода) на дату. */
-  aciValue: MoneyValue | undefined;
+  aciValue:
+    | MoneyValue
+    | undefined;
   /** Код страны риска, т.е. страны, в которой компания ведёт основной бизнес. */
   countryOfRisk: string;
   /** Наименование страны риска, т.е. страны, в которой компания ведёт основной бизнес. */
@@ -693,13 +1058,27 @@ export interface Bond {
   /** Признак облигации с амортизацией долга. */
   amortizationFlag: boolean;
   /** Шаг цены. */
-  minPriceIncrement: Quotation | undefined;
-  /** Признак доступности торгов через API. */
+  minPriceIncrement:
+    | Quotation
+    | undefined;
+  /** Параметр указывает на возможность торговать инструментом через API. */
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
   /** Реальная площадка исполнения расчётов. */
   realExchange: RealExchange;
+  /** Уникальный идентификатор позиции инструмента. */
+  positionUid: string;
+  /** Признак доступности для ИИС. */
+  forIisFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
+  forQualInvestorFlag: boolean;
+  /** Дата первой минутной свечи. */
+  first1minCandleDate:
+    | Date
+    | undefined;
+  /** Дата первой дневной свечи. */
+  first1dayCandleDate: Date | undefined;
 }
 
 /** Объект передачи информации о валюте. */
@@ -717,17 +1096,29 @@ export interface Currency {
   /** Валюта расчётов. */
   currency: string;
   /** Коэффициент ставки риска длинной позиции по инструменту. */
-  klong: Quotation | undefined;
+  klong:
+    | Quotation
+    | undefined;
   /** Коэффициент ставки риска короткой позиции по инструменту. */
-  kshort: Quotation | undefined;
+  kshort:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlong: Quotation | undefined;
+  dlong:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshort: Quotation | undefined;
+  dshort:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlongMin: Quotation | undefined;
+  dlongMin:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshortMin: Quotation | undefined;
+  dshortMin:
+    | Quotation
+    | undefined;
   /** Признак доступности для операций в шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
@@ -735,7 +1126,9 @@ export interface Currency {
   /** Торговая площадка. */
   exchange: string;
   /** Номинал. */
-  nominal: MoneyValue | undefined;
+  nominal:
+    | MoneyValue
+    | undefined;
   /** Код страны риска, т.е. страны, в которой компания ведёт основной бизнес. */
   countryOfRisk: string;
   /** Наименование страны риска, т.е. страны, в которой компания ведёт основной бизнес. */
@@ -751,13 +1144,27 @@ export interface Currency {
   /** Строковый ISO-код валюты. */
   isoCurrencyName: string;
   /** Шаг цены. */
-  minPriceIncrement: Quotation | undefined;
-  /** Признак доступности торгов через API. */
+  minPriceIncrement:
+    | Quotation
+    | undefined;
+  /** Параметр указывает на возможность торговать инструментом через API. */
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
   /** Реальная площадка исполнения расчётов. */
   realExchange: RealExchange;
+  /** Уникальный идентификатор позиции инструмента. */
+  positionUid: string;
+  /** Признак доступности для ИИС. */
+  forIisFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
+  forQualInvestorFlag: boolean;
+  /** Дата первой минутной свечи. */
+  first1minCandleDate:
+    | Date
+    | undefined;
+  /** Дата первой дневной свечи. */
+  first1dayCandleDate: Date | undefined;
 }
 
 /** Объект передачи информации об инвестиционном фонде. */
@@ -775,17 +1182,29 @@ export interface Etf {
   /** Валюта расчётов. */
   currency: string;
   /** Коэффициент ставки риска длинной позиции по инструменту. */
-  klong: Quotation | undefined;
+  klong:
+    | Quotation
+    | undefined;
   /** Коэффициент ставки риска короткой позиции по инструменту. */
-  kshort: Quotation | undefined;
+  kshort:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlong: Quotation | undefined;
+  dlong:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshort: Quotation | undefined;
+  dshort:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlongMin: Quotation | undefined;
+  dlongMin:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshortMin: Quotation | undefined;
+  dshortMin:
+    | Quotation
+    | undefined;
   /** Признак доступности для операций в шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
@@ -793,13 +1212,19 @@ export interface Etf {
   /** Торговая площадка. */
   exchange: string;
   /** Размер фиксированной комиссии фонда. */
-  fixedCommission: Quotation | undefined;
+  fixedCommission:
+    | Quotation
+    | undefined;
   /** Возможные значения: </br>**equity** — акции;</br>**fixed_income** — облигации;</br>**mixed_allocation** — смешанный;</br>**money_market** — денежный рынок;</br>**real_estate** — недвижимость;</br>**commodity** — товары;</br>**specialty** — специальный;</br>**private_equity** — private equity;</br>**alternative_investment** — альтернативные инвестиции. */
   focusType: string;
   /** Дата выпуска в часовом поясе UTC. */
-  releasedDate: Date | undefined;
+  releasedDate:
+    | Date
+    | undefined;
   /** Количество акций фонда в обращении. */
-  numShares: Quotation | undefined;
+  numShares:
+    | Quotation
+    | undefined;
   /** Код страны риска, т.е. страны, в которой компания ведёт основной бизнес. */
   countryOfRisk: string;
   /** Наименование страны риска, т.е. страны, в которой компания ведёт основной бизнес. */
@@ -817,13 +1242,27 @@ export interface Etf {
   /** Признак доступности для продажи. */
   sellAvailableFlag: boolean;
   /** Шаг цены. */
-  minPriceIncrement: Quotation | undefined;
-  /** Признак доступности торгов через API. */
+  minPriceIncrement:
+    | Quotation
+    | undefined;
+  /** Параметр указывает на возможность торговать инструментом через API. */
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
   /** Реальная площадка исполнения расчётов. */
   realExchange: RealExchange;
+  /** Уникальный идентификатор позиции инструмента. */
+  positionUid: string;
+  /** Признак доступности для ИИС. */
+  forIisFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
+  forQualInvestorFlag: boolean;
+  /** Дата первой минутной свечи. */
+  first1minCandleDate:
+    | Date
+    | undefined;
+  /** Дата первой дневной свечи. */
+  first1dayCandleDate: Date | undefined;
 }
 
 /** Объект передачи информации о фьючерсе. */
@@ -839,17 +1278,29 @@ export interface Future {
   /** Валюта расчётов. */
   currency: string;
   /** Коэффициент ставки риска длинной позиции по клиенту. */
-  klong: Quotation | undefined;
+  klong:
+    | Quotation
+    | undefined;
   /** Коэффициент ставки риска короткой позиции по клиенту. */
-  kshort: Quotation | undefined;
+  kshort:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlong: Quotation | undefined;
+  dlong:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshort: Quotation | undefined;
+  dshort:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlongMin: Quotation | undefined;
+  dlongMin:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshortMin: Quotation | undefined;
+  dshortMin:
+    | Quotation
+    | undefined;
   /** Признак доступности для операций шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
@@ -857,9 +1308,13 @@ export interface Future {
   /** Торговая площадка. */
   exchange: string;
   /** Дата начала обращения контракта в часовом поясе UTC. */
-  firstTradeDate: Date | undefined;
+  firstTradeDate:
+    | Date
+    | undefined;
   /** Дата в часовом поясе UTC, до которой возможно проведение операций с фьючерсом. */
-  lastTradeDate: Date | undefined;
+  lastTradeDate:
+    | Date
+    | undefined;
   /** Тип фьючерса. Возможные значения: </br>**physical_delivery** — физические поставки; </br>**cash_settlement** — денежный эквивалент. */
   futuresType: string;
   /** Тип актива. Возможные значения: </br>**commodity** — товар; </br>**currency** — валюта; </br>**security** — ценная бумага; </br>**index** — индекс. */
@@ -867,7 +1322,9 @@ export interface Future {
   /** Основной актив. */
   basicAsset: string;
   /** Размер основного актива. */
-  basicAssetSize: Quotation | undefined;
+  basicAssetSize:
+    | Quotation
+    | undefined;
   /** Код страны риска, т.е. страны, в которой компания ведёт основной бизнес. */
   countryOfRisk: string;
   /** Наименование страны риска, т.е. страны, в которой компания ведёт основной бизнес. */
@@ -875,7 +1332,9 @@ export interface Future {
   /** Сектор экономики. */
   sector: string;
   /** Дата истечения срока в часов поясе UTC. */
-  expirationDate: Date | undefined;
+  expirationDate:
+    | Date
+    | undefined;
   /** Текущий режим торгов инструмента. */
   tradingStatus: SecurityTradingStatus;
   /** Признак внебиржевой ценной бумаги. */
@@ -885,13 +1344,29 @@ export interface Future {
   /** Признак доступности для продажи. */
   sellAvailableFlag: boolean;
   /** Шаг цены. */
-  minPriceIncrement: Quotation | undefined;
-  /** Признак доступности торгов через API. */
+  minPriceIncrement:
+    | Quotation
+    | undefined;
+  /** Параметр указывает на возможность торговать инструментом через API. */
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
   /** Реальная площадка исполнения расчётов. */
   realExchange: RealExchange;
+  /** Уникальный идентификатор позиции инструмента. */
+  positionUid: string;
+  /** Уникальный идентификатор позиции основного инструмента. */
+  basicAssetPositionUid: string;
+  /** Признак доступности для ИИС. */
+  forIisFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
+  forQualInvestorFlag: boolean;
+  /** Дата первой минутной свечи. */
+  first1minCandleDate:
+    | Date
+    | undefined;
+  /** Дата первой дневной свечи. */
+  first1dayCandleDate: Date | undefined;
 }
 
 /** Объект передачи информации об акции. */
@@ -909,17 +1384,29 @@ export interface Share {
   /** Валюта расчётов. */
   currency: string;
   /** Коэффициент ставки риска длинной позиции по инструменту. */
-  klong: Quotation | undefined;
+  klong:
+    | Quotation
+    | undefined;
   /** Коэффициент ставки риска короткой позиции по инструменту. */
-  kshort: Quotation | undefined;
+  kshort:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlong: Quotation | undefined;
+  dlong:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshort: Quotation | undefined;
+  dshort:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlongMin: Quotation | undefined;
+  dlongMin:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshortMin: Quotation | undefined;
+  dshortMin:
+    | Quotation
+    | undefined;
   /** Признак доступности для операций в шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
@@ -927,7 +1414,9 @@ export interface Share {
   /** Торговая площадка. */
   exchange: string;
   /** Дата IPO акции в часовом поясе UTC. */
-  ipoDate: Date | undefined;
+  ipoDate:
+    | Date
+    | undefined;
   /** Размер выпуска. */
   issueSize: number;
   /** Код страны риска, т.е. страны, в которой компания ведёт основной бизнес. */
@@ -939,7 +1428,9 @@ export interface Share {
   /** Плановый размер выпуска. */
   issueSizePlan: number;
   /** Номинал. */
-  nominal: MoneyValue | undefined;
+  nominal:
+    | MoneyValue
+    | undefined;
   /** Текущий режим торгов инструмента. */
   tradingStatus: SecurityTradingStatus;
   /** Признак внебиржевой ценной бумаги. */
@@ -953,13 +1444,27 @@ export interface Share {
   /** Тип акции. Возможные значения: [ShareType](https://tinkoff.github.io/investAPI/instruments#sharetype) */
   shareType: ShareType;
   /** Шаг цены. */
-  minPriceIncrement: Quotation | undefined;
-  /** Признак доступности торгов через API. */
+  minPriceIncrement:
+    | Quotation
+    | undefined;
+  /** Параметр указывает на возможность торговать инструментом через API. */
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
   /** Реальная площадка исполнения расчётов. */
   realExchange: RealExchange;
+  /** Уникальный идентификатор позиции инструмента. */
+  positionUid: string;
+  /** Признак доступности для ИИС. */
+  forIisFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
+  forQualInvestorFlag: boolean;
+  /** Дата первой минутной свечи. */
+  first1minCandleDate:
+    | Date
+    | undefined;
+  /** Дата первой дневной свечи. */
+  first1dayCandleDate: Date | undefined;
 }
 
 /** Запрос НКД по облигации */
@@ -967,7 +1472,9 @@ export interface GetAccruedInterestsRequest {
   /** Figi-идентификатор инструмента. */
   figi: string;
   /** Начало запрашиваемого периода в часовом поясе UTC. */
-  from: Date | undefined;
+  from:
+    | Date
+    | undefined;
   /** Окончание запрашиваемого периода в часовом поясе UTC. */
   to: Date | undefined;
 }
@@ -981,11 +1488,17 @@ export interface GetAccruedInterestsResponse {
 /** Операция начисления купонов. */
 export interface AccruedInterest {
   /** Дата и время выплаты в часовом поясе UTC. */
-  date: Date | undefined;
+  date:
+    | Date
+    | undefined;
   /** Величина выплаты. */
-  value: Quotation | undefined;
+  value:
+    | Quotation
+    | undefined;
   /** Величина выплаты в процентах от номинала. */
-  valuePercent: Quotation | undefined;
+  valuePercent:
+    | Quotation
+    | undefined;
   /** Номинал облигации. */
   nominal: Quotation | undefined;
 }
@@ -999,11 +1512,17 @@ export interface GetFuturesMarginRequest {
 /** Данные по фьючерсу */
 export interface GetFuturesMarginResponse {
   /** Гарантийное обеспечение при покупке. */
-  initialMarginOnBuy: MoneyValue | undefined;
+  initialMarginOnBuy:
+    | MoneyValue
+    | undefined;
   /** Гарантийное обеспечение при продаже. */
-  initialMarginOnSell: MoneyValue | undefined;
+  initialMarginOnSell:
+    | MoneyValue
+    | undefined;
   /** Шаг цены. */
-  minPriceIncrement: Quotation | undefined;
+  minPriceIncrement:
+    | Quotation
+    | undefined;
   /** Стоимость шага цены. */
   minPriceIncrementAmount: Quotation | undefined;
 }
@@ -1029,17 +1548,29 @@ export interface Instrument {
   /** Валюта расчётов. */
   currency: string;
   /** Коэффициент ставки риска длинной позиции по инструменту. */
-  klong: Quotation | undefined;
+  klong:
+    | Quotation
+    | undefined;
   /** Коэффициент ставки риска короткой позиции по инструменту. */
-  kshort: Quotation | undefined;
+  kshort:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlong: Quotation | undefined;
+  dlong:
+    | Quotation
+    | undefined;
   /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshort: Quotation | undefined;
+  dshort:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
-  dlongMin: Quotation | undefined;
+  dlongMin:
+    | Quotation
+    | undefined;
   /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
-  dshortMin: Quotation | undefined;
+  dshortMin:
+    | Quotation
+    | undefined;
   /** Признак доступности для операций в шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
@@ -1061,13 +1592,27 @@ export interface Instrument {
   /** Признак доступности для продажи. */
   sellAvailableFlag: boolean;
   /** Шаг цены. */
-  minPriceIncrement: Quotation | undefined;
-  /** Признак доступности торгов через API. */
+  minPriceIncrement:
+    | Quotation
+    | undefined;
+  /** Параметр указывает на возможность торговать инструментом через API. */
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
   /** Реальная площадка исполнения расчётов. */
   realExchange: RealExchange;
+  /** Уникальный идентификатор позиции инструмента. */
+  positionUid: string;
+  /** Признак доступности для ИИС. */
+  forIisFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
+  forQualInvestorFlag: boolean;
+  /** Дата первой минутной свечи. */
+  first1minCandleDate:
+    | Date
+    | undefined;
+  /** Дата первой дневной свечи. */
+  first1dayCandleDate: Date | undefined;
 }
 
 /** Запрос дивидендов. */
@@ -1075,7 +1620,9 @@ export interface GetDividendsRequest {
   /** Figi-идентификатор инструмента. */
   figi: string;
   /** Начало запрашиваемого периода в часовом поясе UTC. Фильтрация происходит по параметру *record_date* (дата фиксации реестра). */
-  from: Date | undefined;
+  from:
+    | Date
+    | undefined;
   /** Окончание запрашиваемого периода в часовом поясе UTC. Фильтрация происходит по параметру *record_date* (дата фиксации реестра). */
   to: Date | undefined;
 }
@@ -1088,23 +1635,37 @@ export interface GetDividendsResponse {
 /** Информация о выплате. */
 export interface Dividend {
   /** Величина дивиденда на 1 ценную бумагу (включая валюту). */
-  dividendNet: MoneyValue | undefined;
+  dividendNet:
+    | MoneyValue
+    | undefined;
   /** Дата фактических выплат в часовом поясе UTC. */
-  paymentDate: Date | undefined;
+  paymentDate:
+    | Date
+    | undefined;
   /** Дата объявления дивидендов в часовом поясе UTC. */
-  declaredDate: Date | undefined;
+  declaredDate:
+    | Date
+    | undefined;
   /** Последний день (включительно) покупки для получения выплаты в часовом поясе UTC. */
-  lastBuyDate: Date | undefined;
+  lastBuyDate:
+    | Date
+    | undefined;
   /** Тип выплаты. Возможные значения: Regular Cash – регулярные выплаты, Cancelled – выплата отменена, Daily Accrual – ежедневное начисление, Return of Capital – возврат капитала, прочие типы выплат. */
   dividendType: string;
   /** Дата фиксации реестра в часовом поясе UTC. */
-  recordDate: Date | undefined;
+  recordDate:
+    | Date
+    | undefined;
   /** Регулярность выплаты. Возможные значения: Annual – ежегодная, Semi-Anl – каждые полгода, прочие типы выплат. */
   regularity: string;
   /** Цена закрытия инструмента на момент ex_dividend_date. */
-  closePrice: MoneyValue | undefined;
+  closePrice:
+    | MoneyValue
+    | undefined;
   /** Величина доходности. */
-  yieldValue: Quotation | undefined;
+  yieldValue:
+    | Quotation
+    | undefined;
   /** Дата и время создания записи в часовом поясе UTC. */
   createdAt: Date | undefined;
 }
@@ -1122,7 +1683,8 @@ export interface AssetResponse {
 }
 
 /** Запрос списка активов. */
-export interface AssetsRequest {}
+export interface AssetsRequest {
+}
 
 /** Список активов. */
 export interface AssetsResponse {
@@ -1142,13 +1704,19 @@ export interface AssetFull {
   /** Описание актива. */
   description: string;
   /** Дата и время удаления актива. */
-  deletedAt: Date | undefined;
+  deletedAt:
+    | Date
+    | undefined;
   /** Тестирование клиентов. */
   requiredTests: string[];
   /** Валюта. Обязательно и заполняется только для type = "ASSET_TYPE_CURRENCY". */
-  currency: AssetCurrency | undefined;
+  currency:
+    | AssetCurrency
+    | undefined;
   /** Ценная бумага. Обязательно и заполняется только для type = "ASSET_TYPE_SECURITY". */
-  security: AssetSecurity | undefined;
+  security:
+    | AssetSecurity
+    | undefined;
   /** Номер государственной регистрации. */
   gosRegCode: string;
   /** Код CFI. */
@@ -1158,9 +1726,13 @@ export interface AssetFull {
   /** Статус актива. */
   status: string;
   /** Бренд. */
-  brand: Brand | undefined;
+  brand:
+    | Brand
+    | undefined;
   /** Дата и время последнего обновления записи. */
-  updatedAt: Date | undefined;
+  updatedAt:
+    | Date
+    | undefined;
   /** Код типа ц.б. по классификации Банка России. */
   brCode: string;
   /** Наименование кода типа ц.б. по классификации Банка России. */
@@ -1194,13 +1766,21 @@ export interface AssetSecurity {
   /** Тип ценной бумаги. */
   type: string;
   /** Акция. Заполняется только для акций (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = share). */
-  share: AssetShare | undefined;
+  share:
+    | AssetShare
+    | undefined;
   /** Облигация. Заполняется только для облигаций (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = bond). */
-  bond: AssetBond | undefined;
+  bond:
+    | AssetBond
+    | undefined;
   /** Структурная нота. Заполняется только для структурных продуктов (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = sp). */
-  sp: AssetStructuredProduct | undefined;
+  sp:
+    | AssetStructuredProduct
+    | undefined;
   /** Фонд. Заполняется только для фондов (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = etf). */
-  etf: AssetEtf | undefined;
+  etf:
+    | AssetEtf
+    | undefined;
   /** Клиринговый сертификат участия. Заполняется только для клиринговых сертификатов (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = clearing_certificate). */
   clearingCertificate: AssetClearingCertificate | undefined;
 }
@@ -1210,31 +1790,45 @@ export interface AssetShare {
   /** Тип акции. */
   type: ShareType;
   /** Объем выпуска (шт.). */
-  issueSize: Quotation | undefined;
+  issueSize:
+    | Quotation
+    | undefined;
   /** Номинал. */
-  nominal: Quotation | undefined;
+  nominal:
+    | Quotation
+    | undefined;
   /** Валюта номинала. */
   nominalCurrency: string;
   /** Индекс (Bloomberg). */
   primaryIndex: string;
   /** Ставка дивиденда (для привилегированных акций). */
-  dividendRate: Quotation | undefined;
+  dividendRate:
+    | Quotation
+    | undefined;
   /** Тип привилегированных акций. */
   preferredShareType: string;
   /** Дата IPO. */
-  ipoDate: Date | undefined;
+  ipoDate:
+    | Date
+    | undefined;
   /** Дата регистрации. */
-  registryDate: Date | undefined;
+  registryDate:
+    | Date
+    | undefined;
   /** Признак наличия дивидендной доходности. */
   divYieldFlag: boolean;
   /** Форма выпуска ФИ. */
   issueKind: string;
   /** Дата размещения акции. */
-  placementDate: Date | undefined;
+  placementDate:
+    | Date
+    | undefined;
   /** ISIN базового актива. */
   represIsin: string;
   /** Объявленное количество шт. */
-  issueSizePlan: Quotation | undefined;
+  issueSizePlan:
+    | Quotation
+    | undefined;
   /** Количество акций в свободном обращении. */
   totalFloat: Quotation | undefined;
 }
@@ -1242,13 +1836,19 @@ export interface AssetShare {
 /** Облигация. */
 export interface AssetBond {
   /** Текущий номинал. */
-  currentNominal: Quotation | undefined;
+  currentNominal:
+    | Quotation
+    | undefined;
   /** Наименование заемщика. */
   borrowName: string;
   /** Объем эмиссии облигации (стоимость). */
-  issueSize: Quotation | undefined;
+  issueSize:
+    | Quotation
+    | undefined;
   /** Номинал облигации. */
-  nominal: Quotation | undefined;
+  nominal:
+    | Quotation
+    | undefined;
   /** Валюта номинала. */
   nominalCurrency: string;
   /** Форма выпуска облигации. */
@@ -1272,15 +1872,23 @@ export interface AssetBond {
   /** Признак бессрочной облигации. */
   perpetualFlag: boolean;
   /** Дата погашения облигации. */
-  maturityDate: Date | undefined;
+  maturityDate:
+    | Date
+    | undefined;
   /** Описание и условия получения дополнительного дохода. */
   returnCondition: string;
   /** Дата выпуска облигации. */
-  stateRegDate: Date | undefined;
+  stateRegDate:
+    | Date
+    | undefined;
   /** Дата размещения облигации. */
-  placementDate: Date | undefined;
+  placementDate:
+    | Date
+    | undefined;
   /** Цена размещения облигации. */
-  placementPrice: Quotation | undefined;
+  placementPrice:
+    | Quotation
+    | undefined;
   /** Объявленное количество шт. */
   issueSizePlan: Quotation | undefined;
 }
@@ -1290,7 +1898,9 @@ export interface AssetStructuredProduct {
   /** Наименование заемщика. */
   borrowName: string;
   /** Номинал. */
-  nominal: Quotation | undefined;
+  nominal:
+    | Quotation
+    | undefined;
   /** Валюта номинала. */
   nominalCurrency: string;
   /** Тип структурной ноты. */
@@ -1302,15 +1912,25 @@ export interface AssetStructuredProduct {
   /** Вид базового актива в зависимости от типа базового актива. */
   basicAsset: string;
   /** Барьер сохранности (в процентах). */
-  safetyBarrier: Quotation | undefined;
+  safetyBarrier:
+    | Quotation
+    | undefined;
   /** Дата погашения. */
-  maturityDate: Date | undefined;
+  maturityDate:
+    | Date
+    | undefined;
   /** Объявленное количество шт. */
-  issueSizePlan: Quotation | undefined;
+  issueSizePlan:
+    | Quotation
+    | undefined;
   /** Объем размещения. */
-  issueSize: Quotation | undefined;
+  issueSize:
+    | Quotation
+    | undefined;
   /** Дата размещения ноты. */
-  placementDate: Date | undefined;
+  placementDate:
+    | Date
+    | undefined;
   /** Форма выпуска. */
   issueKind: string;
 }
@@ -1318,21 +1938,33 @@ export interface AssetStructuredProduct {
 /** Фонд. */
 export interface AssetEtf {
   /** Суммарные расходы фонда (в %). */
-  totalExpense: Quotation | undefined;
+  totalExpense:
+    | Quotation
+    | undefined;
   /** Барьерная ставка доходности после которой фонд имеет право на perfomance fee (в процентах). */
-  hurdleRate: Quotation | undefined;
+  hurdleRate:
+    | Quotation
+    | undefined;
   /** Комиссия за успешные результаты фонда (в процентах). */
-  performanceFee: Quotation | undefined;
+  performanceFee:
+    | Quotation
+    | undefined;
   /** Фиксированная комиссия за управление (в процентах). */
-  fixedCommission: Quotation | undefined;
+  fixedCommission:
+    | Quotation
+    | undefined;
   /** Тип распределения доходов от выплат по бумагам. */
   paymentType: string;
   /** Признак необходимости выхода фонда в плюс для получения комиссии. */
   watermarkFlag: boolean;
   /** Премия (надбавка к цене) при покупке доли в фонде (в процентах). */
-  buyPremium: Quotation | undefined;
+  buyPremium:
+    | Quotation
+    | undefined;
   /** Ставка дисконта (вычет из цены) при продаже доли в фонде (в процентах). */
-  sellDiscount: Quotation | undefined;
+  sellDiscount:
+    | Quotation
+    | undefined;
   /** Признак ребалансируемости портфеля фонда. */
   rebalancingFlag: boolean;
   /** Периодичность ребалансировки. */
@@ -1346,11 +1978,15 @@ export interface AssetEtf {
   /** Признак использования заемных активов (плечо). */
   leveragedFlag: boolean;
   /** Количество акций в обращении. */
-  numShare: Quotation | undefined;
+  numShare:
+    | Quotation
+    | undefined;
   /** Признак обязательства по отчетности перед регулятором. */
   ucitsFlag: boolean;
   /** Дата выпуска. */
-  releasedDate: Date | undefined;
+  releasedDate:
+    | Date
+    | undefined;
   /** Описание фонда. */
   description: string;
   /** Описание индекса, за которым следует фонд. */
@@ -1358,15 +1994,21 @@ export interface AssetEtf {
   /** Основные компании, в которые вкладывается фонд. */
   primaryIndexCompany: string;
   /** Срок восстановления индекса (после просадки). */
-  indexRecoveryPeriod: Quotation | undefined;
+  indexRecoveryPeriod:
+    | Quotation
+    | undefined;
   /** IVAV-код. */
   inavCode: string;
   /** Признак наличия дивидендной доходности. */
   divYieldFlag: boolean;
   /** Комиссия на покрытие расходов фонда (в процентах). */
-  expenseCommission: Quotation | undefined;
+  expenseCommission:
+    | Quotation
+    | undefined;
   /** Ошибка следования за индексом (в процентах). */
-  primaryIndexTrackingError: Quotation | undefined;
+  primaryIndexTrackingError:
+    | Quotation
+    | undefined;
   /** Плановая ребалансировка портфеля. */
   rebalancingPlan: string;
   /** Ставки налогообложения дивидендов и купонов. */
@@ -1376,7 +2018,9 @@ export interface AssetEtf {
   /** Форма выпуска. */
   issueKind: string;
   /** Номинал. */
-  nominal: Quotation | undefined;
+  nominal:
+    | Quotation
+    | undefined;
   /** Валюта номинала. */
   nominalCurrency: string;
 }
@@ -1384,7 +2028,9 @@ export interface AssetEtf {
 /** Клиринговый сертификат участия. */
 export interface AssetClearingCertificate {
   /** Номинал. */
-  nominal: Quotation | undefined;
+  nominal:
+    | Quotation
+    | undefined;
   /** Валюта номинала. */
   nominalCurrency: string;
 }
@@ -1433,16 +2079,17 @@ export interface InstrumentLink {
   instrumentUid: string;
 }
 
-/** Запрос избранных инструментов. */
-export interface GetFavoritesRequest {}
+/** Запрос списка избранных инструментов, входные параметры не требуются. */
+export interface GetFavoritesRequest {
+}
 
-/** Ответ избранных инструментов. */
+/** В ответ передаётся список избранных инструментов в качестве массива. */
 export interface GetFavoritesResponse {
   /** Массив инструментов */
   favoriteInstruments: FavoriteInstrument[];
 }
 
-/** Избранный инструмент. */
+/** Массив избранных инструментов. */
 export interface FavoriteInstrument {
   /** Figi-идентификатор инструмента. */
   figi: string;
@@ -1456,11 +2103,11 @@ export interface FavoriteInstrument {
   instrumentType: string;
   /** Признак внебиржевой ценной бумаги. */
   otcFlag: boolean;
-  /** Признак доступности торгов через API. */
+  /** Параметр указывает на возможность торговать инструментом через API. */
   apiTradeAvailableFlag: boolean;
 }
 
-/** Запрос редактирования избранных инструментов. */
+/** Запрос редактирования списка избранных инструментов. */
 export interface EditFavoritesRequest {
   /** Массив инструментов. */
   instruments: EditFavoritesRequestInstrument[];
@@ -1468,25 +2115,109 @@ export interface EditFavoritesRequest {
   actionType: EditFavoritesActionType;
 }
 
-/** Избранный инструмент для редактирования. */
+/** Массив инструментов для редактирования списка избранных инструментов. */
 export interface EditFavoritesRequestInstrument {
   /** Figi-идентификатор инструмента. */
   figi: string;
 }
 
-/** Результат редактирования избранных инструментов. */
+/** Результат редактирования списка избранных инструментов. */
 export interface EditFavoritesResponse {
   /** Массив инструментов */
   favoriteInstruments: FavoriteInstrument[];
 }
 
+/** Запрос справочника стран. */
+export interface GetCountriesRequest {
+}
+
+/** Справочник стран. */
+export interface GetCountriesResponse {
+  /** Массив стран. */
+  countries: CountryResponse[];
+}
+
+/** Данные о стране. */
+export interface CountryResponse {
+  /** Двухбуквенный код страны. */
+  alfaTwo: string;
+  /** Трёхбуквенный код страны. */
+  alfaThree: string;
+  /** Наименование страны. */
+  name: string;
+  /** Краткое наименование страны. */
+  nameBrief: string;
+}
+
+/** Запрос на поиск инструментов. */
+export interface FindInstrumentRequest {
+  /** Строка поиска. */
+  query: string;
+}
+
+/** Результат поиска инструментов. */
+export interface FindInstrumentResponse {
+  /** Массив инструментов, удовлетворяющих условиям поиска. */
+  instruments: InstrumentShort[];
+}
+
+/** Краткая информация об инструменте. */
+export interface InstrumentShort {
+  /** Isin инструмента. */
+  isin: string;
+  /** Figi инструмента. */
+  figi: string;
+  /** Ticker инструмента. */
+  ticker: string;
+  /** ClassCode инструмента. */
+  classCode: string;
+  /** Тип инструмента. */
+  instrumentType: string;
+  /** Название инструмента. */
+  name: string;
+  /** Уникальный идентификатор инструмента. */
+  uid: string;
+  /** Уникальный идентификатор позиции инструмента. */
+  positionUid: string;
+  /** Параметр указывает на возможность торговать инструментом через API. */
+  apiTradeAvailableFlag: boolean;
+  /** Признак доступности для ИИС. */
+  forIisFlag: boolean;
+  /** Дата первой минутной свечи. */
+  first1minCandleDate:
+    | Date
+    | undefined;
+  /** Дата первой дневной свечи. */
+  first1dayCandleDate:
+    | Date
+    | undefined;
+  /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
+  forQualInvestorFlag: boolean;
+}
+
+/** Запрос списка брендов. */
+export interface GetBrandsRequest {
+}
+
+/** Запрос бренда. */
+export interface GetBrandRequest {
+  /** Uid-идентификатор бренда. */
+  id: string;
+}
+
+/** Список брендов. */
+export interface GetBrandsResponse {
+  /** Массив брендов. */
+  brands: Brand[];
+}
+
 function createBaseTradingSchedulesRequest(): TradingSchedulesRequest {
-  return { exchange: '', from: undefined, to: undefined };
+  return { exchange: "", from: undefined, to: undefined };
 }
 
 export const TradingSchedulesRequest = {
   encode(message: TradingSchedulesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.exchange !== '') {
+    if (message.exchange !== "") {
       writer.uint32(10).string(message.exchange);
     }
     if (message.from !== undefined) {
@@ -1524,7 +2255,7 @@ export const TradingSchedulesRequest = {
 
   fromJSON(object: any): TradingSchedulesRequest {
     return {
-      exchange: isSet(object.exchange) ? String(object.exchange) : '',
+      exchange: isSet(object.exchange) ? String(object.exchange) : "",
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
     };
@@ -1540,7 +2271,7 @@ export const TradingSchedulesRequest = {
 
   fromPartial(object: DeepPartial<TradingSchedulesRequest>): TradingSchedulesRequest {
     const message = createBaseTradingSchedulesRequest();
-    message.exchange = object.exchange ?? '';
+    message.exchange = object.exchange ?? "";
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
     return message;
@@ -1586,7 +2317,7 @@ export const TradingSchedulesResponse = {
   toJSON(message: TradingSchedulesResponse): unknown {
     const obj: any = {};
     if (message.exchanges) {
-      obj.exchanges = message.exchanges.map(e => (e ? TradingSchedule.toJSON(e) : undefined));
+      obj.exchanges = message.exchanges.map((e) => e ? TradingSchedule.toJSON(e) : undefined);
     } else {
       obj.exchanges = [];
     }
@@ -1595,18 +2326,18 @@ export const TradingSchedulesResponse = {
 
   fromPartial(object: DeepPartial<TradingSchedulesResponse>): TradingSchedulesResponse {
     const message = createBaseTradingSchedulesResponse();
-    message.exchanges = object.exchanges?.map(e => TradingSchedule.fromPartial(e)) || [];
+    message.exchanges = object.exchanges?.map((e) => TradingSchedule.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseTradingSchedule(): TradingSchedule {
-  return { exchange: '', days: [] };
+  return { exchange: "", days: [] };
 }
 
 export const TradingSchedule = {
   encode(message: TradingSchedule, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.exchange !== '') {
+    if (message.exchange !== "") {
       writer.uint32(10).string(message.exchange);
     }
     for (const v of message.days) {
@@ -1638,7 +2369,7 @@ export const TradingSchedule = {
 
   fromJSON(object: any): TradingSchedule {
     return {
-      exchange: isSet(object.exchange) ? String(object.exchange) : '',
+      exchange: isSet(object.exchange) ? String(object.exchange) : "",
       days: Array.isArray(object?.days) ? object.days.map((e: any) => TradingDay.fromJSON(e)) : [],
     };
   },
@@ -1647,7 +2378,7 @@ export const TradingSchedule = {
     const obj: any = {};
     message.exchange !== undefined && (obj.exchange = message.exchange);
     if (message.days) {
-      obj.days = message.days.map(e => (e ? TradingDay.toJSON(e) : undefined));
+      obj.days = message.days.map((e) => e ? TradingDay.toJSON(e) : undefined);
     } else {
       obj.days = [];
     }
@@ -1656,8 +2387,8 @@ export const TradingSchedule = {
 
   fromPartial(object: DeepPartial<TradingSchedule>): TradingSchedule {
     const message = createBaseTradingSchedule();
-    message.exchange = object.exchange ?? '';
-    message.days = object.days?.map(e => TradingDay.fromPartial(e)) || [];
+    message.exchange = object.exchange ?? "";
+    message.days = object.days?.map((e) => TradingDay.fromPartial(e)) || [];
     return message;
   },
 };
@@ -1843,7 +2574,7 @@ export const TradingDay = {
 };
 
 function createBaseInstrumentRequest(): InstrumentRequest {
-  return { idType: 0, classCode: '', id: '' };
+  return { idType: 0, classCode: "", id: "" };
 }
 
 export const InstrumentRequest = {
@@ -1851,10 +2582,10 @@ export const InstrumentRequest = {
     if (message.idType !== 0) {
       writer.uint32(8).int32(message.idType);
     }
-    if (message.classCode !== '') {
+    if (message.classCode !== "") {
       writer.uint32(18).string(message.classCode);
     }
-    if (message.id !== '') {
+    if (message.id !== "") {
       writer.uint32(26).string(message.id);
     }
     return writer;
@@ -1887,8 +2618,8 @@ export const InstrumentRequest = {
   fromJSON(object: any): InstrumentRequest {
     return {
       idType: isSet(object.idType) ? instrumentIdTypeFromJSON(object.idType) : 0,
-      classCode: isSet(object.classCode) ? String(object.classCode) : '',
-      id: isSet(object.id) ? String(object.id) : '',
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
+      id: isSet(object.id) ? String(object.id) : "",
     };
   },
 
@@ -1903,8 +2634,8 @@ export const InstrumentRequest = {
   fromPartial(object: DeepPartial<InstrumentRequest>): InstrumentRequest {
     const message = createBaseInstrumentRequest();
     message.idType = object.idType ?? 0;
-    message.classCode = object.classCode ?? '';
-    message.id = object.id ?? '';
+    message.classCode = object.classCode ?? "";
+    message.id = object.id ?? "";
     return message;
   },
 };
@@ -1940,9 +2671,7 @@ export const InstrumentsRequest = {
   },
 
   fromJSON(object: any): InstrumentsRequest {
-    return {
-      instrumentStatus: isSet(object.instrumentStatus) ? instrumentStatusFromJSON(object.instrumentStatus) : 0,
-    };
+    return { instrumentStatus: isSet(object.instrumentStatus) ? instrumentStatusFromJSON(object.instrumentStatus) : 0 };
   },
 
   toJSON(message: InstrumentsRequest): unknown {
@@ -1989,9 +2718,7 @@ export const BondResponse = {
   },
 
   fromJSON(object: any): BondResponse {
-    return {
-      instrument: isSet(object.instrument) ? Bond.fromJSON(object.instrument) : undefined,
-    };
+    return { instrument: isSet(object.instrument) ? Bond.fromJSON(object.instrument) : undefined };
   },
 
   toJSON(message: BondResponse): unknown {
@@ -2003,8 +2730,9 @@ export const BondResponse = {
 
   fromPartial(object: DeepPartial<BondResponse>): BondResponse {
     const message = createBaseBondResponse();
-    message.instrument =
-      object.instrument !== undefined && object.instrument !== null ? Bond.fromPartial(object.instrument) : undefined;
+    message.instrument = (object.instrument !== undefined && object.instrument !== null)
+      ? Bond.fromPartial(object.instrument)
+      : undefined;
     return message;
   },
 };
@@ -2048,7 +2776,7 @@ export const BondsResponse = {
   toJSON(message: BondsResponse): unknown {
     const obj: any = {};
     if (message.instruments) {
-      obj.instruments = message.instruments.map(e => (e ? Bond.toJSON(e) : undefined));
+      obj.instruments = message.instruments.map((e) => e ? Bond.toJSON(e) : undefined);
     } else {
       obj.instruments = [];
     }
@@ -2057,18 +2785,18 @@ export const BondsResponse = {
 
   fromPartial(object: DeepPartial<BondsResponse>): BondsResponse {
     const message = createBaseBondsResponse();
-    message.instruments = object.instruments?.map(e => Bond.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map((e) => Bond.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseGetBondCouponsRequest(): GetBondCouponsRequest {
-  return { figi: '', from: undefined, to: undefined };
+  return { figi: "", from: undefined, to: undefined };
 }
 
 export const GetBondCouponsRequest = {
   encode(message: GetBondCouponsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
     if (message.from !== undefined) {
@@ -2106,7 +2834,7 @@ export const GetBondCouponsRequest = {
 
   fromJSON(object: any): GetBondCouponsRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
     };
@@ -2122,7 +2850,7 @@ export const GetBondCouponsRequest = {
 
   fromPartial(object: DeepPartial<GetBondCouponsRequest>): GetBondCouponsRequest {
     const message = createBaseGetBondCouponsRequest();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? "";
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
     return message;
@@ -2160,15 +2888,13 @@ export const GetBondCouponsResponse = {
   },
 
   fromJSON(object: any): GetBondCouponsResponse {
-    return {
-      events: Array.isArray(object?.events) ? object.events.map((e: any) => Coupon.fromJSON(e)) : [],
-    };
+    return { events: Array.isArray(object?.events) ? object.events.map((e: any) => Coupon.fromJSON(e)) : [] };
   },
 
   toJSON(message: GetBondCouponsResponse): unknown {
     const obj: any = {};
     if (message.events) {
-      obj.events = message.events.map(e => (e ? Coupon.toJSON(e) : undefined));
+      obj.events = message.events.map((e) => e ? Coupon.toJSON(e) : undefined);
     } else {
       obj.events = [];
     }
@@ -2177,14 +2903,14 @@ export const GetBondCouponsResponse = {
 
   fromPartial(object: DeepPartial<GetBondCouponsResponse>): GetBondCouponsResponse {
     const message = createBaseGetBondCouponsResponse();
-    message.events = object.events?.map(e => Coupon.fromPartial(e)) || [];
+    message.events = object.events?.map((e) => Coupon.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseCoupon(): Coupon {
   return {
-    figi: '',
+    figi: "",
     couponDate: undefined,
     couponNumber: 0,
     fixDate: undefined,
@@ -2198,7 +2924,7 @@ function createBaseCoupon(): Coupon {
 
 export const Coupon = {
   encode(message: Coupon, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
     if (message.couponDate !== undefined) {
@@ -2272,7 +2998,7 @@ export const Coupon = {
 
   fromJSON(object: any): Coupon {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
       couponDate: isSet(object.couponDate) ? fromJsonTimestamp(object.couponDate) : undefined,
       couponNumber: isSet(object.couponNumber) ? Number(object.couponNumber) : 0,
       fixDate: isSet(object.fixDate) ? fromJsonTimestamp(object.fixDate) : undefined,
@@ -2301,14 +3027,13 @@ export const Coupon = {
 
   fromPartial(object: DeepPartial<Coupon>): Coupon {
     const message = createBaseCoupon();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? "";
     message.couponDate = object.couponDate ?? undefined;
     message.couponNumber = object.couponNumber ?? 0;
     message.fixDate = object.fixDate ?? undefined;
-    message.payOneBond =
-      object.payOneBond !== undefined && object.payOneBond !== null
-        ? MoneyValue.fromPartial(object.payOneBond)
-        : undefined;
+    message.payOneBond = (object.payOneBond !== undefined && object.payOneBond !== null)
+      ? MoneyValue.fromPartial(object.payOneBond)
+      : undefined;
     message.couponType = object.couponType ?? 0;
     message.couponStartDate = object.couponStartDate ?? undefined;
     message.couponEndDate = object.couponEndDate ?? undefined;
@@ -2348,9 +3073,7 @@ export const CurrencyResponse = {
   },
 
   fromJSON(object: any): CurrencyResponse {
-    return {
-      instrument: isSet(object.instrument) ? Currency.fromJSON(object.instrument) : undefined,
-    };
+    return { instrument: isSet(object.instrument) ? Currency.fromJSON(object.instrument) : undefined };
   },
 
   toJSON(message: CurrencyResponse): unknown {
@@ -2362,10 +3085,9 @@ export const CurrencyResponse = {
 
   fromPartial(object: DeepPartial<CurrencyResponse>): CurrencyResponse {
     const message = createBaseCurrencyResponse();
-    message.instrument =
-      object.instrument !== undefined && object.instrument !== null
-        ? Currency.fromPartial(object.instrument)
-        : undefined;
+    message.instrument = (object.instrument !== undefined && object.instrument !== null)
+      ? Currency.fromPartial(object.instrument)
+      : undefined;
     return message;
   },
 };
@@ -2409,7 +3131,7 @@ export const CurrenciesResponse = {
   toJSON(message: CurrenciesResponse): unknown {
     const obj: any = {};
     if (message.instruments) {
-      obj.instruments = message.instruments.map(e => (e ? Currency.toJSON(e) : undefined));
+      obj.instruments = message.instruments.map((e) => e ? Currency.toJSON(e) : undefined);
     } else {
       obj.instruments = [];
     }
@@ -2418,7 +3140,7 @@ export const CurrenciesResponse = {
 
   fromPartial(object: DeepPartial<CurrenciesResponse>): CurrenciesResponse {
     const message = createBaseCurrenciesResponse();
-    message.instruments = object.instruments?.map(e => Currency.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map((e) => Currency.fromPartial(e)) || [];
     return message;
   },
 };
@@ -2454,9 +3176,7 @@ export const EtfResponse = {
   },
 
   fromJSON(object: any): EtfResponse {
-    return {
-      instrument: isSet(object.instrument) ? Etf.fromJSON(object.instrument) : undefined,
-    };
+    return { instrument: isSet(object.instrument) ? Etf.fromJSON(object.instrument) : undefined };
   },
 
   toJSON(message: EtfResponse): unknown {
@@ -2468,8 +3188,9 @@ export const EtfResponse = {
 
   fromPartial(object: DeepPartial<EtfResponse>): EtfResponse {
     const message = createBaseEtfResponse();
-    message.instrument =
-      object.instrument !== undefined && object.instrument !== null ? Etf.fromPartial(object.instrument) : undefined;
+    message.instrument = (object.instrument !== undefined && object.instrument !== null)
+      ? Etf.fromPartial(object.instrument)
+      : undefined;
     return message;
   },
 };
@@ -2513,7 +3234,7 @@ export const EtfsResponse = {
   toJSON(message: EtfsResponse): unknown {
     const obj: any = {};
     if (message.instruments) {
-      obj.instruments = message.instruments.map(e => (e ? Etf.toJSON(e) : undefined));
+      obj.instruments = message.instruments.map((e) => e ? Etf.toJSON(e) : undefined);
     } else {
       obj.instruments = [];
     }
@@ -2522,7 +3243,7 @@ export const EtfsResponse = {
 
   fromPartial(object: DeepPartial<EtfsResponse>): EtfsResponse {
     const message = createBaseEtfsResponse();
-    message.instruments = object.instruments?.map(e => Etf.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map((e) => Etf.fromPartial(e)) || [];
     return message;
   },
 };
@@ -2558,9 +3279,7 @@ export const FutureResponse = {
   },
 
   fromJSON(object: any): FutureResponse {
-    return {
-      instrument: isSet(object.instrument) ? Future.fromJSON(object.instrument) : undefined,
-    };
+    return { instrument: isSet(object.instrument) ? Future.fromJSON(object.instrument) : undefined };
   },
 
   toJSON(message: FutureResponse): unknown {
@@ -2572,8 +3291,9 @@ export const FutureResponse = {
 
   fromPartial(object: DeepPartial<FutureResponse>): FutureResponse {
     const message = createBaseFutureResponse();
-    message.instrument =
-      object.instrument !== undefined && object.instrument !== null ? Future.fromPartial(object.instrument) : undefined;
+    message.instrument = (object.instrument !== undefined && object.instrument !== null)
+      ? Future.fromPartial(object.instrument)
+      : undefined;
     return message;
   },
 };
@@ -2617,7 +3337,7 @@ export const FuturesResponse = {
   toJSON(message: FuturesResponse): unknown {
     const obj: any = {};
     if (message.instruments) {
-      obj.instruments = message.instruments.map(e => (e ? Future.toJSON(e) : undefined));
+      obj.instruments = message.instruments.map((e) => e ? Future.toJSON(e) : undefined);
     } else {
       obj.instruments = [];
     }
@@ -2626,7 +3346,588 @@ export const FuturesResponse = {
 
   fromPartial(object: DeepPartial<FuturesResponse>): FuturesResponse {
     const message = createBaseFuturesResponse();
-    message.instruments = object.instruments?.map(e => Future.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map((e) => Future.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseOptionResponse(): OptionResponse {
+  return { instrument: undefined };
+}
+
+export const OptionResponse = {
+  encode(message: OptionResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.instrument !== undefined) {
+      Option.encode(message.instrument, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): OptionResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseOptionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.instrument = Option.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): OptionResponse {
+    return { instrument: isSet(object.instrument) ? Option.fromJSON(object.instrument) : undefined };
+  },
+
+  toJSON(message: OptionResponse): unknown {
+    const obj: any = {};
+    message.instrument !== undefined &&
+      (obj.instrument = message.instrument ? Option.toJSON(message.instrument) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<OptionResponse>): OptionResponse {
+    const message = createBaseOptionResponse();
+    message.instrument = (object.instrument !== undefined && object.instrument !== null)
+      ? Option.fromPartial(object.instrument)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseOptionsResponse(): OptionsResponse {
+  return { instruments: [] };
+}
+
+export const OptionsResponse = {
+  encode(message: OptionsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.instruments) {
+      Option.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): OptionsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseOptionsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.instruments.push(Option.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): OptionsResponse {
+    return {
+      instruments: Array.isArray(object?.instruments) ? object.instruments.map((e: any) => Option.fromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: OptionsResponse): unknown {
+    const obj: any = {};
+    if (message.instruments) {
+      obj.instruments = message.instruments.map((e) => e ? Option.toJSON(e) : undefined);
+    } else {
+      obj.instruments = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<OptionsResponse>): OptionsResponse {
+    const message = createBaseOptionsResponse();
+    message.instruments = object.instruments?.map((e) => Option.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseOption(): Option {
+  return {
+    uid: "",
+    positionUid: "",
+    ticker: "",
+    classCode: "",
+    basicAssetPositionUid: "",
+    tradingStatus: 0,
+    realExchange: 0,
+    direction: 0,
+    paymentType: 0,
+    style: 0,
+    settlementType: 0,
+    name: "",
+    currency: "",
+    settlementCurrency: "",
+    assetType: "",
+    basicAsset: "",
+    exchange: "",
+    countryOfRisk: "",
+    countryOfRiskName: "",
+    sector: "",
+    lot: 0,
+    basicAssetSize: undefined,
+    klong: undefined,
+    kshort: undefined,
+    dlong: undefined,
+    dshort: undefined,
+    dlongMin: undefined,
+    dshortMin: undefined,
+    minPriceIncrement: undefined,
+    strikePrice: undefined,
+    expirationDate: undefined,
+    firstTradeDate: undefined,
+    lastTradeDate: undefined,
+    first1minCandleDate: undefined,
+    first1dayCandleDate: undefined,
+    shortEnabledFlag: false,
+    forIisFlag: false,
+    otcFlag: false,
+    buyAvailableFlag: false,
+    sellAvailableFlag: false,
+    forQualInvestorFlag: false,
+  };
+}
+
+export const Option = {
+  encode(message: Option, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.uid !== "") {
+      writer.uint32(10).string(message.uid);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(18).string(message.positionUid);
+    }
+    if (message.ticker !== "") {
+      writer.uint32(26).string(message.ticker);
+    }
+    if (message.classCode !== "") {
+      writer.uint32(34).string(message.classCode);
+    }
+    if (message.basicAssetPositionUid !== "") {
+      writer.uint32(42).string(message.basicAssetPositionUid);
+    }
+    if (message.tradingStatus !== 0) {
+      writer.uint32(168).int32(message.tradingStatus);
+    }
+    if (message.realExchange !== 0) {
+      writer.uint32(248).int32(message.realExchange);
+    }
+    if (message.direction !== 0) {
+      writer.uint32(328).int32(message.direction);
+    }
+    if (message.paymentType !== 0) {
+      writer.uint32(336).int32(message.paymentType);
+    }
+    if (message.style !== 0) {
+      writer.uint32(344).int32(message.style);
+    }
+    if (message.settlementType !== 0) {
+      writer.uint32(352).int32(message.settlementType);
+    }
+    if (message.name !== "") {
+      writer.uint32(810).string(message.name);
+    }
+    if (message.currency !== "") {
+      writer.uint32(890).string(message.currency);
+    }
+    if (message.settlementCurrency !== "") {
+      writer.uint32(898).string(message.settlementCurrency);
+    }
+    if (message.assetType !== "") {
+      writer.uint32(1050).string(message.assetType);
+    }
+    if (message.basicAsset !== "") {
+      writer.uint32(1058).string(message.basicAsset);
+    }
+    if (message.exchange !== "") {
+      writer.uint32(1130).string(message.exchange);
+    }
+    if (message.countryOfRisk !== "") {
+      writer.uint32(1210).string(message.countryOfRisk);
+    }
+    if (message.countryOfRiskName !== "") {
+      writer.uint32(1218).string(message.countryOfRiskName);
+    }
+    if (message.sector !== "") {
+      writer.uint32(1290).string(message.sector);
+    }
+    if (message.lot !== 0) {
+      writer.uint32(1608).int32(message.lot);
+    }
+    if (message.basicAssetSize !== undefined) {
+      Quotation.encode(message.basicAssetSize, writer.uint32(1690).fork()).ldelim();
+    }
+    if (message.klong !== undefined) {
+      Quotation.encode(message.klong, writer.uint32(1770).fork()).ldelim();
+    }
+    if (message.kshort !== undefined) {
+      Quotation.encode(message.kshort, writer.uint32(1778).fork()).ldelim();
+    }
+    if (message.dlong !== undefined) {
+      Quotation.encode(message.dlong, writer.uint32(1786).fork()).ldelim();
+    }
+    if (message.dshort !== undefined) {
+      Quotation.encode(message.dshort, writer.uint32(1794).fork()).ldelim();
+    }
+    if (message.dlongMin !== undefined) {
+      Quotation.encode(message.dlongMin, writer.uint32(1802).fork()).ldelim();
+    }
+    if (message.dshortMin !== undefined) {
+      Quotation.encode(message.dshortMin, writer.uint32(1810).fork()).ldelim();
+    }
+    if (message.minPriceIncrement !== undefined) {
+      Quotation.encode(message.minPriceIncrement, writer.uint32(1850).fork()).ldelim();
+    }
+    if (message.strikePrice !== undefined) {
+      MoneyValue.encode(message.strikePrice, writer.uint32(1930).fork()).ldelim();
+    }
+    if (message.expirationDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.expirationDate), writer.uint32(2410).fork()).ldelim();
+    }
+    if (message.firstTradeDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.firstTradeDate), writer.uint32(2490).fork()).ldelim();
+    }
+    if (message.lastTradeDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.lastTradeDate), writer.uint32(2498).fork()).ldelim();
+    }
+    if (message.first1minCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(2570).fork()).ldelim();
+    }
+    if (message.first1dayCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1dayCandleDate), writer.uint32(2578).fork()).ldelim();
+    }
+    if (message.shortEnabledFlag === true) {
+      writer.uint32(3208).bool(message.shortEnabledFlag);
+    }
+    if (message.forIisFlag === true) {
+      writer.uint32(3216).bool(message.forIisFlag);
+    }
+    if (message.otcFlag === true) {
+      writer.uint32(3224).bool(message.otcFlag);
+    }
+    if (message.buyAvailableFlag === true) {
+      writer.uint32(3232).bool(message.buyAvailableFlag);
+    }
+    if (message.sellAvailableFlag === true) {
+      writer.uint32(3240).bool(message.sellAvailableFlag);
+    }
+    if (message.forQualInvestorFlag === true) {
+      writer.uint32(3248).bool(message.forQualInvestorFlag);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Option {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseOption();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.uid = reader.string();
+          break;
+        case 2:
+          message.positionUid = reader.string();
+          break;
+        case 3:
+          message.ticker = reader.string();
+          break;
+        case 4:
+          message.classCode = reader.string();
+          break;
+        case 5:
+          message.basicAssetPositionUid = reader.string();
+          break;
+        case 21:
+          message.tradingStatus = reader.int32() as any;
+          break;
+        case 31:
+          message.realExchange = reader.int32() as any;
+          break;
+        case 41:
+          message.direction = reader.int32() as any;
+          break;
+        case 42:
+          message.paymentType = reader.int32() as any;
+          break;
+        case 43:
+          message.style = reader.int32() as any;
+          break;
+        case 44:
+          message.settlementType = reader.int32() as any;
+          break;
+        case 101:
+          message.name = reader.string();
+          break;
+        case 111:
+          message.currency = reader.string();
+          break;
+        case 112:
+          message.settlementCurrency = reader.string();
+          break;
+        case 131:
+          message.assetType = reader.string();
+          break;
+        case 132:
+          message.basicAsset = reader.string();
+          break;
+        case 141:
+          message.exchange = reader.string();
+          break;
+        case 151:
+          message.countryOfRisk = reader.string();
+          break;
+        case 152:
+          message.countryOfRiskName = reader.string();
+          break;
+        case 161:
+          message.sector = reader.string();
+          break;
+        case 201:
+          message.lot = reader.int32();
+          break;
+        case 211:
+          message.basicAssetSize = Quotation.decode(reader, reader.uint32());
+          break;
+        case 221:
+          message.klong = Quotation.decode(reader, reader.uint32());
+          break;
+        case 222:
+          message.kshort = Quotation.decode(reader, reader.uint32());
+          break;
+        case 223:
+          message.dlong = Quotation.decode(reader, reader.uint32());
+          break;
+        case 224:
+          message.dshort = Quotation.decode(reader, reader.uint32());
+          break;
+        case 225:
+          message.dlongMin = Quotation.decode(reader, reader.uint32());
+          break;
+        case 226:
+          message.dshortMin = Quotation.decode(reader, reader.uint32());
+          break;
+        case 231:
+          message.minPriceIncrement = Quotation.decode(reader, reader.uint32());
+          break;
+        case 241:
+          message.strikePrice = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 301:
+          message.expirationDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 311:
+          message.firstTradeDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 312:
+          message.lastTradeDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 321:
+          message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 322:
+          message.first1dayCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 401:
+          message.shortEnabledFlag = reader.bool();
+          break;
+        case 402:
+          message.forIisFlag = reader.bool();
+          break;
+        case 403:
+          message.otcFlag = reader.bool();
+          break;
+        case 404:
+          message.buyAvailableFlag = reader.bool();
+          break;
+        case 405:
+          message.sellAvailableFlag = reader.bool();
+          break;
+        case 406:
+          message.forQualInvestorFlag = reader.bool();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Option {
+    return {
+      uid: isSet(object.uid) ? String(object.uid) : "",
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
+      basicAssetPositionUid: isSet(object.basicAssetPositionUid) ? String(object.basicAssetPositionUid) : "",
+      tradingStatus: isSet(object.tradingStatus) ? securityTradingStatusFromJSON(object.tradingStatus) : 0,
+      realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
+      direction: isSet(object.direction) ? optionDirectionFromJSON(object.direction) : 0,
+      paymentType: isSet(object.paymentType) ? optionPaymentTypeFromJSON(object.paymentType) : 0,
+      style: isSet(object.style) ? optionStyleFromJSON(object.style) : 0,
+      settlementType: isSet(object.settlementType) ? optionSettlementTypeFromJSON(object.settlementType) : 0,
+      name: isSet(object.name) ? String(object.name) : "",
+      currency: isSet(object.currency) ? String(object.currency) : "",
+      settlementCurrency: isSet(object.settlementCurrency) ? String(object.settlementCurrency) : "",
+      assetType: isSet(object.assetType) ? String(object.assetType) : "",
+      basicAsset: isSet(object.basicAsset) ? String(object.basicAsset) : "",
+      exchange: isSet(object.exchange) ? String(object.exchange) : "",
+      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : "",
+      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : "",
+      sector: isSet(object.sector) ? String(object.sector) : "",
+      lot: isSet(object.lot) ? Number(object.lot) : 0,
+      basicAssetSize: isSet(object.basicAssetSize) ? Quotation.fromJSON(object.basicAssetSize) : undefined,
+      klong: isSet(object.klong) ? Quotation.fromJSON(object.klong) : undefined,
+      kshort: isSet(object.kshort) ? Quotation.fromJSON(object.kshort) : undefined,
+      dlong: isSet(object.dlong) ? Quotation.fromJSON(object.dlong) : undefined,
+      dshort: isSet(object.dshort) ? Quotation.fromJSON(object.dshort) : undefined,
+      dlongMin: isSet(object.dlongMin) ? Quotation.fromJSON(object.dlongMin) : undefined,
+      dshortMin: isSet(object.dshortMin) ? Quotation.fromJSON(object.dshortMin) : undefined,
+      minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
+      strikePrice: isSet(object.strikePrice) ? MoneyValue.fromJSON(object.strikePrice) : undefined,
+      expirationDate: isSet(object.expirationDate) ? fromJsonTimestamp(object.expirationDate) : undefined,
+      firstTradeDate: isSet(object.firstTradeDate) ? fromJsonTimestamp(object.firstTradeDate) : undefined,
+      lastTradeDate: isSet(object.lastTradeDate) ? fromJsonTimestamp(object.lastTradeDate) : undefined,
+      first1minCandleDate: isSet(object.first1minCandleDate)
+        ? fromJsonTimestamp(object.first1minCandleDate)
+        : undefined,
+      first1dayCandleDate: isSet(object.first1dayCandleDate)
+        ? fromJsonTimestamp(object.first1dayCandleDate)
+        : undefined,
+      shortEnabledFlag: isSet(object.shortEnabledFlag) ? Boolean(object.shortEnabledFlag) : false,
+      forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
+      otcFlag: isSet(object.otcFlag) ? Boolean(object.otcFlag) : false,
+      buyAvailableFlag: isSet(object.buyAvailableFlag) ? Boolean(object.buyAvailableFlag) : false,
+      sellAvailableFlag: isSet(object.sellAvailableFlag) ? Boolean(object.sellAvailableFlag) : false,
+      forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+    };
+  },
+
+  toJSON(message: Option): unknown {
+    const obj: any = {};
+    message.uid !== undefined && (obj.uid = message.uid);
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.ticker !== undefined && (obj.ticker = message.ticker);
+    message.classCode !== undefined && (obj.classCode = message.classCode);
+    message.basicAssetPositionUid !== undefined && (obj.basicAssetPositionUid = message.basicAssetPositionUid);
+    message.tradingStatus !== undefined && (obj.tradingStatus = securityTradingStatusToJSON(message.tradingStatus));
+    message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
+    message.direction !== undefined && (obj.direction = optionDirectionToJSON(message.direction));
+    message.paymentType !== undefined && (obj.paymentType = optionPaymentTypeToJSON(message.paymentType));
+    message.style !== undefined && (obj.style = optionStyleToJSON(message.style));
+    message.settlementType !== undefined && (obj.settlementType = optionSettlementTypeToJSON(message.settlementType));
+    message.name !== undefined && (obj.name = message.name);
+    message.currency !== undefined && (obj.currency = message.currency);
+    message.settlementCurrency !== undefined && (obj.settlementCurrency = message.settlementCurrency);
+    message.assetType !== undefined && (obj.assetType = message.assetType);
+    message.basicAsset !== undefined && (obj.basicAsset = message.basicAsset);
+    message.exchange !== undefined && (obj.exchange = message.exchange);
+    message.countryOfRisk !== undefined && (obj.countryOfRisk = message.countryOfRisk);
+    message.countryOfRiskName !== undefined && (obj.countryOfRiskName = message.countryOfRiskName);
+    message.sector !== undefined && (obj.sector = message.sector);
+    message.lot !== undefined && (obj.lot = Math.round(message.lot));
+    message.basicAssetSize !== undefined &&
+      (obj.basicAssetSize = message.basicAssetSize ? Quotation.toJSON(message.basicAssetSize) : undefined);
+    message.klong !== undefined && (obj.klong = message.klong ? Quotation.toJSON(message.klong) : undefined);
+    message.kshort !== undefined && (obj.kshort = message.kshort ? Quotation.toJSON(message.kshort) : undefined);
+    message.dlong !== undefined && (obj.dlong = message.dlong ? Quotation.toJSON(message.dlong) : undefined);
+    message.dshort !== undefined && (obj.dshort = message.dshort ? Quotation.toJSON(message.dshort) : undefined);
+    message.dlongMin !== undefined &&
+      (obj.dlongMin = message.dlongMin ? Quotation.toJSON(message.dlongMin) : undefined);
+    message.dshortMin !== undefined &&
+      (obj.dshortMin = message.dshortMin ? Quotation.toJSON(message.dshortMin) : undefined);
+    message.minPriceIncrement !== undefined &&
+      (obj.minPriceIncrement = message.minPriceIncrement ? Quotation.toJSON(message.minPriceIncrement) : undefined);
+    message.strikePrice !== undefined &&
+      (obj.strikePrice = message.strikePrice ? MoneyValue.toJSON(message.strikePrice) : undefined);
+    message.expirationDate !== undefined && (obj.expirationDate = message.expirationDate.toISOString());
+    message.firstTradeDate !== undefined && (obj.firstTradeDate = message.firstTradeDate.toISOString());
+    message.lastTradeDate !== undefined && (obj.lastTradeDate = message.lastTradeDate.toISOString());
+    message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
+    message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
+    message.shortEnabledFlag !== undefined && (obj.shortEnabledFlag = message.shortEnabledFlag);
+    message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
+    message.otcFlag !== undefined && (obj.otcFlag = message.otcFlag);
+    message.buyAvailableFlag !== undefined && (obj.buyAvailableFlag = message.buyAvailableFlag);
+    message.sellAvailableFlag !== undefined && (obj.sellAvailableFlag = message.sellAvailableFlag);
+    message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Option>): Option {
+    const message = createBaseOption();
+    message.uid = object.uid ?? "";
+    message.positionUid = object.positionUid ?? "";
+    message.ticker = object.ticker ?? "";
+    message.classCode = object.classCode ?? "";
+    message.basicAssetPositionUid = object.basicAssetPositionUid ?? "";
+    message.tradingStatus = object.tradingStatus ?? 0;
+    message.realExchange = object.realExchange ?? 0;
+    message.direction = object.direction ?? 0;
+    message.paymentType = object.paymentType ?? 0;
+    message.style = object.style ?? 0;
+    message.settlementType = object.settlementType ?? 0;
+    message.name = object.name ?? "";
+    message.currency = object.currency ?? "";
+    message.settlementCurrency = object.settlementCurrency ?? "";
+    message.assetType = object.assetType ?? "";
+    message.basicAsset = object.basicAsset ?? "";
+    message.exchange = object.exchange ?? "";
+    message.countryOfRisk = object.countryOfRisk ?? "";
+    message.countryOfRiskName = object.countryOfRiskName ?? "";
+    message.sector = object.sector ?? "";
+    message.lot = object.lot ?? 0;
+    message.basicAssetSize = (object.basicAssetSize !== undefined && object.basicAssetSize !== null)
+      ? Quotation.fromPartial(object.basicAssetSize)
+      : undefined;
+    message.klong = (object.klong !== undefined && object.klong !== null)
+      ? Quotation.fromPartial(object.klong)
+      : undefined;
+    message.kshort = (object.kshort !== undefined && object.kshort !== null)
+      ? Quotation.fromPartial(object.kshort)
+      : undefined;
+    message.dlong = (object.dlong !== undefined && object.dlong !== null)
+      ? Quotation.fromPartial(object.dlong)
+      : undefined;
+    message.dshort = (object.dshort !== undefined && object.dshort !== null)
+      ? Quotation.fromPartial(object.dshort)
+      : undefined;
+    message.dlongMin = (object.dlongMin !== undefined && object.dlongMin !== null)
+      ? Quotation.fromPartial(object.dlongMin)
+      : undefined;
+    message.dshortMin = (object.dshortMin !== undefined && object.dshortMin !== null)
+      ? Quotation.fromPartial(object.dshortMin)
+      : undefined;
+    message.minPriceIncrement = (object.minPriceIncrement !== undefined && object.minPriceIncrement !== null)
+      ? Quotation.fromPartial(object.minPriceIncrement)
+      : undefined;
+    message.strikePrice = (object.strikePrice !== undefined && object.strikePrice !== null)
+      ? MoneyValue.fromPartial(object.strikePrice)
+      : undefined;
+    message.expirationDate = object.expirationDate ?? undefined;
+    message.firstTradeDate = object.firstTradeDate ?? undefined;
+    message.lastTradeDate = object.lastTradeDate ?? undefined;
+    message.first1minCandleDate = object.first1minCandleDate ?? undefined;
+    message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
+    message.shortEnabledFlag = object.shortEnabledFlag ?? false;
+    message.forIisFlag = object.forIisFlag ?? false;
+    message.otcFlag = object.otcFlag ?? false;
+    message.buyAvailableFlag = object.buyAvailableFlag ?? false;
+    message.sellAvailableFlag = object.sellAvailableFlag ?? false;
+    message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
     return message;
   },
 };
@@ -2662,9 +3963,7 @@ export const ShareResponse = {
   },
 
   fromJSON(object: any): ShareResponse {
-    return {
-      instrument: isSet(object.instrument) ? Share.fromJSON(object.instrument) : undefined,
-    };
+    return { instrument: isSet(object.instrument) ? Share.fromJSON(object.instrument) : undefined };
   },
 
   toJSON(message: ShareResponse): unknown {
@@ -2676,8 +3975,9 @@ export const ShareResponse = {
 
   fromPartial(object: DeepPartial<ShareResponse>): ShareResponse {
     const message = createBaseShareResponse();
-    message.instrument =
-      object.instrument !== undefined && object.instrument !== null ? Share.fromPartial(object.instrument) : undefined;
+    message.instrument = (object.instrument !== undefined && object.instrument !== null)
+      ? Share.fromPartial(object.instrument)
+      : undefined;
     return message;
   },
 };
@@ -2721,7 +4021,7 @@ export const SharesResponse = {
   toJSON(message: SharesResponse): unknown {
     const obj: any = {};
     if (message.instruments) {
-      obj.instruments = message.instruments.map(e => (e ? Share.toJSON(e) : undefined));
+      obj.instruments = message.instruments.map((e) => e ? Share.toJSON(e) : undefined);
     } else {
       obj.instruments = [];
     }
@@ -2730,19 +4030,19 @@ export const SharesResponse = {
 
   fromPartial(object: DeepPartial<SharesResponse>): SharesResponse {
     const message = createBaseSharesResponse();
-    message.instruments = object.instruments?.map(e => Share.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map((e) => Share.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseBond(): Bond {
   return {
-    figi: '',
-    ticker: '',
-    classCode: '',
-    isin: '',
+    figi: "",
+    ticker: "",
+    classCode: "",
+    isin: "",
     lot: 0,
-    currency: '',
+    currency: "",
     klong: undefined,
     kshort: undefined,
     dlong: undefined,
@@ -2750,19 +4050,20 @@ function createBaseBond(): Bond {
     dlongMin: undefined,
     dshortMin: undefined,
     shortEnabledFlag: false,
-    name: '',
-    exchange: '',
+    name: "",
+    exchange: "",
     couponQuantityPerYear: 0,
     maturityDate: undefined,
     nominal: undefined,
+    initialNominal: undefined,
     stateRegDate: undefined,
     placementDate: undefined,
     placementPrice: undefined,
     aciValue: undefined,
-    countryOfRisk: '',
-    countryOfRiskName: '',
-    sector: '',
-    issueKind: '',
+    countryOfRisk: "",
+    countryOfRiskName: "",
+    sector: "",
+    issueKind: "",
     issueSize: 0,
     issueSizePlan: 0,
     tradingStatus: 0,
@@ -2774,29 +4075,34 @@ function createBaseBond(): Bond {
     amortizationFlag: false,
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
-    uid: '',
+    uid: "",
     realExchange: 0,
+    positionUid: "",
+    forIisFlag: false,
+    forQualInvestorFlag: false,
+    first1minCandleDate: undefined,
+    first1dayCandleDate: undefined,
   };
 }
 
 export const Bond = {
   encode(message: Bond, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
-    if (message.ticker !== '') {
+    if (message.ticker !== "") {
       writer.uint32(18).string(message.ticker);
     }
-    if (message.classCode !== '') {
+    if (message.classCode !== "") {
       writer.uint32(26).string(message.classCode);
     }
-    if (message.isin !== '') {
+    if (message.isin !== "") {
       writer.uint32(34).string(message.isin);
     }
     if (message.lot !== 0) {
       writer.uint32(40).int32(message.lot);
     }
-    if (message.currency !== '') {
+    if (message.currency !== "") {
       writer.uint32(50).string(message.currency);
     }
     if (message.klong !== undefined) {
@@ -2820,10 +4126,10 @@ export const Bond = {
     if (message.shortEnabledFlag === true) {
       writer.uint32(104).bool(message.shortEnabledFlag);
     }
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(122).string(message.name);
     }
-    if (message.exchange !== '') {
+    if (message.exchange !== "") {
       writer.uint32(130).string(message.exchange);
     }
     if (message.couponQuantityPerYear !== 0) {
@@ -2834,6 +4140,9 @@ export const Bond = {
     }
     if (message.nominal !== undefined) {
       MoneyValue.encode(message.nominal, writer.uint32(154).fork()).ldelim();
+    }
+    if (message.initialNominal !== undefined) {
+      MoneyValue.encode(message.initialNominal, writer.uint32(162).fork()).ldelim();
     }
     if (message.stateRegDate !== undefined) {
       Timestamp.encode(toTimestamp(message.stateRegDate), writer.uint32(170).fork()).ldelim();
@@ -2847,16 +4156,16 @@ export const Bond = {
     if (message.aciValue !== undefined) {
       MoneyValue.encode(message.aciValue, writer.uint32(194).fork()).ldelim();
     }
-    if (message.countryOfRisk !== '') {
+    if (message.countryOfRisk !== "") {
       writer.uint32(202).string(message.countryOfRisk);
     }
-    if (message.countryOfRiskName !== '') {
+    if (message.countryOfRiskName !== "") {
       writer.uint32(210).string(message.countryOfRiskName);
     }
-    if (message.sector !== '') {
+    if (message.sector !== "") {
       writer.uint32(218).string(message.sector);
     }
-    if (message.issueKind !== '') {
+    if (message.issueKind !== "") {
       writer.uint32(226).string(message.issueKind);
     }
     if (message.issueSize !== 0) {
@@ -2892,11 +4201,26 @@ export const Bond = {
     if (message.apiTradeAvailableFlag === true) {
       writer.uint32(312).bool(message.apiTradeAvailableFlag);
     }
-    if (message.uid !== '') {
+    if (message.uid !== "") {
       writer.uint32(322).string(message.uid);
     }
     if (message.realExchange !== 0) {
       writer.uint32(328).int32(message.realExchange);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(338).string(message.positionUid);
+    }
+    if (message.forIisFlag === true) {
+      writer.uint32(408).bool(message.forIisFlag);
+    }
+    if (message.forQualInvestorFlag === true) {
+      writer.uint32(416).bool(message.forQualInvestorFlag);
+    }
+    if (message.first1minCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(490).fork()).ldelim();
+    }
+    if (message.first1dayCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1dayCandleDate), writer.uint32(498).fork()).ldelim();
     }
     return writer;
   },
@@ -2962,6 +4286,9 @@ export const Bond = {
         case 19:
           message.nominal = MoneyValue.decode(reader, reader.uint32());
           break;
+        case 20:
+          message.initialNominal = MoneyValue.decode(reader, reader.uint32());
+          break;
         case 21:
           message.stateRegDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -3025,6 +4352,21 @@ export const Bond = {
         case 41:
           message.realExchange = reader.int32() as any;
           break;
+        case 42:
+          message.positionUid = reader.string();
+          break;
+        case 51:
+          message.forIisFlag = reader.bool();
+          break;
+        case 52:
+          message.forQualInvestorFlag = reader.bool();
+          break;
+        case 61:
+          message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 62:
+          message.first1dayCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -3035,12 +4377,12 @@ export const Bond = {
 
   fromJSON(object: any): Bond {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
-      ticker: isSet(object.ticker) ? String(object.ticker) : '',
-      classCode: isSet(object.classCode) ? String(object.classCode) : '',
-      isin: isSet(object.isin) ? String(object.isin) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
+      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
+      isin: isSet(object.isin) ? String(object.isin) : "",
       lot: isSet(object.lot) ? Number(object.lot) : 0,
-      currency: isSet(object.currency) ? String(object.currency) : '',
+      currency: isSet(object.currency) ? String(object.currency) : "",
       klong: isSet(object.klong) ? Quotation.fromJSON(object.klong) : undefined,
       kshort: isSet(object.kshort) ? Quotation.fromJSON(object.kshort) : undefined,
       dlong: isSet(object.dlong) ? Quotation.fromJSON(object.dlong) : undefined,
@@ -3048,19 +4390,20 @@ export const Bond = {
       dlongMin: isSet(object.dlongMin) ? Quotation.fromJSON(object.dlongMin) : undefined,
       dshortMin: isSet(object.dshortMin) ? Quotation.fromJSON(object.dshortMin) : undefined,
       shortEnabledFlag: isSet(object.shortEnabledFlag) ? Boolean(object.shortEnabledFlag) : false,
-      name: isSet(object.name) ? String(object.name) : '',
-      exchange: isSet(object.exchange) ? String(object.exchange) : '',
+      name: isSet(object.name) ? String(object.name) : "",
+      exchange: isSet(object.exchange) ? String(object.exchange) : "",
       couponQuantityPerYear: isSet(object.couponQuantityPerYear) ? Number(object.couponQuantityPerYear) : 0,
       maturityDate: isSet(object.maturityDate) ? fromJsonTimestamp(object.maturityDate) : undefined,
       nominal: isSet(object.nominal) ? MoneyValue.fromJSON(object.nominal) : undefined,
+      initialNominal: isSet(object.initialNominal) ? MoneyValue.fromJSON(object.initialNominal) : undefined,
       stateRegDate: isSet(object.stateRegDate) ? fromJsonTimestamp(object.stateRegDate) : undefined,
       placementDate: isSet(object.placementDate) ? fromJsonTimestamp(object.placementDate) : undefined,
       placementPrice: isSet(object.placementPrice) ? MoneyValue.fromJSON(object.placementPrice) : undefined,
       aciValue: isSet(object.aciValue) ? MoneyValue.fromJSON(object.aciValue) : undefined,
-      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : '',
-      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : '',
-      sector: isSet(object.sector) ? String(object.sector) : '',
-      issueKind: isSet(object.issueKind) ? String(object.issueKind) : '',
+      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : "",
+      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : "",
+      sector: isSet(object.sector) ? String(object.sector) : "",
+      issueKind: isSet(object.issueKind) ? String(object.issueKind) : "",
       issueSize: isSet(object.issueSize) ? Number(object.issueSize) : 0,
       issueSizePlan: isSet(object.issueSizePlan) ? Number(object.issueSizePlan) : 0,
       tradingStatus: isSet(object.tradingStatus) ? securityTradingStatusFromJSON(object.tradingStatus) : 0,
@@ -3072,8 +4415,17 @@ export const Bond = {
       amortizationFlag: isSet(object.amortizationFlag) ? Boolean(object.amortizationFlag) : false,
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
-      uid: isSet(object.uid) ? String(object.uid) : '',
+      uid: isSet(object.uid) ? String(object.uid) : "",
       realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
+      forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      first1minCandleDate: isSet(object.first1minCandleDate)
+        ? fromJsonTimestamp(object.first1minCandleDate)
+        : undefined,
+      first1dayCandleDate: isSet(object.first1dayCandleDate)
+        ? fromJsonTimestamp(object.first1dayCandleDate)
+        : undefined,
     };
   },
 
@@ -3100,6 +4452,8 @@ export const Bond = {
       (obj.couponQuantityPerYear = Math.round(message.couponQuantityPerYear));
     message.maturityDate !== undefined && (obj.maturityDate = message.maturityDate.toISOString());
     message.nominal !== undefined && (obj.nominal = message.nominal ? MoneyValue.toJSON(message.nominal) : undefined);
+    message.initialNominal !== undefined &&
+      (obj.initialNominal = message.initialNominal ? MoneyValue.toJSON(message.initialNominal) : undefined);
     message.stateRegDate !== undefined && (obj.stateRegDate = message.stateRegDate.toISOString());
     message.placementDate !== undefined && (obj.placementDate = message.placementDate.toISOString());
     message.placementPrice !== undefined &&
@@ -3124,48 +4478,63 @@ export const Bond = {
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
     message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
+    message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
+    message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
   },
 
   fromPartial(object: DeepPartial<Bond>): Bond {
     const message = createBaseBond();
-    message.figi = object.figi ?? '';
-    message.ticker = object.ticker ?? '';
-    message.classCode = object.classCode ?? '';
-    message.isin = object.isin ?? '';
+    message.figi = object.figi ?? "";
+    message.ticker = object.ticker ?? "";
+    message.classCode = object.classCode ?? "";
+    message.isin = object.isin ?? "";
     message.lot = object.lot ?? 0;
-    message.currency = object.currency ?? '';
-    message.klong =
-      object.klong !== undefined && object.klong !== null ? Quotation.fromPartial(object.klong) : undefined;
-    message.kshort =
-      object.kshort !== undefined && object.kshort !== null ? Quotation.fromPartial(object.kshort) : undefined;
-    message.dlong =
-      object.dlong !== undefined && object.dlong !== null ? Quotation.fromPartial(object.dlong) : undefined;
-    message.dshort =
-      object.dshort !== undefined && object.dshort !== null ? Quotation.fromPartial(object.dshort) : undefined;
-    message.dlongMin =
-      object.dlongMin !== undefined && object.dlongMin !== null ? Quotation.fromPartial(object.dlongMin) : undefined;
-    message.dshortMin =
-      object.dshortMin !== undefined && object.dshortMin !== null ? Quotation.fromPartial(object.dshortMin) : undefined;
+    message.currency = object.currency ?? "";
+    message.klong = (object.klong !== undefined && object.klong !== null)
+      ? Quotation.fromPartial(object.klong)
+      : undefined;
+    message.kshort = (object.kshort !== undefined && object.kshort !== null)
+      ? Quotation.fromPartial(object.kshort)
+      : undefined;
+    message.dlong = (object.dlong !== undefined && object.dlong !== null)
+      ? Quotation.fromPartial(object.dlong)
+      : undefined;
+    message.dshort = (object.dshort !== undefined && object.dshort !== null)
+      ? Quotation.fromPartial(object.dshort)
+      : undefined;
+    message.dlongMin = (object.dlongMin !== undefined && object.dlongMin !== null)
+      ? Quotation.fromPartial(object.dlongMin)
+      : undefined;
+    message.dshortMin = (object.dshortMin !== undefined && object.dshortMin !== null)
+      ? Quotation.fromPartial(object.dshortMin)
+      : undefined;
     message.shortEnabledFlag = object.shortEnabledFlag ?? false;
-    message.name = object.name ?? '';
-    message.exchange = object.exchange ?? '';
+    message.name = object.name ?? "";
+    message.exchange = object.exchange ?? "";
     message.couponQuantityPerYear = object.couponQuantityPerYear ?? 0;
     message.maturityDate = object.maturityDate ?? undefined;
-    message.nominal =
-      object.nominal !== undefined && object.nominal !== null ? MoneyValue.fromPartial(object.nominal) : undefined;
+    message.nominal = (object.nominal !== undefined && object.nominal !== null)
+      ? MoneyValue.fromPartial(object.nominal)
+      : undefined;
+    message.initialNominal = (object.initialNominal !== undefined && object.initialNominal !== null)
+      ? MoneyValue.fromPartial(object.initialNominal)
+      : undefined;
     message.stateRegDate = object.stateRegDate ?? undefined;
     message.placementDate = object.placementDate ?? undefined;
-    message.placementPrice =
-      object.placementPrice !== undefined && object.placementPrice !== null
-        ? MoneyValue.fromPartial(object.placementPrice)
-        : undefined;
-    message.aciValue =
-      object.aciValue !== undefined && object.aciValue !== null ? MoneyValue.fromPartial(object.aciValue) : undefined;
-    message.countryOfRisk = object.countryOfRisk ?? '';
-    message.countryOfRiskName = object.countryOfRiskName ?? '';
-    message.sector = object.sector ?? '';
-    message.issueKind = object.issueKind ?? '';
+    message.placementPrice = (object.placementPrice !== undefined && object.placementPrice !== null)
+      ? MoneyValue.fromPartial(object.placementPrice)
+      : undefined;
+    message.aciValue = (object.aciValue !== undefined && object.aciValue !== null)
+      ? MoneyValue.fromPartial(object.aciValue)
+      : undefined;
+    message.countryOfRisk = object.countryOfRisk ?? "";
+    message.countryOfRiskName = object.countryOfRiskName ?? "";
+    message.sector = object.sector ?? "";
+    message.issueKind = object.issueKind ?? "";
     message.issueSize = object.issueSize ?? 0;
     message.issueSizePlan = object.issueSizePlan ?? 0;
     message.tradingStatus = object.tradingStatus ?? 0;
@@ -3175,25 +4544,29 @@ export const Bond = {
     message.floatingCouponFlag = object.floatingCouponFlag ?? false;
     message.perpetualFlag = object.perpetualFlag ?? false;
     message.amortizationFlag = object.amortizationFlag ?? false;
-    message.minPriceIncrement =
-      object.minPriceIncrement !== undefined && object.minPriceIncrement !== null
-        ? Quotation.fromPartial(object.minPriceIncrement)
-        : undefined;
+    message.minPriceIncrement = (object.minPriceIncrement !== undefined && object.minPriceIncrement !== null)
+      ? Quotation.fromPartial(object.minPriceIncrement)
+      : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
-    message.uid = object.uid ?? '';
+    message.uid = object.uid ?? "";
     message.realExchange = object.realExchange ?? 0;
+    message.positionUid = object.positionUid ?? "";
+    message.forIisFlag = object.forIisFlag ?? false;
+    message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.first1minCandleDate = object.first1minCandleDate ?? undefined;
+    message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
   },
 };
 
 function createBaseCurrency(): Currency {
   return {
-    figi: '',
-    ticker: '',
-    classCode: '',
-    isin: '',
+    figi: "",
+    ticker: "",
+    classCode: "",
+    isin: "",
     lot: 0,
-    currency: '',
+    currency: "",
     klong: undefined,
     kshort: undefined,
     dlong: undefined,
@@ -3201,41 +4574,46 @@ function createBaseCurrency(): Currency {
     dlongMin: undefined,
     dshortMin: undefined,
     shortEnabledFlag: false,
-    name: '',
-    exchange: '',
+    name: "",
+    exchange: "",
     nominal: undefined,
-    countryOfRisk: '',
-    countryOfRiskName: '',
+    countryOfRisk: "",
+    countryOfRiskName: "",
     tradingStatus: 0,
     otcFlag: false,
     buyAvailableFlag: false,
     sellAvailableFlag: false,
-    isoCurrencyName: '',
+    isoCurrencyName: "",
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
-    uid: '',
+    uid: "",
     realExchange: 0,
+    positionUid: "",
+    forIisFlag: false,
+    forQualInvestorFlag: false,
+    first1minCandleDate: undefined,
+    first1dayCandleDate: undefined,
   };
 }
 
 export const Currency = {
   encode(message: Currency, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
-    if (message.ticker !== '') {
+    if (message.ticker !== "") {
       writer.uint32(18).string(message.ticker);
     }
-    if (message.classCode !== '') {
+    if (message.classCode !== "") {
       writer.uint32(26).string(message.classCode);
     }
-    if (message.isin !== '') {
+    if (message.isin !== "") {
       writer.uint32(34).string(message.isin);
     }
     if (message.lot !== 0) {
       writer.uint32(40).int32(message.lot);
     }
-    if (message.currency !== '') {
+    if (message.currency !== "") {
       writer.uint32(50).string(message.currency);
     }
     if (message.klong !== undefined) {
@@ -3259,19 +4637,19 @@ export const Currency = {
     if (message.shortEnabledFlag === true) {
       writer.uint32(104).bool(message.shortEnabledFlag);
     }
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(122).string(message.name);
     }
-    if (message.exchange !== '') {
+    if (message.exchange !== "") {
       writer.uint32(130).string(message.exchange);
     }
     if (message.nominal !== undefined) {
       MoneyValue.encode(message.nominal, writer.uint32(138).fork()).ldelim();
     }
-    if (message.countryOfRisk !== '') {
+    if (message.countryOfRisk !== "") {
       writer.uint32(146).string(message.countryOfRisk);
     }
-    if (message.countryOfRiskName !== '') {
+    if (message.countryOfRiskName !== "") {
       writer.uint32(154).string(message.countryOfRiskName);
     }
     if (message.tradingStatus !== 0) {
@@ -3286,7 +4664,7 @@ export const Currency = {
     if (message.sellAvailableFlag === true) {
       writer.uint32(184).bool(message.sellAvailableFlag);
     }
-    if (message.isoCurrencyName !== '') {
+    if (message.isoCurrencyName !== "") {
       writer.uint32(194).string(message.isoCurrencyName);
     }
     if (message.minPriceIncrement !== undefined) {
@@ -3295,11 +4673,26 @@ export const Currency = {
     if (message.apiTradeAvailableFlag === true) {
       writer.uint32(208).bool(message.apiTradeAvailableFlag);
     }
-    if (message.uid !== '') {
+    if (message.uid !== "") {
       writer.uint32(218).string(message.uid);
     }
     if (message.realExchange !== 0) {
       writer.uint32(224).int32(message.realExchange);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(234).string(message.positionUid);
+    }
+    if (message.forIisFlag === true) {
+      writer.uint32(328).bool(message.forIisFlag);
+    }
+    if (message.forQualInvestorFlag === true) {
+      writer.uint32(416).bool(message.forQualInvestorFlag);
+    }
+    if (message.first1minCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
+    }
+    if (message.first1dayCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1dayCandleDate), writer.uint32(458).fork()).ldelim();
     }
     return writer;
   },
@@ -3392,6 +4785,21 @@ export const Currency = {
         case 28:
           message.realExchange = reader.int32() as any;
           break;
+        case 29:
+          message.positionUid = reader.string();
+          break;
+        case 41:
+          message.forIisFlag = reader.bool();
+          break;
+        case 52:
+          message.forQualInvestorFlag = reader.bool();
+          break;
+        case 56:
+          message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 57:
+          message.first1dayCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -3402,12 +4810,12 @@ export const Currency = {
 
   fromJSON(object: any): Currency {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
-      ticker: isSet(object.ticker) ? String(object.ticker) : '',
-      classCode: isSet(object.classCode) ? String(object.classCode) : '',
-      isin: isSet(object.isin) ? String(object.isin) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
+      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
+      isin: isSet(object.isin) ? String(object.isin) : "",
       lot: isSet(object.lot) ? Number(object.lot) : 0,
-      currency: isSet(object.currency) ? String(object.currency) : '',
+      currency: isSet(object.currency) ? String(object.currency) : "",
       klong: isSet(object.klong) ? Quotation.fromJSON(object.klong) : undefined,
       kshort: isSet(object.kshort) ? Quotation.fromJSON(object.kshort) : undefined,
       dlong: isSet(object.dlong) ? Quotation.fromJSON(object.dlong) : undefined,
@@ -3415,20 +4823,29 @@ export const Currency = {
       dlongMin: isSet(object.dlongMin) ? Quotation.fromJSON(object.dlongMin) : undefined,
       dshortMin: isSet(object.dshortMin) ? Quotation.fromJSON(object.dshortMin) : undefined,
       shortEnabledFlag: isSet(object.shortEnabledFlag) ? Boolean(object.shortEnabledFlag) : false,
-      name: isSet(object.name) ? String(object.name) : '',
-      exchange: isSet(object.exchange) ? String(object.exchange) : '',
+      name: isSet(object.name) ? String(object.name) : "",
+      exchange: isSet(object.exchange) ? String(object.exchange) : "",
       nominal: isSet(object.nominal) ? MoneyValue.fromJSON(object.nominal) : undefined,
-      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : '',
-      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : '',
+      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : "",
+      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : "",
       tradingStatus: isSet(object.tradingStatus) ? securityTradingStatusFromJSON(object.tradingStatus) : 0,
       otcFlag: isSet(object.otcFlag) ? Boolean(object.otcFlag) : false,
       buyAvailableFlag: isSet(object.buyAvailableFlag) ? Boolean(object.buyAvailableFlag) : false,
       sellAvailableFlag: isSet(object.sellAvailableFlag) ? Boolean(object.sellAvailableFlag) : false,
-      isoCurrencyName: isSet(object.isoCurrencyName) ? String(object.isoCurrencyName) : '',
+      isoCurrencyName: isSet(object.isoCurrencyName) ? String(object.isoCurrencyName) : "",
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
-      uid: isSet(object.uid) ? String(object.uid) : '',
+      uid: isSet(object.uid) ? String(object.uid) : "",
       realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
+      forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      first1minCandleDate: isSet(object.first1minCandleDate)
+        ? fromJsonTimestamp(object.first1minCandleDate)
+        : undefined,
+      first1dayCandleDate: isSet(object.first1dayCandleDate)
+        ? fromJsonTimestamp(object.first1dayCandleDate)
+        : undefined,
     };
   },
 
@@ -3464,60 +4881,76 @@ export const Currency = {
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
     message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
+    message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
+    message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
   },
 
   fromPartial(object: DeepPartial<Currency>): Currency {
     const message = createBaseCurrency();
-    message.figi = object.figi ?? '';
-    message.ticker = object.ticker ?? '';
-    message.classCode = object.classCode ?? '';
-    message.isin = object.isin ?? '';
+    message.figi = object.figi ?? "";
+    message.ticker = object.ticker ?? "";
+    message.classCode = object.classCode ?? "";
+    message.isin = object.isin ?? "";
     message.lot = object.lot ?? 0;
-    message.currency = object.currency ?? '';
-    message.klong =
-      object.klong !== undefined && object.klong !== null ? Quotation.fromPartial(object.klong) : undefined;
-    message.kshort =
-      object.kshort !== undefined && object.kshort !== null ? Quotation.fromPartial(object.kshort) : undefined;
-    message.dlong =
-      object.dlong !== undefined && object.dlong !== null ? Quotation.fromPartial(object.dlong) : undefined;
-    message.dshort =
-      object.dshort !== undefined && object.dshort !== null ? Quotation.fromPartial(object.dshort) : undefined;
-    message.dlongMin =
-      object.dlongMin !== undefined && object.dlongMin !== null ? Quotation.fromPartial(object.dlongMin) : undefined;
-    message.dshortMin =
-      object.dshortMin !== undefined && object.dshortMin !== null ? Quotation.fromPartial(object.dshortMin) : undefined;
+    message.currency = object.currency ?? "";
+    message.klong = (object.klong !== undefined && object.klong !== null)
+      ? Quotation.fromPartial(object.klong)
+      : undefined;
+    message.kshort = (object.kshort !== undefined && object.kshort !== null)
+      ? Quotation.fromPartial(object.kshort)
+      : undefined;
+    message.dlong = (object.dlong !== undefined && object.dlong !== null)
+      ? Quotation.fromPartial(object.dlong)
+      : undefined;
+    message.dshort = (object.dshort !== undefined && object.dshort !== null)
+      ? Quotation.fromPartial(object.dshort)
+      : undefined;
+    message.dlongMin = (object.dlongMin !== undefined && object.dlongMin !== null)
+      ? Quotation.fromPartial(object.dlongMin)
+      : undefined;
+    message.dshortMin = (object.dshortMin !== undefined && object.dshortMin !== null)
+      ? Quotation.fromPartial(object.dshortMin)
+      : undefined;
     message.shortEnabledFlag = object.shortEnabledFlag ?? false;
-    message.name = object.name ?? '';
-    message.exchange = object.exchange ?? '';
-    message.nominal =
-      object.nominal !== undefined && object.nominal !== null ? MoneyValue.fromPartial(object.nominal) : undefined;
-    message.countryOfRisk = object.countryOfRisk ?? '';
-    message.countryOfRiskName = object.countryOfRiskName ?? '';
+    message.name = object.name ?? "";
+    message.exchange = object.exchange ?? "";
+    message.nominal = (object.nominal !== undefined && object.nominal !== null)
+      ? MoneyValue.fromPartial(object.nominal)
+      : undefined;
+    message.countryOfRisk = object.countryOfRisk ?? "";
+    message.countryOfRiskName = object.countryOfRiskName ?? "";
     message.tradingStatus = object.tradingStatus ?? 0;
     message.otcFlag = object.otcFlag ?? false;
     message.buyAvailableFlag = object.buyAvailableFlag ?? false;
     message.sellAvailableFlag = object.sellAvailableFlag ?? false;
-    message.isoCurrencyName = object.isoCurrencyName ?? '';
-    message.minPriceIncrement =
-      object.minPriceIncrement !== undefined && object.minPriceIncrement !== null
-        ? Quotation.fromPartial(object.minPriceIncrement)
-        : undefined;
+    message.isoCurrencyName = object.isoCurrencyName ?? "";
+    message.minPriceIncrement = (object.minPriceIncrement !== undefined && object.minPriceIncrement !== null)
+      ? Quotation.fromPartial(object.minPriceIncrement)
+      : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
-    message.uid = object.uid ?? '';
+    message.uid = object.uid ?? "";
     message.realExchange = object.realExchange ?? 0;
+    message.positionUid = object.positionUid ?? "";
+    message.forIisFlag = object.forIisFlag ?? false;
+    message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.first1minCandleDate = object.first1minCandleDate ?? undefined;
+    message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
   },
 };
 
 function createBaseEtf(): Etf {
   return {
-    figi: '',
-    ticker: '',
-    classCode: '',
-    isin: '',
+    figi: "",
+    ticker: "",
+    classCode: "",
+    isin: "",
     lot: 0,
-    currency: '',
+    currency: "",
     klong: undefined,
     kshort: undefined,
     dlong: undefined,
@@ -3525,45 +4958,50 @@ function createBaseEtf(): Etf {
     dlongMin: undefined,
     dshortMin: undefined,
     shortEnabledFlag: false,
-    name: '',
-    exchange: '',
+    name: "",
+    exchange: "",
     fixedCommission: undefined,
-    focusType: '',
+    focusType: "",
     releasedDate: undefined,
     numShares: undefined,
-    countryOfRisk: '',
-    countryOfRiskName: '',
-    sector: '',
-    rebalancingFreq: '',
+    countryOfRisk: "",
+    countryOfRiskName: "",
+    sector: "",
+    rebalancingFreq: "",
     tradingStatus: 0,
     otcFlag: false,
     buyAvailableFlag: false,
     sellAvailableFlag: false,
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
-    uid: '',
+    uid: "",
     realExchange: 0,
+    positionUid: "",
+    forIisFlag: false,
+    forQualInvestorFlag: false,
+    first1minCandleDate: undefined,
+    first1dayCandleDate: undefined,
   };
 }
 
 export const Etf = {
   encode(message: Etf, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
-    if (message.ticker !== '') {
+    if (message.ticker !== "") {
       writer.uint32(18).string(message.ticker);
     }
-    if (message.classCode !== '') {
+    if (message.classCode !== "") {
       writer.uint32(26).string(message.classCode);
     }
-    if (message.isin !== '') {
+    if (message.isin !== "") {
       writer.uint32(34).string(message.isin);
     }
     if (message.lot !== 0) {
       writer.uint32(40).int32(message.lot);
     }
-    if (message.currency !== '') {
+    if (message.currency !== "") {
       writer.uint32(50).string(message.currency);
     }
     if (message.klong !== undefined) {
@@ -3587,16 +5025,16 @@ export const Etf = {
     if (message.shortEnabledFlag === true) {
       writer.uint32(104).bool(message.shortEnabledFlag);
     }
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(122).string(message.name);
     }
-    if (message.exchange !== '') {
+    if (message.exchange !== "") {
       writer.uint32(130).string(message.exchange);
     }
     if (message.fixedCommission !== undefined) {
       Quotation.encode(message.fixedCommission, writer.uint32(138).fork()).ldelim();
     }
-    if (message.focusType !== '') {
+    if (message.focusType !== "") {
       writer.uint32(146).string(message.focusType);
     }
     if (message.releasedDate !== undefined) {
@@ -3605,16 +5043,16 @@ export const Etf = {
     if (message.numShares !== undefined) {
       Quotation.encode(message.numShares, writer.uint32(162).fork()).ldelim();
     }
-    if (message.countryOfRisk !== '') {
+    if (message.countryOfRisk !== "") {
       writer.uint32(170).string(message.countryOfRisk);
     }
-    if (message.countryOfRiskName !== '') {
+    if (message.countryOfRiskName !== "") {
       writer.uint32(178).string(message.countryOfRiskName);
     }
-    if (message.sector !== '') {
+    if (message.sector !== "") {
       writer.uint32(186).string(message.sector);
     }
-    if (message.rebalancingFreq !== '') {
+    if (message.rebalancingFreq !== "") {
       writer.uint32(194).string(message.rebalancingFreq);
     }
     if (message.tradingStatus !== 0) {
@@ -3635,11 +5073,26 @@ export const Etf = {
     if (message.apiTradeAvailableFlag === true) {
       writer.uint32(240).bool(message.apiTradeAvailableFlag);
     }
-    if (message.uid !== '') {
+    if (message.uid !== "") {
       writer.uint32(250).string(message.uid);
     }
     if (message.realExchange !== 0) {
       writer.uint32(256).int32(message.realExchange);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(266).string(message.positionUid);
+    }
+    if (message.forIisFlag === true) {
+      writer.uint32(328).bool(message.forIisFlag);
+    }
+    if (message.forQualInvestorFlag === true) {
+      writer.uint32(336).bool(message.forQualInvestorFlag);
+    }
+    if (message.first1minCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
+    }
+    if (message.first1dayCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1dayCandleDate), writer.uint32(458).fork()).ldelim();
     }
     return writer;
   },
@@ -3744,6 +5197,21 @@ export const Etf = {
         case 32:
           message.realExchange = reader.int32() as any;
           break;
+        case 33:
+          message.positionUid = reader.string();
+          break;
+        case 41:
+          message.forIisFlag = reader.bool();
+          break;
+        case 42:
+          message.forQualInvestorFlag = reader.bool();
+          break;
+        case 56:
+          message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 57:
+          message.first1dayCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -3754,12 +5222,12 @@ export const Etf = {
 
   fromJSON(object: any): Etf {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
-      ticker: isSet(object.ticker) ? String(object.ticker) : '',
-      classCode: isSet(object.classCode) ? String(object.classCode) : '',
-      isin: isSet(object.isin) ? String(object.isin) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
+      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
+      isin: isSet(object.isin) ? String(object.isin) : "",
       lot: isSet(object.lot) ? Number(object.lot) : 0,
-      currency: isSet(object.currency) ? String(object.currency) : '',
+      currency: isSet(object.currency) ? String(object.currency) : "",
       klong: isSet(object.klong) ? Quotation.fromJSON(object.klong) : undefined,
       kshort: isSet(object.kshort) ? Quotation.fromJSON(object.kshort) : undefined,
       dlong: isSet(object.dlong) ? Quotation.fromJSON(object.dlong) : undefined,
@@ -3767,24 +5235,33 @@ export const Etf = {
       dlongMin: isSet(object.dlongMin) ? Quotation.fromJSON(object.dlongMin) : undefined,
       dshortMin: isSet(object.dshortMin) ? Quotation.fromJSON(object.dshortMin) : undefined,
       shortEnabledFlag: isSet(object.shortEnabledFlag) ? Boolean(object.shortEnabledFlag) : false,
-      name: isSet(object.name) ? String(object.name) : '',
-      exchange: isSet(object.exchange) ? String(object.exchange) : '',
+      name: isSet(object.name) ? String(object.name) : "",
+      exchange: isSet(object.exchange) ? String(object.exchange) : "",
       fixedCommission: isSet(object.fixedCommission) ? Quotation.fromJSON(object.fixedCommission) : undefined,
-      focusType: isSet(object.focusType) ? String(object.focusType) : '',
+      focusType: isSet(object.focusType) ? String(object.focusType) : "",
       releasedDate: isSet(object.releasedDate) ? fromJsonTimestamp(object.releasedDate) : undefined,
       numShares: isSet(object.numShares) ? Quotation.fromJSON(object.numShares) : undefined,
-      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : '',
-      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : '',
-      sector: isSet(object.sector) ? String(object.sector) : '',
-      rebalancingFreq: isSet(object.rebalancingFreq) ? String(object.rebalancingFreq) : '',
+      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : "",
+      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : "",
+      sector: isSet(object.sector) ? String(object.sector) : "",
+      rebalancingFreq: isSet(object.rebalancingFreq) ? String(object.rebalancingFreq) : "",
       tradingStatus: isSet(object.tradingStatus) ? securityTradingStatusFromJSON(object.tradingStatus) : 0,
       otcFlag: isSet(object.otcFlag) ? Boolean(object.otcFlag) : false,
       buyAvailableFlag: isSet(object.buyAvailableFlag) ? Boolean(object.buyAvailableFlag) : false,
       sellAvailableFlag: isSet(object.sellAvailableFlag) ? Boolean(object.sellAvailableFlag) : false,
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
-      uid: isSet(object.uid) ? String(object.uid) : '',
+      uid: isSet(object.uid) ? String(object.uid) : "",
       realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
+      forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      first1minCandleDate: isSet(object.first1minCandleDate)
+        ? fromJsonTimestamp(object.first1minCandleDate)
+        : undefined,
+      first1dayCandleDate: isSet(object.first1dayCandleDate)
+        ? fromJsonTimestamp(object.first1dayCandleDate)
+        : undefined,
     };
   },
 
@@ -3826,66 +5303,81 @@ export const Etf = {
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
     message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
+    message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
+    message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
   },
 
   fromPartial(object: DeepPartial<Etf>): Etf {
     const message = createBaseEtf();
-    message.figi = object.figi ?? '';
-    message.ticker = object.ticker ?? '';
-    message.classCode = object.classCode ?? '';
-    message.isin = object.isin ?? '';
+    message.figi = object.figi ?? "";
+    message.ticker = object.ticker ?? "";
+    message.classCode = object.classCode ?? "";
+    message.isin = object.isin ?? "";
     message.lot = object.lot ?? 0;
-    message.currency = object.currency ?? '';
-    message.klong =
-      object.klong !== undefined && object.klong !== null ? Quotation.fromPartial(object.klong) : undefined;
-    message.kshort =
-      object.kshort !== undefined && object.kshort !== null ? Quotation.fromPartial(object.kshort) : undefined;
-    message.dlong =
-      object.dlong !== undefined && object.dlong !== null ? Quotation.fromPartial(object.dlong) : undefined;
-    message.dshort =
-      object.dshort !== undefined && object.dshort !== null ? Quotation.fromPartial(object.dshort) : undefined;
-    message.dlongMin =
-      object.dlongMin !== undefined && object.dlongMin !== null ? Quotation.fromPartial(object.dlongMin) : undefined;
-    message.dshortMin =
-      object.dshortMin !== undefined && object.dshortMin !== null ? Quotation.fromPartial(object.dshortMin) : undefined;
+    message.currency = object.currency ?? "";
+    message.klong = (object.klong !== undefined && object.klong !== null)
+      ? Quotation.fromPartial(object.klong)
+      : undefined;
+    message.kshort = (object.kshort !== undefined && object.kshort !== null)
+      ? Quotation.fromPartial(object.kshort)
+      : undefined;
+    message.dlong = (object.dlong !== undefined && object.dlong !== null)
+      ? Quotation.fromPartial(object.dlong)
+      : undefined;
+    message.dshort = (object.dshort !== undefined && object.dshort !== null)
+      ? Quotation.fromPartial(object.dshort)
+      : undefined;
+    message.dlongMin = (object.dlongMin !== undefined && object.dlongMin !== null)
+      ? Quotation.fromPartial(object.dlongMin)
+      : undefined;
+    message.dshortMin = (object.dshortMin !== undefined && object.dshortMin !== null)
+      ? Quotation.fromPartial(object.dshortMin)
+      : undefined;
     message.shortEnabledFlag = object.shortEnabledFlag ?? false;
-    message.name = object.name ?? '';
-    message.exchange = object.exchange ?? '';
-    message.fixedCommission =
-      object.fixedCommission !== undefined && object.fixedCommission !== null
-        ? Quotation.fromPartial(object.fixedCommission)
-        : undefined;
-    message.focusType = object.focusType ?? '';
+    message.name = object.name ?? "";
+    message.exchange = object.exchange ?? "";
+    message.fixedCommission = (object.fixedCommission !== undefined && object.fixedCommission !== null)
+      ? Quotation.fromPartial(object.fixedCommission)
+      : undefined;
+    message.focusType = object.focusType ?? "";
     message.releasedDate = object.releasedDate ?? undefined;
-    message.numShares =
-      object.numShares !== undefined && object.numShares !== null ? Quotation.fromPartial(object.numShares) : undefined;
-    message.countryOfRisk = object.countryOfRisk ?? '';
-    message.countryOfRiskName = object.countryOfRiskName ?? '';
-    message.sector = object.sector ?? '';
-    message.rebalancingFreq = object.rebalancingFreq ?? '';
+    message.numShares = (object.numShares !== undefined && object.numShares !== null)
+      ? Quotation.fromPartial(object.numShares)
+      : undefined;
+    message.countryOfRisk = object.countryOfRisk ?? "";
+    message.countryOfRiskName = object.countryOfRiskName ?? "";
+    message.sector = object.sector ?? "";
+    message.rebalancingFreq = object.rebalancingFreq ?? "";
     message.tradingStatus = object.tradingStatus ?? 0;
     message.otcFlag = object.otcFlag ?? false;
     message.buyAvailableFlag = object.buyAvailableFlag ?? false;
     message.sellAvailableFlag = object.sellAvailableFlag ?? false;
-    message.minPriceIncrement =
-      object.minPriceIncrement !== undefined && object.minPriceIncrement !== null
-        ? Quotation.fromPartial(object.minPriceIncrement)
-        : undefined;
+    message.minPriceIncrement = (object.minPriceIncrement !== undefined && object.minPriceIncrement !== null)
+      ? Quotation.fromPartial(object.minPriceIncrement)
+      : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
-    message.uid = object.uid ?? '';
+    message.uid = object.uid ?? "";
     message.realExchange = object.realExchange ?? 0;
+    message.positionUid = object.positionUid ?? "";
+    message.forIisFlag = object.forIisFlag ?? false;
+    message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.first1minCandleDate = object.first1minCandleDate ?? undefined;
+    message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
   },
 };
 
 function createBaseFuture(): Future {
   return {
-    figi: '',
-    ticker: '',
-    classCode: '',
+    figi: "",
+    ticker: "",
+    classCode: "",
     lot: 0,
-    currency: '',
+    currency: "",
     klong: undefined,
     kshort: undefined,
     dlong: undefined,
@@ -3893,17 +5385,17 @@ function createBaseFuture(): Future {
     dlongMin: undefined,
     dshortMin: undefined,
     shortEnabledFlag: false,
-    name: '',
-    exchange: '',
+    name: "",
+    exchange: "",
     firstTradeDate: undefined,
     lastTradeDate: undefined,
-    futuresType: '',
-    assetType: '',
-    basicAsset: '',
+    futuresType: "",
+    assetType: "",
+    basicAsset: "",
     basicAssetSize: undefined,
-    countryOfRisk: '',
-    countryOfRiskName: '',
-    sector: '',
+    countryOfRisk: "",
+    countryOfRiskName: "",
+    sector: "",
     expirationDate: undefined,
     tradingStatus: 0,
     otcFlag: false,
@@ -3911,26 +5403,32 @@ function createBaseFuture(): Future {
     sellAvailableFlag: false,
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
-    uid: '',
+    uid: "",
     realExchange: 0,
+    positionUid: "",
+    basicAssetPositionUid: "",
+    forIisFlag: false,
+    forQualInvestorFlag: false,
+    first1minCandleDate: undefined,
+    first1dayCandleDate: undefined,
   };
 }
 
 export const Future = {
   encode(message: Future, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
-    if (message.ticker !== '') {
+    if (message.ticker !== "") {
       writer.uint32(18).string(message.ticker);
     }
-    if (message.classCode !== '') {
+    if (message.classCode !== "") {
       writer.uint32(26).string(message.classCode);
     }
     if (message.lot !== 0) {
       writer.uint32(32).int32(message.lot);
     }
-    if (message.currency !== '') {
+    if (message.currency !== "") {
       writer.uint32(42).string(message.currency);
     }
     if (message.klong !== undefined) {
@@ -3954,10 +5452,10 @@ export const Future = {
     if (message.shortEnabledFlag === true) {
       writer.uint32(96).bool(message.shortEnabledFlag);
     }
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(106).string(message.name);
     }
-    if (message.exchange !== '') {
+    if (message.exchange !== "") {
       writer.uint32(114).string(message.exchange);
     }
     if (message.firstTradeDate !== undefined) {
@@ -3966,25 +5464,25 @@ export const Future = {
     if (message.lastTradeDate !== undefined) {
       Timestamp.encode(toTimestamp(message.lastTradeDate), writer.uint32(130).fork()).ldelim();
     }
-    if (message.futuresType !== '') {
+    if (message.futuresType !== "") {
       writer.uint32(138).string(message.futuresType);
     }
-    if (message.assetType !== '') {
+    if (message.assetType !== "") {
       writer.uint32(146).string(message.assetType);
     }
-    if (message.basicAsset !== '') {
+    if (message.basicAsset !== "") {
       writer.uint32(154).string(message.basicAsset);
     }
     if (message.basicAssetSize !== undefined) {
       Quotation.encode(message.basicAssetSize, writer.uint32(162).fork()).ldelim();
     }
-    if (message.countryOfRisk !== '') {
+    if (message.countryOfRisk !== "") {
       writer.uint32(170).string(message.countryOfRisk);
     }
-    if (message.countryOfRiskName !== '') {
+    if (message.countryOfRiskName !== "") {
       writer.uint32(178).string(message.countryOfRiskName);
     }
-    if (message.sector !== '') {
+    if (message.sector !== "") {
       writer.uint32(186).string(message.sector);
     }
     if (message.expirationDate !== undefined) {
@@ -4008,11 +5506,29 @@ export const Future = {
     if (message.apiTradeAvailableFlag === true) {
       writer.uint32(240).bool(message.apiTradeAvailableFlag);
     }
-    if (message.uid !== '') {
+    if (message.uid !== "") {
       writer.uint32(250).string(message.uid);
     }
     if (message.realExchange !== 0) {
       writer.uint32(256).int32(message.realExchange);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(266).string(message.positionUid);
+    }
+    if (message.basicAssetPositionUid !== "") {
+      writer.uint32(274).string(message.basicAssetPositionUid);
+    }
+    if (message.forIisFlag === true) {
+      writer.uint32(328).bool(message.forIisFlag);
+    }
+    if (message.forQualInvestorFlag === true) {
+      writer.uint32(336).bool(message.forQualInvestorFlag);
+    }
+    if (message.first1minCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
+    }
+    if (message.first1dayCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1dayCandleDate), writer.uint32(458).fork()).ldelim();
     }
     return writer;
   },
@@ -4120,6 +5636,24 @@ export const Future = {
         case 32:
           message.realExchange = reader.int32() as any;
           break;
+        case 33:
+          message.positionUid = reader.string();
+          break;
+        case 34:
+          message.basicAssetPositionUid = reader.string();
+          break;
+        case 41:
+          message.forIisFlag = reader.bool();
+          break;
+        case 42:
+          message.forQualInvestorFlag = reader.bool();
+          break;
+        case 56:
+          message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 57:
+          message.first1dayCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -4130,11 +5664,11 @@ export const Future = {
 
   fromJSON(object: any): Future {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
-      ticker: isSet(object.ticker) ? String(object.ticker) : '',
-      classCode: isSet(object.classCode) ? String(object.classCode) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
+      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
       lot: isSet(object.lot) ? Number(object.lot) : 0,
-      currency: isSet(object.currency) ? String(object.currency) : '',
+      currency: isSet(object.currency) ? String(object.currency) : "",
       klong: isSet(object.klong) ? Quotation.fromJSON(object.klong) : undefined,
       kshort: isSet(object.kshort) ? Quotation.fromJSON(object.kshort) : undefined,
       dlong: isSet(object.dlong) ? Quotation.fromJSON(object.dlong) : undefined,
@@ -4142,17 +5676,17 @@ export const Future = {
       dlongMin: isSet(object.dlongMin) ? Quotation.fromJSON(object.dlongMin) : undefined,
       dshortMin: isSet(object.dshortMin) ? Quotation.fromJSON(object.dshortMin) : undefined,
       shortEnabledFlag: isSet(object.shortEnabledFlag) ? Boolean(object.shortEnabledFlag) : false,
-      name: isSet(object.name) ? String(object.name) : '',
-      exchange: isSet(object.exchange) ? String(object.exchange) : '',
+      name: isSet(object.name) ? String(object.name) : "",
+      exchange: isSet(object.exchange) ? String(object.exchange) : "",
       firstTradeDate: isSet(object.firstTradeDate) ? fromJsonTimestamp(object.firstTradeDate) : undefined,
       lastTradeDate: isSet(object.lastTradeDate) ? fromJsonTimestamp(object.lastTradeDate) : undefined,
-      futuresType: isSet(object.futuresType) ? String(object.futuresType) : '',
-      assetType: isSet(object.assetType) ? String(object.assetType) : '',
-      basicAsset: isSet(object.basicAsset) ? String(object.basicAsset) : '',
+      futuresType: isSet(object.futuresType) ? String(object.futuresType) : "",
+      assetType: isSet(object.assetType) ? String(object.assetType) : "",
+      basicAsset: isSet(object.basicAsset) ? String(object.basicAsset) : "",
       basicAssetSize: isSet(object.basicAssetSize) ? Quotation.fromJSON(object.basicAssetSize) : undefined,
-      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : '',
-      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : '',
-      sector: isSet(object.sector) ? String(object.sector) : '',
+      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : "",
+      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : "",
+      sector: isSet(object.sector) ? String(object.sector) : "",
       expirationDate: isSet(object.expirationDate) ? fromJsonTimestamp(object.expirationDate) : undefined,
       tradingStatus: isSet(object.tradingStatus) ? securityTradingStatusFromJSON(object.tradingStatus) : 0,
       otcFlag: isSet(object.otcFlag) ? Boolean(object.otcFlag) : false,
@@ -4160,8 +5694,18 @@ export const Future = {
       sellAvailableFlag: isSet(object.sellAvailableFlag) ? Boolean(object.sellAvailableFlag) : false,
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
-      uid: isSet(object.uid) ? String(object.uid) : '',
+      uid: isSet(object.uid) ? String(object.uid) : "",
       realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      basicAssetPositionUid: isSet(object.basicAssetPositionUid) ? String(object.basicAssetPositionUid) : "",
+      forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
+      forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      first1minCandleDate: isSet(object.first1minCandleDate)
+        ? fromJsonTimestamp(object.first1minCandleDate)
+        : undefined,
+      first1dayCandleDate: isSet(object.first1dayCandleDate)
+        ? fromJsonTimestamp(object.first1dayCandleDate)
+        : undefined,
     };
   },
 
@@ -4203,67 +5747,83 @@ export const Future = {
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
     message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.basicAssetPositionUid !== undefined && (obj.basicAssetPositionUid = message.basicAssetPositionUid);
+    message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
+    message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
+    message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
   },
 
   fromPartial(object: DeepPartial<Future>): Future {
     const message = createBaseFuture();
-    message.figi = object.figi ?? '';
-    message.ticker = object.ticker ?? '';
-    message.classCode = object.classCode ?? '';
+    message.figi = object.figi ?? "";
+    message.ticker = object.ticker ?? "";
+    message.classCode = object.classCode ?? "";
     message.lot = object.lot ?? 0;
-    message.currency = object.currency ?? '';
-    message.klong =
-      object.klong !== undefined && object.klong !== null ? Quotation.fromPartial(object.klong) : undefined;
-    message.kshort =
-      object.kshort !== undefined && object.kshort !== null ? Quotation.fromPartial(object.kshort) : undefined;
-    message.dlong =
-      object.dlong !== undefined && object.dlong !== null ? Quotation.fromPartial(object.dlong) : undefined;
-    message.dshort =
-      object.dshort !== undefined && object.dshort !== null ? Quotation.fromPartial(object.dshort) : undefined;
-    message.dlongMin =
-      object.dlongMin !== undefined && object.dlongMin !== null ? Quotation.fromPartial(object.dlongMin) : undefined;
-    message.dshortMin =
-      object.dshortMin !== undefined && object.dshortMin !== null ? Quotation.fromPartial(object.dshortMin) : undefined;
+    message.currency = object.currency ?? "";
+    message.klong = (object.klong !== undefined && object.klong !== null)
+      ? Quotation.fromPartial(object.klong)
+      : undefined;
+    message.kshort = (object.kshort !== undefined && object.kshort !== null)
+      ? Quotation.fromPartial(object.kshort)
+      : undefined;
+    message.dlong = (object.dlong !== undefined && object.dlong !== null)
+      ? Quotation.fromPartial(object.dlong)
+      : undefined;
+    message.dshort = (object.dshort !== undefined && object.dshort !== null)
+      ? Quotation.fromPartial(object.dshort)
+      : undefined;
+    message.dlongMin = (object.dlongMin !== undefined && object.dlongMin !== null)
+      ? Quotation.fromPartial(object.dlongMin)
+      : undefined;
+    message.dshortMin = (object.dshortMin !== undefined && object.dshortMin !== null)
+      ? Quotation.fromPartial(object.dshortMin)
+      : undefined;
     message.shortEnabledFlag = object.shortEnabledFlag ?? false;
-    message.name = object.name ?? '';
-    message.exchange = object.exchange ?? '';
+    message.name = object.name ?? "";
+    message.exchange = object.exchange ?? "";
     message.firstTradeDate = object.firstTradeDate ?? undefined;
     message.lastTradeDate = object.lastTradeDate ?? undefined;
-    message.futuresType = object.futuresType ?? '';
-    message.assetType = object.assetType ?? '';
-    message.basicAsset = object.basicAsset ?? '';
-    message.basicAssetSize =
-      object.basicAssetSize !== undefined && object.basicAssetSize !== null
-        ? Quotation.fromPartial(object.basicAssetSize)
-        : undefined;
-    message.countryOfRisk = object.countryOfRisk ?? '';
-    message.countryOfRiskName = object.countryOfRiskName ?? '';
-    message.sector = object.sector ?? '';
+    message.futuresType = object.futuresType ?? "";
+    message.assetType = object.assetType ?? "";
+    message.basicAsset = object.basicAsset ?? "";
+    message.basicAssetSize = (object.basicAssetSize !== undefined && object.basicAssetSize !== null)
+      ? Quotation.fromPartial(object.basicAssetSize)
+      : undefined;
+    message.countryOfRisk = object.countryOfRisk ?? "";
+    message.countryOfRiskName = object.countryOfRiskName ?? "";
+    message.sector = object.sector ?? "";
     message.expirationDate = object.expirationDate ?? undefined;
     message.tradingStatus = object.tradingStatus ?? 0;
     message.otcFlag = object.otcFlag ?? false;
     message.buyAvailableFlag = object.buyAvailableFlag ?? false;
     message.sellAvailableFlag = object.sellAvailableFlag ?? false;
-    message.minPriceIncrement =
-      object.minPriceIncrement !== undefined && object.minPriceIncrement !== null
-        ? Quotation.fromPartial(object.minPriceIncrement)
-        : undefined;
+    message.minPriceIncrement = (object.minPriceIncrement !== undefined && object.minPriceIncrement !== null)
+      ? Quotation.fromPartial(object.minPriceIncrement)
+      : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
-    message.uid = object.uid ?? '';
+    message.uid = object.uid ?? "";
     message.realExchange = object.realExchange ?? 0;
+    message.positionUid = object.positionUid ?? "";
+    message.basicAssetPositionUid = object.basicAssetPositionUid ?? "";
+    message.forIisFlag = object.forIisFlag ?? false;
+    message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.first1minCandleDate = object.first1minCandleDate ?? undefined;
+    message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
   },
 };
 
 function createBaseShare(): Share {
   return {
-    figi: '',
-    ticker: '',
-    classCode: '',
-    isin: '',
+    figi: "",
+    ticker: "",
+    classCode: "",
+    isin: "",
     lot: 0,
-    currency: '',
+    currency: "",
     klong: undefined,
     kshort: undefined,
     dlong: undefined,
@@ -4271,13 +5831,13 @@ function createBaseShare(): Share {
     dlongMin: undefined,
     dshortMin: undefined,
     shortEnabledFlag: false,
-    name: '',
-    exchange: '',
+    name: "",
+    exchange: "",
     ipoDate: undefined,
     issueSize: 0,
-    countryOfRisk: '',
-    countryOfRiskName: '',
-    sector: '',
+    countryOfRisk: "",
+    countryOfRiskName: "",
+    sector: "",
     issueSizePlan: 0,
     nominal: undefined,
     tradingStatus: 0,
@@ -4288,29 +5848,34 @@ function createBaseShare(): Share {
     shareType: 0,
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
-    uid: '',
+    uid: "",
     realExchange: 0,
+    positionUid: "",
+    forIisFlag: false,
+    forQualInvestorFlag: false,
+    first1minCandleDate: undefined,
+    first1dayCandleDate: undefined,
   };
 }
 
 export const Share = {
   encode(message: Share, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
-    if (message.ticker !== '') {
+    if (message.ticker !== "") {
       writer.uint32(18).string(message.ticker);
     }
-    if (message.classCode !== '') {
+    if (message.classCode !== "") {
       writer.uint32(26).string(message.classCode);
     }
-    if (message.isin !== '') {
+    if (message.isin !== "") {
       writer.uint32(34).string(message.isin);
     }
     if (message.lot !== 0) {
       writer.uint32(40).int32(message.lot);
     }
-    if (message.currency !== '') {
+    if (message.currency !== "") {
       writer.uint32(50).string(message.currency);
     }
     if (message.klong !== undefined) {
@@ -4334,10 +5899,10 @@ export const Share = {
     if (message.shortEnabledFlag === true) {
       writer.uint32(104).bool(message.shortEnabledFlag);
     }
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(122).string(message.name);
     }
-    if (message.exchange !== '') {
+    if (message.exchange !== "") {
       writer.uint32(130).string(message.exchange);
     }
     if (message.ipoDate !== undefined) {
@@ -4346,13 +5911,13 @@ export const Share = {
     if (message.issueSize !== 0) {
       writer.uint32(144).int64(message.issueSize);
     }
-    if (message.countryOfRisk !== '') {
+    if (message.countryOfRisk !== "") {
       writer.uint32(154).string(message.countryOfRisk);
     }
-    if (message.countryOfRiskName !== '') {
+    if (message.countryOfRiskName !== "") {
       writer.uint32(162).string(message.countryOfRiskName);
     }
-    if (message.sector !== '') {
+    if (message.sector !== "") {
       writer.uint32(170).string(message.sector);
     }
     if (message.issueSizePlan !== 0) {
@@ -4385,11 +5950,26 @@ export const Share = {
     if (message.apiTradeAvailableFlag === true) {
       writer.uint32(256).bool(message.apiTradeAvailableFlag);
     }
-    if (message.uid !== '') {
+    if (message.uid !== "") {
       writer.uint32(266).string(message.uid);
     }
     if (message.realExchange !== 0) {
       writer.uint32(272).int32(message.realExchange);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(282).string(message.positionUid);
+    }
+    if (message.forIisFlag === true) {
+      writer.uint32(368).bool(message.forIisFlag);
+    }
+    if (message.forQualInvestorFlag === true) {
+      writer.uint32(376).bool(message.forQualInvestorFlag);
+    }
+    if (message.first1minCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
+    }
+    if (message.first1dayCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1dayCandleDate), writer.uint32(458).fork()).ldelim();
     }
     return writer;
   },
@@ -4497,6 +6077,21 @@ export const Share = {
         case 34:
           message.realExchange = reader.int32() as any;
           break;
+        case 35:
+          message.positionUid = reader.string();
+          break;
+        case 46:
+          message.forIisFlag = reader.bool();
+          break;
+        case 47:
+          message.forQualInvestorFlag = reader.bool();
+          break;
+        case 56:
+          message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 57:
+          message.first1dayCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -4507,12 +6102,12 @@ export const Share = {
 
   fromJSON(object: any): Share {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
-      ticker: isSet(object.ticker) ? String(object.ticker) : '',
-      classCode: isSet(object.classCode) ? String(object.classCode) : '',
-      isin: isSet(object.isin) ? String(object.isin) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
+      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
+      isin: isSet(object.isin) ? String(object.isin) : "",
       lot: isSet(object.lot) ? Number(object.lot) : 0,
-      currency: isSet(object.currency) ? String(object.currency) : '',
+      currency: isSet(object.currency) ? String(object.currency) : "",
       klong: isSet(object.klong) ? Quotation.fromJSON(object.klong) : undefined,
       kshort: isSet(object.kshort) ? Quotation.fromJSON(object.kshort) : undefined,
       dlong: isSet(object.dlong) ? Quotation.fromJSON(object.dlong) : undefined,
@@ -4520,13 +6115,13 @@ export const Share = {
       dlongMin: isSet(object.dlongMin) ? Quotation.fromJSON(object.dlongMin) : undefined,
       dshortMin: isSet(object.dshortMin) ? Quotation.fromJSON(object.dshortMin) : undefined,
       shortEnabledFlag: isSet(object.shortEnabledFlag) ? Boolean(object.shortEnabledFlag) : false,
-      name: isSet(object.name) ? String(object.name) : '',
-      exchange: isSet(object.exchange) ? String(object.exchange) : '',
+      name: isSet(object.name) ? String(object.name) : "",
+      exchange: isSet(object.exchange) ? String(object.exchange) : "",
       ipoDate: isSet(object.ipoDate) ? fromJsonTimestamp(object.ipoDate) : undefined,
       issueSize: isSet(object.issueSize) ? Number(object.issueSize) : 0,
-      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : '',
-      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : '',
-      sector: isSet(object.sector) ? String(object.sector) : '',
+      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : "",
+      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : "",
+      sector: isSet(object.sector) ? String(object.sector) : "",
       issueSizePlan: isSet(object.issueSizePlan) ? Number(object.issueSizePlan) : 0,
       nominal: isSet(object.nominal) ? MoneyValue.fromJSON(object.nominal) : undefined,
       tradingStatus: isSet(object.tradingStatus) ? securityTradingStatusFromJSON(object.tradingStatus) : 0,
@@ -4537,8 +6132,17 @@ export const Share = {
       shareType: isSet(object.shareType) ? shareTypeFromJSON(object.shareType) : 0,
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
-      uid: isSet(object.uid) ? String(object.uid) : '',
+      uid: isSet(object.uid) ? String(object.uid) : "",
       realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
+      forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      first1minCandleDate: isSet(object.first1minCandleDate)
+        ? fromJsonTimestamp(object.first1minCandleDate)
+        : undefined,
+      first1dayCandleDate: isSet(object.first1dayCandleDate)
+        ? fromJsonTimestamp(object.first1dayCandleDate)
+        : undefined,
     };
   },
 
@@ -4579,64 +6183,80 @@ export const Share = {
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
     message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
+    message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
+    message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
   },
 
   fromPartial(object: DeepPartial<Share>): Share {
     const message = createBaseShare();
-    message.figi = object.figi ?? '';
-    message.ticker = object.ticker ?? '';
-    message.classCode = object.classCode ?? '';
-    message.isin = object.isin ?? '';
+    message.figi = object.figi ?? "";
+    message.ticker = object.ticker ?? "";
+    message.classCode = object.classCode ?? "";
+    message.isin = object.isin ?? "";
     message.lot = object.lot ?? 0;
-    message.currency = object.currency ?? '';
-    message.klong =
-      object.klong !== undefined && object.klong !== null ? Quotation.fromPartial(object.klong) : undefined;
-    message.kshort =
-      object.kshort !== undefined && object.kshort !== null ? Quotation.fromPartial(object.kshort) : undefined;
-    message.dlong =
-      object.dlong !== undefined && object.dlong !== null ? Quotation.fromPartial(object.dlong) : undefined;
-    message.dshort =
-      object.dshort !== undefined && object.dshort !== null ? Quotation.fromPartial(object.dshort) : undefined;
-    message.dlongMin =
-      object.dlongMin !== undefined && object.dlongMin !== null ? Quotation.fromPartial(object.dlongMin) : undefined;
-    message.dshortMin =
-      object.dshortMin !== undefined && object.dshortMin !== null ? Quotation.fromPartial(object.dshortMin) : undefined;
+    message.currency = object.currency ?? "";
+    message.klong = (object.klong !== undefined && object.klong !== null)
+      ? Quotation.fromPartial(object.klong)
+      : undefined;
+    message.kshort = (object.kshort !== undefined && object.kshort !== null)
+      ? Quotation.fromPartial(object.kshort)
+      : undefined;
+    message.dlong = (object.dlong !== undefined && object.dlong !== null)
+      ? Quotation.fromPartial(object.dlong)
+      : undefined;
+    message.dshort = (object.dshort !== undefined && object.dshort !== null)
+      ? Quotation.fromPartial(object.dshort)
+      : undefined;
+    message.dlongMin = (object.dlongMin !== undefined && object.dlongMin !== null)
+      ? Quotation.fromPartial(object.dlongMin)
+      : undefined;
+    message.dshortMin = (object.dshortMin !== undefined && object.dshortMin !== null)
+      ? Quotation.fromPartial(object.dshortMin)
+      : undefined;
     message.shortEnabledFlag = object.shortEnabledFlag ?? false;
-    message.name = object.name ?? '';
-    message.exchange = object.exchange ?? '';
+    message.name = object.name ?? "";
+    message.exchange = object.exchange ?? "";
     message.ipoDate = object.ipoDate ?? undefined;
     message.issueSize = object.issueSize ?? 0;
-    message.countryOfRisk = object.countryOfRisk ?? '';
-    message.countryOfRiskName = object.countryOfRiskName ?? '';
-    message.sector = object.sector ?? '';
+    message.countryOfRisk = object.countryOfRisk ?? "";
+    message.countryOfRiskName = object.countryOfRiskName ?? "";
+    message.sector = object.sector ?? "";
     message.issueSizePlan = object.issueSizePlan ?? 0;
-    message.nominal =
-      object.nominal !== undefined && object.nominal !== null ? MoneyValue.fromPartial(object.nominal) : undefined;
+    message.nominal = (object.nominal !== undefined && object.nominal !== null)
+      ? MoneyValue.fromPartial(object.nominal)
+      : undefined;
     message.tradingStatus = object.tradingStatus ?? 0;
     message.otcFlag = object.otcFlag ?? false;
     message.buyAvailableFlag = object.buyAvailableFlag ?? false;
     message.sellAvailableFlag = object.sellAvailableFlag ?? false;
     message.divYieldFlag = object.divYieldFlag ?? false;
     message.shareType = object.shareType ?? 0;
-    message.minPriceIncrement =
-      object.minPriceIncrement !== undefined && object.minPriceIncrement !== null
-        ? Quotation.fromPartial(object.minPriceIncrement)
-        : undefined;
+    message.minPriceIncrement = (object.minPriceIncrement !== undefined && object.minPriceIncrement !== null)
+      ? Quotation.fromPartial(object.minPriceIncrement)
+      : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
-    message.uid = object.uid ?? '';
+    message.uid = object.uid ?? "";
     message.realExchange = object.realExchange ?? 0;
+    message.positionUid = object.positionUid ?? "";
+    message.forIisFlag = object.forIisFlag ?? false;
+    message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.first1minCandleDate = object.first1minCandleDate ?? undefined;
+    message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
   },
 };
 
 function createBaseGetAccruedInterestsRequest(): GetAccruedInterestsRequest {
-  return { figi: '', from: undefined, to: undefined };
+  return { figi: "", from: undefined, to: undefined };
 }
 
 export const GetAccruedInterestsRequest = {
   encode(message: GetAccruedInterestsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
     if (message.from !== undefined) {
@@ -4674,7 +6294,7 @@ export const GetAccruedInterestsRequest = {
 
   fromJSON(object: any): GetAccruedInterestsRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
     };
@@ -4690,7 +6310,7 @@ export const GetAccruedInterestsRequest = {
 
   fromPartial(object: DeepPartial<GetAccruedInterestsRequest>): GetAccruedInterestsRequest {
     const message = createBaseGetAccruedInterestsRequest();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? "";
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
     return message;
@@ -4738,7 +6358,7 @@ export const GetAccruedInterestsResponse = {
   toJSON(message: GetAccruedInterestsResponse): unknown {
     const obj: any = {};
     if (message.accruedInterests) {
-      obj.accruedInterests = message.accruedInterests.map(e => (e ? AccruedInterest.toJSON(e) : undefined));
+      obj.accruedInterests = message.accruedInterests.map((e) => e ? AccruedInterest.toJSON(e) : undefined);
     } else {
       obj.accruedInterests = [];
     }
@@ -4747,7 +6367,7 @@ export const GetAccruedInterestsResponse = {
 
   fromPartial(object: DeepPartial<GetAccruedInterestsResponse>): GetAccruedInterestsResponse {
     const message = createBaseGetAccruedInterestsResponse();
-    message.accruedInterests = object.accruedInterests?.map(e => AccruedInterest.fromPartial(e)) || [];
+    message.accruedInterests = object.accruedInterests?.map((e) => AccruedInterest.fromPartial(e)) || [];
     return message;
   },
 };
@@ -4822,25 +6442,26 @@ export const AccruedInterest = {
   fromPartial(object: DeepPartial<AccruedInterest>): AccruedInterest {
     const message = createBaseAccruedInterest();
     message.date = object.date ?? undefined;
-    message.value =
-      object.value !== undefined && object.value !== null ? Quotation.fromPartial(object.value) : undefined;
-    message.valuePercent =
-      object.valuePercent !== undefined && object.valuePercent !== null
-        ? Quotation.fromPartial(object.valuePercent)
-        : undefined;
-    message.nominal =
-      object.nominal !== undefined && object.nominal !== null ? Quotation.fromPartial(object.nominal) : undefined;
+    message.value = (object.value !== undefined && object.value !== null)
+      ? Quotation.fromPartial(object.value)
+      : undefined;
+    message.valuePercent = (object.valuePercent !== undefined && object.valuePercent !== null)
+      ? Quotation.fromPartial(object.valuePercent)
+      : undefined;
+    message.nominal = (object.nominal !== undefined && object.nominal !== null)
+      ? Quotation.fromPartial(object.nominal)
+      : undefined;
     return message;
   },
 };
 
 function createBaseGetFuturesMarginRequest(): GetFuturesMarginRequest {
-  return { figi: '' };
+  return { figi: "" };
 }
 
 export const GetFuturesMarginRequest = {
   encode(message: GetFuturesMarginRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
     return writer;
@@ -4865,9 +6486,7 @@ export const GetFuturesMarginRequest = {
   },
 
   fromJSON(object: any): GetFuturesMarginRequest {
-    return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
-    };
+    return { figi: isSet(object.figi) ? String(object.figi) : "" };
   },
 
   toJSON(message: GetFuturesMarginRequest): unknown {
@@ -4878,7 +6497,7 @@ export const GetFuturesMarginRequest = {
 
   fromPartial(object: DeepPartial<GetFuturesMarginRequest>): GetFuturesMarginRequest {
     const message = createBaseGetFuturesMarginRequest();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? "";
     return message;
   },
 };
@@ -4953,35 +6572,30 @@ export const GetFuturesMarginResponse = {
     const obj: any = {};
     message.initialMarginOnBuy !== undefined &&
       (obj.initialMarginOnBuy = message.initialMarginOnBuy ? MoneyValue.toJSON(message.initialMarginOnBuy) : undefined);
-    message.initialMarginOnSell !== undefined &&
-      (obj.initialMarginOnSell = message.initialMarginOnSell
-        ? MoneyValue.toJSON(message.initialMarginOnSell)
-        : undefined);
+    message.initialMarginOnSell !== undefined && (obj.initialMarginOnSell = message.initialMarginOnSell
+      ? MoneyValue.toJSON(message.initialMarginOnSell)
+      : undefined);
     message.minPriceIncrement !== undefined &&
       (obj.minPriceIncrement = message.minPriceIncrement ? Quotation.toJSON(message.minPriceIncrement) : undefined);
-    message.minPriceIncrementAmount !== undefined &&
-      (obj.minPriceIncrementAmount = message.minPriceIncrementAmount
-        ? Quotation.toJSON(message.minPriceIncrementAmount)
-        : undefined);
+    message.minPriceIncrementAmount !== undefined && (obj.minPriceIncrementAmount = message.minPriceIncrementAmount
+      ? Quotation.toJSON(message.minPriceIncrementAmount)
+      : undefined);
     return obj;
   },
 
   fromPartial(object: DeepPartial<GetFuturesMarginResponse>): GetFuturesMarginResponse {
     const message = createBaseGetFuturesMarginResponse();
-    message.initialMarginOnBuy =
-      object.initialMarginOnBuy !== undefined && object.initialMarginOnBuy !== null
-        ? MoneyValue.fromPartial(object.initialMarginOnBuy)
-        : undefined;
-    message.initialMarginOnSell =
-      object.initialMarginOnSell !== undefined && object.initialMarginOnSell !== null
-        ? MoneyValue.fromPartial(object.initialMarginOnSell)
-        : undefined;
-    message.minPriceIncrement =
-      object.minPriceIncrement !== undefined && object.minPriceIncrement !== null
-        ? Quotation.fromPartial(object.minPriceIncrement)
-        : undefined;
+    message.initialMarginOnBuy = (object.initialMarginOnBuy !== undefined && object.initialMarginOnBuy !== null)
+      ? MoneyValue.fromPartial(object.initialMarginOnBuy)
+      : undefined;
+    message.initialMarginOnSell = (object.initialMarginOnSell !== undefined && object.initialMarginOnSell !== null)
+      ? MoneyValue.fromPartial(object.initialMarginOnSell)
+      : undefined;
+    message.minPriceIncrement = (object.minPriceIncrement !== undefined && object.minPriceIncrement !== null)
+      ? Quotation.fromPartial(object.minPriceIncrement)
+      : undefined;
     message.minPriceIncrementAmount =
-      object.minPriceIncrementAmount !== undefined && object.minPriceIncrementAmount !== null
+      (object.minPriceIncrementAmount !== undefined && object.minPriceIncrementAmount !== null)
         ? Quotation.fromPartial(object.minPriceIncrementAmount)
         : undefined;
     return message;
@@ -5019,9 +6633,7 @@ export const InstrumentResponse = {
   },
 
   fromJSON(object: any): InstrumentResponse {
-    return {
-      instrument: isSet(object.instrument) ? Instrument.fromJSON(object.instrument) : undefined,
-    };
+    return { instrument: isSet(object.instrument) ? Instrument.fromJSON(object.instrument) : undefined };
   },
 
   toJSON(message: InstrumentResponse): unknown {
@@ -5033,22 +6645,21 @@ export const InstrumentResponse = {
 
   fromPartial(object: DeepPartial<InstrumentResponse>): InstrumentResponse {
     const message = createBaseInstrumentResponse();
-    message.instrument =
-      object.instrument !== undefined && object.instrument !== null
-        ? Instrument.fromPartial(object.instrument)
-        : undefined;
+    message.instrument = (object.instrument !== undefined && object.instrument !== null)
+      ? Instrument.fromPartial(object.instrument)
+      : undefined;
     return message;
   },
 };
 
 function createBaseInstrument(): Instrument {
   return {
-    figi: '',
-    ticker: '',
-    classCode: '',
-    isin: '',
+    figi: "",
+    ticker: "",
+    classCode: "",
+    isin: "",
     lot: 0,
-    currency: '',
+    currency: "",
     klong: undefined,
     kshort: undefined,
     dlong: undefined,
@@ -5056,40 +6667,45 @@ function createBaseInstrument(): Instrument {
     dlongMin: undefined,
     dshortMin: undefined,
     shortEnabledFlag: false,
-    name: '',
-    exchange: '',
-    countryOfRisk: '',
-    countryOfRiskName: '',
-    instrumentType: '',
+    name: "",
+    exchange: "",
+    countryOfRisk: "",
+    countryOfRiskName: "",
+    instrumentType: "",
     tradingStatus: 0,
     otcFlag: false,
     buyAvailableFlag: false,
     sellAvailableFlag: false,
     minPriceIncrement: undefined,
     apiTradeAvailableFlag: false,
-    uid: '',
+    uid: "",
     realExchange: 0,
+    positionUid: "",
+    forIisFlag: false,
+    forQualInvestorFlag: false,
+    first1minCandleDate: undefined,
+    first1dayCandleDate: undefined,
   };
 }
 
 export const Instrument = {
   encode(message: Instrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
-    if (message.ticker !== '') {
+    if (message.ticker !== "") {
       writer.uint32(18).string(message.ticker);
     }
-    if (message.classCode !== '') {
+    if (message.classCode !== "") {
       writer.uint32(26).string(message.classCode);
     }
-    if (message.isin !== '') {
+    if (message.isin !== "") {
       writer.uint32(34).string(message.isin);
     }
     if (message.lot !== 0) {
       writer.uint32(40).int32(message.lot);
     }
-    if (message.currency !== '') {
+    if (message.currency !== "") {
       writer.uint32(50).string(message.currency);
     }
     if (message.klong !== undefined) {
@@ -5113,19 +6729,19 @@ export const Instrument = {
     if (message.shortEnabledFlag === true) {
       writer.uint32(104).bool(message.shortEnabledFlag);
     }
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(114).string(message.name);
     }
-    if (message.exchange !== '') {
+    if (message.exchange !== "") {
       writer.uint32(122).string(message.exchange);
     }
-    if (message.countryOfRisk !== '') {
+    if (message.countryOfRisk !== "") {
       writer.uint32(130).string(message.countryOfRisk);
     }
-    if (message.countryOfRiskName !== '') {
+    if (message.countryOfRiskName !== "") {
       writer.uint32(138).string(message.countryOfRiskName);
     }
-    if (message.instrumentType !== '') {
+    if (message.instrumentType !== "") {
       writer.uint32(146).string(message.instrumentType);
     }
     if (message.tradingStatus !== 0) {
@@ -5146,11 +6762,26 @@ export const Instrument = {
     if (message.apiTradeAvailableFlag === true) {
       writer.uint32(192).bool(message.apiTradeAvailableFlag);
     }
-    if (message.uid !== '') {
+    if (message.uid !== "") {
       writer.uint32(202).string(message.uid);
     }
     if (message.realExchange !== 0) {
       writer.uint32(208).int32(message.realExchange);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(218).string(message.positionUid);
+    }
+    if (message.forIisFlag === true) {
+      writer.uint32(288).bool(message.forIisFlag);
+    }
+    if (message.forQualInvestorFlag === true) {
+      writer.uint32(296).bool(message.forQualInvestorFlag);
+    }
+    if (message.first1minCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
+    }
+    if (message.first1dayCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1dayCandleDate), writer.uint32(458).fork()).ldelim();
     }
     return writer;
   },
@@ -5240,6 +6871,21 @@ export const Instrument = {
         case 26:
           message.realExchange = reader.int32() as any;
           break;
+        case 27:
+          message.positionUid = reader.string();
+          break;
+        case 36:
+          message.forIisFlag = reader.bool();
+          break;
+        case 37:
+          message.forQualInvestorFlag = reader.bool();
+          break;
+        case 56:
+          message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 57:
+          message.first1dayCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -5250,12 +6896,12 @@ export const Instrument = {
 
   fromJSON(object: any): Instrument {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
-      ticker: isSet(object.ticker) ? String(object.ticker) : '',
-      classCode: isSet(object.classCode) ? String(object.classCode) : '',
-      isin: isSet(object.isin) ? String(object.isin) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
+      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
+      isin: isSet(object.isin) ? String(object.isin) : "",
       lot: isSet(object.lot) ? Number(object.lot) : 0,
-      currency: isSet(object.currency) ? String(object.currency) : '',
+      currency: isSet(object.currency) ? String(object.currency) : "",
       klong: isSet(object.klong) ? Quotation.fromJSON(object.klong) : undefined,
       kshort: isSet(object.kshort) ? Quotation.fromJSON(object.kshort) : undefined,
       dlong: isSet(object.dlong) ? Quotation.fromJSON(object.dlong) : undefined,
@@ -5263,19 +6909,28 @@ export const Instrument = {
       dlongMin: isSet(object.dlongMin) ? Quotation.fromJSON(object.dlongMin) : undefined,
       dshortMin: isSet(object.dshortMin) ? Quotation.fromJSON(object.dshortMin) : undefined,
       shortEnabledFlag: isSet(object.shortEnabledFlag) ? Boolean(object.shortEnabledFlag) : false,
-      name: isSet(object.name) ? String(object.name) : '',
-      exchange: isSet(object.exchange) ? String(object.exchange) : '',
-      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : '',
-      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : '',
-      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : '',
+      name: isSet(object.name) ? String(object.name) : "",
+      exchange: isSet(object.exchange) ? String(object.exchange) : "",
+      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : "",
+      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : "",
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
       tradingStatus: isSet(object.tradingStatus) ? securityTradingStatusFromJSON(object.tradingStatus) : 0,
       otcFlag: isSet(object.otcFlag) ? Boolean(object.otcFlag) : false,
       buyAvailableFlag: isSet(object.buyAvailableFlag) ? Boolean(object.buyAvailableFlag) : false,
       sellAvailableFlag: isSet(object.sellAvailableFlag) ? Boolean(object.sellAvailableFlag) : false,
       minPriceIncrement: isSet(object.minPriceIncrement) ? Quotation.fromJSON(object.minPriceIncrement) : undefined,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
-      uid: isSet(object.uid) ? String(object.uid) : '',
+      uid: isSet(object.uid) ? String(object.uid) : "",
       realExchange: isSet(object.realExchange) ? realExchangeFromJSON(object.realExchange) : 0,
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
+      forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      first1minCandleDate: isSet(object.first1minCandleDate)
+        ? fromJsonTimestamp(object.first1minCandleDate)
+        : undefined,
+      first1dayCandleDate: isSet(object.first1dayCandleDate)
+        ? fromJsonTimestamp(object.first1dayCandleDate)
+        : undefined,
     };
   },
 
@@ -5310,57 +6965,72 @@ export const Instrument = {
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.uid !== undefined && (obj.uid = message.uid);
     message.realExchange !== undefined && (obj.realExchange = realExchangeToJSON(message.realExchange));
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
+    message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
+    message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
   },
 
   fromPartial(object: DeepPartial<Instrument>): Instrument {
     const message = createBaseInstrument();
-    message.figi = object.figi ?? '';
-    message.ticker = object.ticker ?? '';
-    message.classCode = object.classCode ?? '';
-    message.isin = object.isin ?? '';
+    message.figi = object.figi ?? "";
+    message.ticker = object.ticker ?? "";
+    message.classCode = object.classCode ?? "";
+    message.isin = object.isin ?? "";
     message.lot = object.lot ?? 0;
-    message.currency = object.currency ?? '';
-    message.klong =
-      object.klong !== undefined && object.klong !== null ? Quotation.fromPartial(object.klong) : undefined;
-    message.kshort =
-      object.kshort !== undefined && object.kshort !== null ? Quotation.fromPartial(object.kshort) : undefined;
-    message.dlong =
-      object.dlong !== undefined && object.dlong !== null ? Quotation.fromPartial(object.dlong) : undefined;
-    message.dshort =
-      object.dshort !== undefined && object.dshort !== null ? Quotation.fromPartial(object.dshort) : undefined;
-    message.dlongMin =
-      object.dlongMin !== undefined && object.dlongMin !== null ? Quotation.fromPartial(object.dlongMin) : undefined;
-    message.dshortMin =
-      object.dshortMin !== undefined && object.dshortMin !== null ? Quotation.fromPartial(object.dshortMin) : undefined;
+    message.currency = object.currency ?? "";
+    message.klong = (object.klong !== undefined && object.klong !== null)
+      ? Quotation.fromPartial(object.klong)
+      : undefined;
+    message.kshort = (object.kshort !== undefined && object.kshort !== null)
+      ? Quotation.fromPartial(object.kshort)
+      : undefined;
+    message.dlong = (object.dlong !== undefined && object.dlong !== null)
+      ? Quotation.fromPartial(object.dlong)
+      : undefined;
+    message.dshort = (object.dshort !== undefined && object.dshort !== null)
+      ? Quotation.fromPartial(object.dshort)
+      : undefined;
+    message.dlongMin = (object.dlongMin !== undefined && object.dlongMin !== null)
+      ? Quotation.fromPartial(object.dlongMin)
+      : undefined;
+    message.dshortMin = (object.dshortMin !== undefined && object.dshortMin !== null)
+      ? Quotation.fromPartial(object.dshortMin)
+      : undefined;
     message.shortEnabledFlag = object.shortEnabledFlag ?? false;
-    message.name = object.name ?? '';
-    message.exchange = object.exchange ?? '';
-    message.countryOfRisk = object.countryOfRisk ?? '';
-    message.countryOfRiskName = object.countryOfRiskName ?? '';
-    message.instrumentType = object.instrumentType ?? '';
+    message.name = object.name ?? "";
+    message.exchange = object.exchange ?? "";
+    message.countryOfRisk = object.countryOfRisk ?? "";
+    message.countryOfRiskName = object.countryOfRiskName ?? "";
+    message.instrumentType = object.instrumentType ?? "";
     message.tradingStatus = object.tradingStatus ?? 0;
     message.otcFlag = object.otcFlag ?? false;
     message.buyAvailableFlag = object.buyAvailableFlag ?? false;
     message.sellAvailableFlag = object.sellAvailableFlag ?? false;
-    message.minPriceIncrement =
-      object.minPriceIncrement !== undefined && object.minPriceIncrement !== null
-        ? Quotation.fromPartial(object.minPriceIncrement)
-        : undefined;
+    message.minPriceIncrement = (object.minPriceIncrement !== undefined && object.minPriceIncrement !== null)
+      ? Quotation.fromPartial(object.minPriceIncrement)
+      : undefined;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
-    message.uid = object.uid ?? '';
+    message.uid = object.uid ?? "";
     message.realExchange = object.realExchange ?? 0;
+    message.positionUid = object.positionUid ?? "";
+    message.forIisFlag = object.forIisFlag ?? false;
+    message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.first1minCandleDate = object.first1minCandleDate ?? undefined;
+    message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
   },
 };
 
 function createBaseGetDividendsRequest(): GetDividendsRequest {
-  return { figi: '', from: undefined, to: undefined };
+  return { figi: "", from: undefined, to: undefined };
 }
 
 export const GetDividendsRequest = {
   encode(message: GetDividendsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
     if (message.from !== undefined) {
@@ -5398,7 +7068,7 @@ export const GetDividendsRequest = {
 
   fromJSON(object: any): GetDividendsRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
     };
@@ -5414,7 +7084,7 @@ export const GetDividendsRequest = {
 
   fromPartial(object: DeepPartial<GetDividendsRequest>): GetDividendsRequest {
     const message = createBaseGetDividendsRequest();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? "";
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
     return message;
@@ -5460,7 +7130,7 @@ export const GetDividendsResponse = {
   toJSON(message: GetDividendsResponse): unknown {
     const obj: any = {};
     if (message.dividends) {
-      obj.dividends = message.dividends.map(e => (e ? Dividend.toJSON(e) : undefined));
+      obj.dividends = message.dividends.map((e) => e ? Dividend.toJSON(e) : undefined);
     } else {
       obj.dividends = [];
     }
@@ -5469,7 +7139,7 @@ export const GetDividendsResponse = {
 
   fromPartial(object: DeepPartial<GetDividendsResponse>): GetDividendsResponse {
     const message = createBaseGetDividendsResponse();
-    message.dividends = object.dividends?.map(e => Dividend.fromPartial(e)) || [];
+    message.dividends = object.dividends?.map((e) => Dividend.fromPartial(e)) || [];
     return message;
   },
 };
@@ -5480,9 +7150,9 @@ function createBaseDividend(): Dividend {
     paymentDate: undefined,
     declaredDate: undefined,
     lastBuyDate: undefined,
-    dividendType: '',
+    dividendType: "",
     recordDate: undefined,
-    regularity: '',
+    regularity: "",
     closePrice: undefined,
     yieldValue: undefined,
     createdAt: undefined,
@@ -5503,13 +7173,13 @@ export const Dividend = {
     if (message.lastBuyDate !== undefined) {
       Timestamp.encode(toTimestamp(message.lastBuyDate), writer.uint32(34).fork()).ldelim();
     }
-    if (message.dividendType !== '') {
+    if (message.dividendType !== "") {
       writer.uint32(42).string(message.dividendType);
     }
     if (message.recordDate !== undefined) {
       Timestamp.encode(toTimestamp(message.recordDate), writer.uint32(50).fork()).ldelim();
     }
-    if (message.regularity !== '') {
+    if (message.regularity !== "") {
       writer.uint32(58).string(message.regularity);
     }
     if (message.closePrice !== undefined) {
@@ -5575,9 +7245,9 @@ export const Dividend = {
       paymentDate: isSet(object.paymentDate) ? fromJsonTimestamp(object.paymentDate) : undefined,
       declaredDate: isSet(object.declaredDate) ? fromJsonTimestamp(object.declaredDate) : undefined,
       lastBuyDate: isSet(object.lastBuyDate) ? fromJsonTimestamp(object.lastBuyDate) : undefined,
-      dividendType: isSet(object.dividendType) ? String(object.dividendType) : '',
+      dividendType: isSet(object.dividendType) ? String(object.dividendType) : "",
       recordDate: isSet(object.recordDate) ? fromJsonTimestamp(object.recordDate) : undefined,
-      regularity: isSet(object.regularity) ? String(object.regularity) : '',
+      regularity: isSet(object.regularity) ? String(object.regularity) : "",
       closePrice: isSet(object.closePrice) ? MoneyValue.fromJSON(object.closePrice) : undefined,
       yieldValue: isSet(object.yieldValue) ? Quotation.fromJSON(object.yieldValue) : undefined,
       createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
@@ -5604,36 +7274,33 @@ export const Dividend = {
 
   fromPartial(object: DeepPartial<Dividend>): Dividend {
     const message = createBaseDividend();
-    message.dividendNet =
-      object.dividendNet !== undefined && object.dividendNet !== null
-        ? MoneyValue.fromPartial(object.dividendNet)
-        : undefined;
+    message.dividendNet = (object.dividendNet !== undefined && object.dividendNet !== null)
+      ? MoneyValue.fromPartial(object.dividendNet)
+      : undefined;
     message.paymentDate = object.paymentDate ?? undefined;
     message.declaredDate = object.declaredDate ?? undefined;
     message.lastBuyDate = object.lastBuyDate ?? undefined;
-    message.dividendType = object.dividendType ?? '';
+    message.dividendType = object.dividendType ?? "";
     message.recordDate = object.recordDate ?? undefined;
-    message.regularity = object.regularity ?? '';
-    message.closePrice =
-      object.closePrice !== undefined && object.closePrice !== null
-        ? MoneyValue.fromPartial(object.closePrice)
-        : undefined;
-    message.yieldValue =
-      object.yieldValue !== undefined && object.yieldValue !== null
-        ? Quotation.fromPartial(object.yieldValue)
-        : undefined;
+    message.regularity = object.regularity ?? "";
+    message.closePrice = (object.closePrice !== undefined && object.closePrice !== null)
+      ? MoneyValue.fromPartial(object.closePrice)
+      : undefined;
+    message.yieldValue = (object.yieldValue !== undefined && object.yieldValue !== null)
+      ? Quotation.fromPartial(object.yieldValue)
+      : undefined;
     message.createdAt = object.createdAt ?? undefined;
     return message;
   },
 };
 
 function createBaseAssetRequest(): AssetRequest {
-  return { id: '' };
+  return { id: "" };
 }
 
 export const AssetRequest = {
   encode(message: AssetRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== '') {
+    if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
     return writer;
@@ -5658,9 +7325,7 @@ export const AssetRequest = {
   },
 
   fromJSON(object: any): AssetRequest {
-    return {
-      id: isSet(object.id) ? String(object.id) : '',
-    };
+    return { id: isSet(object.id) ? String(object.id) : "" };
   },
 
   toJSON(message: AssetRequest): unknown {
@@ -5671,7 +7336,7 @@ export const AssetRequest = {
 
   fromPartial(object: DeepPartial<AssetRequest>): AssetRequest {
     const message = createBaseAssetRequest();
-    message.id = object.id ?? '';
+    message.id = object.id ?? "";
     return message;
   },
 };
@@ -5707,9 +7372,7 @@ export const AssetResponse = {
   },
 
   fromJSON(object: any): AssetResponse {
-    return {
-      asset: isSet(object.asset) ? AssetFull.fromJSON(object.asset) : undefined,
-    };
+    return { asset: isSet(object.asset) ? AssetFull.fromJSON(object.asset) : undefined };
   },
 
   toJSON(message: AssetResponse): unknown {
@@ -5720,8 +7383,9 @@ export const AssetResponse = {
 
   fromPartial(object: DeepPartial<AssetResponse>): AssetResponse {
     const message = createBaseAssetResponse();
-    message.asset =
-      object.asset !== undefined && object.asset !== null ? AssetFull.fromPartial(object.asset) : undefined;
+    message.asset = (object.asset !== undefined && object.asset !== null)
+      ? AssetFull.fromPartial(object.asset)
+      : undefined;
     return message;
   },
 };
@@ -5796,15 +7460,13 @@ export const AssetsResponse = {
   },
 
   fromJSON(object: any): AssetsResponse {
-    return {
-      assets: Array.isArray(object?.assets) ? object.assets.map((e: any) => Asset.fromJSON(e)) : [],
-    };
+    return { assets: Array.isArray(object?.assets) ? object.assets.map((e: any) => Asset.fromJSON(e)) : [] };
   },
 
   toJSON(message: AssetsResponse): unknown {
     const obj: any = {};
     if (message.assets) {
-      obj.assets = message.assets.map(e => (e ? Asset.toJSON(e) : undefined));
+      obj.assets = message.assets.map((e) => e ? Asset.toJSON(e) : undefined);
     } else {
       obj.assets = [];
     }
@@ -5813,49 +7475,49 @@ export const AssetsResponse = {
 
   fromPartial(object: DeepPartial<AssetsResponse>): AssetsResponse {
     const message = createBaseAssetsResponse();
-    message.assets = object.assets?.map(e => Asset.fromPartial(e)) || [];
+    message.assets = object.assets?.map((e) => Asset.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseAssetFull(): AssetFull {
   return {
-    uid: '',
+    uid: "",
     type: 0,
-    name: '',
-    nameBrief: '',
-    description: '',
+    name: "",
+    nameBrief: "",
+    description: "",
     deletedAt: undefined,
     requiredTests: [],
     currency: undefined,
     security: undefined,
-    gosRegCode: '',
-    cfi: '',
-    codeNsd: '',
-    status: '',
+    gosRegCode: "",
+    cfi: "",
+    codeNsd: "",
+    status: "",
     brand: undefined,
     updatedAt: undefined,
-    brCode: '',
-    brCodeName: '',
+    brCode: "",
+    brCodeName: "",
     instruments: [],
   };
 }
 
 export const AssetFull = {
   encode(message: AssetFull, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.uid !== '') {
+    if (message.uid !== "") {
       writer.uint32(10).string(message.uid);
     }
     if (message.type !== 0) {
       writer.uint32(16).int32(message.type);
     }
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(26).string(message.name);
     }
-    if (message.nameBrief !== '') {
+    if (message.nameBrief !== "") {
       writer.uint32(34).string(message.nameBrief);
     }
-    if (message.description !== '') {
+    if (message.description !== "") {
       writer.uint32(42).string(message.description);
     }
     if (message.deletedAt !== undefined) {
@@ -5870,16 +7532,16 @@ export const AssetFull = {
     if (message.security !== undefined) {
       AssetSecurity.encode(message.security, writer.uint32(74).fork()).ldelim();
     }
-    if (message.gosRegCode !== '') {
+    if (message.gosRegCode !== "") {
       writer.uint32(82).string(message.gosRegCode);
     }
-    if (message.cfi !== '') {
+    if (message.cfi !== "") {
       writer.uint32(90).string(message.cfi);
     }
-    if (message.codeNsd !== '') {
+    if (message.codeNsd !== "") {
       writer.uint32(98).string(message.codeNsd);
     }
-    if (message.status !== '') {
+    if (message.status !== "") {
       writer.uint32(106).string(message.status);
     }
     if (message.brand !== undefined) {
@@ -5888,10 +7550,10 @@ export const AssetFull = {
     if (message.updatedAt !== undefined) {
       Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(122).fork()).ldelim();
     }
-    if (message.brCode !== '') {
+    if (message.brCode !== "") {
       writer.uint32(130).string(message.brCode);
     }
-    if (message.brCodeName !== '') {
+    if (message.brCodeName !== "") {
       writer.uint32(138).string(message.brCodeName);
     }
     for (const v of message.instruments) {
@@ -5971,23 +7633,23 @@ export const AssetFull = {
 
   fromJSON(object: any): AssetFull {
     return {
-      uid: isSet(object.uid) ? String(object.uid) : '',
+      uid: isSet(object.uid) ? String(object.uid) : "",
       type: isSet(object.type) ? assetTypeFromJSON(object.type) : 0,
-      name: isSet(object.name) ? String(object.name) : '',
-      nameBrief: isSet(object.nameBrief) ? String(object.nameBrief) : '',
-      description: isSet(object.description) ? String(object.description) : '',
+      name: isSet(object.name) ? String(object.name) : "",
+      nameBrief: isSet(object.nameBrief) ? String(object.nameBrief) : "",
+      description: isSet(object.description) ? String(object.description) : "",
       deletedAt: isSet(object.deletedAt) ? fromJsonTimestamp(object.deletedAt) : undefined,
       requiredTests: Array.isArray(object?.requiredTests) ? object.requiredTests.map((e: any) => String(e)) : [],
       currency: isSet(object.currency) ? AssetCurrency.fromJSON(object.currency) : undefined,
       security: isSet(object.security) ? AssetSecurity.fromJSON(object.security) : undefined,
-      gosRegCode: isSet(object.gosRegCode) ? String(object.gosRegCode) : '',
-      cfi: isSet(object.cfi) ? String(object.cfi) : '',
-      codeNsd: isSet(object.codeNsd) ? String(object.codeNsd) : '',
-      status: isSet(object.status) ? String(object.status) : '',
+      gosRegCode: isSet(object.gosRegCode) ? String(object.gosRegCode) : "",
+      cfi: isSet(object.cfi) ? String(object.cfi) : "",
+      codeNsd: isSet(object.codeNsd) ? String(object.codeNsd) : "",
+      status: isSet(object.status) ? String(object.status) : "",
       brand: isSet(object.brand) ? Brand.fromJSON(object.brand) : undefined,
       updatedAt: isSet(object.updatedAt) ? fromJsonTimestamp(object.updatedAt) : undefined,
-      brCode: isSet(object.brCode) ? String(object.brCode) : '',
-      brCodeName: isSet(object.brCodeName) ? String(object.brCodeName) : '',
+      brCode: isSet(object.brCode) ? String(object.brCode) : "",
+      brCodeName: isSet(object.brCodeName) ? String(object.brCodeName) : "",
       instruments: Array.isArray(object?.instruments)
         ? object.instruments.map((e: any) => AssetInstrument.fromJSON(e))
         : [],
@@ -6003,7 +7665,7 @@ export const AssetFull = {
     message.description !== undefined && (obj.description = message.description);
     message.deletedAt !== undefined && (obj.deletedAt = message.deletedAt.toISOString());
     if (message.requiredTests) {
-      obj.requiredTests = message.requiredTests.map(e => e);
+      obj.requiredTests = message.requiredTests.map((e) => e);
     } else {
       obj.requiredTests = [];
     }
@@ -6020,7 +7682,7 @@ export const AssetFull = {
     message.brCode !== undefined && (obj.brCode = message.brCode);
     message.brCodeName !== undefined && (obj.brCodeName = message.brCodeName);
     if (message.instruments) {
-      obj.instruments = message.instruments.map(e => (e ? AssetInstrument.toJSON(e) : undefined));
+      obj.instruments = message.instruments.map((e) => e ? AssetInstrument.toJSON(e) : undefined);
     } else {
       obj.instruments = [];
     }
@@ -6029,47 +7691,45 @@ export const AssetFull = {
 
   fromPartial(object: DeepPartial<AssetFull>): AssetFull {
     const message = createBaseAssetFull();
-    message.uid = object.uid ?? '';
+    message.uid = object.uid ?? "";
     message.type = object.type ?? 0;
-    message.name = object.name ?? '';
-    message.nameBrief = object.nameBrief ?? '';
-    message.description = object.description ?? '';
+    message.name = object.name ?? "";
+    message.nameBrief = object.nameBrief ?? "";
+    message.description = object.description ?? "";
     message.deletedAt = object.deletedAt ?? undefined;
-    message.requiredTests = object.requiredTests?.map(e => e) || [];
-    message.currency =
-      object.currency !== undefined && object.currency !== null
-        ? AssetCurrency.fromPartial(object.currency)
-        : undefined;
-    message.security =
-      object.security !== undefined && object.security !== null
-        ? AssetSecurity.fromPartial(object.security)
-        : undefined;
-    message.gosRegCode = object.gosRegCode ?? '';
-    message.cfi = object.cfi ?? '';
-    message.codeNsd = object.codeNsd ?? '';
-    message.status = object.status ?? '';
-    message.brand = object.brand !== undefined && object.brand !== null ? Brand.fromPartial(object.brand) : undefined;
+    message.requiredTests = object.requiredTests?.map((e) => e) || [];
+    message.currency = (object.currency !== undefined && object.currency !== null)
+      ? AssetCurrency.fromPartial(object.currency)
+      : undefined;
+    message.security = (object.security !== undefined && object.security !== null)
+      ? AssetSecurity.fromPartial(object.security)
+      : undefined;
+    message.gosRegCode = object.gosRegCode ?? "";
+    message.cfi = object.cfi ?? "";
+    message.codeNsd = object.codeNsd ?? "";
+    message.status = object.status ?? "";
+    message.brand = (object.brand !== undefined && object.brand !== null) ? Brand.fromPartial(object.brand) : undefined;
     message.updatedAt = object.updatedAt ?? undefined;
-    message.brCode = object.brCode ?? '';
-    message.brCodeName = object.brCodeName ?? '';
-    message.instruments = object.instruments?.map(e => AssetInstrument.fromPartial(e)) || [];
+    message.brCode = object.brCode ?? "";
+    message.brCodeName = object.brCodeName ?? "";
+    message.instruments = object.instruments?.map((e) => AssetInstrument.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseAsset(): Asset {
-  return { uid: '', type: 0, name: '', instruments: [] };
+  return { uid: "", type: 0, name: "", instruments: [] };
 }
 
 export const Asset = {
   encode(message: Asset, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.uid !== '') {
+    if (message.uid !== "") {
       writer.uint32(10).string(message.uid);
     }
     if (message.type !== 0) {
       writer.uint32(16).int32(message.type);
     }
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(26).string(message.name);
     }
     for (const v of message.instruments) {
@@ -6107,9 +7767,9 @@ export const Asset = {
 
   fromJSON(object: any): Asset {
     return {
-      uid: isSet(object.uid) ? String(object.uid) : '',
+      uid: isSet(object.uid) ? String(object.uid) : "",
       type: isSet(object.type) ? assetTypeFromJSON(object.type) : 0,
-      name: isSet(object.name) ? String(object.name) : '',
+      name: isSet(object.name) ? String(object.name) : "",
       instruments: Array.isArray(object?.instruments)
         ? object.instruments.map((e: any) => AssetInstrument.fromJSON(e))
         : [],
@@ -6122,7 +7782,7 @@ export const Asset = {
     message.type !== undefined && (obj.type = assetTypeToJSON(message.type));
     message.name !== undefined && (obj.name = message.name);
     if (message.instruments) {
-      obj.instruments = message.instruments.map(e => (e ? AssetInstrument.toJSON(e) : undefined));
+      obj.instruments = message.instruments.map((e) => e ? AssetInstrument.toJSON(e) : undefined);
     } else {
       obj.instruments = [];
     }
@@ -6131,21 +7791,21 @@ export const Asset = {
 
   fromPartial(object: DeepPartial<Asset>): Asset {
     const message = createBaseAsset();
-    message.uid = object.uid ?? '';
+    message.uid = object.uid ?? "";
     message.type = object.type ?? 0;
-    message.name = object.name ?? '';
-    message.instruments = object.instruments?.map(e => AssetInstrument.fromPartial(e)) || [];
+    message.name = object.name ?? "";
+    message.instruments = object.instruments?.map((e) => AssetInstrument.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseAssetCurrency(): AssetCurrency {
-  return { baseCurrency: '' };
+  return { baseCurrency: "" };
 }
 
 export const AssetCurrency = {
   encode(message: AssetCurrency, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.baseCurrency !== '') {
+    if (message.baseCurrency !== "") {
       writer.uint32(10).string(message.baseCurrency);
     }
     return writer;
@@ -6170,9 +7830,7 @@ export const AssetCurrency = {
   },
 
   fromJSON(object: any): AssetCurrency {
-    return {
-      baseCurrency: isSet(object.baseCurrency) ? String(object.baseCurrency) : '',
-    };
+    return { baseCurrency: isSet(object.baseCurrency) ? String(object.baseCurrency) : "" };
   },
 
   toJSON(message: AssetCurrency): unknown {
@@ -6183,15 +7841,15 @@ export const AssetCurrency = {
 
   fromPartial(object: DeepPartial<AssetCurrency>): AssetCurrency {
     const message = createBaseAssetCurrency();
-    message.baseCurrency = object.baseCurrency ?? '';
+    message.baseCurrency = object.baseCurrency ?? "";
     return message;
   },
 };
 
 function createBaseAssetSecurity(): AssetSecurity {
   return {
-    isin: '',
-    type: '',
+    isin: "",
+    type: "",
     share: undefined,
     bond: undefined,
     sp: undefined,
@@ -6202,10 +7860,10 @@ function createBaseAssetSecurity(): AssetSecurity {
 
 export const AssetSecurity = {
   encode(message: AssetSecurity, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.isin !== '') {
+    if (message.isin !== "") {
       writer.uint32(10).string(message.isin);
     }
-    if (message.type !== '') {
+    if (message.type !== "") {
       writer.uint32(18).string(message.type);
     }
     if (message.share !== undefined) {
@@ -6264,8 +7922,8 @@ export const AssetSecurity = {
 
   fromJSON(object: any): AssetSecurity {
     return {
-      isin: isSet(object.isin) ? String(object.isin) : '',
-      type: isSet(object.type) ? String(object.type) : '',
+      isin: isSet(object.isin) ? String(object.isin) : "",
+      type: isSet(object.type) ? String(object.type) : "",
       share: isSet(object.share) ? AssetShare.fromJSON(object.share) : undefined,
       bond: isSet(object.bond) ? AssetBond.fromJSON(object.bond) : undefined,
       sp: isSet(object.sp) ? AssetStructuredProduct.fromJSON(object.sp) : undefined,
@@ -6284,27 +7942,27 @@ export const AssetSecurity = {
     message.bond !== undefined && (obj.bond = message.bond ? AssetBond.toJSON(message.bond) : undefined);
     message.sp !== undefined && (obj.sp = message.sp ? AssetStructuredProduct.toJSON(message.sp) : undefined);
     message.etf !== undefined && (obj.etf = message.etf ? AssetEtf.toJSON(message.etf) : undefined);
-    message.clearingCertificate !== undefined &&
-      (obj.clearingCertificate = message.clearingCertificate
-        ? AssetClearingCertificate.toJSON(message.clearingCertificate)
-        : undefined);
+    message.clearingCertificate !== undefined && (obj.clearingCertificate = message.clearingCertificate
+      ? AssetClearingCertificate.toJSON(message.clearingCertificate)
+      : undefined);
     return obj;
   },
 
   fromPartial(object: DeepPartial<AssetSecurity>): AssetSecurity {
     const message = createBaseAssetSecurity();
-    message.isin = object.isin ?? '';
-    message.type = object.type ?? '';
-    message.share =
-      object.share !== undefined && object.share !== null ? AssetShare.fromPartial(object.share) : undefined;
-    message.bond = object.bond !== undefined && object.bond !== null ? AssetBond.fromPartial(object.bond) : undefined;
-    message.sp =
-      object.sp !== undefined && object.sp !== null ? AssetStructuredProduct.fromPartial(object.sp) : undefined;
-    message.etf = object.etf !== undefined && object.etf !== null ? AssetEtf.fromPartial(object.etf) : undefined;
-    message.clearingCertificate =
-      object.clearingCertificate !== undefined && object.clearingCertificate !== null
-        ? AssetClearingCertificate.fromPartial(object.clearingCertificate)
-        : undefined;
+    message.isin = object.isin ?? "";
+    message.type = object.type ?? "";
+    message.share = (object.share !== undefined && object.share !== null)
+      ? AssetShare.fromPartial(object.share)
+      : undefined;
+    message.bond = (object.bond !== undefined && object.bond !== null) ? AssetBond.fromPartial(object.bond) : undefined;
+    message.sp = (object.sp !== undefined && object.sp !== null)
+      ? AssetStructuredProduct.fromPartial(object.sp)
+      : undefined;
+    message.etf = (object.etf !== undefined && object.etf !== null) ? AssetEtf.fromPartial(object.etf) : undefined;
+    message.clearingCertificate = (object.clearingCertificate !== undefined && object.clearingCertificate !== null)
+      ? AssetClearingCertificate.fromPartial(object.clearingCertificate)
+      : undefined;
     return message;
   },
 };
@@ -6314,16 +7972,16 @@ function createBaseAssetShare(): AssetShare {
     type: 0,
     issueSize: undefined,
     nominal: undefined,
-    nominalCurrency: '',
-    primaryIndex: '',
+    nominalCurrency: "",
+    primaryIndex: "",
     dividendRate: undefined,
-    preferredShareType: '',
+    preferredShareType: "",
     ipoDate: undefined,
     registryDate: undefined,
     divYieldFlag: false,
-    issueKind: '',
+    issueKind: "",
     placementDate: undefined,
-    represIsin: '',
+    represIsin: "",
     issueSizePlan: undefined,
     totalFloat: undefined,
   };
@@ -6340,16 +7998,16 @@ export const AssetShare = {
     if (message.nominal !== undefined) {
       Quotation.encode(message.nominal, writer.uint32(26).fork()).ldelim();
     }
-    if (message.nominalCurrency !== '') {
+    if (message.nominalCurrency !== "") {
       writer.uint32(34).string(message.nominalCurrency);
     }
-    if (message.primaryIndex !== '') {
+    if (message.primaryIndex !== "") {
       writer.uint32(42).string(message.primaryIndex);
     }
     if (message.dividendRate !== undefined) {
       Quotation.encode(message.dividendRate, writer.uint32(50).fork()).ldelim();
     }
-    if (message.preferredShareType !== '') {
+    if (message.preferredShareType !== "") {
       writer.uint32(58).string(message.preferredShareType);
     }
     if (message.ipoDate !== undefined) {
@@ -6361,13 +8019,13 @@ export const AssetShare = {
     if (message.divYieldFlag === true) {
       writer.uint32(80).bool(message.divYieldFlag);
     }
-    if (message.issueKind !== '') {
+    if (message.issueKind !== "") {
       writer.uint32(90).string(message.issueKind);
     }
     if (message.placementDate !== undefined) {
       Timestamp.encode(toTimestamp(message.placementDate), writer.uint32(98).fork()).ldelim();
     }
-    if (message.represIsin !== '') {
+    if (message.represIsin !== "") {
       writer.uint32(106).string(message.represIsin);
     }
     if (message.issueSizePlan !== undefined) {
@@ -6444,16 +8102,16 @@ export const AssetShare = {
       type: isSet(object.type) ? shareTypeFromJSON(object.type) : 0,
       issueSize: isSet(object.issueSize) ? Quotation.fromJSON(object.issueSize) : undefined,
       nominal: isSet(object.nominal) ? Quotation.fromJSON(object.nominal) : undefined,
-      nominalCurrency: isSet(object.nominalCurrency) ? String(object.nominalCurrency) : '',
-      primaryIndex: isSet(object.primaryIndex) ? String(object.primaryIndex) : '',
+      nominalCurrency: isSet(object.nominalCurrency) ? String(object.nominalCurrency) : "",
+      primaryIndex: isSet(object.primaryIndex) ? String(object.primaryIndex) : "",
       dividendRate: isSet(object.dividendRate) ? Quotation.fromJSON(object.dividendRate) : undefined,
-      preferredShareType: isSet(object.preferredShareType) ? String(object.preferredShareType) : '',
+      preferredShareType: isSet(object.preferredShareType) ? String(object.preferredShareType) : "",
       ipoDate: isSet(object.ipoDate) ? fromJsonTimestamp(object.ipoDate) : undefined,
       registryDate: isSet(object.registryDate) ? fromJsonTimestamp(object.registryDate) : undefined,
       divYieldFlag: isSet(object.divYieldFlag) ? Boolean(object.divYieldFlag) : false,
-      issueKind: isSet(object.issueKind) ? String(object.issueKind) : '',
+      issueKind: isSet(object.issueKind) ? String(object.issueKind) : "",
       placementDate: isSet(object.placementDate) ? fromJsonTimestamp(object.placementDate) : undefined,
-      represIsin: isSet(object.represIsin) ? String(object.represIsin) : '',
+      represIsin: isSet(object.represIsin) ? String(object.represIsin) : "",
       issueSizePlan: isSet(object.issueSizePlan) ? Quotation.fromJSON(object.issueSizePlan) : undefined,
       totalFloat: isSet(object.totalFloat) ? Quotation.fromJSON(object.totalFloat) : undefined,
     };
@@ -6486,31 +8144,30 @@ export const AssetShare = {
   fromPartial(object: DeepPartial<AssetShare>): AssetShare {
     const message = createBaseAssetShare();
     message.type = object.type ?? 0;
-    message.issueSize =
-      object.issueSize !== undefined && object.issueSize !== null ? Quotation.fromPartial(object.issueSize) : undefined;
-    message.nominal =
-      object.nominal !== undefined && object.nominal !== null ? Quotation.fromPartial(object.nominal) : undefined;
-    message.nominalCurrency = object.nominalCurrency ?? '';
-    message.primaryIndex = object.primaryIndex ?? '';
-    message.dividendRate =
-      object.dividendRate !== undefined && object.dividendRate !== null
-        ? Quotation.fromPartial(object.dividendRate)
-        : undefined;
-    message.preferredShareType = object.preferredShareType ?? '';
+    message.issueSize = (object.issueSize !== undefined && object.issueSize !== null)
+      ? Quotation.fromPartial(object.issueSize)
+      : undefined;
+    message.nominal = (object.nominal !== undefined && object.nominal !== null)
+      ? Quotation.fromPartial(object.nominal)
+      : undefined;
+    message.nominalCurrency = object.nominalCurrency ?? "";
+    message.primaryIndex = object.primaryIndex ?? "";
+    message.dividendRate = (object.dividendRate !== undefined && object.dividendRate !== null)
+      ? Quotation.fromPartial(object.dividendRate)
+      : undefined;
+    message.preferredShareType = object.preferredShareType ?? "";
     message.ipoDate = object.ipoDate ?? undefined;
     message.registryDate = object.registryDate ?? undefined;
     message.divYieldFlag = object.divYieldFlag ?? false;
-    message.issueKind = object.issueKind ?? '';
+    message.issueKind = object.issueKind ?? "";
     message.placementDate = object.placementDate ?? undefined;
-    message.represIsin = object.represIsin ?? '';
-    message.issueSizePlan =
-      object.issueSizePlan !== undefined && object.issueSizePlan !== null
-        ? Quotation.fromPartial(object.issueSizePlan)
-        : undefined;
-    message.totalFloat =
-      object.totalFloat !== undefined && object.totalFloat !== null
-        ? Quotation.fromPartial(object.totalFloat)
-        : undefined;
+    message.represIsin = object.represIsin ?? "";
+    message.issueSizePlan = (object.issueSizePlan !== undefined && object.issueSizePlan !== null)
+      ? Quotation.fromPartial(object.issueSizePlan)
+      : undefined;
+    message.totalFloat = (object.totalFloat !== undefined && object.totalFloat !== null)
+      ? Quotation.fromPartial(object.totalFloat)
+      : undefined;
     return message;
   },
 };
@@ -6518,12 +8175,12 @@ export const AssetShare = {
 function createBaseAssetBond(): AssetBond {
   return {
     currentNominal: undefined,
-    borrowName: '',
+    borrowName: "",
     issueSize: undefined,
     nominal: undefined,
-    nominalCurrency: '',
-    issueKind: '',
-    interestKind: '',
+    nominalCurrency: "",
+    issueKind: "",
+    interestKind: "",
     couponQuantityPerYear: 0,
     indexedNominalFlag: false,
     subordinatedFlag: false,
@@ -6533,7 +8190,7 @@ function createBaseAssetBond(): AssetBond {
     floatingCouponFlag: false,
     perpetualFlag: false,
     maturityDate: undefined,
-    returnCondition: '',
+    returnCondition: "",
     stateRegDate: undefined,
     placementDate: undefined,
     placementPrice: undefined,
@@ -6546,7 +8203,7 @@ export const AssetBond = {
     if (message.currentNominal !== undefined) {
       Quotation.encode(message.currentNominal, writer.uint32(10).fork()).ldelim();
     }
-    if (message.borrowName !== '') {
+    if (message.borrowName !== "") {
       writer.uint32(18).string(message.borrowName);
     }
     if (message.issueSize !== undefined) {
@@ -6555,13 +8212,13 @@ export const AssetBond = {
     if (message.nominal !== undefined) {
       Quotation.encode(message.nominal, writer.uint32(34).fork()).ldelim();
     }
-    if (message.nominalCurrency !== '') {
+    if (message.nominalCurrency !== "") {
       writer.uint32(42).string(message.nominalCurrency);
     }
-    if (message.issueKind !== '') {
+    if (message.issueKind !== "") {
       writer.uint32(50).string(message.issueKind);
     }
-    if (message.interestKind !== '') {
+    if (message.interestKind !== "") {
       writer.uint32(58).string(message.interestKind);
     }
     if (message.couponQuantityPerYear !== 0) {
@@ -6591,7 +8248,7 @@ export const AssetBond = {
     if (message.maturityDate !== undefined) {
       Timestamp.encode(toTimestamp(message.maturityDate), writer.uint32(130).fork()).ldelim();
     }
-    if (message.returnCondition !== '') {
+    if (message.returnCondition !== "") {
       writer.uint32(138).string(message.returnCondition);
     }
     if (message.stateRegDate !== undefined) {
@@ -6690,12 +8347,12 @@ export const AssetBond = {
   fromJSON(object: any): AssetBond {
     return {
       currentNominal: isSet(object.currentNominal) ? Quotation.fromJSON(object.currentNominal) : undefined,
-      borrowName: isSet(object.borrowName) ? String(object.borrowName) : '',
+      borrowName: isSet(object.borrowName) ? String(object.borrowName) : "",
       issueSize: isSet(object.issueSize) ? Quotation.fromJSON(object.issueSize) : undefined,
       nominal: isSet(object.nominal) ? Quotation.fromJSON(object.nominal) : undefined,
-      nominalCurrency: isSet(object.nominalCurrency) ? String(object.nominalCurrency) : '',
-      issueKind: isSet(object.issueKind) ? String(object.issueKind) : '',
-      interestKind: isSet(object.interestKind) ? String(object.interestKind) : '',
+      nominalCurrency: isSet(object.nominalCurrency) ? String(object.nominalCurrency) : "",
+      issueKind: isSet(object.issueKind) ? String(object.issueKind) : "",
+      interestKind: isSet(object.interestKind) ? String(object.interestKind) : "",
       couponQuantityPerYear: isSet(object.couponQuantityPerYear) ? Number(object.couponQuantityPerYear) : 0,
       indexedNominalFlag: isSet(object.indexedNominalFlag) ? Boolean(object.indexedNominalFlag) : false,
       subordinatedFlag: isSet(object.subordinatedFlag) ? Boolean(object.subordinatedFlag) : false,
@@ -6705,7 +8362,7 @@ export const AssetBond = {
       floatingCouponFlag: isSet(object.floatingCouponFlag) ? Boolean(object.floatingCouponFlag) : false,
       perpetualFlag: isSet(object.perpetualFlag) ? Boolean(object.perpetualFlag) : false,
       maturityDate: isSet(object.maturityDate) ? fromJsonTimestamp(object.maturityDate) : undefined,
-      returnCondition: isSet(object.returnCondition) ? String(object.returnCondition) : '',
+      returnCondition: isSet(object.returnCondition) ? String(object.returnCondition) : "",
       stateRegDate: isSet(object.stateRegDate) ? fromJsonTimestamp(object.stateRegDate) : undefined,
       placementDate: isSet(object.placementDate) ? fromJsonTimestamp(object.placementDate) : undefined,
       placementPrice: isSet(object.placementPrice) ? Quotation.fromJSON(object.placementPrice) : undefined,
@@ -6746,18 +8403,19 @@ export const AssetBond = {
 
   fromPartial(object: DeepPartial<AssetBond>): AssetBond {
     const message = createBaseAssetBond();
-    message.currentNominal =
-      object.currentNominal !== undefined && object.currentNominal !== null
-        ? Quotation.fromPartial(object.currentNominal)
-        : undefined;
-    message.borrowName = object.borrowName ?? '';
-    message.issueSize =
-      object.issueSize !== undefined && object.issueSize !== null ? Quotation.fromPartial(object.issueSize) : undefined;
-    message.nominal =
-      object.nominal !== undefined && object.nominal !== null ? Quotation.fromPartial(object.nominal) : undefined;
-    message.nominalCurrency = object.nominalCurrency ?? '';
-    message.issueKind = object.issueKind ?? '';
-    message.interestKind = object.interestKind ?? '';
+    message.currentNominal = (object.currentNominal !== undefined && object.currentNominal !== null)
+      ? Quotation.fromPartial(object.currentNominal)
+      : undefined;
+    message.borrowName = object.borrowName ?? "";
+    message.issueSize = (object.issueSize !== undefined && object.issueSize !== null)
+      ? Quotation.fromPartial(object.issueSize)
+      : undefined;
+    message.nominal = (object.nominal !== undefined && object.nominal !== null)
+      ? Quotation.fromPartial(object.nominal)
+      : undefined;
+    message.nominalCurrency = object.nominalCurrency ?? "";
+    message.issueKind = object.issueKind ?? "";
+    message.interestKind = object.interestKind ?? "";
     message.couponQuantityPerYear = object.couponQuantityPerYear ?? 0;
     message.indexedNominalFlag = object.indexedNominalFlag ?? false;
     message.subordinatedFlag = object.subordinatedFlag ?? false;
@@ -6767,60 +8425,58 @@ export const AssetBond = {
     message.floatingCouponFlag = object.floatingCouponFlag ?? false;
     message.perpetualFlag = object.perpetualFlag ?? false;
     message.maturityDate = object.maturityDate ?? undefined;
-    message.returnCondition = object.returnCondition ?? '';
+    message.returnCondition = object.returnCondition ?? "";
     message.stateRegDate = object.stateRegDate ?? undefined;
     message.placementDate = object.placementDate ?? undefined;
-    message.placementPrice =
-      object.placementPrice !== undefined && object.placementPrice !== null
-        ? Quotation.fromPartial(object.placementPrice)
-        : undefined;
-    message.issueSizePlan =
-      object.issueSizePlan !== undefined && object.issueSizePlan !== null
-        ? Quotation.fromPartial(object.issueSizePlan)
-        : undefined;
+    message.placementPrice = (object.placementPrice !== undefined && object.placementPrice !== null)
+      ? Quotation.fromPartial(object.placementPrice)
+      : undefined;
+    message.issueSizePlan = (object.issueSizePlan !== undefined && object.issueSizePlan !== null)
+      ? Quotation.fromPartial(object.issueSizePlan)
+      : undefined;
     return message;
   },
 };
 
 function createBaseAssetStructuredProduct(): AssetStructuredProduct {
   return {
-    borrowName: '',
+    borrowName: "",
     nominal: undefined,
-    nominalCurrency: '',
+    nominalCurrency: "",
     type: 0,
-    logicPortfolio: '',
+    logicPortfolio: "",
     assetType: 0,
-    basicAsset: '',
+    basicAsset: "",
     safetyBarrier: undefined,
     maturityDate: undefined,
     issueSizePlan: undefined,
     issueSize: undefined,
     placementDate: undefined,
-    issueKind: '',
+    issueKind: "",
   };
 }
 
 export const AssetStructuredProduct = {
   encode(message: AssetStructuredProduct, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.borrowName !== '') {
+    if (message.borrowName !== "") {
       writer.uint32(10).string(message.borrowName);
     }
     if (message.nominal !== undefined) {
       Quotation.encode(message.nominal, writer.uint32(18).fork()).ldelim();
     }
-    if (message.nominalCurrency !== '') {
+    if (message.nominalCurrency !== "") {
       writer.uint32(26).string(message.nominalCurrency);
     }
     if (message.type !== 0) {
       writer.uint32(32).int32(message.type);
     }
-    if (message.logicPortfolio !== '') {
+    if (message.logicPortfolio !== "") {
       writer.uint32(42).string(message.logicPortfolio);
     }
     if (message.assetType !== 0) {
       writer.uint32(48).int32(message.assetType);
     }
-    if (message.basicAsset !== '') {
+    if (message.basicAsset !== "") {
       writer.uint32(58).string(message.basicAsset);
     }
     if (message.safetyBarrier !== undefined) {
@@ -6838,7 +8494,7 @@ export const AssetStructuredProduct = {
     if (message.placementDate !== undefined) {
       Timestamp.encode(toTimestamp(message.placementDate), writer.uint32(98).fork()).ldelim();
     }
-    if (message.issueKind !== '') {
+    if (message.issueKind !== "") {
       writer.uint32(106).string(message.issueKind);
     }
     return writer;
@@ -6900,19 +8556,19 @@ export const AssetStructuredProduct = {
 
   fromJSON(object: any): AssetStructuredProduct {
     return {
-      borrowName: isSet(object.borrowName) ? String(object.borrowName) : '',
+      borrowName: isSet(object.borrowName) ? String(object.borrowName) : "",
       nominal: isSet(object.nominal) ? Quotation.fromJSON(object.nominal) : undefined,
-      nominalCurrency: isSet(object.nominalCurrency) ? String(object.nominalCurrency) : '',
+      nominalCurrency: isSet(object.nominalCurrency) ? String(object.nominalCurrency) : "",
       type: isSet(object.type) ? structuredProductTypeFromJSON(object.type) : 0,
-      logicPortfolio: isSet(object.logicPortfolio) ? String(object.logicPortfolio) : '',
+      logicPortfolio: isSet(object.logicPortfolio) ? String(object.logicPortfolio) : "",
       assetType: isSet(object.assetType) ? assetTypeFromJSON(object.assetType) : 0,
-      basicAsset: isSet(object.basicAsset) ? String(object.basicAsset) : '',
+      basicAsset: isSet(object.basicAsset) ? String(object.basicAsset) : "",
       safetyBarrier: isSet(object.safetyBarrier) ? Quotation.fromJSON(object.safetyBarrier) : undefined,
       maturityDate: isSet(object.maturityDate) ? fromJsonTimestamp(object.maturityDate) : undefined,
       issueSizePlan: isSet(object.issueSizePlan) ? Quotation.fromJSON(object.issueSizePlan) : undefined,
       issueSize: isSet(object.issueSize) ? Quotation.fromJSON(object.issueSize) : undefined,
       placementDate: isSet(object.placementDate) ? fromJsonTimestamp(object.placementDate) : undefined,
-      issueKind: isSet(object.issueKind) ? String(object.issueKind) : '',
+      issueKind: isSet(object.issueKind) ? String(object.issueKind) : "",
     };
   },
 
@@ -6939,27 +8595,27 @@ export const AssetStructuredProduct = {
 
   fromPartial(object: DeepPartial<AssetStructuredProduct>): AssetStructuredProduct {
     const message = createBaseAssetStructuredProduct();
-    message.borrowName = object.borrowName ?? '';
-    message.nominal =
-      object.nominal !== undefined && object.nominal !== null ? Quotation.fromPartial(object.nominal) : undefined;
-    message.nominalCurrency = object.nominalCurrency ?? '';
+    message.borrowName = object.borrowName ?? "";
+    message.nominal = (object.nominal !== undefined && object.nominal !== null)
+      ? Quotation.fromPartial(object.nominal)
+      : undefined;
+    message.nominalCurrency = object.nominalCurrency ?? "";
     message.type = object.type ?? 0;
-    message.logicPortfolio = object.logicPortfolio ?? '';
+    message.logicPortfolio = object.logicPortfolio ?? "";
     message.assetType = object.assetType ?? 0;
-    message.basicAsset = object.basicAsset ?? '';
-    message.safetyBarrier =
-      object.safetyBarrier !== undefined && object.safetyBarrier !== null
-        ? Quotation.fromPartial(object.safetyBarrier)
-        : undefined;
+    message.basicAsset = object.basicAsset ?? "";
+    message.safetyBarrier = (object.safetyBarrier !== undefined && object.safetyBarrier !== null)
+      ? Quotation.fromPartial(object.safetyBarrier)
+      : undefined;
     message.maturityDate = object.maturityDate ?? undefined;
-    message.issueSizePlan =
-      object.issueSizePlan !== undefined && object.issueSizePlan !== null
-        ? Quotation.fromPartial(object.issueSizePlan)
-        : undefined;
-    message.issueSize =
-      object.issueSize !== undefined && object.issueSize !== null ? Quotation.fromPartial(object.issueSize) : undefined;
+    message.issueSizePlan = (object.issueSizePlan !== undefined && object.issueSizePlan !== null)
+      ? Quotation.fromPartial(object.issueSizePlan)
+      : undefined;
+    message.issueSize = (object.issueSize !== undefined && object.issueSize !== null)
+      ? Quotation.fromPartial(object.issueSize)
+      : undefined;
     message.placementDate = object.placementDate ?? undefined;
-    message.issueKind = object.issueKind ?? '';
+    message.issueKind = object.issueKind ?? "";
     return message;
   },
 };
@@ -6970,33 +8626,33 @@ function createBaseAssetEtf(): AssetEtf {
     hurdleRate: undefined,
     performanceFee: undefined,
     fixedCommission: undefined,
-    paymentType: '',
+    paymentType: "",
     watermarkFlag: false,
     buyPremium: undefined,
     sellDiscount: undefined,
     rebalancingFlag: false,
-    rebalancingFreq: '',
-    managementType: '',
-    primaryIndex: '',
-    focusType: '',
+    rebalancingFreq: "",
+    managementType: "",
+    primaryIndex: "",
+    focusType: "",
     leveragedFlag: false,
     numShare: undefined,
     ucitsFlag: false,
     releasedDate: undefined,
-    description: '',
-    primaryIndexDescription: '',
-    primaryIndexCompany: '',
+    description: "",
+    primaryIndexDescription: "",
+    primaryIndexCompany: "",
     indexRecoveryPeriod: undefined,
-    inavCode: '',
+    inavCode: "",
     divYieldFlag: false,
     expenseCommission: undefined,
     primaryIndexTrackingError: undefined,
-    rebalancingPlan: '',
-    taxRate: '',
+    rebalancingPlan: "",
+    taxRate: "",
     rebalancingDates: [],
-    issueKind: '',
+    issueKind: "",
     nominal: undefined,
-    nominalCurrency: '',
+    nominalCurrency: "",
   };
 }
 
@@ -7014,7 +8670,7 @@ export const AssetEtf = {
     if (message.fixedCommission !== undefined) {
       Quotation.encode(message.fixedCommission, writer.uint32(34).fork()).ldelim();
     }
-    if (message.paymentType !== '') {
+    if (message.paymentType !== "") {
       writer.uint32(42).string(message.paymentType);
     }
     if (message.watermarkFlag === true) {
@@ -7029,16 +8685,16 @@ export const AssetEtf = {
     if (message.rebalancingFlag === true) {
       writer.uint32(72).bool(message.rebalancingFlag);
     }
-    if (message.rebalancingFreq !== '') {
+    if (message.rebalancingFreq !== "") {
       writer.uint32(82).string(message.rebalancingFreq);
     }
-    if (message.managementType !== '') {
+    if (message.managementType !== "") {
       writer.uint32(90).string(message.managementType);
     }
-    if (message.primaryIndex !== '') {
+    if (message.primaryIndex !== "") {
       writer.uint32(98).string(message.primaryIndex);
     }
-    if (message.focusType !== '') {
+    if (message.focusType !== "") {
       writer.uint32(106).string(message.focusType);
     }
     if (message.leveragedFlag === true) {
@@ -7053,19 +8709,19 @@ export const AssetEtf = {
     if (message.releasedDate !== undefined) {
       Timestamp.encode(toTimestamp(message.releasedDate), writer.uint32(138).fork()).ldelim();
     }
-    if (message.description !== '') {
+    if (message.description !== "") {
       writer.uint32(146).string(message.description);
     }
-    if (message.primaryIndexDescription !== '') {
+    if (message.primaryIndexDescription !== "") {
       writer.uint32(154).string(message.primaryIndexDescription);
     }
-    if (message.primaryIndexCompany !== '') {
+    if (message.primaryIndexCompany !== "") {
       writer.uint32(162).string(message.primaryIndexCompany);
     }
     if (message.indexRecoveryPeriod !== undefined) {
       Quotation.encode(message.indexRecoveryPeriod, writer.uint32(170).fork()).ldelim();
     }
-    if (message.inavCode !== '') {
+    if (message.inavCode !== "") {
       writer.uint32(178).string(message.inavCode);
     }
     if (message.divYieldFlag === true) {
@@ -7077,22 +8733,22 @@ export const AssetEtf = {
     if (message.primaryIndexTrackingError !== undefined) {
       Quotation.encode(message.primaryIndexTrackingError, writer.uint32(202).fork()).ldelim();
     }
-    if (message.rebalancingPlan !== '') {
+    if (message.rebalancingPlan !== "") {
       writer.uint32(210).string(message.rebalancingPlan);
     }
-    if (message.taxRate !== '') {
+    if (message.taxRate !== "") {
       writer.uint32(218).string(message.taxRate);
     }
     for (const v of message.rebalancingDates) {
       Timestamp.encode(toTimestamp(v!), writer.uint32(226).fork()).ldelim();
     }
-    if (message.issueKind !== '') {
+    if (message.issueKind !== "") {
       writer.uint32(234).string(message.issueKind);
     }
     if (message.nominal !== undefined) {
       Quotation.encode(message.nominal, writer.uint32(242).fork()).ldelim();
     }
-    if (message.nominalCurrency !== '') {
+    if (message.nominalCurrency !== "") {
       writer.uint32(250).string(message.nominalCurrency);
     }
     return writer;
@@ -7212,39 +8868,39 @@ export const AssetEtf = {
       hurdleRate: isSet(object.hurdleRate) ? Quotation.fromJSON(object.hurdleRate) : undefined,
       performanceFee: isSet(object.performanceFee) ? Quotation.fromJSON(object.performanceFee) : undefined,
       fixedCommission: isSet(object.fixedCommission) ? Quotation.fromJSON(object.fixedCommission) : undefined,
-      paymentType: isSet(object.paymentType) ? String(object.paymentType) : '',
+      paymentType: isSet(object.paymentType) ? String(object.paymentType) : "",
       watermarkFlag: isSet(object.watermarkFlag) ? Boolean(object.watermarkFlag) : false,
       buyPremium: isSet(object.buyPremium) ? Quotation.fromJSON(object.buyPremium) : undefined,
       sellDiscount: isSet(object.sellDiscount) ? Quotation.fromJSON(object.sellDiscount) : undefined,
       rebalancingFlag: isSet(object.rebalancingFlag) ? Boolean(object.rebalancingFlag) : false,
-      rebalancingFreq: isSet(object.rebalancingFreq) ? String(object.rebalancingFreq) : '',
-      managementType: isSet(object.managementType) ? String(object.managementType) : '',
-      primaryIndex: isSet(object.primaryIndex) ? String(object.primaryIndex) : '',
-      focusType: isSet(object.focusType) ? String(object.focusType) : '',
+      rebalancingFreq: isSet(object.rebalancingFreq) ? String(object.rebalancingFreq) : "",
+      managementType: isSet(object.managementType) ? String(object.managementType) : "",
+      primaryIndex: isSet(object.primaryIndex) ? String(object.primaryIndex) : "",
+      focusType: isSet(object.focusType) ? String(object.focusType) : "",
       leveragedFlag: isSet(object.leveragedFlag) ? Boolean(object.leveragedFlag) : false,
       numShare: isSet(object.numShare) ? Quotation.fromJSON(object.numShare) : undefined,
       ucitsFlag: isSet(object.ucitsFlag) ? Boolean(object.ucitsFlag) : false,
       releasedDate: isSet(object.releasedDate) ? fromJsonTimestamp(object.releasedDate) : undefined,
-      description: isSet(object.description) ? String(object.description) : '',
-      primaryIndexDescription: isSet(object.primaryIndexDescription) ? String(object.primaryIndexDescription) : '',
-      primaryIndexCompany: isSet(object.primaryIndexCompany) ? String(object.primaryIndexCompany) : '',
+      description: isSet(object.description) ? String(object.description) : "",
+      primaryIndexDescription: isSet(object.primaryIndexDescription) ? String(object.primaryIndexDescription) : "",
+      primaryIndexCompany: isSet(object.primaryIndexCompany) ? String(object.primaryIndexCompany) : "",
       indexRecoveryPeriod: isSet(object.indexRecoveryPeriod)
         ? Quotation.fromJSON(object.indexRecoveryPeriod)
         : undefined,
-      inavCode: isSet(object.inavCode) ? String(object.inavCode) : '',
+      inavCode: isSet(object.inavCode) ? String(object.inavCode) : "",
       divYieldFlag: isSet(object.divYieldFlag) ? Boolean(object.divYieldFlag) : false,
       expenseCommission: isSet(object.expenseCommission) ? Quotation.fromJSON(object.expenseCommission) : undefined,
       primaryIndexTrackingError: isSet(object.primaryIndexTrackingError)
         ? Quotation.fromJSON(object.primaryIndexTrackingError)
         : undefined,
-      rebalancingPlan: isSet(object.rebalancingPlan) ? String(object.rebalancingPlan) : '',
-      taxRate: isSet(object.taxRate) ? String(object.taxRate) : '',
+      rebalancingPlan: isSet(object.rebalancingPlan) ? String(object.rebalancingPlan) : "",
+      taxRate: isSet(object.taxRate) ? String(object.taxRate) : "",
       rebalancingDates: Array.isArray(object?.rebalancingDates)
         ? object.rebalancingDates.map((e: any) => fromJsonTimestamp(e))
         : [],
-      issueKind: isSet(object.issueKind) ? String(object.issueKind) : '',
+      issueKind: isSet(object.issueKind) ? String(object.issueKind) : "",
       nominal: isSet(object.nominal) ? Quotation.fromJSON(object.nominal) : undefined,
-      nominalCurrency: isSet(object.nominalCurrency) ? String(object.nominalCurrency) : '',
+      nominalCurrency: isSet(object.nominalCurrency) ? String(object.nominalCurrency) : "",
     };
   },
 
@@ -7292,7 +8948,7 @@ export const AssetEtf = {
     message.rebalancingPlan !== undefined && (obj.rebalancingPlan = message.rebalancingPlan);
     message.taxRate !== undefined && (obj.taxRate = message.taxRate);
     if (message.rebalancingDates) {
-      obj.rebalancingDates = message.rebalancingDates.map(e => e.toISOString());
+      obj.rebalancingDates = message.rebalancingDates.map((e) => e.toISOString());
     } else {
       obj.rebalancingDates = [];
     }
@@ -7304,72 +8960,66 @@ export const AssetEtf = {
 
   fromPartial(object: DeepPartial<AssetEtf>): AssetEtf {
     const message = createBaseAssetEtf();
-    message.totalExpense =
-      object.totalExpense !== undefined && object.totalExpense !== null
-        ? Quotation.fromPartial(object.totalExpense)
-        : undefined;
-    message.hurdleRate =
-      object.hurdleRate !== undefined && object.hurdleRate !== null
-        ? Quotation.fromPartial(object.hurdleRate)
-        : undefined;
-    message.performanceFee =
-      object.performanceFee !== undefined && object.performanceFee !== null
-        ? Quotation.fromPartial(object.performanceFee)
-        : undefined;
-    message.fixedCommission =
-      object.fixedCommission !== undefined && object.fixedCommission !== null
-        ? Quotation.fromPartial(object.fixedCommission)
-        : undefined;
-    message.paymentType = object.paymentType ?? '';
+    message.totalExpense = (object.totalExpense !== undefined && object.totalExpense !== null)
+      ? Quotation.fromPartial(object.totalExpense)
+      : undefined;
+    message.hurdleRate = (object.hurdleRate !== undefined && object.hurdleRate !== null)
+      ? Quotation.fromPartial(object.hurdleRate)
+      : undefined;
+    message.performanceFee = (object.performanceFee !== undefined && object.performanceFee !== null)
+      ? Quotation.fromPartial(object.performanceFee)
+      : undefined;
+    message.fixedCommission = (object.fixedCommission !== undefined && object.fixedCommission !== null)
+      ? Quotation.fromPartial(object.fixedCommission)
+      : undefined;
+    message.paymentType = object.paymentType ?? "";
     message.watermarkFlag = object.watermarkFlag ?? false;
-    message.buyPremium =
-      object.buyPremium !== undefined && object.buyPremium !== null
-        ? Quotation.fromPartial(object.buyPremium)
-        : undefined;
-    message.sellDiscount =
-      object.sellDiscount !== undefined && object.sellDiscount !== null
-        ? Quotation.fromPartial(object.sellDiscount)
-        : undefined;
+    message.buyPremium = (object.buyPremium !== undefined && object.buyPremium !== null)
+      ? Quotation.fromPartial(object.buyPremium)
+      : undefined;
+    message.sellDiscount = (object.sellDiscount !== undefined && object.sellDiscount !== null)
+      ? Quotation.fromPartial(object.sellDiscount)
+      : undefined;
     message.rebalancingFlag = object.rebalancingFlag ?? false;
-    message.rebalancingFreq = object.rebalancingFreq ?? '';
-    message.managementType = object.managementType ?? '';
-    message.primaryIndex = object.primaryIndex ?? '';
-    message.focusType = object.focusType ?? '';
+    message.rebalancingFreq = object.rebalancingFreq ?? "";
+    message.managementType = object.managementType ?? "";
+    message.primaryIndex = object.primaryIndex ?? "";
+    message.focusType = object.focusType ?? "";
     message.leveragedFlag = object.leveragedFlag ?? false;
-    message.numShare =
-      object.numShare !== undefined && object.numShare !== null ? Quotation.fromPartial(object.numShare) : undefined;
+    message.numShare = (object.numShare !== undefined && object.numShare !== null)
+      ? Quotation.fromPartial(object.numShare)
+      : undefined;
     message.ucitsFlag = object.ucitsFlag ?? false;
     message.releasedDate = object.releasedDate ?? undefined;
-    message.description = object.description ?? '';
-    message.primaryIndexDescription = object.primaryIndexDescription ?? '';
-    message.primaryIndexCompany = object.primaryIndexCompany ?? '';
-    message.indexRecoveryPeriod =
-      object.indexRecoveryPeriod !== undefined && object.indexRecoveryPeriod !== null
-        ? Quotation.fromPartial(object.indexRecoveryPeriod)
-        : undefined;
-    message.inavCode = object.inavCode ?? '';
+    message.description = object.description ?? "";
+    message.primaryIndexDescription = object.primaryIndexDescription ?? "";
+    message.primaryIndexCompany = object.primaryIndexCompany ?? "";
+    message.indexRecoveryPeriod = (object.indexRecoveryPeriod !== undefined && object.indexRecoveryPeriod !== null)
+      ? Quotation.fromPartial(object.indexRecoveryPeriod)
+      : undefined;
+    message.inavCode = object.inavCode ?? "";
     message.divYieldFlag = object.divYieldFlag ?? false;
-    message.expenseCommission =
-      object.expenseCommission !== undefined && object.expenseCommission !== null
-        ? Quotation.fromPartial(object.expenseCommission)
-        : undefined;
+    message.expenseCommission = (object.expenseCommission !== undefined && object.expenseCommission !== null)
+      ? Quotation.fromPartial(object.expenseCommission)
+      : undefined;
     message.primaryIndexTrackingError =
-      object.primaryIndexTrackingError !== undefined && object.primaryIndexTrackingError !== null
+      (object.primaryIndexTrackingError !== undefined && object.primaryIndexTrackingError !== null)
         ? Quotation.fromPartial(object.primaryIndexTrackingError)
         : undefined;
-    message.rebalancingPlan = object.rebalancingPlan ?? '';
-    message.taxRate = object.taxRate ?? '';
-    message.rebalancingDates = object.rebalancingDates?.map(e => e) || [];
-    message.issueKind = object.issueKind ?? '';
-    message.nominal =
-      object.nominal !== undefined && object.nominal !== null ? Quotation.fromPartial(object.nominal) : undefined;
-    message.nominalCurrency = object.nominalCurrency ?? '';
+    message.rebalancingPlan = object.rebalancingPlan ?? "";
+    message.taxRate = object.taxRate ?? "";
+    message.rebalancingDates = object.rebalancingDates?.map((e) => e) || [];
+    message.issueKind = object.issueKind ?? "";
+    message.nominal = (object.nominal !== undefined && object.nominal !== null)
+      ? Quotation.fromPartial(object.nominal)
+      : undefined;
+    message.nominalCurrency = object.nominalCurrency ?? "";
     return message;
   },
 };
 
 function createBaseAssetClearingCertificate(): AssetClearingCertificate {
-  return { nominal: undefined, nominalCurrency: '' };
+  return { nominal: undefined, nominalCurrency: "" };
 }
 
 export const AssetClearingCertificate = {
@@ -7377,7 +9027,7 @@ export const AssetClearingCertificate = {
     if (message.nominal !== undefined) {
       Quotation.encode(message.nominal, writer.uint32(10).fork()).ldelim();
     }
-    if (message.nominalCurrency !== '') {
+    if (message.nominalCurrency !== "") {
       writer.uint32(18).string(message.nominalCurrency);
     }
     return writer;
@@ -7407,7 +9057,7 @@ export const AssetClearingCertificate = {
   fromJSON(object: any): AssetClearingCertificate {
     return {
       nominal: isSet(object.nominal) ? Quotation.fromJSON(object.nominal) : undefined,
-      nominalCurrency: isSet(object.nominalCurrency) ? String(object.nominalCurrency) : '',
+      nominalCurrency: isSet(object.nominalCurrency) ? String(object.nominalCurrency) : "",
     };
   },
 
@@ -7420,50 +9070,51 @@ export const AssetClearingCertificate = {
 
   fromPartial(object: DeepPartial<AssetClearingCertificate>): AssetClearingCertificate {
     const message = createBaseAssetClearingCertificate();
-    message.nominal =
-      object.nominal !== undefined && object.nominal !== null ? Quotation.fromPartial(object.nominal) : undefined;
-    message.nominalCurrency = object.nominalCurrency ?? '';
+    message.nominal = (object.nominal !== undefined && object.nominal !== null)
+      ? Quotation.fromPartial(object.nominal)
+      : undefined;
+    message.nominalCurrency = object.nominalCurrency ?? "";
     return message;
   },
 };
 
 function createBaseBrand(): Brand {
   return {
-    uid: '',
-    name: '',
-    description: '',
-    info: '',
-    company: '',
-    sector: '',
-    countryOfRisk: '',
-    countryOfRiskName: '',
+    uid: "",
+    name: "",
+    description: "",
+    info: "",
+    company: "",
+    sector: "",
+    countryOfRisk: "",
+    countryOfRiskName: "",
   };
 }
 
 export const Brand = {
   encode(message: Brand, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.uid !== '') {
+    if (message.uid !== "") {
       writer.uint32(10).string(message.uid);
     }
-    if (message.name !== '') {
+    if (message.name !== "") {
       writer.uint32(18).string(message.name);
     }
-    if (message.description !== '') {
+    if (message.description !== "") {
       writer.uint32(26).string(message.description);
     }
-    if (message.info !== '') {
+    if (message.info !== "") {
       writer.uint32(34).string(message.info);
     }
-    if (message.company !== '') {
+    if (message.company !== "") {
       writer.uint32(42).string(message.company);
     }
-    if (message.sector !== '') {
+    if (message.sector !== "") {
       writer.uint32(50).string(message.sector);
     }
-    if (message.countryOfRisk !== '') {
+    if (message.countryOfRisk !== "") {
       writer.uint32(58).string(message.countryOfRisk);
     }
-    if (message.countryOfRiskName !== '') {
+    if (message.countryOfRiskName !== "") {
       writer.uint32(66).string(message.countryOfRiskName);
     }
     return writer;
@@ -7510,14 +9161,14 @@ export const Brand = {
 
   fromJSON(object: any): Brand {
     return {
-      uid: isSet(object.uid) ? String(object.uid) : '',
-      name: isSet(object.name) ? String(object.name) : '',
-      description: isSet(object.description) ? String(object.description) : '',
-      info: isSet(object.info) ? String(object.info) : '',
-      company: isSet(object.company) ? String(object.company) : '',
-      sector: isSet(object.sector) ? String(object.sector) : '',
-      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : '',
-      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : '',
+      uid: isSet(object.uid) ? String(object.uid) : "",
+      name: isSet(object.name) ? String(object.name) : "",
+      description: isSet(object.description) ? String(object.description) : "",
+      info: isSet(object.info) ? String(object.info) : "",
+      company: isSet(object.company) ? String(object.company) : "",
+      sector: isSet(object.sector) ? String(object.sector) : "",
+      countryOfRisk: isSet(object.countryOfRisk) ? String(object.countryOfRisk) : "",
+      countryOfRiskName: isSet(object.countryOfRiskName) ? String(object.countryOfRiskName) : "",
     };
   },
 
@@ -7536,37 +9187,37 @@ export const Brand = {
 
   fromPartial(object: DeepPartial<Brand>): Brand {
     const message = createBaseBrand();
-    message.uid = object.uid ?? '';
-    message.name = object.name ?? '';
-    message.description = object.description ?? '';
-    message.info = object.info ?? '';
-    message.company = object.company ?? '';
-    message.sector = object.sector ?? '';
-    message.countryOfRisk = object.countryOfRisk ?? '';
-    message.countryOfRiskName = object.countryOfRiskName ?? '';
+    message.uid = object.uid ?? "";
+    message.name = object.name ?? "";
+    message.description = object.description ?? "";
+    message.info = object.info ?? "";
+    message.company = object.company ?? "";
+    message.sector = object.sector ?? "";
+    message.countryOfRisk = object.countryOfRisk ?? "";
+    message.countryOfRiskName = object.countryOfRiskName ?? "";
     return message;
   },
 };
 
 function createBaseAssetInstrument(): AssetInstrument {
-  return { uid: '', figi: '', instrumentType: '', ticker: '', classCode: '', links: [] };
+  return { uid: "", figi: "", instrumentType: "", ticker: "", classCode: "", links: [] };
 }
 
 export const AssetInstrument = {
   encode(message: AssetInstrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.uid !== '') {
+    if (message.uid !== "") {
       writer.uint32(10).string(message.uid);
     }
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(18).string(message.figi);
     }
-    if (message.instrumentType !== '') {
+    if (message.instrumentType !== "") {
       writer.uint32(26).string(message.instrumentType);
     }
-    if (message.ticker !== '') {
+    if (message.ticker !== "") {
       writer.uint32(34).string(message.ticker);
     }
-    if (message.classCode !== '') {
+    if (message.classCode !== "") {
       writer.uint32(42).string(message.classCode);
     }
     for (const v of message.links) {
@@ -7610,11 +9261,11 @@ export const AssetInstrument = {
 
   fromJSON(object: any): AssetInstrument {
     return {
-      uid: isSet(object.uid) ? String(object.uid) : '',
-      figi: isSet(object.figi) ? String(object.figi) : '',
-      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : '',
-      ticker: isSet(object.ticker) ? String(object.ticker) : '',
-      classCode: isSet(object.classCode) ? String(object.classCode) : '',
+      uid: isSet(object.uid) ? String(object.uid) : "",
+      figi: isSet(object.figi) ? String(object.figi) : "",
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
+      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
       links: Array.isArray(object?.links) ? object.links.map((e: any) => InstrumentLink.fromJSON(e)) : [],
     };
   },
@@ -7627,7 +9278,7 @@ export const AssetInstrument = {
     message.ticker !== undefined && (obj.ticker = message.ticker);
     message.classCode !== undefined && (obj.classCode = message.classCode);
     if (message.links) {
-      obj.links = message.links.map(e => (e ? InstrumentLink.toJSON(e) : undefined));
+      obj.links = message.links.map((e) => e ? InstrumentLink.toJSON(e) : undefined);
     } else {
       obj.links = [];
     }
@@ -7636,26 +9287,26 @@ export const AssetInstrument = {
 
   fromPartial(object: DeepPartial<AssetInstrument>): AssetInstrument {
     const message = createBaseAssetInstrument();
-    message.uid = object.uid ?? '';
-    message.figi = object.figi ?? '';
-    message.instrumentType = object.instrumentType ?? '';
-    message.ticker = object.ticker ?? '';
-    message.classCode = object.classCode ?? '';
-    message.links = object.links?.map(e => InstrumentLink.fromPartial(e)) || [];
+    message.uid = object.uid ?? "";
+    message.figi = object.figi ?? "";
+    message.instrumentType = object.instrumentType ?? "";
+    message.ticker = object.ticker ?? "";
+    message.classCode = object.classCode ?? "";
+    message.links = object.links?.map((e) => InstrumentLink.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseInstrumentLink(): InstrumentLink {
-  return { type: '', instrumentUid: '' };
+  return { type: "", instrumentUid: "" };
 }
 
 export const InstrumentLink = {
   encode(message: InstrumentLink, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.type !== '') {
+    if (message.type !== "") {
       writer.uint32(10).string(message.type);
     }
-    if (message.instrumentUid !== '') {
+    if (message.instrumentUid !== "") {
       writer.uint32(18).string(message.instrumentUid);
     }
     return writer;
@@ -7684,8 +9335,8 @@ export const InstrumentLink = {
 
   fromJSON(object: any): InstrumentLink {
     return {
-      type: isSet(object.type) ? String(object.type) : '',
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
+      type: isSet(object.type) ? String(object.type) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
     };
   },
 
@@ -7698,8 +9349,8 @@ export const InstrumentLink = {
 
   fromPartial(object: DeepPartial<InstrumentLink>): InstrumentLink {
     const message = createBaseInstrumentLink();
-    message.type = object.type ?? '';
-    message.instrumentUid = object.instrumentUid ?? '';
+    message.type = object.type ?? "";
+    message.instrumentUid = object.instrumentUid ?? "";
     return message;
   },
 };
@@ -7784,7 +9435,7 @@ export const GetFavoritesResponse = {
   toJSON(message: GetFavoritesResponse): unknown {
     const obj: any = {};
     if (message.favoriteInstruments) {
-      obj.favoriteInstruments = message.favoriteInstruments.map(e => (e ? FavoriteInstrument.toJSON(e) : undefined));
+      obj.favoriteInstruments = message.favoriteInstruments.map((e) => e ? FavoriteInstrument.toJSON(e) : undefined);
     } else {
       obj.favoriteInstruments = [];
     }
@@ -7793,18 +9444,18 @@ export const GetFavoritesResponse = {
 
   fromPartial(object: DeepPartial<GetFavoritesResponse>): GetFavoritesResponse {
     const message = createBaseGetFavoritesResponse();
-    message.favoriteInstruments = object.favoriteInstruments?.map(e => FavoriteInstrument.fromPartial(e)) || [];
+    message.favoriteInstruments = object.favoriteInstruments?.map((e) => FavoriteInstrument.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseFavoriteInstrument(): FavoriteInstrument {
   return {
-    figi: '',
-    ticker: '',
-    classCode: '',
-    isin: '',
-    instrumentType: '',
+    figi: "",
+    ticker: "",
+    classCode: "",
+    isin: "",
+    instrumentType: "",
     otcFlag: false,
     apiTradeAvailableFlag: false,
   };
@@ -7812,19 +9463,19 @@ function createBaseFavoriteInstrument(): FavoriteInstrument {
 
 export const FavoriteInstrument = {
   encode(message: FavoriteInstrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
-    if (message.ticker !== '') {
+    if (message.ticker !== "") {
       writer.uint32(18).string(message.ticker);
     }
-    if (message.classCode !== '') {
+    if (message.classCode !== "") {
       writer.uint32(26).string(message.classCode);
     }
-    if (message.isin !== '') {
+    if (message.isin !== "") {
       writer.uint32(34).string(message.isin);
     }
-    if (message.instrumentType !== '') {
+    if (message.instrumentType !== "") {
       writer.uint32(90).string(message.instrumentType);
     }
     if (message.otcFlag === true) {
@@ -7874,11 +9525,11 @@ export const FavoriteInstrument = {
 
   fromJSON(object: any): FavoriteInstrument {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
-      ticker: isSet(object.ticker) ? String(object.ticker) : '',
-      classCode: isSet(object.classCode) ? String(object.classCode) : '',
-      isin: isSet(object.isin) ? String(object.isin) : '',
-      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
+      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
+      isin: isSet(object.isin) ? String(object.isin) : "",
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
       otcFlag: isSet(object.otcFlag) ? Boolean(object.otcFlag) : false,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
     };
@@ -7898,11 +9549,11 @@ export const FavoriteInstrument = {
 
   fromPartial(object: DeepPartial<FavoriteInstrument>): FavoriteInstrument {
     const message = createBaseFavoriteInstrument();
-    message.figi = object.figi ?? '';
-    message.ticker = object.ticker ?? '';
-    message.classCode = object.classCode ?? '';
-    message.isin = object.isin ?? '';
-    message.instrumentType = object.instrumentType ?? '';
+    message.figi = object.figi ?? "";
+    message.ticker = object.ticker ?? "";
+    message.classCode = object.classCode ?? "";
+    message.isin = object.isin ?? "";
+    message.instrumentType = object.instrumentType ?? "";
     message.otcFlag = object.otcFlag ?? false;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     return message;
@@ -7957,7 +9608,7 @@ export const EditFavoritesRequest = {
   toJSON(message: EditFavoritesRequest): unknown {
     const obj: any = {};
     if (message.instruments) {
-      obj.instruments = message.instruments.map(e => (e ? EditFavoritesRequestInstrument.toJSON(e) : undefined));
+      obj.instruments = message.instruments.map((e) => e ? EditFavoritesRequestInstrument.toJSON(e) : undefined);
     } else {
       obj.instruments = [];
     }
@@ -7967,19 +9618,19 @@ export const EditFavoritesRequest = {
 
   fromPartial(object: DeepPartial<EditFavoritesRequest>): EditFavoritesRequest {
     const message = createBaseEditFavoritesRequest();
-    message.instruments = object.instruments?.map(e => EditFavoritesRequestInstrument.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map((e) => EditFavoritesRequestInstrument.fromPartial(e)) || [];
     message.actionType = object.actionType ?? 0;
     return message;
   },
 };
 
 function createBaseEditFavoritesRequestInstrument(): EditFavoritesRequestInstrument {
-  return { figi: '' };
+  return { figi: "" };
 }
 
 export const EditFavoritesRequestInstrument = {
   encode(message: EditFavoritesRequestInstrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
     return writer;
@@ -8004,9 +9655,7 @@ export const EditFavoritesRequestInstrument = {
   },
 
   fromJSON(object: any): EditFavoritesRequestInstrument {
-    return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
-    };
+    return { figi: isSet(object.figi) ? String(object.figi) : "" };
   },
 
   toJSON(message: EditFavoritesRequestInstrument): unknown {
@@ -8017,7 +9666,7 @@ export const EditFavoritesRequestInstrument = {
 
   fromPartial(object: DeepPartial<EditFavoritesRequestInstrument>): EditFavoritesRequestInstrument {
     const message = createBaseEditFavoritesRequestInstrument();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? "";
     return message;
   },
 };
@@ -8063,7 +9712,7 @@ export const EditFavoritesResponse = {
   toJSON(message: EditFavoritesResponse): unknown {
     const obj: any = {};
     if (message.favoriteInstruments) {
-      obj.favoriteInstruments = message.favoriteInstruments.map(e => (e ? FavoriteInstrument.toJSON(e) : undefined));
+      obj.favoriteInstruments = message.favoriteInstruments.map((e) => e ? FavoriteInstrument.toJSON(e) : undefined);
     } else {
       obj.favoriteInstruments = [];
     }
@@ -8072,7 +9721,589 @@ export const EditFavoritesResponse = {
 
   fromPartial(object: DeepPartial<EditFavoritesResponse>): EditFavoritesResponse {
     const message = createBaseEditFavoritesResponse();
-    message.favoriteInstruments = object.favoriteInstruments?.map(e => FavoriteInstrument.fromPartial(e)) || [];
+    message.favoriteInstruments = object.favoriteInstruments?.map((e) => FavoriteInstrument.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseGetCountriesRequest(): GetCountriesRequest {
+  return {};
+}
+
+export const GetCountriesRequest = {
+  encode(_: GetCountriesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetCountriesRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetCountriesRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): GetCountriesRequest {
+    return {};
+  },
+
+  toJSON(_: GetCountriesRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<GetCountriesRequest>): GetCountriesRequest {
+    const message = createBaseGetCountriesRequest();
+    return message;
+  },
+};
+
+function createBaseGetCountriesResponse(): GetCountriesResponse {
+  return { countries: [] };
+}
+
+export const GetCountriesResponse = {
+  encode(message: GetCountriesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.countries) {
+      CountryResponse.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetCountriesResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetCountriesResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.countries.push(CountryResponse.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetCountriesResponse {
+    return {
+      countries: Array.isArray(object?.countries) ? object.countries.map((e: any) => CountryResponse.fromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: GetCountriesResponse): unknown {
+    const obj: any = {};
+    if (message.countries) {
+      obj.countries = message.countries.map((e) => e ? CountryResponse.toJSON(e) : undefined);
+    } else {
+      obj.countries = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetCountriesResponse>): GetCountriesResponse {
+    const message = createBaseGetCountriesResponse();
+    message.countries = object.countries?.map((e) => CountryResponse.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseCountryResponse(): CountryResponse {
+  return { alfaTwo: "", alfaThree: "", name: "", nameBrief: "" };
+}
+
+export const CountryResponse = {
+  encode(message: CountryResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.alfaTwo !== "") {
+      writer.uint32(10).string(message.alfaTwo);
+    }
+    if (message.alfaThree !== "") {
+      writer.uint32(18).string(message.alfaThree);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    if (message.nameBrief !== "") {
+      writer.uint32(34).string(message.nameBrief);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CountryResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCountryResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.alfaTwo = reader.string();
+          break;
+        case 2:
+          message.alfaThree = reader.string();
+          break;
+        case 3:
+          message.name = reader.string();
+          break;
+        case 4:
+          message.nameBrief = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CountryResponse {
+    return {
+      alfaTwo: isSet(object.alfaTwo) ? String(object.alfaTwo) : "",
+      alfaThree: isSet(object.alfaThree) ? String(object.alfaThree) : "",
+      name: isSet(object.name) ? String(object.name) : "",
+      nameBrief: isSet(object.nameBrief) ? String(object.nameBrief) : "",
+    };
+  },
+
+  toJSON(message: CountryResponse): unknown {
+    const obj: any = {};
+    message.alfaTwo !== undefined && (obj.alfaTwo = message.alfaTwo);
+    message.alfaThree !== undefined && (obj.alfaThree = message.alfaThree);
+    message.name !== undefined && (obj.name = message.name);
+    message.nameBrief !== undefined && (obj.nameBrief = message.nameBrief);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<CountryResponse>): CountryResponse {
+    const message = createBaseCountryResponse();
+    message.alfaTwo = object.alfaTwo ?? "";
+    message.alfaThree = object.alfaThree ?? "";
+    message.name = object.name ?? "";
+    message.nameBrief = object.nameBrief ?? "";
+    return message;
+  },
+};
+
+function createBaseFindInstrumentRequest(): FindInstrumentRequest {
+  return { query: "" };
+}
+
+export const FindInstrumentRequest = {
+  encode(message: FindInstrumentRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.query !== "") {
+      writer.uint32(10).string(message.query);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): FindInstrumentRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFindInstrumentRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.query = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FindInstrumentRequest {
+    return { query: isSet(object.query) ? String(object.query) : "" };
+  },
+
+  toJSON(message: FindInstrumentRequest): unknown {
+    const obj: any = {};
+    message.query !== undefined && (obj.query = message.query);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<FindInstrumentRequest>): FindInstrumentRequest {
+    const message = createBaseFindInstrumentRequest();
+    message.query = object.query ?? "";
+    return message;
+  },
+};
+
+function createBaseFindInstrumentResponse(): FindInstrumentResponse {
+  return { instruments: [] };
+}
+
+export const FindInstrumentResponse = {
+  encode(message: FindInstrumentResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.instruments) {
+      InstrumentShort.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): FindInstrumentResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFindInstrumentResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.instruments.push(InstrumentShort.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FindInstrumentResponse {
+    return {
+      instruments: Array.isArray(object?.instruments)
+        ? object.instruments.map((e: any) => InstrumentShort.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: FindInstrumentResponse): unknown {
+    const obj: any = {};
+    if (message.instruments) {
+      obj.instruments = message.instruments.map((e) => e ? InstrumentShort.toJSON(e) : undefined);
+    } else {
+      obj.instruments = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<FindInstrumentResponse>): FindInstrumentResponse {
+    const message = createBaseFindInstrumentResponse();
+    message.instruments = object.instruments?.map((e) => InstrumentShort.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseInstrumentShort(): InstrumentShort {
+  return {
+    isin: "",
+    figi: "",
+    ticker: "",
+    classCode: "",
+    instrumentType: "",
+    name: "",
+    uid: "",
+    positionUid: "",
+    apiTradeAvailableFlag: false,
+    forIisFlag: false,
+    first1minCandleDate: undefined,
+    first1dayCandleDate: undefined,
+    forQualInvestorFlag: false,
+  };
+}
+
+export const InstrumentShort = {
+  encode(message: InstrumentShort, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.isin !== "") {
+      writer.uint32(10).string(message.isin);
+    }
+    if (message.figi !== "") {
+      writer.uint32(18).string(message.figi);
+    }
+    if (message.ticker !== "") {
+      writer.uint32(26).string(message.ticker);
+    }
+    if (message.classCode !== "") {
+      writer.uint32(34).string(message.classCode);
+    }
+    if (message.instrumentType !== "") {
+      writer.uint32(42).string(message.instrumentType);
+    }
+    if (message.name !== "") {
+      writer.uint32(50).string(message.name);
+    }
+    if (message.uid !== "") {
+      writer.uint32(58).string(message.uid);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(66).string(message.positionUid);
+    }
+    if (message.apiTradeAvailableFlag === true) {
+      writer.uint32(88).bool(message.apiTradeAvailableFlag);
+    }
+    if (message.forIisFlag === true) {
+      writer.uint32(96).bool(message.forIisFlag);
+    }
+    if (message.first1minCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(210).fork()).ldelim();
+    }
+    if (message.first1dayCandleDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.first1dayCandleDate), writer.uint32(218).fork()).ldelim();
+    }
+    if (message.forQualInvestorFlag === true) {
+      writer.uint32(224).bool(message.forQualInvestorFlag);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): InstrumentShort {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseInstrumentShort();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.isin = reader.string();
+          break;
+        case 2:
+          message.figi = reader.string();
+          break;
+        case 3:
+          message.ticker = reader.string();
+          break;
+        case 4:
+          message.classCode = reader.string();
+          break;
+        case 5:
+          message.instrumentType = reader.string();
+          break;
+        case 6:
+          message.name = reader.string();
+          break;
+        case 7:
+          message.uid = reader.string();
+          break;
+        case 8:
+          message.positionUid = reader.string();
+          break;
+        case 11:
+          message.apiTradeAvailableFlag = reader.bool();
+          break;
+        case 12:
+          message.forIisFlag = reader.bool();
+          break;
+        case 26:
+          message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 27:
+          message.first1dayCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 28:
+          message.forQualInvestorFlag = reader.bool();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): InstrumentShort {
+    return {
+      isin: isSet(object.isin) ? String(object.isin) : "",
+      figi: isSet(object.figi) ? String(object.figi) : "",
+      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      classCode: isSet(object.classCode) ? String(object.classCode) : "",
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
+      name: isSet(object.name) ? String(object.name) : "",
+      uid: isSet(object.uid) ? String(object.uid) : "",
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
+      forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
+      first1minCandleDate: isSet(object.first1minCandleDate)
+        ? fromJsonTimestamp(object.first1minCandleDate)
+        : undefined,
+      first1dayCandleDate: isSet(object.first1dayCandleDate)
+        ? fromJsonTimestamp(object.first1dayCandleDate)
+        : undefined,
+      forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+    };
+  },
+
+  toJSON(message: InstrumentShort): unknown {
+    const obj: any = {};
+    message.isin !== undefined && (obj.isin = message.isin);
+    message.figi !== undefined && (obj.figi = message.figi);
+    message.ticker !== undefined && (obj.ticker = message.ticker);
+    message.classCode !== undefined && (obj.classCode = message.classCode);
+    message.instrumentType !== undefined && (obj.instrumentType = message.instrumentType);
+    message.name !== undefined && (obj.name = message.name);
+    message.uid !== undefined && (obj.uid = message.uid);
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
+    message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
+    message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
+    message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
+    message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<InstrumentShort>): InstrumentShort {
+    const message = createBaseInstrumentShort();
+    message.isin = object.isin ?? "";
+    message.figi = object.figi ?? "";
+    message.ticker = object.ticker ?? "";
+    message.classCode = object.classCode ?? "";
+    message.instrumentType = object.instrumentType ?? "";
+    message.name = object.name ?? "";
+    message.uid = object.uid ?? "";
+    message.positionUid = object.positionUid ?? "";
+    message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
+    message.forIisFlag = object.forIisFlag ?? false;
+    message.first1minCandleDate = object.first1minCandleDate ?? undefined;
+    message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
+    message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    return message;
+  },
+};
+
+function createBaseGetBrandsRequest(): GetBrandsRequest {
+  return {};
+}
+
+export const GetBrandsRequest = {
+  encode(_: GetBrandsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetBrandsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetBrandsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): GetBrandsRequest {
+    return {};
+  },
+
+  toJSON(_: GetBrandsRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<GetBrandsRequest>): GetBrandsRequest {
+    const message = createBaseGetBrandsRequest();
+    return message;
+  },
+};
+
+function createBaseGetBrandRequest(): GetBrandRequest {
+  return { id: "" };
+}
+
+export const GetBrandRequest = {
+  encode(message: GetBrandRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetBrandRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetBrandRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.id = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetBrandRequest {
+    return { id: isSet(object.id) ? String(object.id) : "" };
+  },
+
+  toJSON(message: GetBrandRequest): unknown {
+    const obj: any = {};
+    message.id !== undefined && (obj.id = message.id);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetBrandRequest>): GetBrandRequest {
+    const message = createBaseGetBrandRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseGetBrandsResponse(): GetBrandsResponse {
+  return { brands: [] };
+}
+
+export const GetBrandsResponse = {
+  encode(message: GetBrandsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.brands) {
+      Brand.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetBrandsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetBrandsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.brands.push(Brand.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetBrandsResponse {
+    return { brands: Array.isArray(object?.brands) ? object.brands.map((e: any) => Brand.fromJSON(e)) : [] };
+  },
+
+  toJSON(message: GetBrandsResponse): unknown {
+    const obj: any = {};
+    if (message.brands) {
+      obj.brands = message.brands.map((e) => e ? Brand.toJSON(e) : undefined);
+    } else {
+      obj.brands = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetBrandsResponse>): GetBrandsResponse {
+    const message = createBaseGetBrandsResponse();
+    message.brands = object.brands?.map((e) => Brand.fromPartial(e)) || [];
     return message;
   },
 };
@@ -8084,12 +10315,12 @@ export const EditFavoritesResponse = {
  */
 export type InstrumentsServiceDefinition = typeof InstrumentsServiceDefinition;
 export const InstrumentsServiceDefinition = {
-  name: 'InstrumentsService',
-  fullName: 'tinkoff.public.invest.api.contract.v1.InstrumentsService',
+  name: "InstrumentsService",
+  fullName: "tinkoff.public.invest.api.contract.v1.InstrumentsService",
   methods: {
     /** Метод получения расписания торгов торговых площадок. */
     tradingSchedules: {
-      name: 'TradingSchedules',
+      name: "TradingSchedules",
       requestType: TradingSchedulesRequest,
       requestStream: false,
       responseType: TradingSchedulesResponse,
@@ -8098,7 +10329,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения облигации по её идентификатору. */
     bondBy: {
-      name: 'BondBy',
+      name: "BondBy",
       requestType: InstrumentRequest,
       requestStream: false,
       responseType: BondResponse,
@@ -8107,16 +10338,16 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения списка облигаций. */
     bonds: {
-      name: 'Bonds',
+      name: "Bonds",
       requestType: InstrumentsRequest,
       requestStream: false,
       responseType: BondsResponse,
       responseStream: false,
       options: {},
     },
-    /** Метод получения графика выплат купонов по облигации */
+    /** Метод получения графика выплат купонов по облигации. */
     getBondCoupons: {
-      name: 'GetBondCoupons',
+      name: "GetBondCoupons",
       requestType: GetBondCouponsRequest,
       requestStream: false,
       responseType: GetBondCouponsResponse,
@@ -8125,7 +10356,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения валюты по её идентификатору. */
     currencyBy: {
-      name: 'CurrencyBy',
+      name: "CurrencyBy",
       requestType: InstrumentRequest,
       requestStream: false,
       responseType: CurrencyResponse,
@@ -8134,7 +10365,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения списка валют. */
     currencies: {
-      name: 'Currencies',
+      name: "Currencies",
       requestType: InstrumentsRequest,
       requestStream: false,
       responseType: CurrenciesResponse,
@@ -8143,7 +10374,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения инвестиционного фонда по его идентификатору. */
     etfBy: {
-      name: 'EtfBy',
+      name: "EtfBy",
       requestType: InstrumentRequest,
       requestStream: false,
       responseType: EtfResponse,
@@ -8152,7 +10383,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения списка инвестиционных фондов. */
     etfs: {
-      name: 'Etfs',
+      name: "Etfs",
       requestType: InstrumentsRequest,
       requestStream: false,
       responseType: EtfsResponse,
@@ -8161,7 +10392,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения фьючерса по его идентификатору. */
     futureBy: {
-      name: 'FutureBy',
+      name: "FutureBy",
       requestType: InstrumentRequest,
       requestStream: false,
       responseType: FutureResponse,
@@ -8170,16 +10401,34 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения списка фьючерсов. */
     futures: {
-      name: 'Futures',
+      name: "Futures",
       requestType: InstrumentsRequest,
       requestStream: false,
       responseType: FuturesResponse,
       responseStream: false,
       options: {},
     },
+    /** Метод получения опциона по его идентификатору. */
+    optionBy: {
+      name: "OptionBy",
+      requestType: InstrumentRequest,
+      requestStream: false,
+      responseType: OptionResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод получения списка опционов. */
+    options: {
+      name: "Options",
+      requestType: InstrumentsRequest,
+      requestStream: false,
+      responseType: OptionsResponse,
+      responseStream: false,
+      options: {},
+    },
     /** Метод получения акции по её идентификатору. */
     shareBy: {
-      name: 'ShareBy',
+      name: "ShareBy",
       requestType: InstrumentRequest,
       requestStream: false,
       responseType: ShareResponse,
@@ -8188,7 +10437,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения списка акций. */
     shares: {
-      name: 'Shares',
+      name: "Shares",
       requestType: InstrumentsRequest,
       requestStream: false,
       responseType: SharesResponse,
@@ -8197,7 +10446,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения накопленного купонного дохода по облигации. */
     getAccruedInterests: {
-      name: 'GetAccruedInterests',
+      name: "GetAccruedInterests",
       requestType: GetAccruedInterestsRequest,
       requestStream: false,
       responseType: GetAccruedInterestsResponse,
@@ -8206,7 +10455,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения размера гарантийного обеспечения по фьючерсам. */
     getFuturesMargin: {
-      name: 'GetFuturesMargin',
+      name: "GetFuturesMargin",
       requestType: GetFuturesMarginRequest,
       requestStream: false,
       responseType: GetFuturesMarginResponse,
@@ -8215,7 +10464,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения основной информации об инструменте. */
     getInstrumentBy: {
-      name: 'GetInstrumentBy',
+      name: "GetInstrumentBy",
       requestType: InstrumentRequest,
       requestStream: false,
       responseType: InstrumentResponse,
@@ -8224,7 +10473,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод для получения событий выплаты дивидендов по инструменту. */
     getDividends: {
-      name: 'GetDividends',
+      name: "GetDividends",
       requestType: GetDividendsRequest,
       requestStream: false,
       responseType: GetDividendsResponse,
@@ -8233,7 +10482,7 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения актива по его идентификатору. */
     getAssetBy: {
-      name: 'GetAssetBy',
+      name: "GetAssetBy",
       requestType: AssetRequest,
       requestStream: false,
       responseType: AssetResponse,
@@ -8242,28 +10491,64 @@ export const InstrumentsServiceDefinition = {
     },
     /** Метод получения списка активов. */
     getAssets: {
-      name: 'GetAssets',
+      name: "GetAssets",
       requestType: AssetsRequest,
       requestStream: false,
       responseType: AssetsResponse,
       responseStream: false,
       options: {},
     },
-    /** Метод получения избранных инструментов. */
+    /** Метод получения списка избранных инструментов. */
     getFavorites: {
-      name: 'GetFavorites',
+      name: "GetFavorites",
       requestType: GetFavoritesRequest,
       requestStream: false,
       responseType: GetFavoritesResponse,
       responseStream: false,
       options: {},
     },
-    /** Метод редактирования избранных инструментов. */
+    /** Метод редактирования списка избранных инструментов. */
     editFavorites: {
-      name: 'EditFavorites',
+      name: "EditFavorites",
       requestType: EditFavoritesRequest,
       requestStream: false,
       responseType: EditFavoritesResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод получения списка стран. */
+    getCountries: {
+      name: "GetCountries",
+      requestType: GetCountriesRequest,
+      requestStream: false,
+      responseType: GetCountriesResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод поиска инструмента. */
+    findInstrument: {
+      name: "FindInstrument",
+      requestType: FindInstrumentRequest,
+      requestStream: false,
+      responseType: FindInstrumentResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод получения списка брендов. */
+    getBrands: {
+      name: "GetBrands",
+      requestType: GetBrandsRequest,
+      requestStream: false,
+      responseType: GetBrandsResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод получения бренда по его идентификатору. */
+    getBrandBy: {
+      name: "GetBrandBy",
+      requestType: GetBrandRequest,
+      requestStream: false,
+      responseType: Brand,
       responseStream: false,
       options: {},
     },
@@ -8274,23 +10559,26 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') return globalThis;
-  if (typeof self !== 'undefined') return self;
-  if (typeof window !== 'undefined') return window;
-  if (typeof global !== 'undefined') return global;
-  throw 'Unable to locate global object';
+  if (typeof globalThis !== "undefined") {
+    return globalThis;
+  }
+  if (typeof self !== "undefined") {
+    return self;
+  }
+  if (typeof window !== "undefined") {
+    return window;
+  }
+  if (typeof global !== "undefined") {
+    return global;
+  }
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-  ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 function toTimestamp(date: Date): Timestamp {
@@ -8308,7 +10596,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === 'string') {
+  } else if (typeof o === "string") {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -8317,7 +10605,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

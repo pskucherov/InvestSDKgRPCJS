@@ -1,31 +1,36 @@
 /* eslint-disable */
-import Long from 'long';
-import * as _m0 from 'protobufjs/minimal';
-import { MoneyValue } from './common';
-import { GetAccountsRequest, GetAccountsResponse } from './users';
+import _m0 from "protobufjs/minimal";
+import { MoneyValue } from "./common";
 import {
-  PostOrderRequest,
-  PostOrderResponse,
-  GetOrdersRequest,
-  GetOrdersResponse,
-  CancelOrderRequest,
-  CancelOrderResponse,
-  GetOrderStateRequest,
-  OrderState,
-} from './orders';
-import {
-  PositionsRequest,
-  PositionsResponse,
+  GetOperationsByCursorRequest,
+  GetOperationsByCursorResponse,
   OperationsRequest,
   OperationsResponse,
   PortfolioRequest,
   PortfolioResponse,
-} from './operations';
+  PositionsRequest,
+  PositionsResponse,
+  WithdrawLimitsRequest,
+  WithdrawLimitsResponse,
+} from "./operations";
+import {
+  CancelOrderRequest,
+  CancelOrderResponse,
+  GetOrdersRequest,
+  GetOrdersResponse,
+  GetOrderStateRequest,
+  OrderState,
+  PostOrderRequest,
+  PostOrderResponse,
+  ReplaceOrderRequest,
+} from "./orders";
+import { GetAccountsRequest, GetAccountsResponse } from "./users";
 
-export const protobufPackage = 'tinkoff.public.invest.api.contract.v1';
+export const protobufPackage = "tinkoff.public.invest.api.contract.v1";
 
 /** Запрос открытия счёта в песочнице. */
-export interface OpenSandboxAccountRequest {}
+export interface OpenSandboxAccountRequest {
+}
 
 /** Номер открытого счёта в песочнице. */
 export interface OpenSandboxAccountResponse {
@@ -40,7 +45,8 @@ export interface CloseSandboxAccountRequest {
 }
 
 /** Результат закрытия счёта в песочнице. */
-export interface CloseSandboxAccountResponse {}
+export interface CloseSandboxAccountResponse {
+}
 
 /** Запрос пополнения счёта в песочнице. */
 export interface SandboxPayInRequest {
@@ -96,12 +102,12 @@ export const OpenSandboxAccountRequest = {
 };
 
 function createBaseOpenSandboxAccountResponse(): OpenSandboxAccountResponse {
-  return { accountId: '' };
+  return { accountId: "" };
 }
 
 export const OpenSandboxAccountResponse = {
   encode(message: OpenSandboxAccountResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(10).string(message.accountId);
     }
     return writer;
@@ -126,9 +132,7 @@ export const OpenSandboxAccountResponse = {
   },
 
   fromJSON(object: any): OpenSandboxAccountResponse {
-    return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
-    };
+    return { accountId: isSet(object.accountId) ? String(object.accountId) : "" };
   },
 
   toJSON(message: OpenSandboxAccountResponse): unknown {
@@ -139,18 +143,18 @@ export const OpenSandboxAccountResponse = {
 
   fromPartial(object: DeepPartial<OpenSandboxAccountResponse>): OpenSandboxAccountResponse {
     const message = createBaseOpenSandboxAccountResponse();
-    message.accountId = object.accountId ?? '';
+    message.accountId = object.accountId ?? "";
     return message;
   },
 };
 
 function createBaseCloseSandboxAccountRequest(): CloseSandboxAccountRequest {
-  return { accountId: '' };
+  return { accountId: "" };
 }
 
 export const CloseSandboxAccountRequest = {
   encode(message: CloseSandboxAccountRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(10).string(message.accountId);
     }
     return writer;
@@ -175,9 +179,7 @@ export const CloseSandboxAccountRequest = {
   },
 
   fromJSON(object: any): CloseSandboxAccountRequest {
-    return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
-    };
+    return { accountId: isSet(object.accountId) ? String(object.accountId) : "" };
   },
 
   toJSON(message: CloseSandboxAccountRequest): unknown {
@@ -188,7 +190,7 @@ export const CloseSandboxAccountRequest = {
 
   fromPartial(object: DeepPartial<CloseSandboxAccountRequest>): CloseSandboxAccountRequest {
     const message = createBaseCloseSandboxAccountRequest();
-    message.accountId = object.accountId ?? '';
+    message.accountId = object.accountId ?? "";
     return message;
   },
 };
@@ -233,12 +235,12 @@ export const CloseSandboxAccountResponse = {
 };
 
 function createBaseSandboxPayInRequest(): SandboxPayInRequest {
-  return { accountId: '', amount: undefined };
+  return { accountId: "", amount: undefined };
 }
 
 export const SandboxPayInRequest = {
   encode(message: SandboxPayInRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(10).string(message.accountId);
     }
     if (message.amount !== undefined) {
@@ -270,7 +272,7 @@ export const SandboxPayInRequest = {
 
   fromJSON(object: any): SandboxPayInRequest {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
+      accountId: isSet(object.accountId) ? String(object.accountId) : "",
       amount: isSet(object.amount) ? MoneyValue.fromJSON(object.amount) : undefined,
     };
   },
@@ -284,9 +286,10 @@ export const SandboxPayInRequest = {
 
   fromPartial(object: DeepPartial<SandboxPayInRequest>): SandboxPayInRequest {
     const message = createBaseSandboxPayInRequest();
-    message.accountId = object.accountId ?? '';
-    message.amount =
-      object.amount !== undefined && object.amount !== null ? MoneyValue.fromPartial(object.amount) : undefined;
+    message.accountId = object.accountId ?? "";
+    message.amount = (object.amount !== undefined && object.amount !== null)
+      ? MoneyValue.fromPartial(object.amount)
+      : undefined;
     return message;
   },
 };
@@ -322,9 +325,7 @@ export const SandboxPayInResponse = {
   },
 
   fromJSON(object: any): SandboxPayInResponse {
-    return {
-      balance: isSet(object.balance) ? MoneyValue.fromJSON(object.balance) : undefined,
-    };
+    return { balance: isSet(object.balance) ? MoneyValue.fromJSON(object.balance) : undefined };
   },
 
   toJSON(message: SandboxPayInResponse): unknown {
@@ -335,8 +336,9 @@ export const SandboxPayInResponse = {
 
   fromPartial(object: DeepPartial<SandboxPayInResponse>): SandboxPayInResponse {
     const message = createBaseSandboxPayInResponse();
-    message.balance =
-      object.balance !== undefined && object.balance !== null ? MoneyValue.fromPartial(object.balance) : undefined;
+    message.balance = (object.balance !== undefined && object.balance !== null)
+      ? MoneyValue.fromPartial(object.balance)
+      : undefined;
     return message;
   },
 };
@@ -344,12 +346,12 @@ export const SandboxPayInResponse = {
 /** Сервис для работы с песочницей TINKOFF INVEST API */
 export type SandboxServiceDefinition = typeof SandboxServiceDefinition;
 export const SandboxServiceDefinition = {
-  name: 'SandboxService',
-  fullName: 'tinkoff.public.invest.api.contract.v1.SandboxService',
+  name: "SandboxService",
+  fullName: "tinkoff.public.invest.api.contract.v1.SandboxService",
   methods: {
     /** Метод регистрации счёта в песочнице. */
     openSandboxAccount: {
-      name: 'OpenSandboxAccount',
+      name: "OpenSandboxAccount",
       requestType: OpenSandboxAccountRequest,
       requestStream: false,
       responseType: OpenSandboxAccountResponse,
@@ -358,7 +360,7 @@ export const SandboxServiceDefinition = {
     },
     /** Метод получения счетов в песочнице. */
     getSandboxAccounts: {
-      name: 'GetSandboxAccounts',
+      name: "GetSandboxAccounts",
       requestType: GetAccountsRequest,
       requestStream: false,
       responseType: GetAccountsResponse,
@@ -367,7 +369,7 @@ export const SandboxServiceDefinition = {
     },
     /** Метод закрытия счёта в песочнице. */
     closeSandboxAccount: {
-      name: 'CloseSandboxAccount',
+      name: "CloseSandboxAccount",
       requestType: CloseSandboxAccountRequest,
       requestStream: false,
       responseType: CloseSandboxAccountResponse,
@@ -376,8 +378,17 @@ export const SandboxServiceDefinition = {
     },
     /** Метод выставления торгового поручения в песочнице. */
     postSandboxOrder: {
-      name: 'PostSandboxOrder',
+      name: "PostSandboxOrder",
       requestType: PostOrderRequest,
+      requestStream: false,
+      responseType: PostOrderResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод изменения выставленной заявки. */
+    replaceSandboxOrder: {
+      name: "ReplaceSandboxOrder",
+      requestType: ReplaceOrderRequest,
       requestStream: false,
       responseType: PostOrderResponse,
       responseStream: false,
@@ -385,7 +396,7 @@ export const SandboxServiceDefinition = {
     },
     /** Метод получения списка активных заявок по счёту в песочнице. */
     getSandboxOrders: {
-      name: 'GetSandboxOrders',
+      name: "GetSandboxOrders",
       requestType: GetOrdersRequest,
       requestStream: false,
       responseType: GetOrdersResponse,
@@ -394,7 +405,7 @@ export const SandboxServiceDefinition = {
     },
     /** Метод отмены торгового поручения в песочнице. */
     cancelSandboxOrder: {
-      name: 'CancelSandboxOrder',
+      name: "CancelSandboxOrder",
       requestType: CancelOrderRequest,
       requestStream: false,
       responseType: CancelOrderResponse,
@@ -403,7 +414,7 @@ export const SandboxServiceDefinition = {
     },
     /** Метод получения статуса заявки в песочнице. */
     getSandboxOrderState: {
-      name: 'GetSandboxOrderState',
+      name: "GetSandboxOrderState",
       requestType: GetOrderStateRequest,
       requestStream: false,
       responseType: OrderState,
@@ -412,7 +423,7 @@ export const SandboxServiceDefinition = {
     },
     /** Метод получения позиций по виртуальному счёту песочницы. */
     getSandboxPositions: {
-      name: 'GetSandboxPositions',
+      name: "GetSandboxPositions",
       requestType: PositionsRequest,
       requestStream: false,
       responseType: PositionsResponse,
@@ -421,16 +432,25 @@ export const SandboxServiceDefinition = {
     },
     /** Метод получения операций в песочнице по номеру счёта. */
     getSandboxOperations: {
-      name: 'GetSandboxOperations',
+      name: "GetSandboxOperations",
       requestType: OperationsRequest,
       requestStream: false,
       responseType: OperationsResponse,
       responseStream: false,
       options: {},
     },
+    /** Метод получения операций в песочнице по номеру счета с пагинацией. */
+    getSandboxOperationsByCursor: {
+      name: "GetSandboxOperationsByCursor",
+      requestType: GetOperationsByCursorRequest,
+      requestStream: false,
+      responseType: GetOperationsByCursorResponse,
+      responseStream: false,
+      options: {},
+    },
     /** Метод получения портфолио в песочнице. */
     getSandboxPortfolio: {
-      name: 'GetSandboxPortfolio',
+      name: "GetSandboxPortfolio",
       requestType: PortfolioRequest,
       requestStream: false,
       responseType: PortfolioResponse,
@@ -439,10 +459,19 @@ export const SandboxServiceDefinition = {
     },
     /** Метод пополнения счёта в песочнице. */
     sandboxPayIn: {
-      name: 'SandboxPayIn',
+      name: "SandboxPayIn",
       requestType: SandboxPayInRequest,
       requestStream: false,
       responseType: SandboxPayInResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод получения доступного остатка для вывода средств в песочнице. */
+    getSandboxWithdrawLimits: {
+      name: "GetSandboxWithdrawLimits",
+      requestType: WithdrawLimitsRequest,
+      requestStream: false,
+      responseType: WithdrawLimitsResponse,
       responseStream: false,
       options: {},
     },
@@ -451,20 +480,10 @@ export const SandboxServiceDefinition = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-  ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
-}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

@@ -1,12 +1,12 @@
 /* eslint-disable */
-import Long from 'long';
-import * as _m0 from 'protobufjs/minimal';
-import { Timestamp } from './google/protobuf/timestamp';
-import { Ping, Quotation, MoneyValue } from './common';
+import Long from "long";
+import _m0 from "protobufjs/minimal";
+import { MoneyValue, Ping, Quotation } from "./common";
+import { Timestamp } from "./google/protobuf/timestamp";
 
-export const protobufPackage = 'tinkoff.public.invest.api.contract.v1';
+export const protobufPackage = "tinkoff.public.invest.api.contract.v1";
 
-/** Направление операции */
+/** Направление операции. */
 export enum OrderDirection {
   /** ORDER_DIRECTION_UNSPECIFIED - Значение не указано */
   ORDER_DIRECTION_UNSPECIFIED = 0,
@@ -20,16 +20,16 @@ export enum OrderDirection {
 export function orderDirectionFromJSON(object: any): OrderDirection {
   switch (object) {
     case 0:
-    case 'ORDER_DIRECTION_UNSPECIFIED':
+    case "ORDER_DIRECTION_UNSPECIFIED":
       return OrderDirection.ORDER_DIRECTION_UNSPECIFIED;
     case 1:
-    case 'ORDER_DIRECTION_BUY':
+    case "ORDER_DIRECTION_BUY":
       return OrderDirection.ORDER_DIRECTION_BUY;
     case 2:
-    case 'ORDER_DIRECTION_SELL':
+    case "ORDER_DIRECTION_SELL":
       return OrderDirection.ORDER_DIRECTION_SELL;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return OrderDirection.UNRECOGNIZED;
   }
@@ -38,17 +38,18 @@ export function orderDirectionFromJSON(object: any): OrderDirection {
 export function orderDirectionToJSON(object: OrderDirection): string {
   switch (object) {
     case OrderDirection.ORDER_DIRECTION_UNSPECIFIED:
-      return 'ORDER_DIRECTION_UNSPECIFIED';
+      return "ORDER_DIRECTION_UNSPECIFIED";
     case OrderDirection.ORDER_DIRECTION_BUY:
-      return 'ORDER_DIRECTION_BUY';
+      return "ORDER_DIRECTION_BUY";
     case OrderDirection.ORDER_DIRECTION_SELL:
-      return 'ORDER_DIRECTION_SELL';
+      return "ORDER_DIRECTION_SELL";
+    case OrderDirection.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
-/** Тип заявки */
+/** Тип заявки. */
 export enum OrderType {
   /** ORDER_TYPE_UNSPECIFIED - Значение не указано */
   ORDER_TYPE_UNSPECIFIED = 0,
@@ -62,16 +63,16 @@ export enum OrderType {
 export function orderTypeFromJSON(object: any): OrderType {
   switch (object) {
     case 0:
-    case 'ORDER_TYPE_UNSPECIFIED':
+    case "ORDER_TYPE_UNSPECIFIED":
       return OrderType.ORDER_TYPE_UNSPECIFIED;
     case 1:
-    case 'ORDER_TYPE_LIMIT':
+    case "ORDER_TYPE_LIMIT":
       return OrderType.ORDER_TYPE_LIMIT;
     case 2:
-    case 'ORDER_TYPE_MARKET':
+    case "ORDER_TYPE_MARKET":
       return OrderType.ORDER_TYPE_MARKET;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return OrderType.UNRECOGNIZED;
   }
@@ -80,13 +81,14 @@ export function orderTypeFromJSON(object: any): OrderType {
 export function orderTypeToJSON(object: OrderType): string {
   switch (object) {
     case OrderType.ORDER_TYPE_UNSPECIFIED:
-      return 'ORDER_TYPE_UNSPECIFIED';
+      return "ORDER_TYPE_UNSPECIFIED";
     case OrderType.ORDER_TYPE_LIMIT:
-      return 'ORDER_TYPE_LIMIT';
+      return "ORDER_TYPE_LIMIT";
     case OrderType.ORDER_TYPE_MARKET:
-      return 'ORDER_TYPE_MARKET';
+      return "ORDER_TYPE_MARKET";
+    case OrderType.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
   }
 }
 
@@ -109,25 +111,25 @@ export enum OrderExecutionReportStatus {
 export function orderExecutionReportStatusFromJSON(object: any): OrderExecutionReportStatus {
   switch (object) {
     case 0:
-    case 'EXECUTION_REPORT_STATUS_UNSPECIFIED':
+    case "EXECUTION_REPORT_STATUS_UNSPECIFIED":
       return OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_UNSPECIFIED;
     case 1:
-    case 'EXECUTION_REPORT_STATUS_FILL':
+    case "EXECUTION_REPORT_STATUS_FILL":
       return OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_FILL;
     case 2:
-    case 'EXECUTION_REPORT_STATUS_REJECTED':
+    case "EXECUTION_REPORT_STATUS_REJECTED":
       return OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_REJECTED;
     case 3:
-    case 'EXECUTION_REPORT_STATUS_CANCELLED':
+    case "EXECUTION_REPORT_STATUS_CANCELLED":
       return OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_CANCELLED;
     case 4:
-    case 'EXECUTION_REPORT_STATUS_NEW':
+    case "EXECUTION_REPORT_STATUS_NEW":
       return OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_NEW;
     case 5:
-    case 'EXECUTION_REPORT_STATUS_PARTIALLYFILL':
+    case "EXECUTION_REPORT_STATUS_PARTIALLYFILL":
       return OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_PARTIALLYFILL;
     case -1:
-    case 'UNRECOGNIZED':
+    case "UNRECOGNIZED":
     default:
       return OrderExecutionReportStatus.UNRECOGNIZED;
   }
@@ -136,19 +138,63 @@ export function orderExecutionReportStatusFromJSON(object: any): OrderExecutionR
 export function orderExecutionReportStatusToJSON(object: OrderExecutionReportStatus): string {
   switch (object) {
     case OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_UNSPECIFIED:
-      return 'EXECUTION_REPORT_STATUS_UNSPECIFIED';
+      return "EXECUTION_REPORT_STATUS_UNSPECIFIED";
     case OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_FILL:
-      return 'EXECUTION_REPORT_STATUS_FILL';
+      return "EXECUTION_REPORT_STATUS_FILL";
     case OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_REJECTED:
-      return 'EXECUTION_REPORT_STATUS_REJECTED';
+      return "EXECUTION_REPORT_STATUS_REJECTED";
     case OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_CANCELLED:
-      return 'EXECUTION_REPORT_STATUS_CANCELLED';
+      return "EXECUTION_REPORT_STATUS_CANCELLED";
     case OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_NEW:
-      return 'EXECUTION_REPORT_STATUS_NEW';
+      return "EXECUTION_REPORT_STATUS_NEW";
     case OrderExecutionReportStatus.EXECUTION_REPORT_STATUS_PARTIALLYFILL:
-      return 'EXECUTION_REPORT_STATUS_PARTIALLYFILL';
+      return "EXECUTION_REPORT_STATUS_PARTIALLYFILL";
+    case OrderExecutionReportStatus.UNRECOGNIZED:
     default:
-      return 'UNKNOWN';
+      return "UNRECOGNIZED";
+  }
+}
+
+/** Тип цены. */
+export enum PriceType {
+  /** PRICE_TYPE_UNSPECIFIED - Значение не определено. */
+  PRICE_TYPE_UNSPECIFIED = 0,
+  /** PRICE_TYPE_POINT - Цена в пунктах (только для фьючерсов и облигаций). */
+  PRICE_TYPE_POINT = 1,
+  /** PRICE_TYPE_CURRENCY - Цена в валюте расчётов по инструменту. */
+  PRICE_TYPE_CURRENCY = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function priceTypeFromJSON(object: any): PriceType {
+  switch (object) {
+    case 0:
+    case "PRICE_TYPE_UNSPECIFIED":
+      return PriceType.PRICE_TYPE_UNSPECIFIED;
+    case 1:
+    case "PRICE_TYPE_POINT":
+      return PriceType.PRICE_TYPE_POINT;
+    case 2:
+    case "PRICE_TYPE_CURRENCY":
+      return PriceType.PRICE_TYPE_CURRENCY;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return PriceType.UNRECOGNIZED;
+  }
+}
+
+export function priceTypeToJSON(object: PriceType): string {
+  switch (object) {
+    case PriceType.PRICE_TYPE_UNSPECIFIED:
+      return "PRICE_TYPE_UNSPECIFIED";
+    case PriceType.PRICE_TYPE_POINT:
+      return "PRICE_TYPE_POINT";
+    case PriceType.PRICE_TYPE_CURRENCY:
+      return "PRICE_TYPE_CURRENCY";
+    case PriceType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
   }
 }
 
@@ -161,7 +207,9 @@ export interface TradesStreamRequest {
 /** Информация о торговых поручениях. */
 export interface TradesStreamResponse {
   /** Информация об исполнении торгового поручения. */
-  orderTrades: OrderTrades | undefined;
+  orderTrades:
+    | OrderTrades
+    | undefined;
   /** Проверка активности стрима. */
   ping: Ping | undefined;
 }
@@ -171,7 +219,9 @@ export interface OrderTrades {
   /** Идентификатор торгового поручения. */
   orderId: string;
   /** Дата и время создания сообщения в часовом поясе UTC. */
-  createdAt: Date | undefined;
+  createdAt:
+    | Date
+    | undefined;
   /** Направление сделки. */
   direction: OrderDirection;
   /** Figi-идентификатор инструмента. */
@@ -180,14 +230,20 @@ export interface OrderTrades {
   trades: OrderTrade[];
   /** Идентификатор счёта. */
   accountId: string;
+  /** UID идентификатор инструмента. */
+  instrumentUid: string;
 }
 
 /** Информация о сделке. */
 export interface OrderTrade {
   /** Дата и время совершения сделки в часовом поясе UTC. */
-  dateTime: Date | undefined;
+  dateTime:
+    | Date
+    | undefined;
   /** Цена одного инструмента, по которой совершена сделка. */
-  price: Quotation | undefined;
+  price:
+    | Quotation
+    | undefined;
   /** Количество лотов в сделке. */
   quantity: number;
 }
@@ -198,8 +254,10 @@ export interface PostOrderRequest {
   figi: string;
   /** Количество лотов. */
   quantity: number;
-  /** Цена одного инструмента. Для получения стоимости лота требуется умножить на лотность инструмента. */
-  price: Quotation | undefined;
+  /** Цена одного инструмента. Для получения стоимости лота требуется умножить на лотность инструмента. Игнорируется для рыночных поручений. */
+  price:
+    | Quotation
+    | undefined;
   /** Направление операции. */
   direction: OrderDirection;
   /** Номер счёта. */
@@ -208,6 +266,8 @@ export interface PostOrderRequest {
   orderType: OrderType;
   /** Идентификатор запроса выставления поручения для целей идемпотентности. Максимальная длина 36 символов. */
   orderId: string;
+  /** Идентификатор инструмента, принимает значения Figi или Instrument_uid. */
+  instrumentId: string;
 }
 
 /** Информация о выставлении поручения. */
@@ -221,29 +281,47 @@ export interface PostOrderResponse {
   /** Исполнено лотов. */
   lotsExecuted: number;
   /** Начальная цена заявки. Произведение количества запрошенных лотов на цену. */
-  initialOrderPrice: MoneyValue | undefined;
+  initialOrderPrice:
+    | MoneyValue
+    | undefined;
   /** Исполненная цена заявки. Произведение средней цены покупки на количество лотов. */
-  executedOrderPrice: MoneyValue | undefined;
+  executedOrderPrice:
+    | MoneyValue
+    | undefined;
   /** Итоговая стоимость заявки, включающая все комиссии. */
-  totalOrderAmount: MoneyValue | undefined;
+  totalOrderAmount:
+    | MoneyValue
+    | undefined;
   /** Начальная комиссия. Комиссия рассчитанная при выставлении заявки. */
-  initialCommission: MoneyValue | undefined;
+  initialCommission:
+    | MoneyValue
+    | undefined;
   /** Фактическая комиссия по итогам исполнения заявки. */
-  executedCommission: MoneyValue | undefined;
+  executedCommission:
+    | MoneyValue
+    | undefined;
   /** Значение НКД (накопленного купонного дохода) на дату. Подробнее: [НКД при выставлении торговых поручений](https://tinkoff.github.io/investAPI/head-orders#coupon) */
-  aciValue: MoneyValue | undefined;
+  aciValue:
+    | MoneyValue
+    | undefined;
   /** Figi-идентификатор инструмента. */
   figi: string;
   /** Направление сделки. */
   direction: OrderDirection;
   /** Начальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
-  initialSecurityPrice: MoneyValue | undefined;
+  initialSecurityPrice:
+    | MoneyValue
+    | undefined;
   /** Тип заявки. */
   orderType: OrderType;
   /** Дополнительные данные об исполнении заявки. */
   message: string;
   /** Начальная цена заявки в пунктах (для фьючерсов). */
-  initialOrderPricePt: Quotation | undefined;
+  initialOrderPricePt:
+    | Quotation
+    | undefined;
+  /** UID идентификатор инструмента. */
+  instrumentUid: string;
 }
 
 /** Запрос отмены торгового поручения. */
@@ -291,43 +369,83 @@ export interface OrderState {
   /** Исполнено лотов. */
   lotsExecuted: number;
   /** Начальная цена заявки. Произведение количества запрошенных лотов на цену. */
-  initialOrderPrice: MoneyValue | undefined;
+  initialOrderPrice:
+    | MoneyValue
+    | undefined;
   /** Исполненная цена заявки. Произведение средней цены покупки на количество лотов. */
-  executedOrderPrice: MoneyValue | undefined;
+  executedOrderPrice:
+    | MoneyValue
+    | undefined;
   /** Итоговая стоимость заявки, включающая все комиссии. */
-  totalOrderAmount: MoneyValue | undefined;
+  totalOrderAmount:
+    | MoneyValue
+    | undefined;
   /** Средняя цена позиции по сделке. */
-  averagePositionPrice: MoneyValue | undefined;
+  averagePositionPrice:
+    | MoneyValue
+    | undefined;
   /** Начальная комиссия. Комиссия, рассчитанная на момент подачи заявки. */
-  initialCommission: MoneyValue | undefined;
+  initialCommission:
+    | MoneyValue
+    | undefined;
   /** Фактическая комиссия по итогам исполнения заявки. */
-  executedCommission: MoneyValue | undefined;
+  executedCommission:
+    | MoneyValue
+    | undefined;
   /** Figi-идентификатор инструмента. */
   figi: string;
   /** Направление заявки. */
   direction: OrderDirection;
   /** Начальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
-  initialSecurityPrice: MoneyValue | undefined;
+  initialSecurityPrice:
+    | MoneyValue
+    | undefined;
   /** Стадии выполнения заявки. */
   stages: OrderStage[];
   /** Сервисная комиссия. */
-  serviceCommission: MoneyValue | undefined;
+  serviceCommission:
+    | MoneyValue
+    | undefined;
   /** Валюта заявки. */
   currency: string;
   /** Тип заявки. */
   orderType: OrderType;
   /** Дата и время выставления заявки в часовом поясе UTC. */
-  orderDate: Date | undefined;
+  orderDate:
+    | Date
+    | undefined;
+  /** UID идентификатор инструмента. */
+  instrumentUid: string;
 }
 
 /** Сделки в рамках торгового поручения. */
 export interface OrderStage {
   /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.. */
-  price: MoneyValue | undefined;
+  price:
+    | MoneyValue
+    | undefined;
   /** Количество лотов. */
   quantity: number;
   /** Идентификатор торговой операции. */
   tradeId: string;
+}
+
+/** Запрос изменения выставленной заявки. */
+export interface ReplaceOrderRequest {
+  /** Номер счета. */
+  accountId: string;
+  /** Идентификатор заявки на бирже. */
+  orderId: string;
+  /** Новый идентификатор запроса выставления поручения для целей идемпотентности. Максимальная длина 36 символов. Перезатирает старый ключ. */
+  idempotencyKey: string;
+  /** Количество лотов. */
+  quantity: number;
+  /** Цена за 1 инструмент. */
+  price:
+    | Quotation
+    | undefined;
+  /** Тип цены. */
+  priceType: PriceType;
 }
 
 function createBaseTradesStreamRequest(): TradesStreamRequest {
@@ -361,15 +479,13 @@ export const TradesStreamRequest = {
   },
 
   fromJSON(object: any): TradesStreamRequest {
-    return {
-      accounts: Array.isArray(object?.accounts) ? object.accounts.map((e: any) => String(e)) : [],
-    };
+    return { accounts: Array.isArray(object?.accounts) ? object.accounts.map((e: any) => String(e)) : [] };
   },
 
   toJSON(message: TradesStreamRequest): unknown {
     const obj: any = {};
     if (message.accounts) {
-      obj.accounts = message.accounts.map(e => e);
+      obj.accounts = message.accounts.map((e) => e);
     } else {
       obj.accounts = [];
     }
@@ -378,7 +494,7 @@ export const TradesStreamRequest = {
 
   fromPartial(object: DeepPartial<TradesStreamRequest>): TradesStreamRequest {
     const message = createBaseTradesStreamRequest();
-    message.accounts = object.accounts?.map(e => e) || [];
+    message.accounts = object.accounts?.map((e) => e) || [];
     return message;
   },
 };
@@ -436,22 +552,21 @@ export const TradesStreamResponse = {
 
   fromPartial(object: DeepPartial<TradesStreamResponse>): TradesStreamResponse {
     const message = createBaseTradesStreamResponse();
-    message.orderTrades =
-      object.orderTrades !== undefined && object.orderTrades !== null
-        ? OrderTrades.fromPartial(object.orderTrades)
-        : undefined;
-    message.ping = object.ping !== undefined && object.ping !== null ? Ping.fromPartial(object.ping) : undefined;
+    message.orderTrades = (object.orderTrades !== undefined && object.orderTrades !== null)
+      ? OrderTrades.fromPartial(object.orderTrades)
+      : undefined;
+    message.ping = (object.ping !== undefined && object.ping !== null) ? Ping.fromPartial(object.ping) : undefined;
     return message;
   },
 };
 
 function createBaseOrderTrades(): OrderTrades {
-  return { orderId: '', createdAt: undefined, direction: 0, figi: '', trades: [], accountId: '' };
+  return { orderId: "", createdAt: undefined, direction: 0, figi: "", trades: [], accountId: "", instrumentUid: "" };
 }
 
 export const OrderTrades = {
   encode(message: OrderTrades, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.orderId !== '') {
+    if (message.orderId !== "") {
       writer.uint32(10).string(message.orderId);
     }
     if (message.createdAt !== undefined) {
@@ -460,14 +575,17 @@ export const OrderTrades = {
     if (message.direction !== 0) {
       writer.uint32(24).int32(message.direction);
     }
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(34).string(message.figi);
     }
     for (const v of message.trades) {
       OrderTrade.encode(v!, writer.uint32(42).fork()).ldelim();
     }
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(50).string(message.accountId);
+    }
+    if (message.instrumentUid !== "") {
+      writer.uint32(58).string(message.instrumentUid);
     }
     return writer;
   },
@@ -497,6 +615,9 @@ export const OrderTrades = {
         case 6:
           message.accountId = reader.string();
           break;
+        case 7:
+          message.instrumentUid = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -507,12 +628,13 @@ export const OrderTrades = {
 
   fromJSON(object: any): OrderTrades {
     return {
-      orderId: isSet(object.orderId) ? String(object.orderId) : '',
+      orderId: isSet(object.orderId) ? String(object.orderId) : "",
       createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
       direction: isSet(object.direction) ? orderDirectionFromJSON(object.direction) : 0,
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
       trades: Array.isArray(object?.trades) ? object.trades.map((e: any) => OrderTrade.fromJSON(e)) : [],
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
+      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
     };
   },
 
@@ -523,22 +645,24 @@ export const OrderTrades = {
     message.direction !== undefined && (obj.direction = orderDirectionToJSON(message.direction));
     message.figi !== undefined && (obj.figi = message.figi);
     if (message.trades) {
-      obj.trades = message.trades.map(e => (e ? OrderTrade.toJSON(e) : undefined));
+      obj.trades = message.trades.map((e) => e ? OrderTrade.toJSON(e) : undefined);
     } else {
       obj.trades = [];
     }
     message.accountId !== undefined && (obj.accountId = message.accountId);
+    message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
     return obj;
   },
 
   fromPartial(object: DeepPartial<OrderTrades>): OrderTrades {
     const message = createBaseOrderTrades();
-    message.orderId = object.orderId ?? '';
+    message.orderId = object.orderId ?? "";
     message.createdAt = object.createdAt ?? undefined;
     message.direction = object.direction ?? 0;
-    message.figi = object.figi ?? '';
-    message.trades = object.trades?.map(e => OrderTrade.fromPartial(e)) || [];
-    message.accountId = object.accountId ?? '';
+    message.figi = object.figi ?? "";
+    message.trades = object.trades?.map((e) => OrderTrade.fromPartial(e)) || [];
+    message.accountId = object.accountId ?? "";
+    message.instrumentUid = object.instrumentUid ?? "";
     return message;
   },
 };
@@ -604,20 +728,30 @@ export const OrderTrade = {
   fromPartial(object: DeepPartial<OrderTrade>): OrderTrade {
     const message = createBaseOrderTrade();
     message.dateTime = object.dateTime ?? undefined;
-    message.price =
-      object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
+    message.price = (object.price !== undefined && object.price !== null)
+      ? Quotation.fromPartial(object.price)
+      : undefined;
     message.quantity = object.quantity ?? 0;
     return message;
   },
 };
 
 function createBasePostOrderRequest(): PostOrderRequest {
-  return { figi: '', quantity: 0, price: undefined, direction: 0, accountId: '', orderType: 0, orderId: '' };
+  return {
+    figi: "",
+    quantity: 0,
+    price: undefined,
+    direction: 0,
+    accountId: "",
+    orderType: 0,
+    orderId: "",
+    instrumentId: "",
+  };
 }
 
 export const PostOrderRequest = {
   encode(message: PostOrderRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(10).string(message.figi);
     }
     if (message.quantity !== 0) {
@@ -629,14 +763,17 @@ export const PostOrderRequest = {
     if (message.direction !== 0) {
       writer.uint32(32).int32(message.direction);
     }
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(42).string(message.accountId);
     }
     if (message.orderType !== 0) {
       writer.uint32(48).int32(message.orderType);
     }
-    if (message.orderId !== '') {
+    if (message.orderId !== "") {
       writer.uint32(58).string(message.orderId);
+    }
+    if (message.instrumentId !== "") {
+      writer.uint32(66).string(message.instrumentId);
     }
     return writer;
   },
@@ -669,6 +806,9 @@ export const PostOrderRequest = {
         case 7:
           message.orderId = reader.string();
           break;
+        case 8:
+          message.instrumentId = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -679,13 +819,14 @@ export const PostOrderRequest = {
 
   fromJSON(object: any): PostOrderRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
       price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
       direction: isSet(object.direction) ? orderDirectionFromJSON(object.direction) : 0,
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
+      accountId: isSet(object.accountId) ? String(object.accountId) : "",
       orderType: isSet(object.orderType) ? orderTypeFromJSON(object.orderType) : 0,
-      orderId: isSet(object.orderId) ? String(object.orderId) : '',
+      orderId: isSet(object.orderId) ? String(object.orderId) : "",
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
     };
   },
 
@@ -698,26 +839,29 @@ export const PostOrderRequest = {
     message.accountId !== undefined && (obj.accountId = message.accountId);
     message.orderType !== undefined && (obj.orderType = orderTypeToJSON(message.orderType));
     message.orderId !== undefined && (obj.orderId = message.orderId);
+    message.instrumentId !== undefined && (obj.instrumentId = message.instrumentId);
     return obj;
   },
 
   fromPartial(object: DeepPartial<PostOrderRequest>): PostOrderRequest {
     const message = createBasePostOrderRequest();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? "";
     message.quantity = object.quantity ?? 0;
-    message.price =
-      object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
+    message.price = (object.price !== undefined && object.price !== null)
+      ? Quotation.fromPartial(object.price)
+      : undefined;
     message.direction = object.direction ?? 0;
-    message.accountId = object.accountId ?? '';
+    message.accountId = object.accountId ?? "";
     message.orderType = object.orderType ?? 0;
-    message.orderId = object.orderId ?? '';
+    message.orderId = object.orderId ?? "";
+    message.instrumentId = object.instrumentId ?? "";
     return message;
   },
 };
 
 function createBasePostOrderResponse(): PostOrderResponse {
   return {
-    orderId: '',
+    orderId: "",
     executionReportStatus: 0,
     lotsRequested: 0,
     lotsExecuted: 0,
@@ -727,18 +871,19 @@ function createBasePostOrderResponse(): PostOrderResponse {
     initialCommission: undefined,
     executedCommission: undefined,
     aciValue: undefined,
-    figi: '',
+    figi: "",
     direction: 0,
     initialSecurityPrice: undefined,
     orderType: 0,
-    message: '',
+    message: "",
     initialOrderPricePt: undefined,
+    instrumentUid: "",
   };
 }
 
 export const PostOrderResponse = {
   encode(message: PostOrderResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.orderId !== '') {
+    if (message.orderId !== "") {
       writer.uint32(10).string(message.orderId);
     }
     if (message.executionReportStatus !== 0) {
@@ -768,7 +913,7 @@ export const PostOrderResponse = {
     if (message.aciValue !== undefined) {
       MoneyValue.encode(message.aciValue, writer.uint32(82).fork()).ldelim();
     }
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(90).string(message.figi);
     }
     if (message.direction !== 0) {
@@ -780,11 +925,14 @@ export const PostOrderResponse = {
     if (message.orderType !== 0) {
       writer.uint32(112).int32(message.orderType);
     }
-    if (message.message !== '') {
+    if (message.message !== "") {
       writer.uint32(122).string(message.message);
     }
     if (message.initialOrderPricePt !== undefined) {
       Quotation.encode(message.initialOrderPricePt, writer.uint32(130).fork()).ldelim();
+    }
+    if (message.instrumentUid !== "") {
+      writer.uint32(138).string(message.instrumentUid);
     }
     return writer;
   },
@@ -844,6 +992,9 @@ export const PostOrderResponse = {
         case 16:
           message.initialOrderPricePt = Quotation.decode(reader, reader.uint32());
           break;
+        case 17:
+          message.instrumentUid = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -854,7 +1005,7 @@ export const PostOrderResponse = {
 
   fromJSON(object: any): PostOrderResponse {
     return {
-      orderId: isSet(object.orderId) ? String(object.orderId) : '',
+      orderId: isSet(object.orderId) ? String(object.orderId) : "",
       executionReportStatus: isSet(object.executionReportStatus)
         ? orderExecutionReportStatusFromJSON(object.executionReportStatus)
         : 0,
@@ -866,16 +1017,17 @@ export const PostOrderResponse = {
       initialCommission: isSet(object.initialCommission) ? MoneyValue.fromJSON(object.initialCommission) : undefined,
       executedCommission: isSet(object.executedCommission) ? MoneyValue.fromJSON(object.executedCommission) : undefined,
       aciValue: isSet(object.aciValue) ? MoneyValue.fromJSON(object.aciValue) : undefined,
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
       direction: isSet(object.direction) ? orderDirectionFromJSON(object.direction) : 0,
       initialSecurityPrice: isSet(object.initialSecurityPrice)
         ? MoneyValue.fromJSON(object.initialSecurityPrice)
         : undefined,
       orderType: isSet(object.orderType) ? orderTypeFromJSON(object.orderType) : 0,
-      message: isSet(object.message) ? String(object.message) : '',
+      message: isSet(object.message) ? String(object.message) : "",
       initialOrderPricePt: isSet(object.initialOrderPricePt)
         ? Quotation.fromJSON(object.initialOrderPricePt)
         : undefined,
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
     };
   },
 
@@ -900,73 +1052,68 @@ export const PostOrderResponse = {
       (obj.aciValue = message.aciValue ? MoneyValue.toJSON(message.aciValue) : undefined);
     message.figi !== undefined && (obj.figi = message.figi);
     message.direction !== undefined && (obj.direction = orderDirectionToJSON(message.direction));
-    message.initialSecurityPrice !== undefined &&
-      (obj.initialSecurityPrice = message.initialSecurityPrice
-        ? MoneyValue.toJSON(message.initialSecurityPrice)
-        : undefined);
+    message.initialSecurityPrice !== undefined && (obj.initialSecurityPrice = message.initialSecurityPrice
+      ? MoneyValue.toJSON(message.initialSecurityPrice)
+      : undefined);
     message.orderType !== undefined && (obj.orderType = orderTypeToJSON(message.orderType));
     message.message !== undefined && (obj.message = message.message);
     message.initialOrderPricePt !== undefined &&
       (obj.initialOrderPricePt = message.initialOrderPricePt
         ? Quotation.toJSON(message.initialOrderPricePt)
         : undefined);
+    message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
     return obj;
   },
 
   fromPartial(object: DeepPartial<PostOrderResponse>): PostOrderResponse {
     const message = createBasePostOrderResponse();
-    message.orderId = object.orderId ?? '';
+    message.orderId = object.orderId ?? "";
     message.executionReportStatus = object.executionReportStatus ?? 0;
     message.lotsRequested = object.lotsRequested ?? 0;
     message.lotsExecuted = object.lotsExecuted ?? 0;
-    message.initialOrderPrice =
-      object.initialOrderPrice !== undefined && object.initialOrderPrice !== null
-        ? MoneyValue.fromPartial(object.initialOrderPrice)
-        : undefined;
-    message.executedOrderPrice =
-      object.executedOrderPrice !== undefined && object.executedOrderPrice !== null
-        ? MoneyValue.fromPartial(object.executedOrderPrice)
-        : undefined;
-    message.totalOrderAmount =
-      object.totalOrderAmount !== undefined && object.totalOrderAmount !== null
-        ? MoneyValue.fromPartial(object.totalOrderAmount)
-        : undefined;
-    message.initialCommission =
-      object.initialCommission !== undefined && object.initialCommission !== null
-        ? MoneyValue.fromPartial(object.initialCommission)
-        : undefined;
-    message.executedCommission =
-      object.executedCommission !== undefined && object.executedCommission !== null
-        ? MoneyValue.fromPartial(object.executedCommission)
-        : undefined;
-    message.aciValue =
-      object.aciValue !== undefined && object.aciValue !== null ? MoneyValue.fromPartial(object.aciValue) : undefined;
-    message.figi = object.figi ?? '';
+    message.initialOrderPrice = (object.initialOrderPrice !== undefined && object.initialOrderPrice !== null)
+      ? MoneyValue.fromPartial(object.initialOrderPrice)
+      : undefined;
+    message.executedOrderPrice = (object.executedOrderPrice !== undefined && object.executedOrderPrice !== null)
+      ? MoneyValue.fromPartial(object.executedOrderPrice)
+      : undefined;
+    message.totalOrderAmount = (object.totalOrderAmount !== undefined && object.totalOrderAmount !== null)
+      ? MoneyValue.fromPartial(object.totalOrderAmount)
+      : undefined;
+    message.initialCommission = (object.initialCommission !== undefined && object.initialCommission !== null)
+      ? MoneyValue.fromPartial(object.initialCommission)
+      : undefined;
+    message.executedCommission = (object.executedCommission !== undefined && object.executedCommission !== null)
+      ? MoneyValue.fromPartial(object.executedCommission)
+      : undefined;
+    message.aciValue = (object.aciValue !== undefined && object.aciValue !== null)
+      ? MoneyValue.fromPartial(object.aciValue)
+      : undefined;
+    message.figi = object.figi ?? "";
     message.direction = object.direction ?? 0;
-    message.initialSecurityPrice =
-      object.initialSecurityPrice !== undefined && object.initialSecurityPrice !== null
-        ? MoneyValue.fromPartial(object.initialSecurityPrice)
-        : undefined;
+    message.initialSecurityPrice = (object.initialSecurityPrice !== undefined && object.initialSecurityPrice !== null)
+      ? MoneyValue.fromPartial(object.initialSecurityPrice)
+      : undefined;
     message.orderType = object.orderType ?? 0;
-    message.message = object.message ?? '';
-    message.initialOrderPricePt =
-      object.initialOrderPricePt !== undefined && object.initialOrderPricePt !== null
-        ? Quotation.fromPartial(object.initialOrderPricePt)
-        : undefined;
+    message.message = object.message ?? "";
+    message.initialOrderPricePt = (object.initialOrderPricePt !== undefined && object.initialOrderPricePt !== null)
+      ? Quotation.fromPartial(object.initialOrderPricePt)
+      : undefined;
+    message.instrumentUid = object.instrumentUid ?? "";
     return message;
   },
 };
 
 function createBaseCancelOrderRequest(): CancelOrderRequest {
-  return { accountId: '', orderId: '' };
+  return { accountId: "", orderId: "" };
 }
 
 export const CancelOrderRequest = {
   encode(message: CancelOrderRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(10).string(message.accountId);
     }
-    if (message.orderId !== '') {
+    if (message.orderId !== "") {
       writer.uint32(18).string(message.orderId);
     }
     return writer;
@@ -995,8 +1142,8 @@ export const CancelOrderRequest = {
 
   fromJSON(object: any): CancelOrderRequest {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
-      orderId: isSet(object.orderId) ? String(object.orderId) : '',
+      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      orderId: isSet(object.orderId) ? String(object.orderId) : "",
     };
   },
 
@@ -1009,8 +1156,8 @@ export const CancelOrderRequest = {
 
   fromPartial(object: DeepPartial<CancelOrderRequest>): CancelOrderRequest {
     const message = createBaseCancelOrderRequest();
-    message.accountId = object.accountId ?? '';
-    message.orderId = object.orderId ?? '';
+    message.accountId = object.accountId ?? "";
+    message.orderId = object.orderId ?? "";
     return message;
   },
 };
@@ -1046,9 +1193,7 @@ export const CancelOrderResponse = {
   },
 
   fromJSON(object: any): CancelOrderResponse {
-    return {
-      time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
-    };
+    return { time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined };
   },
 
   toJSON(message: CancelOrderResponse): unknown {
@@ -1065,15 +1210,15 @@ export const CancelOrderResponse = {
 };
 
 function createBaseGetOrderStateRequest(): GetOrderStateRequest {
-  return { accountId: '', orderId: '' };
+  return { accountId: "", orderId: "" };
 }
 
 export const GetOrderStateRequest = {
   encode(message: GetOrderStateRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(10).string(message.accountId);
     }
-    if (message.orderId !== '') {
+    if (message.orderId !== "") {
       writer.uint32(18).string(message.orderId);
     }
     return writer;
@@ -1102,8 +1247,8 @@ export const GetOrderStateRequest = {
 
   fromJSON(object: any): GetOrderStateRequest {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
-      orderId: isSet(object.orderId) ? String(object.orderId) : '',
+      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      orderId: isSet(object.orderId) ? String(object.orderId) : "",
     };
   },
 
@@ -1116,19 +1261,19 @@ export const GetOrderStateRequest = {
 
   fromPartial(object: DeepPartial<GetOrderStateRequest>): GetOrderStateRequest {
     const message = createBaseGetOrderStateRequest();
-    message.accountId = object.accountId ?? '';
-    message.orderId = object.orderId ?? '';
+    message.accountId = object.accountId ?? "";
+    message.orderId = object.orderId ?? "";
     return message;
   },
 };
 
 function createBaseGetOrdersRequest(): GetOrdersRequest {
-  return { accountId: '' };
+  return { accountId: "" };
 }
 
 export const GetOrdersRequest = {
   encode(message: GetOrdersRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== '') {
+    if (message.accountId !== "") {
       writer.uint32(10).string(message.accountId);
     }
     return writer;
@@ -1153,9 +1298,7 @@ export const GetOrdersRequest = {
   },
 
   fromJSON(object: any): GetOrdersRequest {
-    return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : '',
-    };
+    return { accountId: isSet(object.accountId) ? String(object.accountId) : "" };
   },
 
   toJSON(message: GetOrdersRequest): unknown {
@@ -1166,7 +1309,7 @@ export const GetOrdersRequest = {
 
   fromPartial(object: DeepPartial<GetOrdersRequest>): GetOrdersRequest {
     const message = createBaseGetOrdersRequest();
-    message.accountId = object.accountId ?? '';
+    message.accountId = object.accountId ?? "";
     return message;
   },
 };
@@ -1202,15 +1345,13 @@ export const GetOrdersResponse = {
   },
 
   fromJSON(object: any): GetOrdersResponse {
-    return {
-      orders: Array.isArray(object?.orders) ? object.orders.map((e: any) => OrderState.fromJSON(e)) : [],
-    };
+    return { orders: Array.isArray(object?.orders) ? object.orders.map((e: any) => OrderState.fromJSON(e)) : [] };
   },
 
   toJSON(message: GetOrdersResponse): unknown {
     const obj: any = {};
     if (message.orders) {
-      obj.orders = message.orders.map(e => (e ? OrderState.toJSON(e) : undefined));
+      obj.orders = message.orders.map((e) => e ? OrderState.toJSON(e) : undefined);
     } else {
       obj.orders = [];
     }
@@ -1219,14 +1360,14 @@ export const GetOrdersResponse = {
 
   fromPartial(object: DeepPartial<GetOrdersResponse>): GetOrdersResponse {
     const message = createBaseGetOrdersResponse();
-    message.orders = object.orders?.map(e => OrderState.fromPartial(e)) || [];
+    message.orders = object.orders?.map((e) => OrderState.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseOrderState(): OrderState {
   return {
-    orderId: '',
+    orderId: "",
     executionReportStatus: 0,
     lotsRequested: 0,
     lotsExecuted: 0,
@@ -1236,20 +1377,21 @@ function createBaseOrderState(): OrderState {
     averagePositionPrice: undefined,
     initialCommission: undefined,
     executedCommission: undefined,
-    figi: '',
+    figi: "",
     direction: 0,
     initialSecurityPrice: undefined,
     stages: [],
     serviceCommission: undefined,
-    currency: '',
+    currency: "",
     orderType: 0,
     orderDate: undefined,
+    instrumentUid: "",
   };
 }
 
 export const OrderState = {
   encode(message: OrderState, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.orderId !== '') {
+    if (message.orderId !== "") {
       writer.uint32(10).string(message.orderId);
     }
     if (message.executionReportStatus !== 0) {
@@ -1279,7 +1421,7 @@ export const OrderState = {
     if (message.executedCommission !== undefined) {
       MoneyValue.encode(message.executedCommission, writer.uint32(82).fork()).ldelim();
     }
-    if (message.figi !== '') {
+    if (message.figi !== "") {
       writer.uint32(90).string(message.figi);
     }
     if (message.direction !== 0) {
@@ -1294,7 +1436,7 @@ export const OrderState = {
     if (message.serviceCommission !== undefined) {
       MoneyValue.encode(message.serviceCommission, writer.uint32(122).fork()).ldelim();
     }
-    if (message.currency !== '') {
+    if (message.currency !== "") {
       writer.uint32(130).string(message.currency);
     }
     if (message.orderType !== 0) {
@@ -1302,6 +1444,9 @@ export const OrderState = {
     }
     if (message.orderDate !== undefined) {
       Timestamp.encode(toTimestamp(message.orderDate), writer.uint32(146).fork()).ldelim();
+    }
+    if (message.instrumentUid !== "") {
+      writer.uint32(154).string(message.instrumentUid);
     }
     return writer;
   },
@@ -1367,6 +1512,9 @@ export const OrderState = {
         case 18:
           message.orderDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
+        case 19:
+          message.instrumentUid = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1377,7 +1525,7 @@ export const OrderState = {
 
   fromJSON(object: any): OrderState {
     return {
-      orderId: isSet(object.orderId) ? String(object.orderId) : '',
+      orderId: isSet(object.orderId) ? String(object.orderId) : "",
       executionReportStatus: isSet(object.executionReportStatus)
         ? orderExecutionReportStatusFromJSON(object.executionReportStatus)
         : 0,
@@ -1391,16 +1539,17 @@ export const OrderState = {
         : undefined,
       initialCommission: isSet(object.initialCommission) ? MoneyValue.fromJSON(object.initialCommission) : undefined,
       executedCommission: isSet(object.executedCommission) ? MoneyValue.fromJSON(object.executedCommission) : undefined,
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : "",
       direction: isSet(object.direction) ? orderDirectionFromJSON(object.direction) : 0,
       initialSecurityPrice: isSet(object.initialSecurityPrice)
         ? MoneyValue.fromJSON(object.initialSecurityPrice)
         : undefined,
       stages: Array.isArray(object?.stages) ? object.stages.map((e: any) => OrderStage.fromJSON(e)) : [],
       serviceCommission: isSet(object.serviceCommission) ? MoneyValue.fromJSON(object.serviceCommission) : undefined,
-      currency: isSet(object.currency) ? String(object.currency) : '',
+      currency: isSet(object.currency) ? String(object.currency) : "",
       orderType: isSet(object.orderType) ? orderTypeFromJSON(object.orderType) : 0,
       orderDate: isSet(object.orderDate) ? fromJsonTimestamp(object.orderDate) : undefined,
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
     };
   },
 
@@ -1417,22 +1566,20 @@ export const OrderState = {
       (obj.executedOrderPrice = message.executedOrderPrice ? MoneyValue.toJSON(message.executedOrderPrice) : undefined);
     message.totalOrderAmount !== undefined &&
       (obj.totalOrderAmount = message.totalOrderAmount ? MoneyValue.toJSON(message.totalOrderAmount) : undefined);
-    message.averagePositionPrice !== undefined &&
-      (obj.averagePositionPrice = message.averagePositionPrice
-        ? MoneyValue.toJSON(message.averagePositionPrice)
-        : undefined);
+    message.averagePositionPrice !== undefined && (obj.averagePositionPrice = message.averagePositionPrice
+      ? MoneyValue.toJSON(message.averagePositionPrice)
+      : undefined);
     message.initialCommission !== undefined &&
       (obj.initialCommission = message.initialCommission ? MoneyValue.toJSON(message.initialCommission) : undefined);
     message.executedCommission !== undefined &&
       (obj.executedCommission = message.executedCommission ? MoneyValue.toJSON(message.executedCommission) : undefined);
     message.figi !== undefined && (obj.figi = message.figi);
     message.direction !== undefined && (obj.direction = orderDirectionToJSON(message.direction));
-    message.initialSecurityPrice !== undefined &&
-      (obj.initialSecurityPrice = message.initialSecurityPrice
-        ? MoneyValue.toJSON(message.initialSecurityPrice)
-        : undefined);
+    message.initialSecurityPrice !== undefined && (obj.initialSecurityPrice = message.initialSecurityPrice
+      ? MoneyValue.toJSON(message.initialSecurityPrice)
+      : undefined);
     if (message.stages) {
-      obj.stages = message.stages.map(e => (e ? OrderStage.toJSON(e) : undefined));
+      obj.stages = message.stages.map((e) => e ? OrderStage.toJSON(e) : undefined);
     } else {
       obj.stages = [];
     }
@@ -1441,59 +1588,53 @@ export const OrderState = {
     message.currency !== undefined && (obj.currency = message.currency);
     message.orderType !== undefined && (obj.orderType = orderTypeToJSON(message.orderType));
     message.orderDate !== undefined && (obj.orderDate = message.orderDate.toISOString());
+    message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
     return obj;
   },
 
   fromPartial(object: DeepPartial<OrderState>): OrderState {
     const message = createBaseOrderState();
-    message.orderId = object.orderId ?? '';
+    message.orderId = object.orderId ?? "";
     message.executionReportStatus = object.executionReportStatus ?? 0;
     message.lotsRequested = object.lotsRequested ?? 0;
     message.lotsExecuted = object.lotsExecuted ?? 0;
-    message.initialOrderPrice =
-      object.initialOrderPrice !== undefined && object.initialOrderPrice !== null
-        ? MoneyValue.fromPartial(object.initialOrderPrice)
-        : undefined;
-    message.executedOrderPrice =
-      object.executedOrderPrice !== undefined && object.executedOrderPrice !== null
-        ? MoneyValue.fromPartial(object.executedOrderPrice)
-        : undefined;
-    message.totalOrderAmount =
-      object.totalOrderAmount !== undefined && object.totalOrderAmount !== null
-        ? MoneyValue.fromPartial(object.totalOrderAmount)
-        : undefined;
-    message.averagePositionPrice =
-      object.averagePositionPrice !== undefined && object.averagePositionPrice !== null
-        ? MoneyValue.fromPartial(object.averagePositionPrice)
-        : undefined;
-    message.initialCommission =
-      object.initialCommission !== undefined && object.initialCommission !== null
-        ? MoneyValue.fromPartial(object.initialCommission)
-        : undefined;
-    message.executedCommission =
-      object.executedCommission !== undefined && object.executedCommission !== null
-        ? MoneyValue.fromPartial(object.executedCommission)
-        : undefined;
-    message.figi = object.figi ?? '';
+    message.initialOrderPrice = (object.initialOrderPrice !== undefined && object.initialOrderPrice !== null)
+      ? MoneyValue.fromPartial(object.initialOrderPrice)
+      : undefined;
+    message.executedOrderPrice = (object.executedOrderPrice !== undefined && object.executedOrderPrice !== null)
+      ? MoneyValue.fromPartial(object.executedOrderPrice)
+      : undefined;
+    message.totalOrderAmount = (object.totalOrderAmount !== undefined && object.totalOrderAmount !== null)
+      ? MoneyValue.fromPartial(object.totalOrderAmount)
+      : undefined;
+    message.averagePositionPrice = (object.averagePositionPrice !== undefined && object.averagePositionPrice !== null)
+      ? MoneyValue.fromPartial(object.averagePositionPrice)
+      : undefined;
+    message.initialCommission = (object.initialCommission !== undefined && object.initialCommission !== null)
+      ? MoneyValue.fromPartial(object.initialCommission)
+      : undefined;
+    message.executedCommission = (object.executedCommission !== undefined && object.executedCommission !== null)
+      ? MoneyValue.fromPartial(object.executedCommission)
+      : undefined;
+    message.figi = object.figi ?? "";
     message.direction = object.direction ?? 0;
-    message.initialSecurityPrice =
-      object.initialSecurityPrice !== undefined && object.initialSecurityPrice !== null
-        ? MoneyValue.fromPartial(object.initialSecurityPrice)
-        : undefined;
-    message.stages = object.stages?.map(e => OrderStage.fromPartial(e)) || [];
-    message.serviceCommission =
-      object.serviceCommission !== undefined && object.serviceCommission !== null
-        ? MoneyValue.fromPartial(object.serviceCommission)
-        : undefined;
-    message.currency = object.currency ?? '';
+    message.initialSecurityPrice = (object.initialSecurityPrice !== undefined && object.initialSecurityPrice !== null)
+      ? MoneyValue.fromPartial(object.initialSecurityPrice)
+      : undefined;
+    message.stages = object.stages?.map((e) => OrderStage.fromPartial(e)) || [];
+    message.serviceCommission = (object.serviceCommission !== undefined && object.serviceCommission !== null)
+      ? MoneyValue.fromPartial(object.serviceCommission)
+      : undefined;
+    message.currency = object.currency ?? "";
     message.orderType = object.orderType ?? 0;
     message.orderDate = object.orderDate ?? undefined;
+    message.instrumentUid = object.instrumentUid ?? "";
     return message;
   },
 };
 
 function createBaseOrderStage(): OrderStage {
-  return { price: undefined, quantity: 0, tradeId: '' };
+  return { price: undefined, quantity: 0, tradeId: "" };
 }
 
 export const OrderStage = {
@@ -1504,7 +1645,7 @@ export const OrderStage = {
     if (message.quantity !== 0) {
       writer.uint32(16).int64(message.quantity);
     }
-    if (message.tradeId !== '') {
+    if (message.tradeId !== "") {
       writer.uint32(26).string(message.tradeId);
     }
     return writer;
@@ -1538,7 +1679,7 @@ export const OrderStage = {
     return {
       price: isSet(object.price) ? MoneyValue.fromJSON(object.price) : undefined,
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
-      tradeId: isSet(object.tradeId) ? String(object.tradeId) : '',
+      tradeId: isSet(object.tradeId) ? String(object.tradeId) : "",
     };
   },
 
@@ -1552,22 +1693,119 @@ export const OrderStage = {
 
   fromPartial(object: DeepPartial<OrderStage>): OrderStage {
     const message = createBaseOrderStage();
-    message.price =
-      object.price !== undefined && object.price !== null ? MoneyValue.fromPartial(object.price) : undefined;
+    message.price = (object.price !== undefined && object.price !== null)
+      ? MoneyValue.fromPartial(object.price)
+      : undefined;
     message.quantity = object.quantity ?? 0;
-    message.tradeId = object.tradeId ?? '';
+    message.tradeId = object.tradeId ?? "";
+    return message;
+  },
+};
+
+function createBaseReplaceOrderRequest(): ReplaceOrderRequest {
+  return { accountId: "", orderId: "", idempotencyKey: "", quantity: 0, price: undefined, priceType: 0 };
+}
+
+export const ReplaceOrderRequest = {
+  encode(message: ReplaceOrderRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.accountId !== "") {
+      writer.uint32(10).string(message.accountId);
+    }
+    if (message.orderId !== "") {
+      writer.uint32(50).string(message.orderId);
+    }
+    if (message.idempotencyKey !== "") {
+      writer.uint32(58).string(message.idempotencyKey);
+    }
+    if (message.quantity !== 0) {
+      writer.uint32(88).int64(message.quantity);
+    }
+    if (message.price !== undefined) {
+      Quotation.encode(message.price, writer.uint32(98).fork()).ldelim();
+    }
+    if (message.priceType !== 0) {
+      writer.uint32(104).int32(message.priceType);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ReplaceOrderRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseReplaceOrderRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.accountId = reader.string();
+          break;
+        case 6:
+          message.orderId = reader.string();
+          break;
+        case 7:
+          message.idempotencyKey = reader.string();
+          break;
+        case 11:
+          message.quantity = longToNumber(reader.int64() as Long);
+          break;
+        case 12:
+          message.price = Quotation.decode(reader, reader.uint32());
+          break;
+        case 13:
+          message.priceType = reader.int32() as any;
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ReplaceOrderRequest {
+    return {
+      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      orderId: isSet(object.orderId) ? String(object.orderId) : "",
+      idempotencyKey: isSet(object.idempotencyKey) ? String(object.idempotencyKey) : "",
+      quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
+      price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
+      priceType: isSet(object.priceType) ? priceTypeFromJSON(object.priceType) : 0,
+    };
+  },
+
+  toJSON(message: ReplaceOrderRequest): unknown {
+    const obj: any = {};
+    message.accountId !== undefined && (obj.accountId = message.accountId);
+    message.orderId !== undefined && (obj.orderId = message.orderId);
+    message.idempotencyKey !== undefined && (obj.idempotencyKey = message.idempotencyKey);
+    message.quantity !== undefined && (obj.quantity = Math.round(message.quantity));
+    message.price !== undefined && (obj.price = message.price ? Quotation.toJSON(message.price) : undefined);
+    message.priceType !== undefined && (obj.priceType = priceTypeToJSON(message.priceType));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<ReplaceOrderRequest>): ReplaceOrderRequest {
+    const message = createBaseReplaceOrderRequest();
+    message.accountId = object.accountId ?? "";
+    message.orderId = object.orderId ?? "";
+    message.idempotencyKey = object.idempotencyKey ?? "";
+    message.quantity = object.quantity ?? 0;
+    message.price = (object.price !== undefined && object.price !== null)
+      ? Quotation.fromPartial(object.price)
+      : undefined;
+    message.priceType = object.priceType ?? 0;
     return message;
   },
 };
 
 export type OrdersStreamServiceDefinition = typeof OrdersStreamServiceDefinition;
 export const OrdersStreamServiceDefinition = {
-  name: 'OrdersStreamService',
-  fullName: 'tinkoff.public.invest.api.contract.v1.OrdersStreamService',
+  name: "OrdersStreamService",
+  fullName: "tinkoff.public.invest.api.contract.v1.OrdersStreamService",
   methods: {
     /** Stream сделок пользователя */
     tradesStream: {
-      name: 'TradesStream',
+      name: "TradesStream",
       requestType: TradesStreamRequest,
       requestStream: false,
       responseType: TradesStreamResponse,
@@ -1584,12 +1822,12 @@ export const OrdersStreamServiceDefinition = {
  */
 export type OrdersServiceDefinition = typeof OrdersServiceDefinition;
 export const OrdersServiceDefinition = {
-  name: 'OrdersService',
-  fullName: 'tinkoff.public.invest.api.contract.v1.OrdersService',
+  name: "OrdersService",
+  fullName: "tinkoff.public.invest.api.contract.v1.OrdersService",
   methods: {
     /** Метод выставления заявки. */
     postOrder: {
-      name: 'PostOrder',
+      name: "PostOrder",
       requestType: PostOrderRequest,
       requestStream: false,
       responseType: PostOrderResponse,
@@ -1598,7 +1836,7 @@ export const OrdersServiceDefinition = {
     },
     /** Метод отмены биржевой заявки. */
     cancelOrder: {
-      name: 'CancelOrder',
+      name: "CancelOrder",
       requestType: CancelOrderRequest,
       requestStream: false,
       responseType: CancelOrderResponse,
@@ -1607,7 +1845,7 @@ export const OrdersServiceDefinition = {
     },
     /** Метод получения статуса торгового поручения. */
     getOrderState: {
-      name: 'GetOrderState',
+      name: "GetOrderState",
       requestType: GetOrderStateRequest,
       requestStream: false,
       responseType: OrderState,
@@ -1616,10 +1854,19 @@ export const OrdersServiceDefinition = {
     },
     /** Метод получения списка активных заявок по счёту. */
     getOrders: {
-      name: 'GetOrders',
+      name: "GetOrders",
       requestType: GetOrdersRequest,
       requestStream: false,
       responseType: GetOrdersResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод изменения выставленной заявки. */
+    replaceOrder: {
+      name: "ReplaceOrder",
+      requestType: ReplaceOrderRequest,
+      requestStream: false,
+      responseType: PostOrderResponse,
       responseStream: false,
       options: {},
     },
@@ -1630,23 +1877,26 @@ declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
 var globalThis: any = (() => {
-  if (typeof globalThis !== 'undefined') return globalThis;
-  if (typeof self !== 'undefined') return self;
-  if (typeof window !== 'undefined') return window;
-  if (typeof global !== 'undefined') return global;
-  throw 'Unable to locate global object';
+  if (typeof globalThis !== "undefined") {
+    return globalThis;
+  }
+  if (typeof self !== "undefined") {
+    return self;
+  }
+  if (typeof window !== "undefined") {
+    return window;
+  }
+  if (typeof global !== "undefined") {
+    return global;
+  }
+  throw "Unable to locate global object";
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-  ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 function toTimestamp(date: Date): Timestamp {
@@ -1664,7 +1914,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === 'string') {
+  } else if (typeof o === "string") {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -1673,7 +1923,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }
