@@ -92,8 +92,11 @@ export function couponTypeToJSON(object: CouponType): string {
 
 /** Тип опциона по направлению сделки. */
 export enum OptionDirection {
+  /** OPTION_DIRECTION_UNSPECIFIED - Тип не определен. */
   OPTION_DIRECTION_UNSPECIFIED = 0,
+  /** OPTION_DIRECTION_PUT - Опцион на продажу. */
   OPTION_DIRECTION_PUT = 1,
+  /** OPTION_DIRECTION_CALL - Опцион на покупку. */
   OPTION_DIRECTION_CALL = 2,
   UNRECOGNIZED = -1,
 }
@@ -132,8 +135,11 @@ export function optionDirectionToJSON(object: OptionDirection): string {
 
 /** Тип расчетов по опциону. */
 export enum OptionPaymentType {
+  /** OPTION_PAYMENT_TYPE_UNSPECIFIED - Тип не определен. */
   OPTION_PAYMENT_TYPE_UNSPECIFIED = 0,
+  /** OPTION_PAYMENT_TYPE_PREMIUM - Опционы с использованием премии в расчетах. */
   OPTION_PAYMENT_TYPE_PREMIUM = 1,
+  /** OPTION_PAYMENT_TYPE_MARGINAL - Маржируемые опционы. */
   OPTION_PAYMENT_TYPE_MARGINAL = 2,
   UNRECOGNIZED = -1,
 }
@@ -172,8 +178,11 @@ export function optionPaymentTypeToJSON(object: OptionPaymentType): string {
 
 /** Тип опциона по стилю. */
 export enum OptionStyle {
+  /** OPTION_STYLE_UNSPECIFIED - Тип не определен. */
   OPTION_STYLE_UNSPECIFIED = 0,
+  /** OPTION_STYLE_AMERICAN - Американский опцион. */
   OPTION_STYLE_AMERICAN = 1,
+  /** OPTION_STYLE_EUROPEAN - Европейский опцион. */
   OPTION_STYLE_EUROPEAN = 2,
   UNRECOGNIZED = -1,
 }
@@ -212,8 +221,11 @@ export function optionStyleToJSON(object: OptionStyle): string {
 
 /** Тип опциона по способу исполнения. */
 export enum OptionSettlementType {
+  /** OPTION_EXECUTION_TYPE_UNSPECIFIED - Тип не определен. */
   OPTION_EXECUTION_TYPE_UNSPECIFIED = 0,
+  /** OPTION_EXECUTION_TYPE_PHYSICAL_DELIVERY - Поставочный тип опциона. */
   OPTION_EXECUTION_TYPE_PHYSICAL_DELIVERY = 1,
+  /** OPTION_EXECUTION_TYPE_CASH_SETTLEMENT - Расчетный тип опциона. */
   OPTION_EXECUTION_TYPE_CASH_SETTLEMENT = 2,
   UNRECOGNIZED = -1,
 }

@@ -240,12 +240,14 @@ export interface OrderTrade {
   dateTime:
     | Date
     | undefined;
-  /** Цена одного инструмента, по которой совершена сделка. */
+  /** Цена за 1 инструмент, по которой совершена сделка. */
   price:
     | Quotation
     | undefined;
   /** Количество лотов в сделке. */
   quantity: number;
+  /** Идентификатор сделки */
+  tradeId: string;
 }
 
 /** Запрос выставления торгового поручения. */
@@ -254,7 +256,7 @@ export interface PostOrderRequest {
   figi: string;
   /** Количество лотов. */
   quantity: number;
-  /** Цена одного инструмента. Для получения стоимости лота требуется умножить на лотность инструмента. Игнорируется для рыночных поручений. */
+  /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Игнорируется для рыночных поручений. */
   price:
     | Quotation
     | undefined;
@@ -284,7 +286,7 @@ export interface PostOrderResponse {
   initialOrderPrice:
     | MoneyValue
     | undefined;
-  /** Исполненная цена заявки. Произведение средней цены покупки на количество лотов. */
+  /** Исполненная средняя цена 1 одного инструмента в заявки. */
   executedOrderPrice:
     | MoneyValue
     | undefined;
@@ -426,7 +428,7 @@ export interface OrderStage {
     | undefined;
   /** Количество лотов. */
   quantity: number;
-  /** Идентификатор торговой операции. */
+  /** Идентификатор сделки. */
   tradeId: string;
 }
 
@@ -668,7 +670,7 @@ export const OrderTrades = {
 };
 
 function createBaseOrderTrade(): OrderTrade {
-  return { dateTime: undefined, price: undefined, quantity: 0 };
+  return { dateTime: undefined, price: undefined, quantity: 0, tradeId: "" };
 }
 
 export const OrderTrade = {
@@ -681,6 +683,9 @@ export const OrderTrade = {
     }
     if (message.quantity !== 0) {
       writer.uint32(24).int64(message.quantity);
+    }
+    if (message.tradeId !== "") {
+      writer.uint32(34).string(message.tradeId);
     }
     return writer;
   },
@@ -701,6 +706,9 @@ export const OrderTrade = {
         case 3:
           message.quantity = longToNumber(reader.int64() as Long);
           break;
+        case 4:
+          message.tradeId = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -714,6 +722,7 @@ export const OrderTrade = {
       dateTime: isSet(object.dateTime) ? fromJsonTimestamp(object.dateTime) : undefined,
       price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
+      tradeId: isSet(object.tradeId) ? String(object.tradeId) : "",
     };
   },
 
@@ -722,6 +731,7 @@ export const OrderTrade = {
     message.dateTime !== undefined && (obj.dateTime = message.dateTime.toISOString());
     message.price !== undefined && (obj.price = message.price ? Quotation.toJSON(message.price) : undefined);
     message.quantity !== undefined && (obj.quantity = Math.round(message.quantity));
+    message.tradeId !== undefined && (obj.tradeId = message.tradeId);
     return obj;
   },
 
@@ -732,6 +742,7 @@ export const OrderTrade = {
       ? Quotation.fromPartial(object.price)
       : undefined;
     message.quantity = object.quantity ?? 0;
+    message.tradeId = object.tradeId ?? "";
     return message;
   },
 };

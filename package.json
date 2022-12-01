@@ -1,6 +1,6 @@
 {
   "name": "tinkoff-sdk-grpc-js",
-  "version": "0.1.10",
+  "version": "0.1.18",
   "description": "",
   "main": "dist/sdk.js",
   "scripts": {

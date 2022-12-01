@@ -154,6 +154,34 @@ export enum OperationType {
   OPERATION_TYPE_OUT_FEE = 46,
   /** OPERATION_TYPE_OUT_STAMP_DUTY - Гербовый сбор. */
   OPERATION_TYPE_OUT_STAMP_DUTY = 47,
+  /** OPERATION_TYPE_OUTPUT_SWIFT - SWIFT-перевод */
+  OPERATION_TYPE_OUTPUT_SWIFT = 50,
+  /** OPERATION_TYPE_INPUT_SWIFT - SWIFT-перевод */
+  OPERATION_TYPE_INPUT_SWIFT = 51,
+  /** OPERATION_TYPE_OUTPUT_ACQUIRING - Перевод на карту */
+  OPERATION_TYPE_OUTPUT_ACQUIRING = 53,
+  /** OPERATION_TYPE_INPUT_ACQUIRING - Перевод с карты */
+  OPERATION_TYPE_INPUT_ACQUIRING = 54,
+  /** OPERATION_TYPE_OUTPUT_PENALTY - Комиссия за вывод средств */
+  OPERATION_TYPE_OUTPUT_PENALTY = 55,
+  /** OPERATION_TYPE_ADVICE_FEE - Списание оплаты за сервис Советов */
+  OPERATION_TYPE_ADVICE_FEE = 56,
+  /** OPERATION_TYPE_TRANS_IIS_BS - Перевод ценных бумаг с ИИС на Брокерский счет */
+  OPERATION_TYPE_TRANS_IIS_BS = 57,
+  /** OPERATION_TYPE_TRANS_BS_BS - Перевод ценных бумаг с одного брокерского счета на другой */
+  OPERATION_TYPE_TRANS_BS_BS = 58,
+  /** OPERATION_TYPE_OUT_MULTI - Вывод денежных средств со счета */
+  OPERATION_TYPE_OUT_MULTI = 59,
+  /** OPERATION_TYPE_INP_MULTI - Пополнение денежных средств со счета */
+  OPERATION_TYPE_INP_MULTI = 60,
+  /** OPERATION_TYPE_OVER_PLACEMENT - Размещение биржевого овернайта */
+  OPERATION_TYPE_OVER_PLACEMENT = 61,
+  /** OPERATION_TYPE_OVER_COM - Списание комиссии */
+  OPERATION_TYPE_OVER_COM = 62,
+  /** OPERATION_TYPE_OVER_INCOME - Доход от оверанайта */
+  OPERATION_TYPE_OVER_INCOME = 63,
+  /** OPERATION_TYPE_OPTION_EXPIRATION - Экспирация */
+  OPERATION_TYPE_OPTION_EXPIRATION = 64,
   UNRECOGNIZED = -1,
 }
 
@@ -303,6 +331,48 @@ export function operationTypeFromJSON(object: any): OperationType {
     case 47:
     case "OPERATION_TYPE_OUT_STAMP_DUTY":
       return OperationType.OPERATION_TYPE_OUT_STAMP_DUTY;
+    case 50:
+    case "OPERATION_TYPE_OUTPUT_SWIFT":
+      return OperationType.OPERATION_TYPE_OUTPUT_SWIFT;
+    case 51:
+    case "OPERATION_TYPE_INPUT_SWIFT":
+      return OperationType.OPERATION_TYPE_INPUT_SWIFT;
+    case 53:
+    case "OPERATION_TYPE_OUTPUT_ACQUIRING":
+      return OperationType.OPERATION_TYPE_OUTPUT_ACQUIRING;
+    case 54:
+    case "OPERATION_TYPE_INPUT_ACQUIRING":
+      return OperationType.OPERATION_TYPE_INPUT_ACQUIRING;
+    case 55:
+    case "OPERATION_TYPE_OUTPUT_PENALTY":
+      return OperationType.OPERATION_TYPE_OUTPUT_PENALTY;
+    case 56:
+    case "OPERATION_TYPE_ADVICE_FEE":
+      return OperationType.OPERATION_TYPE_ADVICE_FEE;
+    case 57:
+    case "OPERATION_TYPE_TRANS_IIS_BS":
+      return OperationType.OPERATION_TYPE_TRANS_IIS_BS;
+    case 58:
+    case "OPERATION_TYPE_TRANS_BS_BS":
+      return OperationType.OPERATION_TYPE_TRANS_BS_BS;
+    case 59:
+    case "OPERATION_TYPE_OUT_MULTI":
+      return OperationType.OPERATION_TYPE_OUT_MULTI;
+    case 60:
+    case "OPERATION_TYPE_INP_MULTI":
+      return OperationType.OPERATION_TYPE_INP_MULTI;
+    case 61:
+    case "OPERATION_TYPE_OVER_PLACEMENT":
+      return OperationType.OPERATION_TYPE_OVER_PLACEMENT;
+    case 62:
+    case "OPERATION_TYPE_OVER_COM":
+      return OperationType.OPERATION_TYPE_OVER_COM;
+    case 63:
+    case "OPERATION_TYPE_OVER_INCOME":
+      return OperationType.OPERATION_TYPE_OVER_INCOME;
+    case 64:
+    case "OPERATION_TYPE_OPTION_EXPIRATION":
+      return OperationType.OPERATION_TYPE_OPTION_EXPIRATION;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -408,6 +478,34 @@ export function operationTypeToJSON(object: OperationType): string {
       return "OPERATION_TYPE_OUT_FEE";
     case OperationType.OPERATION_TYPE_OUT_STAMP_DUTY:
       return "OPERATION_TYPE_OUT_STAMP_DUTY";
+    case OperationType.OPERATION_TYPE_OUTPUT_SWIFT:
+      return "OPERATION_TYPE_OUTPUT_SWIFT";
+    case OperationType.OPERATION_TYPE_INPUT_SWIFT:
+      return "OPERATION_TYPE_INPUT_SWIFT";
+    case OperationType.OPERATION_TYPE_OUTPUT_ACQUIRING:
+      return "OPERATION_TYPE_OUTPUT_ACQUIRING";
+    case OperationType.OPERATION_TYPE_INPUT_ACQUIRING:
+      return "OPERATION_TYPE_INPUT_ACQUIRING";
+    case OperationType.OPERATION_TYPE_OUTPUT_PENALTY:
+      return "OPERATION_TYPE_OUTPUT_PENALTY";
+    case OperationType.OPERATION_TYPE_ADVICE_FEE:
+      return "OPERATION_TYPE_ADVICE_FEE";
+    case OperationType.OPERATION_TYPE_TRANS_IIS_BS:
+      return "OPERATION_TYPE_TRANS_IIS_BS";
+    case OperationType.OPERATION_TYPE_TRANS_BS_BS:
+      return "OPERATION_TYPE_TRANS_BS_BS";
+    case OperationType.OPERATION_TYPE_OUT_MULTI:
+      return "OPERATION_TYPE_OUT_MULTI";
+    case OperationType.OPERATION_TYPE_INP_MULTI:
+      return "OPERATION_TYPE_INP_MULTI";
+    case OperationType.OPERATION_TYPE_OVER_PLACEMENT:
+      return "OPERATION_TYPE_OVER_PLACEMENT";
+    case OperationType.OPERATION_TYPE_OVER_COM:
+      return "OPERATION_TYPE_OVER_COM";
+    case OperationType.OPERATION_TYPE_OVER_INCOME:
+      return "OPERATION_TYPE_OVER_INCOME";
+    case OperationType.OPERATION_TYPE_OPTION_EXPIRATION:
+      return "OPERATION_TYPE_OPTION_EXPIRATION";
     case OperationType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -651,6 +749,8 @@ export interface Operation {
   operationType: OperationType;
   /** Массив сделок. */
   trades: OperationTrade[];
+  /** Идентификатор актива */
+  assetUid: string;
 }
 
 /** Сделка по операции. */
@@ -671,6 +771,50 @@ export interface OperationTrade {
 export interface PortfolioRequest {
   /** Идентификатор счёта пользователя. */
   accountId: string;
+  /** Валюта, в которой требуется рассчитать портфель */
+  currency: PortfolioRequest_CurrencyRequest;
+}
+
+export enum PortfolioRequest_CurrencyRequest {
+  /** RUB - Рубли */
+  RUB = 0,
+  /** USD - Доллары */
+  USD = 1,
+  /** EUR - Евро */
+  EUR = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function portfolioRequest_CurrencyRequestFromJSON(object: any): PortfolioRequest_CurrencyRequest {
+  switch (object) {
+    case 0:
+    case "RUB":
+      return PortfolioRequest_CurrencyRequest.RUB;
+    case 1:
+    case "USD":
+      return PortfolioRequest_CurrencyRequest.USD;
+    case 2:
+    case "EUR":
+      return PortfolioRequest_CurrencyRequest.EUR;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return PortfolioRequest_CurrencyRequest.UNRECOGNIZED;
+  }
+}
+
+export function portfolioRequest_CurrencyRequestToJSON(object: PortfolioRequest_CurrencyRequest): string {
+  switch (object) {
+    case PortfolioRequest_CurrencyRequest.RUB:
+      return "RUB";
+    case PortfolioRequest_CurrencyRequest.USD:
+      return "USD";
+    case PortfolioRequest_CurrencyRequest.EUR:
+      return "EUR";
+    case PortfolioRequest_CurrencyRequest.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
 }
 
 /** Текущий портфель по счёту. */
@@ -703,6 +847,20 @@ export interface PortfolioResponse {
   positions: PortfolioPosition[];
   /** Идентификатор счёта пользователя. */
   accountId: string;
+  /** Общая стоимость фьючерсов в портфеле в рублях. */
+  totalAmountOptions:
+    | MoneyValue
+    | undefined;
+  /** Общая стоимость структурных нот в портфеле в рублях */
+  totalAmountSp:
+    | MoneyValue
+    | undefined;
+  /** Общая стоимость портфеля в рублях */
+  totalAmountPortfolio:
+    | MoneyValue
+    | undefined;
+  /** Массив виртуальных позиций портфеля */
+  virtualPositions: VirtualPortfolioPosition[];
 }
 
 /** Запрос позиций портфеля по счёту. */
@@ -765,7 +923,7 @@ export interface PortfolioPosition {
   currentNkd:
     | MoneyValue
     | undefined;
-  /** Средняя цена позиции в пунктах (для фьючерсов). **Возможна задержка до секунды для пересчёта**. */
+  /** Deprecated Средняя цена позиции в пунктах (для фьючерсов). **Возможна задержка до секунды для пересчёта**. */
   averagePositionPricePt:
     | Quotation
     | undefined;
@@ -777,12 +935,59 @@ export interface PortfolioPosition {
   averagePositionPriceFifo:
     | MoneyValue
     | undefined;
-  /** Количество лотов в портфеле. */
+  /** Deprecated Количество лотов в портфеле. */
   quantityLots:
     | Quotation
     | undefined;
   /** Заблокировано. */
   blocked: boolean;
+  /** position_uid-идентификатора инструмента */
+  positionUid: string;
+  /** instrument_uid-идентификатора инструмента */
+  instrumentUid: string;
+  /** Вариационная маржа */
+  varMargin:
+    | MoneyValue
+    | undefined;
+  /** Текущая рассчитанная доходность позиции. */
+  expectedYieldFifo: Quotation | undefined;
+}
+
+export interface VirtualPortfolioPosition {
+  /** position_uid-идентификатора инструмента */
+  positionUid: string;
+  /** instrument_uid-идентификатора инструмента */
+  instrumentUid: string;
+  /** Figi-идентификатора инструмента. */
+  figi: string;
+  /** Тип инструмента. */
+  instrumentType: string;
+  /** Количество инструмента в портфеле в штуках. */
+  quantity:
+    | Quotation
+    | undefined;
+  /** Средневзвешенная цена позиции. **Возможна задержка до секунды для пересчёта**. */
+  averagePositionPrice:
+    | MoneyValue
+    | undefined;
+  /** Текущая рассчитанная доходность позиции. */
+  expectedYield:
+    | Quotation
+    | undefined;
+  /** Текущая рассчитанная доходность позиции. */
+  expectedYieldFifo:
+    | Quotation
+    | undefined;
+  /** Дата до которой нужно продать виртуальные бумаги, после этой даты виртуальная позиция "сгорит" */
+  expireDate:
+    | Date
+    | undefined;
+  /** Текущая цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.. */
+  currentPrice:
+    | MoneyValue
+    | undefined;
+  /** Средняя цена позиции по методу FIFO. **Возможна задержка до секунды для пересчёта**. */
+  averagePositionPriceFifo: MoneyValue | undefined;
 }
 
 /** Баланс позиции ценной бумаги. */
@@ -1188,7 +1393,11 @@ export interface OperationItem {
   /** Причина отмены операции. */
   cancelReason: string;
   /** Массив сделок. */
-  tradesInfo: OperationItemTrades | undefined;
+  tradesInfo:
+    | OperationItemTrades
+    | undefined;
+  /** Идентификатор актива */
+  assetUid: string;
 }
 
 /** Массив с информацией о сделках. */
@@ -1432,6 +1641,7 @@ function createBaseOperation(): Operation {
     type: "",
     operationType: 0,
     trades: [],
+    assetUid: "",
   };
 }
 
@@ -1478,6 +1688,9 @@ export const Operation = {
     }
     for (const v of message.trades) {
       OperationTrade.encode(v!, writer.uint32(114).fork()).ldelim();
+    }
+    if (message.assetUid !== "") {
+      writer.uint32(130).string(message.assetUid);
     }
     return writer;
   },
@@ -1531,6 +1744,9 @@ export const Operation = {
         case 14:
           message.trades.push(OperationTrade.decode(reader, reader.uint32()));
           break;
+        case 16:
+          message.assetUid = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1555,6 +1771,7 @@ export const Operation = {
       type: isSet(object.type) ? String(object.type) : "",
       operationType: isSet(object.operationType) ? operationTypeFromJSON(object.operationType) : 0,
       trades: Array.isArray(object?.trades) ? object.trades.map((e: any) => OperationTrade.fromJSON(e)) : [],
+      assetUid: isSet(object.assetUid) ? String(object.assetUid) : "",
     };
   },
 
@@ -1578,6 +1795,7 @@ export const Operation = {
     } else {
       obj.trades = [];
     }
+    message.assetUid !== undefined && (obj.assetUid = message.assetUid);
     return obj;
   },
 
@@ -1601,6 +1819,7 @@ export const Operation = {
     message.type = object.type ?? "";
     message.operationType = object.operationType ?? 0;
     message.trades = object.trades?.map((e) => OperationTrade.fromPartial(e)) || [];
+    message.assetUid = object.assetUid ?? "";
     return message;
   },
 };
@@ -1684,13 +1903,16 @@ export const OperationTrade = {
 };
 
 function createBasePortfolioRequest(): PortfolioRequest {
-  return { accountId: "" };
+  return { accountId: "", currency: 0 };
 }
 
 export const PortfolioRequest = {
   encode(message: PortfolioRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.accountId !== "") {
       writer.uint32(10).string(message.accountId);
+    }
+    if (message.currency !== 0) {
+      writer.uint32(16).int32(message.currency);
     }
     return writer;
   },
@@ -1705,6 +1927,9 @@ export const PortfolioRequest = {
         case 1:
           message.accountId = reader.string();
           break;
+        case 2:
+          message.currency = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1714,18 +1939,23 @@ export const PortfolioRequest = {
   },
 
   fromJSON(object: any): PortfolioRequest {
-    return { accountId: isSet(object.accountId) ? String(object.accountId) : "" };
+    return {
+      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      currency: isSet(object.currency) ? portfolioRequest_CurrencyRequestFromJSON(object.currency) : 0,
+    };
   },
 
   toJSON(message: PortfolioRequest): unknown {
     const obj: any = {};
     message.accountId !== undefined && (obj.accountId = message.accountId);
+    message.currency !== undefined && (obj.currency = portfolioRequest_CurrencyRequestToJSON(message.currency));
     return obj;
   },
 
   fromPartial(object: DeepPartial<PortfolioRequest>): PortfolioRequest {
     const message = createBasePortfolioRequest();
     message.accountId = object.accountId ?? "";
+    message.currency = object.currency ?? 0;
     return message;
   },
 };
@@ -1740,6 +1970,10 @@ function createBasePortfolioResponse(): PortfolioResponse {
     expectedYield: undefined,
     positions: [],
     accountId: "",
+    totalAmountOptions: undefined,
+    totalAmountSp: undefined,
+    totalAmountPortfolio: undefined,
+    virtualPositions: [],
   };
 }
 
@@ -1768,6 +2002,18 @@ export const PortfolioResponse = {
     }
     if (message.accountId !== "") {
       writer.uint32(66).string(message.accountId);
+    }
+    if (message.totalAmountOptions !== undefined) {
+      MoneyValue.encode(message.totalAmountOptions, writer.uint32(74).fork()).ldelim();
+    }
+    if (message.totalAmountSp !== undefined) {
+      MoneyValue.encode(message.totalAmountSp, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.totalAmountPortfolio !== undefined) {
+      MoneyValue.encode(message.totalAmountPortfolio, writer.uint32(90).fork()).ldelim();
+    }
+    for (const v of message.virtualPositions) {
+      VirtualPortfolioPosition.encode(v!, writer.uint32(98).fork()).ldelim();
     }
     return writer;
   },
@@ -1803,6 +2049,18 @@ export const PortfolioResponse = {
         case 8:
           message.accountId = reader.string();
           break;
+        case 9:
+          message.totalAmountOptions = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 10:
+          message.totalAmountSp = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 11:
+          message.totalAmountPortfolio = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 12:
+          message.virtualPositions.push(VirtualPortfolioPosition.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1825,6 +2083,14 @@ export const PortfolioResponse = {
         ? object.positions.map((e: any) => PortfolioPosition.fromJSON(e))
         : [],
       accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      totalAmountOptions: isSet(object.totalAmountOptions) ? MoneyValue.fromJSON(object.totalAmountOptions) : undefined,
+      totalAmountSp: isSet(object.totalAmountSp) ? MoneyValue.fromJSON(object.totalAmountSp) : undefined,
+      totalAmountPortfolio: isSet(object.totalAmountPortfolio)
+        ? MoneyValue.fromJSON(object.totalAmountPortfolio)
+        : undefined,
+      virtualPositions: Array.isArray(object?.virtualPositions)
+        ? object.virtualPositions.map((e: any) => VirtualPortfolioPosition.fromJSON(e))
+        : [],
     };
   },
 
@@ -1849,6 +2115,18 @@ export const PortfolioResponse = {
       obj.positions = [];
     }
     message.accountId !== undefined && (obj.accountId = message.accountId);
+    message.totalAmountOptions !== undefined &&
+      (obj.totalAmountOptions = message.totalAmountOptions ? MoneyValue.toJSON(message.totalAmountOptions) : undefined);
+    message.totalAmountSp !== undefined &&
+      (obj.totalAmountSp = message.totalAmountSp ? MoneyValue.toJSON(message.totalAmountSp) : undefined);
+    message.totalAmountPortfolio !== undefined && (obj.totalAmountPortfolio = message.totalAmountPortfolio
+      ? MoneyValue.toJSON(message.totalAmountPortfolio)
+      : undefined);
+    if (message.virtualPositions) {
+      obj.virtualPositions = message.virtualPositions.map((e) => e ? VirtualPortfolioPosition.toJSON(e) : undefined);
+    } else {
+      obj.virtualPositions = [];
+    }
     return obj;
   },
 
@@ -1875,6 +2153,16 @@ export const PortfolioResponse = {
       : undefined;
     message.positions = object.positions?.map((e) => PortfolioPosition.fromPartial(e)) || [];
     message.accountId = object.accountId ?? "";
+    message.totalAmountOptions = (object.totalAmountOptions !== undefined && object.totalAmountOptions !== null)
+      ? MoneyValue.fromPartial(object.totalAmountOptions)
+      : undefined;
+    message.totalAmountSp = (object.totalAmountSp !== undefined && object.totalAmountSp !== null)
+      ? MoneyValue.fromPartial(object.totalAmountSp)
+      : undefined;
+    message.totalAmountPortfolio = (object.totalAmountPortfolio !== undefined && object.totalAmountPortfolio !== null)
+      ? MoneyValue.fromPartial(object.totalAmountPortfolio)
+      : undefined;
+    message.virtualPositions = object.virtualPositions?.map((e) => VirtualPortfolioPosition.fromPartial(e)) || [];
     return message;
   },
 };
@@ -2183,6 +2471,10 @@ function createBasePortfolioPosition(): PortfolioPosition {
     averagePositionPriceFifo: undefined,
     quantityLots: undefined,
     blocked: false,
+    positionUid: "",
+    instrumentUid: "",
+    varMargin: undefined,
+    expectedYieldFifo: undefined,
   };
 }
 
@@ -2220,6 +2512,18 @@ export const PortfolioPosition = {
     }
     if (message.blocked === true) {
       writer.uint32(168).bool(message.blocked);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(194).string(message.positionUid);
+    }
+    if (message.instrumentUid !== "") {
+      writer.uint32(202).string(message.instrumentUid);
+    }
+    if (message.varMargin !== undefined) {
+      MoneyValue.encode(message.varMargin, writer.uint32(210).fork()).ldelim();
+    }
+    if (message.expectedYieldFifo !== undefined) {
+      Quotation.encode(message.expectedYieldFifo, writer.uint32(218).fork()).ldelim();
     }
     return writer;
   },
@@ -2264,6 +2568,18 @@ export const PortfolioPosition = {
         case 21:
           message.blocked = reader.bool();
           break;
+        case 24:
+          message.positionUid = reader.string();
+          break;
+        case 25:
+          message.instrumentUid = reader.string();
+          break;
+        case 26:
+          message.varMargin = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 27:
+          message.expectedYieldFifo = Quotation.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -2291,6 +2607,10 @@ export const PortfolioPosition = {
         : undefined,
       quantityLots: isSet(object.quantityLots) ? Quotation.fromJSON(object.quantityLots) : undefined,
       blocked: isSet(object.blocked) ? Boolean(object.blocked) : false,
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      varMargin: isSet(object.varMargin) ? MoneyValue.fromJSON(object.varMargin) : undefined,
+      expectedYieldFifo: isSet(object.expectedYieldFifo) ? Quotation.fromJSON(object.expectedYieldFifo) : undefined,
     };
   },
 
@@ -2318,6 +2638,12 @@ export const PortfolioPosition = {
     message.quantityLots !== undefined &&
       (obj.quantityLots = message.quantityLots ? Quotation.toJSON(message.quantityLots) : undefined);
     message.blocked !== undefined && (obj.blocked = message.blocked);
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
+    message.varMargin !== undefined &&
+      (obj.varMargin = message.varMargin ? MoneyValue.toJSON(message.varMargin) : undefined);
+    message.expectedYieldFifo !== undefined &&
+      (obj.expectedYieldFifo = message.expectedYieldFifo ? Quotation.toJSON(message.expectedYieldFifo) : undefined);
     return obj;
   },
 
@@ -2352,6 +2678,190 @@ export const PortfolioPosition = {
       ? Quotation.fromPartial(object.quantityLots)
       : undefined;
     message.blocked = object.blocked ?? false;
+    message.positionUid = object.positionUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? "";
+    message.varMargin = (object.varMargin !== undefined && object.varMargin !== null)
+      ? MoneyValue.fromPartial(object.varMargin)
+      : undefined;
+    message.expectedYieldFifo = (object.expectedYieldFifo !== undefined && object.expectedYieldFifo !== null)
+      ? Quotation.fromPartial(object.expectedYieldFifo)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseVirtualPortfolioPosition(): VirtualPortfolioPosition {
+  return {
+    positionUid: "",
+    instrumentUid: "",
+    figi: "",
+    instrumentType: "",
+    quantity: undefined,
+    averagePositionPrice: undefined,
+    expectedYield: undefined,
+    expectedYieldFifo: undefined,
+    expireDate: undefined,
+    currentPrice: undefined,
+    averagePositionPriceFifo: undefined,
+  };
+}
+
+export const VirtualPortfolioPosition = {
+  encode(message: VirtualPortfolioPosition, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.positionUid !== "") {
+      writer.uint32(10).string(message.positionUid);
+    }
+    if (message.instrumentUid !== "") {
+      writer.uint32(18).string(message.instrumentUid);
+    }
+    if (message.figi !== "") {
+      writer.uint32(26).string(message.figi);
+    }
+    if (message.instrumentType !== "") {
+      writer.uint32(34).string(message.instrumentType);
+    }
+    if (message.quantity !== undefined) {
+      Quotation.encode(message.quantity, writer.uint32(42).fork()).ldelim();
+    }
+    if (message.averagePositionPrice !== undefined) {
+      MoneyValue.encode(message.averagePositionPrice, writer.uint32(50).fork()).ldelim();
+    }
+    if (message.expectedYield !== undefined) {
+      Quotation.encode(message.expectedYield, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.expectedYieldFifo !== undefined) {
+      Quotation.encode(message.expectedYieldFifo, writer.uint32(66).fork()).ldelim();
+    }
+    if (message.expireDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.expireDate), writer.uint32(74).fork()).ldelim();
+    }
+    if (message.currentPrice !== undefined) {
+      MoneyValue.encode(message.currentPrice, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.averagePositionPriceFifo !== undefined) {
+      MoneyValue.encode(message.averagePositionPriceFifo, writer.uint32(90).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): VirtualPortfolioPosition {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseVirtualPortfolioPosition();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.positionUid = reader.string();
+          break;
+        case 2:
+          message.instrumentUid = reader.string();
+          break;
+        case 3:
+          message.figi = reader.string();
+          break;
+        case 4:
+          message.instrumentType = reader.string();
+          break;
+        case 5:
+          message.quantity = Quotation.decode(reader, reader.uint32());
+          break;
+        case 6:
+          message.averagePositionPrice = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 7:
+          message.expectedYield = Quotation.decode(reader, reader.uint32());
+          break;
+        case 8:
+          message.expectedYieldFifo = Quotation.decode(reader, reader.uint32());
+          break;
+        case 9:
+          message.expireDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 10:
+          message.currentPrice = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 11:
+          message.averagePositionPriceFifo = MoneyValue.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): VirtualPortfolioPosition {
+    return {
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      figi: isSet(object.figi) ? String(object.figi) : "",
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
+      quantity: isSet(object.quantity) ? Quotation.fromJSON(object.quantity) : undefined,
+      averagePositionPrice: isSet(object.averagePositionPrice)
+        ? MoneyValue.fromJSON(object.averagePositionPrice)
+        : undefined,
+      expectedYield: isSet(object.expectedYield) ? Quotation.fromJSON(object.expectedYield) : undefined,
+      expectedYieldFifo: isSet(object.expectedYieldFifo) ? Quotation.fromJSON(object.expectedYieldFifo) : undefined,
+      expireDate: isSet(object.expireDate) ? fromJsonTimestamp(object.expireDate) : undefined,
+      currentPrice: isSet(object.currentPrice) ? MoneyValue.fromJSON(object.currentPrice) : undefined,
+      averagePositionPriceFifo: isSet(object.averagePositionPriceFifo)
+        ? MoneyValue.fromJSON(object.averagePositionPriceFifo)
+        : undefined,
+    };
+  },
+
+  toJSON(message: VirtualPortfolioPosition): unknown {
+    const obj: any = {};
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
+    message.figi !== undefined && (obj.figi = message.figi);
+    message.instrumentType !== undefined && (obj.instrumentType = message.instrumentType);
+    message.quantity !== undefined &&
+      (obj.quantity = message.quantity ? Quotation.toJSON(message.quantity) : undefined);
+    message.averagePositionPrice !== undefined && (obj.averagePositionPrice = message.averagePositionPrice
+      ? MoneyValue.toJSON(message.averagePositionPrice)
+      : undefined);
+    message.expectedYield !== undefined &&
+      (obj.expectedYield = message.expectedYield ? Quotation.toJSON(message.expectedYield) : undefined);
+    message.expectedYieldFifo !== undefined &&
+      (obj.expectedYieldFifo = message.expectedYieldFifo ? Quotation.toJSON(message.expectedYieldFifo) : undefined);
+    message.expireDate !== undefined && (obj.expireDate = message.expireDate.toISOString());
+    message.currentPrice !== undefined &&
+      (obj.currentPrice = message.currentPrice ? MoneyValue.toJSON(message.currentPrice) : undefined);
+    message.averagePositionPriceFifo !== undefined && (obj.averagePositionPriceFifo = message.averagePositionPriceFifo
+      ? MoneyValue.toJSON(message.averagePositionPriceFifo)
+      : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<VirtualPortfolioPosition>): VirtualPortfolioPosition {
+    const message = createBaseVirtualPortfolioPosition();
+    message.positionUid = object.positionUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? "";
+    message.figi = object.figi ?? "";
+    message.instrumentType = object.instrumentType ?? "";
+    message.quantity = (object.quantity !== undefined && object.quantity !== null)
+      ? Quotation.fromPartial(object.quantity)
+      : undefined;
+    message.averagePositionPrice = (object.averagePositionPrice !== undefined && object.averagePositionPrice !== null)
+      ? MoneyValue.fromPartial(object.averagePositionPrice)
+      : undefined;
+    message.expectedYield = (object.expectedYield !== undefined && object.expectedYield !== null)
+      ? Quotation.fromPartial(object.expectedYield)
+      : undefined;
+    message.expectedYieldFifo = (object.expectedYieldFifo !== undefined && object.expectedYieldFifo !== null)
+      ? Quotation.fromPartial(object.expectedYieldFifo)
+      : undefined;
+    message.expireDate = object.expireDate ?? undefined;
+    message.currentPrice = (object.currentPrice !== undefined && object.currentPrice !== null)
+      ? MoneyValue.fromPartial(object.currentPrice)
+      : undefined;
+    message.averagePositionPriceFifo =
+      (object.averagePositionPriceFifo !== undefined && object.averagePositionPriceFifo !== null)
+        ? MoneyValue.fromPartial(object.averagePositionPriceFifo)
+        : undefined;
     return message;
   },
 };
@@ -4470,6 +4980,7 @@ function createBaseOperationItem(): OperationItem {
     cancelDateTime: undefined,
     cancelReason: "",
     tradesInfo: undefined,
+    assetUid: "",
   };
 }
 
@@ -4549,6 +5060,9 @@ export const OperationItem = {
     }
     if (message.tradesInfo !== undefined) {
       OperationItemTrades.encode(message.tradesInfo, writer.uint32(490).fork()).ldelim();
+    }
+    if (message.assetUid !== "") {
+      writer.uint32(514).string(message.assetUid);
     }
     return writer;
   },
@@ -4635,6 +5149,9 @@ export const OperationItem = {
         case 61:
           message.tradesInfo = OperationItemTrades.decode(reader, reader.uint32());
           break;
+        case 64:
+          message.assetUid = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -4670,6 +5187,7 @@ export const OperationItem = {
       cancelDateTime: isSet(object.cancelDateTime) ? fromJsonTimestamp(object.cancelDateTime) : undefined,
       cancelReason: isSet(object.cancelReason) ? String(object.cancelReason) : "",
       tradesInfo: isSet(object.tradesInfo) ? OperationItemTrades.fromJSON(object.tradesInfo) : undefined,
+      assetUid: isSet(object.assetUid) ? String(object.assetUid) : "",
     };
   },
 
@@ -4704,6 +5222,7 @@ export const OperationItem = {
     message.cancelReason !== undefined && (obj.cancelReason = message.cancelReason);
     message.tradesInfo !== undefined &&
       (obj.tradesInfo = message.tradesInfo ? OperationItemTrades.toJSON(message.tradesInfo) : undefined);
+    message.assetUid !== undefined && (obj.assetUid = message.assetUid);
     return obj;
   },
 
@@ -4748,6 +5267,7 @@ export const OperationItem = {
     message.tradesInfo = (object.tradesInfo !== undefined && object.tradesInfo !== null)
       ? OperationItemTrades.fromPartial(object.tradesInfo)
       : undefined;
+    message.assetUid = object.assetUid ?? "";
     return message;
   },
 };
