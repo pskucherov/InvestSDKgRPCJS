@@ -395,7 +395,7 @@ export interface SubscribeCandlesRequest {
 
 /** Запрос изменения статус подписки на свечи. */
 export interface CandleInstrument {
-  /** Figi-идентификатор инструмента. */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Интервал свечей. */
   interval: SubscriptionInterval;
@@ -433,7 +433,7 @@ export interface SubscribeOrderBookRequest {
 
 /** Запрос подписки на стаканы. */
 export interface OrderBookInstrument {
-  /** Figi-идентификатор инструмента. */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Глубина стакана. */
   depth: number;
@@ -471,7 +471,7 @@ export interface SubscribeTradesRequest {
 
 /** Запрос подписки на поток обезличенных сделок. */
 export interface TradeInstrument {
-  /** Figi-идентификатор инструмента. */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid */
   instrumentId: string;
@@ -505,7 +505,7 @@ export interface SubscribeInfoRequest {
 
 /** Запрос подписки на торговый статус. */
 export interface InfoInstrument {
-  /** Figi-идентификатор инструмента. */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid */
   instrumentId: string;
@@ -539,7 +539,7 @@ export interface SubscribeLastPriceRequest {
 
 /** Запрос подписки на последнюю цену. */
 export interface LastPriceInstrument {
-  /** Figi-идентификатор инструмента. */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid */
   instrumentId: string;
@@ -677,7 +677,7 @@ export interface TradingStatus {
 
 /** Запрос исторических свечей. */
 export interface GetCandlesRequest {
-  /** Figi-идентификатор инструмента. */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Начало запрашиваемого периода в часовом поясе UTC. */
   from:
@@ -689,7 +689,7 @@ export interface GetCandlesRequest {
     | undefined;
   /** Интервал запрошенных свечей. */
   interval: CandleInterval;
-  /** Идентификатор инструмента, принимает значение figi или instrument_uid */
+  /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
   instrumentId: string;
 }
 
@@ -729,9 +729,9 @@ export interface HistoricCandle {
 
 /** Запрос получения цен последних сделок. */
 export interface GetLastPricesRequest {
-  /** Массив figi-идентификаторов инструментов. */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string[];
-  /** Массив идентификаторов инструмента, принимает значения figi или instrument_uid */
+  /** Массив идентификаторов инструмента, принимает значения figi или instrument_uid. */
   instrumentId: string[];
 }
 
@@ -759,11 +759,11 @@ export interface LastPrice {
 
 /** Запрос стакана. */
 export interface GetOrderBookRequest {
-  /** Figi-идентификатор инструмента. */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Глубина стакана. */
   depth: number;
-  /** Идентификатор инструмента, принимает значение figi или instrument_uid */
+  /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
   instrumentId: string;
 }
 
@@ -805,15 +805,15 @@ export interface GetOrderBookResponse {
   orderbookTs:
     | Date
     | undefined;
-  /** Uid инструмента */
+  /** Uid инструмента. */
   instrumentUid: string;
 }
 
 /** Запрос получения торгового статуса. */
 export interface GetTradingStatusRequest {
-  /** Идентификатор инструмента. */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
-  /** Идентификатор инструмента, принимает значение figi или instrument_uid */
+  /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
   instrumentId: string;
 }
 
@@ -829,13 +829,13 @@ export interface GetTradingStatusResponse {
   marketOrderAvailableFlag: boolean;
   /** Признак доступности торгов через API. */
   apiTradeAvailableFlag: boolean;
-  /** Uid инструмента */
+  /** Uid инструмента. */
   instrumentUid: string;
 }
 
 /** Запрос обезличенных сделок за последний час. */
 export interface GetLastTradesRequest {
-  /** Figi-идентификатор инструмента */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Начало запрашиваемого периода в часовом поясе UTC. */
   from:
@@ -845,13 +845,13 @@ export interface GetLastTradesRequest {
   to:
     | Date
     | undefined;
-  /** Идентификатор инструмента, принимает значение figi или instrument_uid */
+  /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
   instrumentId: string;
 }
 
 /** Обезличенных сделок за последний час. */
 export interface GetLastTradesResponse {
-  /** Массив сделок */
+  /** Массив сделок. */
   trades: Trade[];
 }
 
@@ -867,7 +867,7 @@ export interface GetClosePricesRequest {
 
 /** Запрос цен закрытия торговой сессии по инструменту. */
 export interface InstrumentClosePriceRequest {
-  /** Идентификатор инструмента, принимает значение figi или instrument_uid */
+  /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
   instrumentId: string;
 }
 

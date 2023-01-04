@@ -955,6 +955,12 @@ export interface Option {
   sellAvailableFlag: boolean;
   /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
   forQualInvestorFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом по выходным. */
+  weekendFlag: boolean;
+  /** Флаг заблокированного ТКС. */
+  blockedTcaFlag: boolean;
+  /** Параметр указывает на возможность торговать инструментом через API. */
+  apiTradeAvailableFlag: boolean;
 }
 
 /** Данные по акции. */
@@ -1085,6 +1091,10 @@ export interface Bond {
   forIisFlag: boolean;
   /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
   forQualInvestorFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом по выходным. */
+  weekendFlag: boolean;
+  /** Флаг заблокированного ТКС. */
+  blockedTcaFlag: boolean;
   /** Дата первой минутной свечи. */
   first1minCandleDate:
     | Date
@@ -1171,6 +1181,10 @@ export interface Currency {
   forIisFlag: boolean;
   /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
   forQualInvestorFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом по выходным. */
+  weekendFlag: boolean;
+  /** Флаг заблокированного ТКС. */
+  blockedTcaFlag: boolean;
   /** Дата первой минутной свечи. */
   first1minCandleDate:
     | Date
@@ -1269,6 +1283,10 @@ export interface Etf {
   forIisFlag: boolean;
   /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
   forQualInvestorFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом по выходным. */
+  weekendFlag: boolean;
+  /** Флаг заблокированного ТКС. */
+  blockedTcaFlag: boolean;
   /** Дата первой минутной свечи. */
   first1minCandleDate:
     | Date
@@ -1373,6 +1391,10 @@ export interface Future {
   forIisFlag: boolean;
   /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
   forQualInvestorFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом по выходным. */
+  weekendFlag: boolean;
+  /** Флаг заблокированного ТКС. */
+  blockedTcaFlag: boolean;
   /** Дата первой минутной свечи. */
   first1minCandleDate:
     | Date
@@ -1471,6 +1493,10 @@ export interface Share {
   forIisFlag: boolean;
   /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
   forQualInvestorFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом по выходным */
+  weekendFlag: boolean;
+  /** Флаг заблокированного ТКС */
+  blockedTcaFlag: boolean;
   /** Дата первой минутной свечи. */
   first1minCandleDate:
     | Date
@@ -1619,6 +1645,10 @@ export interface Instrument {
   forIisFlag: boolean;
   /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
   forQualInvestorFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом по выходным */
+  weekendFlag: boolean;
+  /** Флаг заблокированного ТКС */
+  blockedTcaFlag: boolean;
   /** Дата первой минутной свечи. */
   first1minCandleDate:
     | Date
@@ -2205,6 +2235,10 @@ export interface InstrumentShort {
     | undefined;
   /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
   forQualInvestorFlag: boolean;
+  /** Флаг отображающий доступность торговли инструментом по выходным */
+  weekendFlag: boolean;
+  /** Флаг заблокированного ТКС */
+  blockedTcaFlag: boolean;
 }
 
 /** Запрос списка брендов. */
@@ -3509,6 +3543,9 @@ function createBaseOption(): Option {
     buyAvailableFlag: false,
     sellAvailableFlag: false,
     forQualInvestorFlag: false,
+    weekendFlag: false,
+    blockedTcaFlag: false,
+    apiTradeAvailableFlag: false,
   };
 }
 
@@ -3636,6 +3673,15 @@ export const Option = {
     }
     if (message.forQualInvestorFlag === true) {
       writer.uint32(3248).bool(message.forQualInvestorFlag);
+    }
+    if (message.weekendFlag === true) {
+      writer.uint32(3256).bool(message.weekendFlag);
+    }
+    if (message.blockedTcaFlag === true) {
+      writer.uint32(3264).bool(message.blockedTcaFlag);
+    }
+    if (message.apiTradeAvailableFlag === true) {
+      writer.uint32(3272).bool(message.apiTradeAvailableFlag);
     }
     return writer;
   },
@@ -3770,6 +3816,15 @@ export const Option = {
         case 406:
           message.forQualInvestorFlag = reader.bool();
           break;
+        case 407:
+          message.weekendFlag = reader.bool();
+          break;
+        case 408:
+          message.blockedTcaFlag = reader.bool();
+          break;
+        case 409:
+          message.apiTradeAvailableFlag = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -3825,6 +3880,9 @@ export const Option = {
       buyAvailableFlag: isSet(object.buyAvailableFlag) ? Boolean(object.buyAvailableFlag) : false,
       sellAvailableFlag: isSet(object.sellAvailableFlag) ? Boolean(object.sellAvailableFlag) : false,
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
+      blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
+      apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
     };
   },
 
@@ -3876,6 +3934,9 @@ export const Option = {
     message.buyAvailableFlag !== undefined && (obj.buyAvailableFlag = message.buyAvailableFlag);
     message.sellAvailableFlag !== undefined && (obj.sellAvailableFlag = message.sellAvailableFlag);
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
+    message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
+    message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     return obj;
   },
 
@@ -3940,6 +4001,9 @@ export const Option = {
     message.buyAvailableFlag = object.buyAvailableFlag ?? false;
     message.sellAvailableFlag = object.sellAvailableFlag ?? false;
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.weekendFlag = object.weekendFlag ?? false;
+    message.blockedTcaFlag = object.blockedTcaFlag ?? false;
+    message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     return message;
   },
 };
@@ -4092,6 +4156,8 @@ function createBaseBond(): Bond {
     positionUid: "",
     forIisFlag: false,
     forQualInvestorFlag: false,
+    weekendFlag: false,
+    blockedTcaFlag: false,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
   };
@@ -4227,6 +4293,12 @@ export const Bond = {
     }
     if (message.forQualInvestorFlag === true) {
       writer.uint32(416).bool(message.forQualInvestorFlag);
+    }
+    if (message.weekendFlag === true) {
+      writer.uint32(424).bool(message.weekendFlag);
+    }
+    if (message.blockedTcaFlag === true) {
+      writer.uint32(432).bool(message.blockedTcaFlag);
     }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(490).fork()).ldelim();
@@ -4373,6 +4445,12 @@ export const Bond = {
         case 52:
           message.forQualInvestorFlag = reader.bool();
           break;
+        case 53:
+          message.weekendFlag = reader.bool();
+          break;
+        case 54:
+          message.blockedTcaFlag = reader.bool();
+          break;
         case 61:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -4432,6 +4510,8 @@ export const Bond = {
       positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
       forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
+      blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
@@ -4493,6 +4573,8 @@ export const Bond = {
     message.positionUid !== undefined && (obj.positionUid = message.positionUid);
     message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
+    message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
@@ -4565,6 +4647,8 @@ export const Bond = {
     message.positionUid = object.positionUid ?? "";
     message.forIisFlag = object.forIisFlag ?? false;
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.weekendFlag = object.weekendFlag ?? false;
+    message.blockedTcaFlag = object.blockedTcaFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
@@ -4603,6 +4687,8 @@ function createBaseCurrency(): Currency {
     positionUid: "",
     forIisFlag: false,
     forQualInvestorFlag: false,
+    weekendFlag: false,
+    blockedTcaFlag: false,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
   };
@@ -4699,6 +4785,12 @@ export const Currency = {
     }
     if (message.forQualInvestorFlag === true) {
       writer.uint32(416).bool(message.forQualInvestorFlag);
+    }
+    if (message.weekendFlag === true) {
+      writer.uint32(424).bool(message.weekendFlag);
+    }
+    if (message.blockedTcaFlag === true) {
+      writer.uint32(432).bool(message.blockedTcaFlag);
     }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
@@ -4806,6 +4898,12 @@ export const Currency = {
         case 52:
           message.forQualInvestorFlag = reader.bool();
           break;
+        case 53:
+          message.weekendFlag = reader.bool();
+          break;
+        case 54:
+          message.blockedTcaFlag = reader.bool();
+          break;
         case 56:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -4852,6 +4950,8 @@ export const Currency = {
       positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
       forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
+      blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
@@ -4896,6 +4996,8 @@ export const Currency = {
     message.positionUid !== undefined && (obj.positionUid = message.positionUid);
     message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
+    message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
@@ -4949,6 +5051,8 @@ export const Currency = {
     message.positionUid = object.positionUid ?? "";
     message.forIisFlag = object.forIisFlag ?? false;
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.weekendFlag = object.weekendFlag ?? false;
+    message.blockedTcaFlag = object.blockedTcaFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
@@ -4991,6 +5095,8 @@ function createBaseEtf(): Etf {
     positionUid: "",
     forIisFlag: false,
     forQualInvestorFlag: false,
+    weekendFlag: false,
+    blockedTcaFlag: false,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
   };
@@ -5099,6 +5205,12 @@ export const Etf = {
     }
     if (message.forQualInvestorFlag === true) {
       writer.uint32(336).bool(message.forQualInvestorFlag);
+    }
+    if (message.weekendFlag === true) {
+      writer.uint32(344).bool(message.weekendFlag);
+    }
+    if (message.blockedTcaFlag === true) {
+      writer.uint32(352).bool(message.blockedTcaFlag);
     }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
@@ -5218,6 +5330,12 @@ export const Etf = {
         case 42:
           message.forQualInvestorFlag = reader.bool();
           break;
+        case 43:
+          message.weekendFlag = reader.bool();
+          break;
+        case 44:
+          message.blockedTcaFlag = reader.bool();
+          break;
         case 56:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -5268,6 +5386,8 @@ export const Etf = {
       positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
       forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
+      blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
@@ -5318,6 +5438,8 @@ export const Etf = {
     message.positionUid !== undefined && (obj.positionUid = message.positionUid);
     message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
+    message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
@@ -5377,6 +5499,8 @@ export const Etf = {
     message.positionUid = object.positionUid ?? "";
     message.forIisFlag = object.forIisFlag ?? false;
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.weekendFlag = object.weekendFlag ?? false;
+    message.blockedTcaFlag = object.blockedTcaFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
@@ -5421,6 +5545,8 @@ function createBaseFuture(): Future {
     basicAssetPositionUid: "",
     forIisFlag: false,
     forQualInvestorFlag: false,
+    weekendFlag: false,
+    blockedTcaFlag: false,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
   };
@@ -5535,6 +5661,12 @@ export const Future = {
     }
     if (message.forQualInvestorFlag === true) {
       writer.uint32(336).bool(message.forQualInvestorFlag);
+    }
+    if (message.weekendFlag === true) {
+      writer.uint32(344).bool(message.weekendFlag);
+    }
+    if (message.blockedTcaFlag === true) {
+      writer.uint32(352).bool(message.blockedTcaFlag);
     }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
@@ -5660,6 +5792,12 @@ export const Future = {
         case 42:
           message.forQualInvestorFlag = reader.bool();
           break;
+        case 43:
+          message.weekendFlag = reader.bool();
+          break;
+        case 44:
+          message.blockedTcaFlag = reader.bool();
+          break;
         case 56:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -5712,6 +5850,8 @@ export const Future = {
       basicAssetPositionUid: isSet(object.basicAssetPositionUid) ? String(object.basicAssetPositionUid) : "",
       forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
+      blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
@@ -5763,6 +5903,8 @@ export const Future = {
     message.basicAssetPositionUid !== undefined && (obj.basicAssetPositionUid = message.basicAssetPositionUid);
     message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
+    message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
@@ -5822,6 +5964,8 @@ export const Future = {
     message.basicAssetPositionUid = object.basicAssetPositionUid ?? "";
     message.forIisFlag = object.forIisFlag ?? false;
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.weekendFlag = object.weekendFlag ?? false;
+    message.blockedTcaFlag = object.blockedTcaFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
@@ -5865,6 +6009,8 @@ function createBaseShare(): Share {
     positionUid: "",
     forIisFlag: false,
     forQualInvestorFlag: false,
+    weekendFlag: false,
+    blockedTcaFlag: false,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
   };
@@ -5976,6 +6122,12 @@ export const Share = {
     }
     if (message.forQualInvestorFlag === true) {
       writer.uint32(376).bool(message.forQualInvestorFlag);
+    }
+    if (message.weekendFlag === true) {
+      writer.uint32(384).bool(message.weekendFlag);
+    }
+    if (message.blockedTcaFlag === true) {
+      writer.uint32(392).bool(message.blockedTcaFlag);
     }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
@@ -6098,6 +6250,12 @@ export const Share = {
         case 47:
           message.forQualInvestorFlag = reader.bool();
           break;
+        case 48:
+          message.weekendFlag = reader.bool();
+          break;
+        case 49:
+          message.blockedTcaFlag = reader.bool();
+          break;
         case 56:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -6149,6 +6307,8 @@ export const Share = {
       positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
       forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
+      blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
@@ -6198,6 +6358,8 @@ export const Share = {
     message.positionUid !== undefined && (obj.positionUid = message.positionUid);
     message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
+    message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
@@ -6256,6 +6418,8 @@ export const Share = {
     message.positionUid = object.positionUid ?? "";
     message.forIisFlag = object.forIisFlag ?? false;
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.weekendFlag = object.weekendFlag ?? false;
+    message.blockedTcaFlag = object.blockedTcaFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
@@ -6695,6 +6859,8 @@ function createBaseInstrument(): Instrument {
     positionUid: "",
     forIisFlag: false,
     forQualInvestorFlag: false,
+    weekendFlag: false,
+    blockedTcaFlag: false,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
   };
@@ -6788,6 +6954,12 @@ export const Instrument = {
     }
     if (message.forQualInvestorFlag === true) {
       writer.uint32(296).bool(message.forQualInvestorFlag);
+    }
+    if (message.weekendFlag === true) {
+      writer.uint32(304).bool(message.weekendFlag);
+    }
+    if (message.blockedTcaFlag === true) {
+      writer.uint32(312).bool(message.blockedTcaFlag);
     }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
@@ -6892,6 +7064,12 @@ export const Instrument = {
         case 37:
           message.forQualInvestorFlag = reader.bool();
           break;
+        case 38:
+          message.weekendFlag = reader.bool();
+          break;
+        case 39:
+          message.blockedTcaFlag = reader.bool();
+          break;
         case 56:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -6937,6 +7115,8 @@ export const Instrument = {
       positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
       forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
+      blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
@@ -6980,6 +7160,8 @@ export const Instrument = {
     message.positionUid !== undefined && (obj.positionUid = message.positionUid);
     message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
+    message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
@@ -7030,6 +7212,8 @@ export const Instrument = {
     message.positionUid = object.positionUid ?? "";
     message.forIisFlag = object.forIisFlag ?? false;
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.weekendFlag = object.weekendFlag ?? false;
+    message.blockedTcaFlag = object.blockedTcaFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
@@ -10023,6 +10207,8 @@ function createBaseInstrumentShort(): InstrumentShort {
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
     forQualInvestorFlag: false,
+    weekendFlag: false,
+    blockedTcaFlag: false,
   };
 }
 
@@ -10066,6 +10252,12 @@ export const InstrumentShort = {
     }
     if (message.forQualInvestorFlag === true) {
       writer.uint32(224).bool(message.forQualInvestorFlag);
+    }
+    if (message.weekendFlag === true) {
+      writer.uint32(232).bool(message.weekendFlag);
+    }
+    if (message.blockedTcaFlag === true) {
+      writer.uint32(240).bool(message.blockedTcaFlag);
     }
     return writer;
   },
@@ -10116,6 +10308,12 @@ export const InstrumentShort = {
         case 28:
           message.forQualInvestorFlag = reader.bool();
           break;
+        case 29:
+          message.weekendFlag = reader.bool();
+          break;
+        case 30:
+          message.blockedTcaFlag = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -10143,6 +10341,8 @@ export const InstrumentShort = {
         ? fromJsonTimestamp(object.first1dayCandleDate)
         : undefined,
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
+      weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
+      blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
     };
   },
 
@@ -10161,6 +10361,8 @@ export const InstrumentShort = {
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
+    message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
+    message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
     return obj;
   },
 
@@ -10179,6 +10381,8 @@ export const InstrumentShort = {
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
+    message.weekendFlag = object.weekendFlag ?? false;
+    message.blockedTcaFlag = object.blockedTcaFlag ?? false;
     return message;
   },
 };

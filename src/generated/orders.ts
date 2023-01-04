@@ -244,15 +244,15 @@ export interface OrderTrade {
   price:
     | Quotation
     | undefined;
-  /** Количество лотов в сделке. */
+  /** Количество штук в сделке. */
   quantity: number;
-  /** Идентификатор сделки */
+  /** Идентификатор сделки. */
   tradeId: string;
 }
 
 /** Запрос выставления торгового поручения. */
 export interface PostOrderRequest {
-  /** Figi-идентификатор инструмента. */
+  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Количество лотов. */
   quantity: number;
@@ -422,7 +422,7 @@ export interface OrderState {
 
 /** Сделки в рамках торгового поручения. */
 export interface OrderStage {
-  /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.. */
+  /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
   price:
     | MoneyValue
     | undefined;

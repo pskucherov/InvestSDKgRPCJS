@@ -819,23 +819,23 @@ export function portfolioRequest_CurrencyRequestToJSON(object: PortfolioRequest_
 
 /** Текущий портфель по счёту. */
 export interface PortfolioResponse {
-  /** Общая стоимость акций в портфеле в рублях. */
+  /** Общая стоимость акций в портфеле. */
   totalAmountShares:
     | MoneyValue
     | undefined;
-  /** Общая стоимость облигаций в портфеле в рублях. */
+  /** Общая стоимость облигаций в портфеле. */
   totalAmountBonds:
     | MoneyValue
     | undefined;
-  /** Общая стоимость фондов в портфеле в рублях. */
+  /** Общая стоимость фондов в портфеле. */
   totalAmountEtf:
     | MoneyValue
     | undefined;
-  /** Общая стоимость валют в портфеле в рублях. */
+  /** Общая стоимость валют в портфеле. */
   totalAmountCurrencies:
     | MoneyValue
     | undefined;
-  /** Общая стоимость фьючерсов в портфеле в рублях. */
+  /** Общая стоимость фьючерсов в портфеле. */
   totalAmountFutures:
     | MoneyValue
     | undefined;
@@ -847,19 +847,19 @@ export interface PortfolioResponse {
   positions: PortfolioPosition[];
   /** Идентификатор счёта пользователя. */
   accountId: string;
-  /** Общая стоимость фьючерсов в портфеле в рублях. */
+  /** Общая стоимость опционов в портфеле. */
   totalAmountOptions:
     | MoneyValue
     | undefined;
-  /** Общая стоимость структурных нот в портфеле в рублях */
+  /** Общая стоимость структурных нот в портфеле. */
   totalAmountSp:
     | MoneyValue
     | undefined;
-  /** Общая стоимость портфеля в рублях */
+  /** Общая стоимость портфеля. */
   totalAmountPortfolio:
     | MoneyValue
     | undefined;
-  /** Массив виртуальных позиций портфеля */
+  /** Массив виртуальных позиций портфеля. */
   virtualPositions: VirtualPortfolioPosition[];
 }
 
@@ -927,7 +927,7 @@ export interface PortfolioPosition {
   averagePositionPricePt:
     | Quotation
     | undefined;
-  /** Текущая цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.. */
+  /** Текущая цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
   currentPrice:
     | MoneyValue
     | undefined;
@@ -939,7 +939,7 @@ export interface PortfolioPosition {
   quantityLots:
     | Quotation
     | undefined;
-  /** Заблокировано. */
+  /** Заблокировано на бирже. */
   blocked: boolean;
   /** position_uid-идентификатора инструмента */
   positionUid: string;
@@ -982,7 +982,7 @@ export interface VirtualPortfolioPosition {
   expireDate:
     | Date
     | undefined;
-  /** Текущая цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.. */
+  /** Текущая цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
   currentPrice:
     | MoneyValue
     | undefined;
@@ -994,7 +994,7 @@ export interface VirtualPortfolioPosition {
 export interface PositionsSecurities {
   /** Figi-идентификатор бумаги. */
   figi: string;
-  /** Заблокировано. */
+  /** Количество бумаг заблокированных выставленными заявками. */
   blocked: number;
   /** Текущий незаблокированный баланс. */
   balance: number;
@@ -1012,7 +1012,7 @@ export interface PositionsSecurities {
 export interface PositionsFutures {
   /** Figi-идентификатор фьючерса. */
   figi: string;
-  /** Заблокировано. */
+  /** Количество бумаг заблокированных выставленными заявками. */
   blocked: number;
   /** Текущий незаблокированный баланс. */
   balance: number;
@@ -1028,7 +1028,7 @@ export interface PositionsOptions {
   positionUid: string;
   /** Уникальный идентификатор  инструмента. */
   instrumentUid: string;
-  /** Заблокировано. */
+  /** Количество бумаг заблокированных выставленными заявками. */
   blocked: number;
   /** Текущий незаблокированный баланс. */
   balance: number;
@@ -1332,9 +1332,9 @@ export interface OperationItem {
   cursor: string;
   /** Номер счета клиента. */
   brokerAccountId: string;
-  /** Номер поручения. */
+  /** Идентификатор операции, может меняться с течением времени. */
   id: string;
-  /** Номер родительского поручения. */
+  /** Идентификатор родительской операции, может измениться, если изменился id родительской операции. */
   parentOperationId: string;
   /** Название операции. */
   name: string;
@@ -5856,7 +5856,10 @@ export const OperationsServiceDefinition = {
   name: "OperationsService",
   fullName: "tinkoff.public.invest.api.contract.v1.OperationsService",
   methods: {
-    /** Метод получения списка операций по счёту. */
+    /**
+     * Метод получения списка операций по счёту.При работе с данным методом необходимо учитывать
+     * [особенности взаимодействия](/investAPI/operations_problems) с данным методом.
+     */
     getOperations: {
       name: "GetOperations",
       requestType: OperationsRequest,
@@ -5910,7 +5913,10 @@ export const OperationsServiceDefinition = {
       responseStream: false,
       options: {},
     },
-    /** Метод получения списка операций по счёту с пагинацией. */
+    /**
+     * Метод получения списка операций по счёту с пагинацией. При работе с данным методом необходимо учитывать
+     * [особенности взаимодействия](/investAPI/operations_problems) с данным методом.
+     */
     getOperationsByCursor: {
       name: "GetOperationsByCursor",
       requestType: GetOperationsByCursorRequest,

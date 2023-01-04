@@ -101,7 +101,7 @@ enum SubscriptionInterval {
 
 //Запрос изменения статус подписки на свечи.
 message CandleInstrument {
-  string figi = 1; //Figi-идентификатор инструмента.
+  string figi = 1; // Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
   SubscriptionInterval interval = 2; //Интервал свечей.
   string instrument_id = 3; //Идентификатор инструмента, принимает значение figi или instrument_uid
 }
@@ -141,7 +141,7 @@ message SubscribeOrderBookRequest {
 
 //Запрос подписки на стаканы.
 message OrderBookInstrument {
-  string figi = 1; //Figi-идентификатор инструмента.
+  string figi = 1; //Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
   int32 depth = 2; //Глубина стакана.
   string instrument_id = 3; //Идентификатор инструмента, принимает значение figi или instrument_uid
 }
@@ -168,7 +168,7 @@ message SubscribeTradesRequest {
 
 //Запрос подписки на поток обезличенных сделок.
 message TradeInstrument {
-  string figi = 1; //Figi-идентификатор инструмента.
+  string figi = 1; //Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
   string instrument_id = 2; //Идентификатор инструмента, принимает значение figi или instrument_uid
 }
 
@@ -193,7 +193,7 @@ message SubscribeInfoRequest {
 
 //Запрос подписки на торговый статус.
 message InfoInstrument {
-  string figi = 1; //Figi-идентификатор инструмента.
+  string figi = 1; //Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
   string instrument_id = 2; //Идентификатор инструмента, принимает значение figi или instrument_uid
 }
 
@@ -218,7 +218,7 @@ message SubscribeLastPriceRequest {
 
 //Запрос подписки на последнюю цену.
 message LastPriceInstrument {
-  string figi = 1; //Figi-идентификатор инструмента.
+  string figi = 1; //Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
   string instrument_id = 2; //Идентификатор инструмента, принимает значение figi или instrument_uid
 }
 
@@ -297,11 +297,11 @@ message TradingStatus {
 
 //Запрос исторических свечей.
 message GetCandlesRequest {
-  string figi = 1; //Figi-идентификатор инструмента.
+  string figi = 1; //Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
   google.protobuf.Timestamp from = 2; //Начало запрашиваемого периода в часовом поясе UTC.
   google.protobuf.Timestamp to = 3; //Окончание запрашиваемого периода в часовом поясе UTC.
   CandleInterval interval = 4; //Интервал запрошенных свечей.
-  string instrument_id = 5; //Идентификатор инструмента, принимает значение figi или instrument_uid
+  string instrument_id = 5; //Идентификатор инструмента, принимает значение figi или instrument_uid.
 }
 
 //Интервал свечей.
@@ -332,8 +332,8 @@ message HistoricCandle {
 
 //Запрос получения цен последних сделок.
 message GetLastPricesRequest {
-  repeated string figi = 1; //Массив figi-идентификаторов инструментов.
-  repeated string instrument_id = 2; //Массив идентификаторов инструмента, принимает значения figi или instrument_uid
+  repeated string figi = 1; //Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+  repeated string instrument_id = 2; //Массив идентификаторов инструмента, принимает значения figi или instrument_uid.
 }
 
 //Список цен последних сделок.
@@ -351,9 +351,9 @@ message LastPrice {
 
 //Запрос стакана.
 message GetOrderBookRequest {
-  string figi = 1; //Figi-идентификатор инструмента.
+  string figi = 1; //Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
   int32 depth = 2; //Глубина стакана.
-  string instrument_id = 3; //Идентификатор инструмента, принимает значение figi или instrument_uid
+  string instrument_id = 3; //Идентификатор инструмента, принимает значение figi или instrument_uid.
 }
 
 //Информация о стакане.
@@ -369,13 +369,13 @@ message GetOrderBookResponse {
   google.protobuf.Timestamp last_price_ts = 21; //Время получения цены последней сделки.
   google.protobuf.Timestamp close_price_ts = 22; //Время получения цены закрытия.
   google.protobuf.Timestamp orderbook_ts = 23; //Время формирования стакана на бирже.
-  string instrument_uid = 9; //Uid инструмента
+  string instrument_uid = 9; //Uid инструмента.
 }
 
 //Запрос получения торгового статуса.
 message GetTradingStatusRequest {
-  string figi = 1; //Идентификатор инструмента.
-  string instrument_id = 2; //Идентификатор инструмента, принимает значение figi или instrument_uid
+  string figi = 1; //Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+  string instrument_id = 2; //Идентификатор инструмента, принимает значение figi или instrument_uid.
 }
 
 //Информация о торговом статусе.
@@ -385,20 +385,20 @@ message GetTradingStatusResponse {
   bool limit_order_available_flag = 3; //Признак доступности выставления лимитной заявки по инструменту.
   bool market_order_available_flag = 4; //Признак доступности выставления рыночной заявки по инструменту.
   bool api_trade_available_flag = 5; //Признак доступности торгов через API.
-  string instrument_uid = 6; //Uid инструмента
+  string instrument_uid = 6; //Uid инструмента.
 }
 
 //Запрос обезличенных сделок за последний час.
 message GetLastTradesRequest {
-  string figi = 1; //Figi-идентификатор инструмента
+  string figi = 1; //Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
   google.protobuf.Timestamp from = 2; //Начало запрашиваемого периода в часовом поясе UTC.
   google.protobuf.Timestamp to = 3; //Окончание запрашиваемого периода в часовом поясе UTC.
-  string instrument_id = 4; //Идентификатор инструмента, принимает значение figi или instrument_uid
+  string instrument_id = 4; //Идентификатор инструмента, принимает значение figi или instrument_uid.
 }
 
 //Обезличенных сделок за последний час.
 message GetLastTradesResponse {
-  repeated Trade trades = 1; //Массив сделок
+  repeated Trade trades = 1; //Массив сделок.
 }
 
 //Запрос активных подписок.
@@ -411,7 +411,7 @@ message GetClosePricesRequest {
 
 //Запрос цен закрытия торговой сессии по инструменту.
 message InstrumentClosePriceRequest {
-  string instrument_id = 1; //Идентификатор инструмента, принимает значение figi или instrument_uid
+  string instrument_id = 1; //Идентификатор инструмента, принимает значение figi или instrument_uid.
 }
 
 //Цены закрытия торговой сессии по инструментам.
