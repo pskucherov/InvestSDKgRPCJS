@@ -296,6 +296,10 @@ export const GetAccountsRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetAccountsRequest>): GetAccountsRequest {
+    return GetAccountsRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(_: DeepPartial<GetAccountsRequest>): GetAccountsRequest {
     const message = createBaseGetAccountsRequest();
     return message;
@@ -344,6 +348,10 @@ export const GetAccountsResponse = {
       obj.accounts = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<GetAccountsResponse>): GetAccountsResponse {
+    return GetAccountsResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetAccountsResponse>): GetAccountsResponse {
@@ -443,6 +451,10 @@ export const Account = {
     return obj;
   },
 
+  create(base?: DeepPartial<Account>): Account {
+    return Account.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<Account>): Account {
     const message = createBaseAccount();
     message.id = object.id ?? "";
@@ -494,6 +506,10 @@ export const GetMarginAttributesRequest = {
     const obj: any = {};
     message.accountId !== undefined && (obj.accountId = message.accountId);
     return obj;
+  },
+
+  create(base?: DeepPartial<GetMarginAttributesRequest>): GetMarginAttributesRequest {
+    return GetMarginAttributesRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetMarginAttributesRequest>): GetMarginAttributesRequest {
@@ -604,6 +620,10 @@ export const GetMarginAttributesResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetMarginAttributesResponse>): GetMarginAttributesResponse {
+    return GetMarginAttributesResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetMarginAttributesResponse>): GetMarginAttributesResponse {
     const message = createBaseGetMarginAttributesResponse();
     message.liquidPortfolio = (object.liquidPortfolio !== undefined && object.liquidPortfolio !== null)
@@ -660,6 +680,10 @@ export const GetUserTariffRequest = {
   toJSON(_: GetUserTariffRequest): unknown {
     const obj: any = {};
     return obj;
+  },
+
+  create(base?: DeepPartial<GetUserTariffRequest>): GetUserTariffRequest {
+    return GetUserTariffRequest.fromPartial(base ?? {});
   },
 
   fromPartial(_: DeepPartial<GetUserTariffRequest>): GetUserTariffRequest {
@@ -728,6 +752,10 @@ export const GetUserTariffResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetUserTariffResponse>): GetUserTariffResponse {
+    return GetUserTariffResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetUserTariffResponse>): GetUserTariffResponse {
     const message = createBaseGetUserTariffResponse();
     message.unaryLimits = object.unaryLimits?.map((e) => UnaryLimit.fromPartial(e)) || [];
@@ -788,6 +816,10 @@ export const UnaryLimit = {
       obj.methods = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<UnaryLimit>): UnaryLimit {
+    return UnaryLimit.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<UnaryLimit>): UnaryLimit {
@@ -852,6 +884,10 @@ export const StreamLimit = {
     return obj;
   },
 
+  create(base?: DeepPartial<StreamLimit>): StreamLimit {
+    return StreamLimit.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<StreamLimit>): StreamLimit {
     const message = createBaseStreamLimit();
     message.limit = object.limit ?? 0;
@@ -891,6 +927,10 @@ export const GetInfoRequest = {
   toJSON(_: GetInfoRequest): unknown {
     const obj: any = {};
     return obj;
+  },
+
+  create(base?: DeepPartial<GetInfoRequest>): GetInfoRequest {
+    return GetInfoRequest.fromPartial(base ?? {});
   },
 
   fromPartial(_: DeepPartial<GetInfoRequest>): GetInfoRequest {
@@ -969,6 +1009,10 @@ export const GetInfoResponse = {
     }
     message.tariff !== undefined && (obj.tariff = message.tariff);
     return obj;
+  },
+
+  create(base?: DeepPartial<GetInfoResponse>): GetInfoResponse {
+    return GetInfoResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetInfoResponse>): GetInfoResponse {

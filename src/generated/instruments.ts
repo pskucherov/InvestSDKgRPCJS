@@ -2,6 +2,9 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import {
+  InstrumentType,
+  instrumentTypeFromJSON,
+  instrumentTypeToJSON,
   MoneyValue,
   Quotation,
   SecurityTradingStatus,
@@ -640,6 +643,55 @@ export function realExchangeToJSON(object: RealExchange): string {
   }
 }
 
+/** Уровень риска облигации. */
+export enum RiskLevel {
+  RISK_LEVEL_UNSPECIFIED = 0,
+  /** RISK_LEVEL_LOW - Низкий уровень риска */
+  RISK_LEVEL_LOW = 1,
+  /** RISK_LEVEL_MODERATE - Средний уровень риска */
+  RISK_LEVEL_MODERATE = 2,
+  /** RISK_LEVEL_HIGH - Высокий уровень риска */
+  RISK_LEVEL_HIGH = 3,
+  UNRECOGNIZED = -1,
+}
+
+export function riskLevelFromJSON(object: any): RiskLevel {
+  switch (object) {
+    case 0:
+    case "RISK_LEVEL_UNSPECIFIED":
+      return RiskLevel.RISK_LEVEL_UNSPECIFIED;
+    case 1:
+    case "RISK_LEVEL_LOW":
+      return RiskLevel.RISK_LEVEL_LOW;
+    case 2:
+    case "RISK_LEVEL_MODERATE":
+      return RiskLevel.RISK_LEVEL_MODERATE;
+    case 3:
+    case "RISK_LEVEL_HIGH":
+      return RiskLevel.RISK_LEVEL_HIGH;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return RiskLevel.UNRECOGNIZED;
+  }
+}
+
+export function riskLevelToJSON(object: RiskLevel): string {
+  switch (object) {
+    case RiskLevel.RISK_LEVEL_UNSPECIFIED:
+      return "RISK_LEVEL_UNSPECIFIED";
+    case RiskLevel.RISK_LEVEL_LOW:
+      return "RISK_LEVEL_LOW";
+    case RiskLevel.RISK_LEVEL_MODERATE:
+      return "RISK_LEVEL_MODERATE";
+    case RiskLevel.RISK_LEVEL_HIGH:
+      return "RISK_LEVEL_HIGH";
+    case RiskLevel.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
 /** Запрос расписания торгов. */
 export interface TradingSchedulesRequest {
   /** Наименование биржи или расчетного календаря. </br>Если не передаётся, возвращается информация по всем доступным торговым площадкам. */
@@ -715,7 +767,15 @@ export interface TradingDay {
     | Date
     | undefined;
   /** Время окончания премаркета в часовом поясе UTC. */
-  premarketEndTime: Date | undefined;
+  premarketEndTime:
+    | Date
+    | undefined;
+  /** Время начала аукциона закрытия в часовом поясе UTC. */
+  closingAuctionStartTime:
+    | Date
+    | undefined;
+  /** Время окончания аукциона открытия в часовом поясе UTC. */
+  openingAuctionEndTime: Date | undefined;
 }
 
 /** Запрос получения инструмента по идентификатору. */
@@ -1091,16 +1151,22 @@ export interface Bond {
   forIisFlag: boolean;
   /** Флаг отображающий доступность торговли инструментом только для квалифицированных инвесторов. */
   forQualInvestorFlag: boolean;
-  /** Флаг отображающий доступность торговли инструментом по выходным. */
+  /** Флаг отображающий доступность торговли инструментом по выходным */
   weekendFlag: boolean;
-  /** Флаг заблокированного ТКС. */
+  /** Флаг заблокированного ТКС */
   blockedTcaFlag: boolean;
+  /** Признак субординированной облигации. */
+  subordinatedFlag: boolean;
   /** Дата первой минутной свечи. */
   first1minCandleDate:
     | Date
     | undefined;
   /** Дата первой дневной свечи. */
-  first1dayCandleDate: Date | undefined;
+  first1dayCandleDate:
+    | Date
+    | undefined;
+  /** Уровень риска. */
+  riskLevel: RiskLevel;
 }
 
 /** Объект передачи информации о валюте. */
@@ -1649,6 +1715,8 @@ export interface Instrument {
   weekendFlag: boolean;
   /** Флаг заблокированного ТКС */
   blockedTcaFlag: boolean;
+  /** Тип инструмента. */
+  instrumentKind: InstrumentType;
   /** Дата первой минутной свечи. */
   first1minCandleDate:
     | Date
@@ -1752,11 +1820,11 @@ export interface AssetFull {
   /** Тестирование клиентов. */
   requiredTests: string[];
   /** Валюта. Обязательно и заполняется только для type = "ASSET_TYPE_CURRENCY". */
-  currency:
+  currency?:
     | AssetCurrency
     | undefined;
   /** Ценная бумага. Обязательно и заполняется только для type = "ASSET_TYPE_SECURITY". */
-  security:
+  security?:
     | AssetSecurity
     | undefined;
   /** Номер государственной регистрации. */
@@ -1807,24 +1875,26 @@ export interface AssetSecurity {
   isin: string;
   /** Тип ценной бумаги. */
   type: string;
+  /** Тип инструмента. */
+  instrumentKind: InstrumentType;
   /** Акция. Заполняется только для акций (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = share). */
-  share:
+  share?:
     | AssetShare
     | undefined;
   /** Облигация. Заполняется только для облигаций (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = bond). */
-  bond:
+  bond?:
     | AssetBond
     | undefined;
   /** Структурная нота. Заполняется только для структурных продуктов (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = sp). */
-  sp:
+  sp?:
     | AssetStructuredProduct
     | undefined;
   /** Фонд. Заполняется только для фондов (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = etf). */
-  etf:
+  etf?:
     | AssetEtf
     | undefined;
   /** Клиринговый сертификат участия. Заполняется только для клиринговых сертификатов (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = clearing_certificate). */
-  clearingCertificate: AssetClearingCertificate | undefined;
+  clearingCertificate?: AssetClearingCertificate | undefined;
 }
 
 /** Акция. */
@@ -2111,6 +2181,8 @@ export interface AssetInstrument {
   classCode: string;
   /** Массив связанных инструментов. */
   links: InstrumentLink[];
+  /** Тип инструмента. */
+  instrumentKind: InstrumentType;
 }
 
 /** Связь с другим инструментом. */
@@ -2147,6 +2219,8 @@ export interface FavoriteInstrument {
   otcFlag: boolean;
   /** Параметр указывает на возможность торговать инструментом через API. */
   apiTradeAvailableFlag: boolean;
+  /** Тип инструмента. */
+  instrumentKind: InstrumentType;
 }
 
 /** Запрос редактирования списка избранных инструментов. */
@@ -2221,6 +2295,8 @@ export interface InstrumentShort {
   uid: string;
   /** Уникальный идентификатор позиции инструмента. */
   positionUid: string;
+  /** Тип инструмента. */
+  instrumentKind: InstrumentType;
   /** Параметр указывает на возможность торговать инструментом через API. */
   apiTradeAvailableFlag: boolean;
   /** Признак доступности для ИИС. */
@@ -2315,6 +2391,10 @@ export const TradingSchedulesRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<TradingSchedulesRequest>): TradingSchedulesRequest {
+    return TradingSchedulesRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<TradingSchedulesRequest>): TradingSchedulesRequest {
     const message = createBaseTradingSchedulesRequest();
     message.exchange = object.exchange ?? "";
@@ -2368,6 +2448,10 @@ export const TradingSchedulesResponse = {
       obj.exchanges = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<TradingSchedulesResponse>): TradingSchedulesResponse {
+    return TradingSchedulesResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<TradingSchedulesResponse>): TradingSchedulesResponse {
@@ -2431,6 +2515,10 @@ export const TradingSchedule = {
     return obj;
   },
 
+  create(base?: DeepPartial<TradingSchedule>): TradingSchedule {
+    return TradingSchedule.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<TradingSchedule>): TradingSchedule {
     const message = createBaseTradingSchedule();
     message.exchange = object.exchange ?? "";
@@ -2454,6 +2542,8 @@ function createBaseTradingDay(): TradingDay {
     clearingEndTime: undefined,
     premarketStartTime: undefined,
     premarketEndTime: undefined,
+    closingAuctionStartTime: undefined,
+    openingAuctionEndTime: undefined,
   };
 }
 
@@ -2497,6 +2587,12 @@ export const TradingDay = {
     }
     if (message.premarketEndTime !== undefined) {
       Timestamp.encode(toTimestamp(message.premarketEndTime), writer.uint32(122).fork()).ldelim();
+    }
+    if (message.closingAuctionStartTime !== undefined) {
+      Timestamp.encode(toTimestamp(message.closingAuctionStartTime), writer.uint32(130).fork()).ldelim();
+    }
+    if (message.openingAuctionEndTime !== undefined) {
+      Timestamp.encode(toTimestamp(message.openingAuctionEndTime), writer.uint32(138).fork()).ldelim();
     }
     return writer;
   },
@@ -2547,6 +2643,12 @@ export const TradingDay = {
         case 15:
           message.premarketEndTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
+        case 16:
+          message.closingAuctionStartTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 17:
+          message.openingAuctionEndTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -2576,6 +2678,12 @@ export const TradingDay = {
       clearingEndTime: isSet(object.clearingEndTime) ? fromJsonTimestamp(object.clearingEndTime) : undefined,
       premarketStartTime: isSet(object.premarketStartTime) ? fromJsonTimestamp(object.premarketStartTime) : undefined,
       premarketEndTime: isSet(object.premarketEndTime) ? fromJsonTimestamp(object.premarketEndTime) : undefined,
+      closingAuctionStartTime: isSet(object.closingAuctionStartTime)
+        ? fromJsonTimestamp(object.closingAuctionStartTime)
+        : undefined,
+      openingAuctionEndTime: isSet(object.openingAuctionEndTime)
+        ? fromJsonTimestamp(object.openingAuctionEndTime)
+        : undefined,
     };
   },
 
@@ -2597,7 +2705,15 @@ export const TradingDay = {
     message.clearingEndTime !== undefined && (obj.clearingEndTime = message.clearingEndTime.toISOString());
     message.premarketStartTime !== undefined && (obj.premarketStartTime = message.premarketStartTime.toISOString());
     message.premarketEndTime !== undefined && (obj.premarketEndTime = message.premarketEndTime.toISOString());
+    message.closingAuctionStartTime !== undefined &&
+      (obj.closingAuctionStartTime = message.closingAuctionStartTime.toISOString());
+    message.openingAuctionEndTime !== undefined &&
+      (obj.openingAuctionEndTime = message.openingAuctionEndTime.toISOString());
     return obj;
+  },
+
+  create(base?: DeepPartial<TradingDay>): TradingDay {
+    return TradingDay.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<TradingDay>): TradingDay {
@@ -2615,6 +2731,8 @@ export const TradingDay = {
     message.clearingEndTime = object.clearingEndTime ?? undefined;
     message.premarketStartTime = object.premarketStartTime ?? undefined;
     message.premarketEndTime = object.premarketEndTime ?? undefined;
+    message.closingAuctionStartTime = object.closingAuctionStartTime ?? undefined;
+    message.openingAuctionEndTime = object.openingAuctionEndTime ?? undefined;
     return message;
   },
 };
@@ -2677,6 +2795,10 @@ export const InstrumentRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<InstrumentRequest>): InstrumentRequest {
+    return InstrumentRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<InstrumentRequest>): InstrumentRequest {
     const message = createBaseInstrumentRequest();
     message.idType = object.idType ?? 0;
@@ -2726,6 +2848,10 @@ export const InstrumentsRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<InstrumentsRequest>): InstrumentsRequest {
+    return InstrumentsRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<InstrumentsRequest>): InstrumentsRequest {
     const message = createBaseInstrumentsRequest();
     message.instrumentStatus = object.instrumentStatus ?? 0;
@@ -2772,6 +2898,10 @@ export const BondResponse = {
     message.instrument !== undefined &&
       (obj.instrument = message.instrument ? Bond.toJSON(message.instrument) : undefined);
     return obj;
+  },
+
+  create(base?: DeepPartial<BondResponse>): BondResponse {
+    return BondResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<BondResponse>): BondResponse {
@@ -2827,6 +2957,10 @@ export const BondsResponse = {
       obj.instruments = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<BondsResponse>): BondsResponse {
+    return BondsResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<BondsResponse>): BondsResponse {
@@ -2894,6 +3028,10 @@ export const GetBondCouponsRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetBondCouponsRequest>): GetBondCouponsRequest {
+    return GetBondCouponsRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetBondCouponsRequest>): GetBondCouponsRequest {
     const message = createBaseGetBondCouponsRequest();
     message.figi = object.figi ?? "";
@@ -2945,6 +3083,10 @@ export const GetBondCouponsResponse = {
       obj.events = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<GetBondCouponsResponse>): GetBondCouponsResponse {
+    return GetBondCouponsResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetBondCouponsResponse>): GetBondCouponsResponse {
@@ -3071,6 +3213,10 @@ export const Coupon = {
     return obj;
   },
 
+  create(base?: DeepPartial<Coupon>): Coupon {
+    return Coupon.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<Coupon>): Coupon {
     const message = createBaseCoupon();
     message.figi = object.figi ?? "";
@@ -3129,6 +3275,10 @@ export const CurrencyResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<CurrencyResponse>): CurrencyResponse {
+    return CurrencyResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<CurrencyResponse>): CurrencyResponse {
     const message = createBaseCurrencyResponse();
     message.instrument = (object.instrument !== undefined && object.instrument !== null)
@@ -3184,6 +3334,10 @@ export const CurrenciesResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<CurrenciesResponse>): CurrenciesResponse {
+    return CurrenciesResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<CurrenciesResponse>): CurrenciesResponse {
     const message = createBaseCurrenciesResponse();
     message.instruments = object.instruments?.map((e) => Currency.fromPartial(e)) || [];
@@ -3230,6 +3384,10 @@ export const EtfResponse = {
     message.instrument !== undefined &&
       (obj.instrument = message.instrument ? Etf.toJSON(message.instrument) : undefined);
     return obj;
+  },
+
+  create(base?: DeepPartial<EtfResponse>): EtfResponse {
+    return EtfResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<EtfResponse>): EtfResponse {
@@ -3287,6 +3445,10 @@ export const EtfsResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<EtfsResponse>): EtfsResponse {
+    return EtfsResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<EtfsResponse>): EtfsResponse {
     const message = createBaseEtfsResponse();
     message.instruments = object.instruments?.map((e) => Etf.fromPartial(e)) || [];
@@ -3333,6 +3495,10 @@ export const FutureResponse = {
     message.instrument !== undefined &&
       (obj.instrument = message.instrument ? Future.toJSON(message.instrument) : undefined);
     return obj;
+  },
+
+  create(base?: DeepPartial<FutureResponse>): FutureResponse {
+    return FutureResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<FutureResponse>): FutureResponse {
@@ -3390,6 +3556,10 @@ export const FuturesResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<FuturesResponse>): FuturesResponse {
+    return FuturesResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<FuturesResponse>): FuturesResponse {
     const message = createBaseFuturesResponse();
     message.instruments = object.instruments?.map((e) => Future.fromPartial(e)) || [];
@@ -3436,6 +3606,10 @@ export const OptionResponse = {
     message.instrument !== undefined &&
       (obj.instrument = message.instrument ? Option.toJSON(message.instrument) : undefined);
     return obj;
+  },
+
+  create(base?: DeepPartial<OptionResponse>): OptionResponse {
+    return OptionResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<OptionResponse>): OptionResponse {
@@ -3491,6 +3665,10 @@ export const OptionsResponse = {
       obj.instruments = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<OptionsResponse>): OptionsResponse {
+    return OptionsResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<OptionsResponse>): OptionsResponse {
@@ -3940,6 +4118,10 @@ export const Option = {
     return obj;
   },
 
+  create(base?: DeepPartial<Option>): Option {
+    return Option.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<Option>): Option {
     const message = createBaseOption();
     message.uid = object.uid ?? "";
@@ -4049,6 +4231,10 @@ export const ShareResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<ShareResponse>): ShareResponse {
+    return ShareResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<ShareResponse>): ShareResponse {
     const message = createBaseShareResponse();
     message.instrument = (object.instrument !== undefined && object.instrument !== null)
@@ -4102,6 +4288,10 @@ export const SharesResponse = {
       obj.instruments = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<SharesResponse>): SharesResponse {
+    return SharesResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<SharesResponse>): SharesResponse {
@@ -4158,8 +4348,10 @@ function createBaseBond(): Bond {
     forQualInvestorFlag: false,
     weekendFlag: false,
     blockedTcaFlag: false,
+    subordinatedFlag: false,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
+    riskLevel: 0,
   };
 }
 
@@ -4300,11 +4492,17 @@ export const Bond = {
     if (message.blockedTcaFlag === true) {
       writer.uint32(432).bool(message.blockedTcaFlag);
     }
+    if (message.subordinatedFlag === true) {
+      writer.uint32(440).bool(message.subordinatedFlag);
+    }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(490).fork()).ldelim();
     }
     if (message.first1dayCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1dayCandleDate), writer.uint32(498).fork()).ldelim();
+    }
+    if (message.riskLevel !== 0) {
+      writer.uint32(504).int32(message.riskLevel);
     }
     return writer;
   },
@@ -4451,11 +4649,17 @@ export const Bond = {
         case 54:
           message.blockedTcaFlag = reader.bool();
           break;
+        case 55:
+          message.subordinatedFlag = reader.bool();
+          break;
         case 61:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 62:
           message.first1dayCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 63:
+          message.riskLevel = reader.int32() as any;
           break;
         default:
           reader.skipType(tag & 7);
@@ -4512,12 +4716,14 @@ export const Bond = {
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
       weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
       blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
+      subordinatedFlag: isSet(object.subordinatedFlag) ? Boolean(object.subordinatedFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
       first1dayCandleDate: isSet(object.first1dayCandleDate)
         ? fromJsonTimestamp(object.first1dayCandleDate)
         : undefined,
+      riskLevel: isSet(object.riskLevel) ? riskLevelFromJSON(object.riskLevel) : 0,
     };
   },
 
@@ -4575,9 +4781,15 @@ export const Bond = {
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
     message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
     message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
+    message.subordinatedFlag !== undefined && (obj.subordinatedFlag = message.subordinatedFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
+    message.riskLevel !== undefined && (obj.riskLevel = riskLevelToJSON(message.riskLevel));
     return obj;
+  },
+
+  create(base?: DeepPartial<Bond>): Bond {
+    return Bond.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<Bond>): Bond {
@@ -4649,8 +4861,10 @@ export const Bond = {
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
     message.weekendFlag = object.weekendFlag ?? false;
     message.blockedTcaFlag = object.blockedTcaFlag ?? false;
+    message.subordinatedFlag = object.subordinatedFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
+    message.riskLevel = object.riskLevel ?? 0;
     return message;
   },
 };
@@ -5001,6 +5215,10 @@ export const Currency = {
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
+  },
+
+  create(base?: DeepPartial<Currency>): Currency {
+    return Currency.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<Currency>): Currency {
@@ -5443,6 +5661,10 @@ export const Etf = {
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
+  },
+
+  create(base?: DeepPartial<Etf>): Etf {
+    return Etf.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<Etf>): Etf {
@@ -5910,6 +6132,10 @@ export const Future = {
     return obj;
   },
 
+  create(base?: DeepPartial<Future>): Future {
+    return Future.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<Future>): Future {
     const message = createBaseFuture();
     message.figi = object.figi ?? "";
@@ -6365,6 +6591,10 @@ export const Share = {
     return obj;
   },
 
+  create(base?: DeepPartial<Share>): Share {
+    return Share.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<Share>): Share {
     const message = createBaseShare();
     message.figi = object.figi ?? "";
@@ -6484,6 +6714,10 @@ export const GetAccruedInterestsRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetAccruedInterestsRequest>): GetAccruedInterestsRequest {
+    return GetAccruedInterestsRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetAccruedInterestsRequest>): GetAccruedInterestsRequest {
     const message = createBaseGetAccruedInterestsRequest();
     message.figi = object.figi ?? "";
@@ -6539,6 +6773,10 @@ export const GetAccruedInterestsResponse = {
       obj.accruedInterests = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<GetAccruedInterestsResponse>): GetAccruedInterestsResponse {
+    return GetAccruedInterestsResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetAccruedInterestsResponse>): GetAccruedInterestsResponse {
@@ -6615,6 +6853,10 @@ export const AccruedInterest = {
     return obj;
   },
 
+  create(base?: DeepPartial<AccruedInterest>): AccruedInterest {
+    return AccruedInterest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<AccruedInterest>): AccruedInterest {
     const message = createBaseAccruedInterest();
     message.date = object.date ?? undefined;
@@ -6669,6 +6911,10 @@ export const GetFuturesMarginRequest = {
     const obj: any = {};
     message.figi !== undefined && (obj.figi = message.figi);
     return obj;
+  },
+
+  create(base?: DeepPartial<GetFuturesMarginRequest>): GetFuturesMarginRequest {
+    return GetFuturesMarginRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetFuturesMarginRequest>): GetFuturesMarginRequest {
@@ -6759,6 +7005,10 @@ export const GetFuturesMarginResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetFuturesMarginResponse>): GetFuturesMarginResponse {
+    return GetFuturesMarginResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetFuturesMarginResponse>): GetFuturesMarginResponse {
     const message = createBaseGetFuturesMarginResponse();
     message.initialMarginOnBuy = (object.initialMarginOnBuy !== undefined && object.initialMarginOnBuy !== null)
@@ -6819,6 +7069,10 @@ export const InstrumentResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<InstrumentResponse>): InstrumentResponse {
+    return InstrumentResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<InstrumentResponse>): InstrumentResponse {
     const message = createBaseInstrumentResponse();
     message.instrument = (object.instrument !== undefined && object.instrument !== null)
@@ -6861,6 +7115,7 @@ function createBaseInstrument(): Instrument {
     forQualInvestorFlag: false,
     weekendFlag: false,
     blockedTcaFlag: false,
+    instrumentKind: 0,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
   };
@@ -6960,6 +7215,9 @@ export const Instrument = {
     }
     if (message.blockedTcaFlag === true) {
       writer.uint32(312).bool(message.blockedTcaFlag);
+    }
+    if (message.instrumentKind !== 0) {
+      writer.uint32(320).int32(message.instrumentKind);
     }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
@@ -7070,6 +7328,9 @@ export const Instrument = {
         case 39:
           message.blockedTcaFlag = reader.bool();
           break;
+        case 40:
+          message.instrumentKind = reader.int32() as any;
+          break;
         case 56:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -7117,6 +7378,7 @@ export const Instrument = {
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
       weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
       blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
+      instrumentKind: isSet(object.instrumentKind) ? instrumentTypeFromJSON(object.instrumentKind) : 0,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
@@ -7162,9 +7424,14 @@ export const Instrument = {
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
     message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
     message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
+    message.instrumentKind !== undefined && (obj.instrumentKind = instrumentTypeToJSON(message.instrumentKind));
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
+  },
+
+  create(base?: DeepPartial<Instrument>): Instrument {
+    return Instrument.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<Instrument>): Instrument {
@@ -7214,6 +7481,7 @@ export const Instrument = {
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
     message.weekendFlag = object.weekendFlag ?? false;
     message.blockedTcaFlag = object.blockedTcaFlag ?? false;
+    message.instrumentKind = object.instrumentKind ?? 0;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
@@ -7278,6 +7546,10 @@ export const GetDividendsRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetDividendsRequest>): GetDividendsRequest {
+    return GetDividendsRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetDividendsRequest>): GetDividendsRequest {
     const message = createBaseGetDividendsRequest();
     message.figi = object.figi ?? "";
@@ -7331,6 +7603,10 @@ export const GetDividendsResponse = {
       obj.dividends = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<GetDividendsResponse>): GetDividendsResponse {
+    return GetDividendsResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetDividendsResponse>): GetDividendsResponse {
@@ -7468,6 +7744,10 @@ export const Dividend = {
     return obj;
   },
 
+  create(base?: DeepPartial<Dividend>): Dividend {
+    return Dividend.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<Dividend>): Dividend {
     const message = createBaseDividend();
     message.dividendNet = (object.dividendNet !== undefined && object.dividendNet !== null)
@@ -7530,6 +7810,10 @@ export const AssetRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<AssetRequest>): AssetRequest {
+    return AssetRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<AssetRequest>): AssetRequest {
     const message = createBaseAssetRequest();
     message.id = object.id ?? "";
@@ -7577,6 +7861,10 @@ export const AssetResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<AssetResponse>): AssetResponse {
+    return AssetResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<AssetResponse>): AssetResponse {
     const message = createBaseAssetResponse();
     message.asset = (object.asset !== undefined && object.asset !== null)
@@ -7617,6 +7905,10 @@ export const AssetsRequest = {
   toJSON(_: AssetsRequest): unknown {
     const obj: any = {};
     return obj;
+  },
+
+  create(base?: DeepPartial<AssetsRequest>): AssetsRequest {
+    return AssetsRequest.fromPartial(base ?? {});
   },
 
   fromPartial(_: DeepPartial<AssetsRequest>): AssetsRequest {
@@ -7667,6 +7959,10 @@ export const AssetsResponse = {
       obj.assets = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<AssetsResponse>): AssetsResponse {
+    return AssetsResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<AssetsResponse>): AssetsResponse {
@@ -7885,6 +8181,10 @@ export const AssetFull = {
     return obj;
   },
 
+  create(base?: DeepPartial<AssetFull>): AssetFull {
+    return AssetFull.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<AssetFull>): AssetFull {
     const message = createBaseAssetFull();
     message.uid = object.uid ?? "";
@@ -7985,6 +8285,10 @@ export const Asset = {
     return obj;
   },
 
+  create(base?: DeepPartial<Asset>): Asset {
+    return Asset.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<Asset>): Asset {
     const message = createBaseAsset();
     message.uid = object.uid ?? "";
@@ -8035,6 +8339,10 @@ export const AssetCurrency = {
     return obj;
   },
 
+  create(base?: DeepPartial<AssetCurrency>): AssetCurrency {
+    return AssetCurrency.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<AssetCurrency>): AssetCurrency {
     const message = createBaseAssetCurrency();
     message.baseCurrency = object.baseCurrency ?? "";
@@ -8046,6 +8354,7 @@ function createBaseAssetSecurity(): AssetSecurity {
   return {
     isin: "",
     type: "",
+    instrumentKind: 0,
     share: undefined,
     bond: undefined,
     sp: undefined,
@@ -8061,6 +8370,9 @@ export const AssetSecurity = {
     }
     if (message.type !== "") {
       writer.uint32(18).string(message.type);
+    }
+    if (message.instrumentKind !== 0) {
+      writer.uint32(80).int32(message.instrumentKind);
     }
     if (message.share !== undefined) {
       AssetShare.encode(message.share, writer.uint32(26).fork()).ldelim();
@@ -8093,6 +8405,9 @@ export const AssetSecurity = {
         case 2:
           message.type = reader.string();
           break;
+        case 10:
+          message.instrumentKind = reader.int32() as any;
+          break;
         case 3:
           message.share = AssetShare.decode(reader, reader.uint32());
           break;
@@ -8120,6 +8435,7 @@ export const AssetSecurity = {
     return {
       isin: isSet(object.isin) ? String(object.isin) : "",
       type: isSet(object.type) ? String(object.type) : "",
+      instrumentKind: isSet(object.instrumentKind) ? instrumentTypeFromJSON(object.instrumentKind) : 0,
       share: isSet(object.share) ? AssetShare.fromJSON(object.share) : undefined,
       bond: isSet(object.bond) ? AssetBond.fromJSON(object.bond) : undefined,
       sp: isSet(object.sp) ? AssetStructuredProduct.fromJSON(object.sp) : undefined,
@@ -8134,6 +8450,7 @@ export const AssetSecurity = {
     const obj: any = {};
     message.isin !== undefined && (obj.isin = message.isin);
     message.type !== undefined && (obj.type = message.type);
+    message.instrumentKind !== undefined && (obj.instrumentKind = instrumentTypeToJSON(message.instrumentKind));
     message.share !== undefined && (obj.share = message.share ? AssetShare.toJSON(message.share) : undefined);
     message.bond !== undefined && (obj.bond = message.bond ? AssetBond.toJSON(message.bond) : undefined);
     message.sp !== undefined && (obj.sp = message.sp ? AssetStructuredProduct.toJSON(message.sp) : undefined);
@@ -8144,10 +8461,15 @@ export const AssetSecurity = {
     return obj;
   },
 
+  create(base?: DeepPartial<AssetSecurity>): AssetSecurity {
+    return AssetSecurity.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<AssetSecurity>): AssetSecurity {
     const message = createBaseAssetSecurity();
     message.isin = object.isin ?? "";
     message.type = object.type ?? "";
+    message.instrumentKind = object.instrumentKind ?? 0;
     message.share = (object.share !== undefined && object.share !== null)
       ? AssetShare.fromPartial(object.share)
       : undefined;
@@ -8335,6 +8657,10 @@ export const AssetShare = {
     message.totalFloat !== undefined &&
       (obj.totalFloat = message.totalFloat ? Quotation.toJSON(message.totalFloat) : undefined);
     return obj;
+  },
+
+  create(base?: DeepPartial<AssetShare>): AssetShare {
+    return AssetShare.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<AssetShare>): AssetShare {
@@ -8597,6 +8923,10 @@ export const AssetBond = {
     return obj;
   },
 
+  create(base?: DeepPartial<AssetBond>): AssetBond {
+    return AssetBond.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<AssetBond>): AssetBond {
     const message = createBaseAssetBond();
     message.currentNominal = (object.currentNominal !== undefined && object.currentNominal !== null)
@@ -8787,6 +9117,10 @@ export const AssetStructuredProduct = {
     message.placementDate !== undefined && (obj.placementDate = message.placementDate.toISOString());
     message.issueKind !== undefined && (obj.issueKind = message.issueKind);
     return obj;
+  },
+
+  create(base?: DeepPartial<AssetStructuredProduct>): AssetStructuredProduct {
+    return AssetStructuredProduct.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<AssetStructuredProduct>): AssetStructuredProduct {
@@ -9154,6 +9488,10 @@ export const AssetEtf = {
     return obj;
   },
 
+  create(base?: DeepPartial<AssetEtf>): AssetEtf {
+    return AssetEtf.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<AssetEtf>): AssetEtf {
     const message = createBaseAssetEtf();
     message.totalExpense = (object.totalExpense !== undefined && object.totalExpense !== null)
@@ -9262,6 +9600,10 @@ export const AssetClearingCertificate = {
     message.nominal !== undefined && (obj.nominal = message.nominal ? Quotation.toJSON(message.nominal) : undefined);
     message.nominalCurrency !== undefined && (obj.nominalCurrency = message.nominalCurrency);
     return obj;
+  },
+
+  create(base?: DeepPartial<AssetClearingCertificate>): AssetClearingCertificate {
+    return AssetClearingCertificate.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<AssetClearingCertificate>): AssetClearingCertificate {
@@ -9381,6 +9723,10 @@ export const Brand = {
     return obj;
   },
 
+  create(base?: DeepPartial<Brand>): Brand {
+    return Brand.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<Brand>): Brand {
     const message = createBaseBrand();
     message.uid = object.uid ?? "";
@@ -9396,7 +9742,7 @@ export const Brand = {
 };
 
 function createBaseAssetInstrument(): AssetInstrument {
-  return { uid: "", figi: "", instrumentType: "", ticker: "", classCode: "", links: [] };
+  return { uid: "", figi: "", instrumentType: "", ticker: "", classCode: "", links: [], instrumentKind: 0 };
 }
 
 export const AssetInstrument = {
@@ -9418,6 +9764,9 @@ export const AssetInstrument = {
     }
     for (const v of message.links) {
       InstrumentLink.encode(v!, writer.uint32(50).fork()).ldelim();
+    }
+    if (message.instrumentKind !== 0) {
+      writer.uint32(80).int32(message.instrumentKind);
     }
     return writer;
   },
@@ -9447,6 +9796,9 @@ export const AssetInstrument = {
         case 6:
           message.links.push(InstrumentLink.decode(reader, reader.uint32()));
           break;
+        case 10:
+          message.instrumentKind = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -9463,6 +9815,7 @@ export const AssetInstrument = {
       ticker: isSet(object.ticker) ? String(object.ticker) : "",
       classCode: isSet(object.classCode) ? String(object.classCode) : "",
       links: Array.isArray(object?.links) ? object.links.map((e: any) => InstrumentLink.fromJSON(e)) : [],
+      instrumentKind: isSet(object.instrumentKind) ? instrumentTypeFromJSON(object.instrumentKind) : 0,
     };
   },
 
@@ -9478,7 +9831,12 @@ export const AssetInstrument = {
     } else {
       obj.links = [];
     }
+    message.instrumentKind !== undefined && (obj.instrumentKind = instrumentTypeToJSON(message.instrumentKind));
     return obj;
+  },
+
+  create(base?: DeepPartial<AssetInstrument>): AssetInstrument {
+    return AssetInstrument.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<AssetInstrument>): AssetInstrument {
@@ -9489,6 +9847,7 @@ export const AssetInstrument = {
     message.ticker = object.ticker ?? "";
     message.classCode = object.classCode ?? "";
     message.links = object.links?.map((e) => InstrumentLink.fromPartial(e)) || [];
+    message.instrumentKind = object.instrumentKind ?? 0;
     return message;
   },
 };
@@ -9543,6 +9902,10 @@ export const InstrumentLink = {
     return obj;
   },
 
+  create(base?: DeepPartial<InstrumentLink>): InstrumentLink {
+    return InstrumentLink.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<InstrumentLink>): InstrumentLink {
     const message = createBaseInstrumentLink();
     message.type = object.type ?? "";
@@ -9582,6 +9945,10 @@ export const GetFavoritesRequest = {
   toJSON(_: GetFavoritesRequest): unknown {
     const obj: any = {};
     return obj;
+  },
+
+  create(base?: DeepPartial<GetFavoritesRequest>): GetFavoritesRequest {
+    return GetFavoritesRequest.fromPartial(base ?? {});
   },
 
   fromPartial(_: DeepPartial<GetFavoritesRequest>): GetFavoritesRequest {
@@ -9638,6 +10005,10 @@ export const GetFavoritesResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetFavoritesResponse>): GetFavoritesResponse {
+    return GetFavoritesResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetFavoritesResponse>): GetFavoritesResponse {
     const message = createBaseGetFavoritesResponse();
     message.favoriteInstruments = object.favoriteInstruments?.map((e) => FavoriteInstrument.fromPartial(e)) || [];
@@ -9654,6 +10025,7 @@ function createBaseFavoriteInstrument(): FavoriteInstrument {
     instrumentType: "",
     otcFlag: false,
     apiTradeAvailableFlag: false,
+    instrumentKind: 0,
   };
 }
 
@@ -9679,6 +10051,9 @@ export const FavoriteInstrument = {
     }
     if (message.apiTradeAvailableFlag === true) {
       writer.uint32(136).bool(message.apiTradeAvailableFlag);
+    }
+    if (message.instrumentKind !== 0) {
+      writer.uint32(144).int32(message.instrumentKind);
     }
     return writer;
   },
@@ -9711,6 +10086,9 @@ export const FavoriteInstrument = {
         case 17:
           message.apiTradeAvailableFlag = reader.bool();
           break;
+        case 18:
+          message.instrumentKind = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -9728,6 +10106,7 @@ export const FavoriteInstrument = {
       instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
       otcFlag: isSet(object.otcFlag) ? Boolean(object.otcFlag) : false,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
+      instrumentKind: isSet(object.instrumentKind) ? instrumentTypeFromJSON(object.instrumentKind) : 0,
     };
   },
 
@@ -9740,7 +10119,12 @@ export const FavoriteInstrument = {
     message.instrumentType !== undefined && (obj.instrumentType = message.instrumentType);
     message.otcFlag !== undefined && (obj.otcFlag = message.otcFlag);
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
+    message.instrumentKind !== undefined && (obj.instrumentKind = instrumentTypeToJSON(message.instrumentKind));
     return obj;
+  },
+
+  create(base?: DeepPartial<FavoriteInstrument>): FavoriteInstrument {
+    return FavoriteInstrument.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<FavoriteInstrument>): FavoriteInstrument {
@@ -9752,6 +10136,7 @@ export const FavoriteInstrument = {
     message.instrumentType = object.instrumentType ?? "";
     message.otcFlag = object.otcFlag ?? false;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
+    message.instrumentKind = object.instrumentKind ?? 0;
     return message;
   },
 };
@@ -9812,6 +10197,10 @@ export const EditFavoritesRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<EditFavoritesRequest>): EditFavoritesRequest {
+    return EditFavoritesRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<EditFavoritesRequest>): EditFavoritesRequest {
     const message = createBaseEditFavoritesRequest();
     message.instruments = object.instruments?.map((e) => EditFavoritesRequestInstrument.fromPartial(e)) || [];
@@ -9858,6 +10247,10 @@ export const EditFavoritesRequestInstrument = {
     const obj: any = {};
     message.figi !== undefined && (obj.figi = message.figi);
     return obj;
+  },
+
+  create(base?: DeepPartial<EditFavoritesRequestInstrument>): EditFavoritesRequestInstrument {
+    return EditFavoritesRequestInstrument.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<EditFavoritesRequestInstrument>): EditFavoritesRequestInstrument {
@@ -9915,6 +10308,10 @@ export const EditFavoritesResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<EditFavoritesResponse>): EditFavoritesResponse {
+    return EditFavoritesResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<EditFavoritesResponse>): EditFavoritesResponse {
     const message = createBaseEditFavoritesResponse();
     message.favoriteInstruments = object.favoriteInstruments?.map((e) => FavoriteInstrument.fromPartial(e)) || [];
@@ -9953,6 +10350,10 @@ export const GetCountriesRequest = {
   toJSON(_: GetCountriesRequest): unknown {
     const obj: any = {};
     return obj;
+  },
+
+  create(base?: DeepPartial<GetCountriesRequest>): GetCountriesRequest {
+    return GetCountriesRequest.fromPartial(base ?? {});
   },
 
   fromPartial(_: DeepPartial<GetCountriesRequest>): GetCountriesRequest {
@@ -10005,6 +10406,10 @@ export const GetCountriesResponse = {
       obj.countries = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<GetCountriesResponse>): GetCountriesResponse {
+    return GetCountriesResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetCountriesResponse>): GetCountriesResponse {
@@ -10080,6 +10485,10 @@ export const CountryResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<CountryResponse>): CountryResponse {
+    return CountryResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<CountryResponse>): CountryResponse {
     const message = createBaseCountryResponse();
     message.alfaTwo = object.alfaTwo ?? "";
@@ -10128,6 +10537,10 @@ export const FindInstrumentRequest = {
     const obj: any = {};
     message.query !== undefined && (obj.query = message.query);
     return obj;
+  },
+
+  create(base?: DeepPartial<FindInstrumentRequest>): FindInstrumentRequest {
+    return FindInstrumentRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<FindInstrumentRequest>): FindInstrumentRequest {
@@ -10185,6 +10598,10 @@ export const FindInstrumentResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<FindInstrumentResponse>): FindInstrumentResponse {
+    return FindInstrumentResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<FindInstrumentResponse>): FindInstrumentResponse {
     const message = createBaseFindInstrumentResponse();
     message.instruments = object.instruments?.map((e) => InstrumentShort.fromPartial(e)) || [];
@@ -10202,6 +10619,7 @@ function createBaseInstrumentShort(): InstrumentShort {
     name: "",
     uid: "",
     positionUid: "",
+    instrumentKind: 0,
     apiTradeAvailableFlag: false,
     forIisFlag: false,
     first1minCandleDate: undefined,
@@ -10237,6 +10655,9 @@ export const InstrumentShort = {
     }
     if (message.positionUid !== "") {
       writer.uint32(66).string(message.positionUid);
+    }
+    if (message.instrumentKind !== 0) {
+      writer.uint32(80).int32(message.instrumentKind);
     }
     if (message.apiTradeAvailableFlag === true) {
       writer.uint32(88).bool(message.apiTradeAvailableFlag);
@@ -10293,6 +10714,9 @@ export const InstrumentShort = {
         case 8:
           message.positionUid = reader.string();
           break;
+        case 10:
+          message.instrumentKind = reader.int32() as any;
+          break;
         case 11:
           message.apiTradeAvailableFlag = reader.bool();
           break;
@@ -10332,6 +10756,7 @@ export const InstrumentShort = {
       name: isSet(object.name) ? String(object.name) : "",
       uid: isSet(object.uid) ? String(object.uid) : "",
       positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      instrumentKind: isSet(object.instrumentKind) ? instrumentTypeFromJSON(object.instrumentKind) : 0,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
       forIisFlag: isSet(object.forIisFlag) ? Boolean(object.forIisFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
@@ -10356,6 +10781,7 @@ export const InstrumentShort = {
     message.name !== undefined && (obj.name = message.name);
     message.uid !== undefined && (obj.uid = message.uid);
     message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.instrumentKind !== undefined && (obj.instrumentKind = instrumentTypeToJSON(message.instrumentKind));
     message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     message.forIisFlag !== undefined && (obj.forIisFlag = message.forIisFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
@@ -10364,6 +10790,10 @@ export const InstrumentShort = {
     message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
     message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
     return obj;
+  },
+
+  create(base?: DeepPartial<InstrumentShort>): InstrumentShort {
+    return InstrumentShort.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<InstrumentShort>): InstrumentShort {
@@ -10376,6 +10806,7 @@ export const InstrumentShort = {
     message.name = object.name ?? "";
     message.uid = object.uid ?? "";
     message.positionUid = object.positionUid ?? "";
+    message.instrumentKind = object.instrumentKind ?? 0;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     message.forIisFlag = object.forIisFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
@@ -10418,6 +10849,10 @@ export const GetBrandsRequest = {
   toJSON(_: GetBrandsRequest): unknown {
     const obj: any = {};
     return obj;
+  },
+
+  create(base?: DeepPartial<GetBrandsRequest>): GetBrandsRequest {
+    return GetBrandsRequest.fromPartial(base ?? {});
   },
 
   fromPartial(_: DeepPartial<GetBrandsRequest>): GetBrandsRequest {
@@ -10464,6 +10899,10 @@ export const GetBrandRequest = {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
     return obj;
+  },
+
+  create(base?: DeepPartial<GetBrandRequest>): GetBrandRequest {
+    return GetBrandRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetBrandRequest>): GetBrandRequest {
@@ -10515,6 +10954,10 @@ export const GetBrandsResponse = {
       obj.brands = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<GetBrandsResponse>): GetBrandsResponse {
+    return GetBrandsResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetBrandsResponse>): GetBrandsResponse {
@@ -10774,7 +11217,7 @@ export const InstrumentsServiceDefinition = {
 declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
-var globalThis: any = (() => {
+var tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -10821,7 +11264,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

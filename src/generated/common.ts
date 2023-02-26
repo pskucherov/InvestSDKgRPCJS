@@ -5,6 +5,90 @@ import { Timestamp } from "./google/protobuf/timestamp";
 
 export const protobufPackage = "tinkoff.public.invest.api.contract.v1";
 
+/** Тип инструмента. */
+export enum InstrumentType {
+  INSTRUMENT_TYPE_UNSPECIFIED = 0,
+  /** INSTRUMENT_TYPE_BOND - Облигация. */
+  INSTRUMENT_TYPE_BOND = 1,
+  /** INSTRUMENT_TYPE_SHARE - Акция. */
+  INSTRUMENT_TYPE_SHARE = 2,
+  /** INSTRUMENT_TYPE_CURRENCY - Валюта. */
+  INSTRUMENT_TYPE_CURRENCY = 3,
+  /** INSTRUMENT_TYPE_ETF - Exchange-traded fund. Фонд. */
+  INSTRUMENT_TYPE_ETF = 4,
+  /** INSTRUMENT_TYPE_FUTURES - Фьючерс. */
+  INSTRUMENT_TYPE_FUTURES = 5,
+  /** INSTRUMENT_TYPE_SP - Структурная нота. */
+  INSTRUMENT_TYPE_SP = 6,
+  /** INSTRUMENT_TYPE_OPTION - Опцион. */
+  INSTRUMENT_TYPE_OPTION = 7,
+  /** INSTRUMENT_TYPE_CLEARING_CERTIFICATE - Clearing certificate. */
+  INSTRUMENT_TYPE_CLEARING_CERTIFICATE = 8,
+  UNRECOGNIZED = -1,
+}
+
+export function instrumentTypeFromJSON(object: any): InstrumentType {
+  switch (object) {
+    case 0:
+    case "INSTRUMENT_TYPE_UNSPECIFIED":
+      return InstrumentType.INSTRUMENT_TYPE_UNSPECIFIED;
+    case 1:
+    case "INSTRUMENT_TYPE_BOND":
+      return InstrumentType.INSTRUMENT_TYPE_BOND;
+    case 2:
+    case "INSTRUMENT_TYPE_SHARE":
+      return InstrumentType.INSTRUMENT_TYPE_SHARE;
+    case 3:
+    case "INSTRUMENT_TYPE_CURRENCY":
+      return InstrumentType.INSTRUMENT_TYPE_CURRENCY;
+    case 4:
+    case "INSTRUMENT_TYPE_ETF":
+      return InstrumentType.INSTRUMENT_TYPE_ETF;
+    case 5:
+    case "INSTRUMENT_TYPE_FUTURES":
+      return InstrumentType.INSTRUMENT_TYPE_FUTURES;
+    case 6:
+    case "INSTRUMENT_TYPE_SP":
+      return InstrumentType.INSTRUMENT_TYPE_SP;
+    case 7:
+    case "INSTRUMENT_TYPE_OPTION":
+      return InstrumentType.INSTRUMENT_TYPE_OPTION;
+    case 8:
+    case "INSTRUMENT_TYPE_CLEARING_CERTIFICATE":
+      return InstrumentType.INSTRUMENT_TYPE_CLEARING_CERTIFICATE;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return InstrumentType.UNRECOGNIZED;
+  }
+}
+
+export function instrumentTypeToJSON(object: InstrumentType): string {
+  switch (object) {
+    case InstrumentType.INSTRUMENT_TYPE_UNSPECIFIED:
+      return "INSTRUMENT_TYPE_UNSPECIFIED";
+    case InstrumentType.INSTRUMENT_TYPE_BOND:
+      return "INSTRUMENT_TYPE_BOND";
+    case InstrumentType.INSTRUMENT_TYPE_SHARE:
+      return "INSTRUMENT_TYPE_SHARE";
+    case InstrumentType.INSTRUMENT_TYPE_CURRENCY:
+      return "INSTRUMENT_TYPE_CURRENCY";
+    case InstrumentType.INSTRUMENT_TYPE_ETF:
+      return "INSTRUMENT_TYPE_ETF";
+    case InstrumentType.INSTRUMENT_TYPE_FUTURES:
+      return "INSTRUMENT_TYPE_FUTURES";
+    case InstrumentType.INSTRUMENT_TYPE_SP:
+      return "INSTRUMENT_TYPE_SP";
+    case InstrumentType.INSTRUMENT_TYPE_OPTION:
+      return "INSTRUMENT_TYPE_OPTION";
+    case InstrumentType.INSTRUMENT_TYPE_CLEARING_CERTIFICATE:
+      return "INSTRUMENT_TYPE_CLEARING_CERTIFICATE";
+    case InstrumentType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
 /** Режим торгов инструмента */
 export enum SecurityTradingStatus {
   /** SECURITY_TRADING_STATUS_UNSPECIFIED - Торговый статус не определён */
@@ -228,6 +312,10 @@ export const MoneyValue = {
     return obj;
   },
 
+  create(base?: DeepPartial<MoneyValue>): MoneyValue {
+    return MoneyValue.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<MoneyValue>): MoneyValue {
     const message = createBaseMoneyValue();
     message.currency = object.currency ?? "";
@@ -287,6 +375,10 @@ export const Quotation = {
     return obj;
   },
 
+  create(base?: DeepPartial<Quotation>): Quotation {
+    return Quotation.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<Quotation>): Quotation {
     const message = createBaseQuotation();
     message.units = object.units ?? 0;
@@ -335,6 +427,10 @@ export const Ping = {
     return obj;
   },
 
+  create(base?: DeepPartial<Ping>): Ping {
+    return Ping.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<Ping>): Ping {
     const message = createBasePing();
     message.time = object.time ?? undefined;
@@ -345,7 +441,7 @@ export const Ping = {
 declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
-var globalThis: any = (() => {
+var tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -392,7 +488,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

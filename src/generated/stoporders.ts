@@ -369,6 +369,10 @@ export const PostStopOrderRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<PostStopOrderRequest>): PostStopOrderRequest {
+    return PostStopOrderRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PostStopOrderRequest>): PostStopOrderRequest {
     const message = createBasePostStopOrderRequest();
     message.figi = object.figi ?? "";
@@ -429,6 +433,10 @@ export const PostStopOrderResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<PostStopOrderResponse>): PostStopOrderResponse {
+    return PostStopOrderResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PostStopOrderResponse>): PostStopOrderResponse {
     const message = createBasePostStopOrderResponse();
     message.stopOrderId = object.stopOrderId ?? "";
@@ -474,6 +482,10 @@ export const GetStopOrdersRequest = {
     const obj: any = {};
     message.accountId !== undefined && (obj.accountId = message.accountId);
     return obj;
+  },
+
+  create(base?: DeepPartial<GetStopOrdersRequest>): GetStopOrdersRequest {
+    return GetStopOrdersRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetStopOrdersRequest>): GetStopOrdersRequest {
@@ -527,6 +539,10 @@ export const GetStopOrdersResponse = {
       obj.stopOrders = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<GetStopOrdersResponse>): GetStopOrdersResponse {
+    return GetStopOrdersResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetStopOrdersResponse>): GetStopOrdersResponse {
@@ -586,6 +602,10 @@ export const CancelStopOrderRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<CancelStopOrderRequest>): CancelStopOrderRequest {
+    return CancelStopOrderRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<CancelStopOrderRequest>): CancelStopOrderRequest {
     const message = createBaseCancelStopOrderRequest();
     message.accountId = object.accountId ?? "";
@@ -632,6 +652,10 @@ export const CancelStopOrderResponse = {
     const obj: any = {};
     message.time !== undefined && (obj.time = message.time.toISOString());
     return obj;
+  },
+
+  create(base?: DeepPartial<CancelStopOrderResponse>): CancelStopOrderResponse {
+    return CancelStopOrderResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<CancelStopOrderResponse>): CancelStopOrderResponse {
@@ -785,6 +809,10 @@ export const StopOrder = {
     return obj;
   },
 
+  create(base?: DeepPartial<StopOrder>): StopOrder {
+    return StopOrder.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<StopOrder>): StopOrder {
     const message = createBaseStopOrder();
     message.stopOrderId = object.stopOrderId ?? "";
@@ -849,7 +877,7 @@ export const StopOrdersServiceDefinition = {
 declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
-var globalThis: any = (() => {
+var tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -896,7 +924,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }
