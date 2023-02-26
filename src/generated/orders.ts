@@ -207,11 +207,11 @@ export interface TradesStreamRequest {
 /** Информация о торговых поручениях. */
 export interface TradesStreamResponse {
   /** Информация об исполнении торгового поручения. */
-  orderTrades:
+  orderTrades?:
     | OrderTrades
     | undefined;
   /** Проверка активности стрима. */
-  ping: Ping | undefined;
+  ping?: Ping | undefined;
 }
 
 /** Информация об исполнении торгового поручения. */
@@ -494,6 +494,10 @@ export const TradesStreamRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<TradesStreamRequest>): TradesStreamRequest {
+    return TradesStreamRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<TradesStreamRequest>): TradesStreamRequest {
     const message = createBaseTradesStreamRequest();
     message.accounts = object.accounts?.map((e) => e) || [];
@@ -550,6 +554,10 @@ export const TradesStreamResponse = {
       (obj.orderTrades = message.orderTrades ? OrderTrades.toJSON(message.orderTrades) : undefined);
     message.ping !== undefined && (obj.ping = message.ping ? Ping.toJSON(message.ping) : undefined);
     return obj;
+  },
+
+  create(base?: DeepPartial<TradesStreamResponse>): TradesStreamResponse {
+    return TradesStreamResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<TradesStreamResponse>): TradesStreamResponse {
@@ -656,6 +664,10 @@ export const OrderTrades = {
     return obj;
   },
 
+  create(base?: DeepPartial<OrderTrades>): OrderTrades {
+    return OrderTrades.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<OrderTrades>): OrderTrades {
     const message = createBaseOrderTrades();
     message.orderId = object.orderId ?? "";
@@ -733,6 +745,10 @@ export const OrderTrade = {
     message.quantity !== undefined && (obj.quantity = Math.round(message.quantity));
     message.tradeId !== undefined && (obj.tradeId = message.tradeId);
     return obj;
+  },
+
+  create(base?: DeepPartial<OrderTrade>): OrderTrade {
+    return OrderTrade.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<OrderTrade>): OrderTrade {
@@ -852,6 +868,10 @@ export const PostOrderRequest = {
     message.orderId !== undefined && (obj.orderId = message.orderId);
     message.instrumentId !== undefined && (obj.instrumentId = message.instrumentId);
     return obj;
+  },
+
+  create(base?: DeepPartial<PostOrderRequest>): PostOrderRequest {
+    return PostOrderRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<PostOrderRequest>): PostOrderRequest {
@@ -1076,6 +1096,10 @@ export const PostOrderResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<PostOrderResponse>): PostOrderResponse {
+    return PostOrderResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PostOrderResponse>): PostOrderResponse {
     const message = createBasePostOrderResponse();
     message.orderId = object.orderId ?? "";
@@ -1165,6 +1189,10 @@ export const CancelOrderRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<CancelOrderRequest>): CancelOrderRequest {
+    return CancelOrderRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<CancelOrderRequest>): CancelOrderRequest {
     const message = createBaseCancelOrderRequest();
     message.accountId = object.accountId ?? "";
@@ -1211,6 +1239,10 @@ export const CancelOrderResponse = {
     const obj: any = {};
     message.time !== undefined && (obj.time = message.time.toISOString());
     return obj;
+  },
+
+  create(base?: DeepPartial<CancelOrderResponse>): CancelOrderResponse {
+    return CancelOrderResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<CancelOrderResponse>): CancelOrderResponse {
@@ -1270,6 +1302,10 @@ export const GetOrderStateRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetOrderStateRequest>): GetOrderStateRequest {
+    return GetOrderStateRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetOrderStateRequest>): GetOrderStateRequest {
     const message = createBaseGetOrderStateRequest();
     message.accountId = object.accountId ?? "";
@@ -1316,6 +1352,10 @@ export const GetOrdersRequest = {
     const obj: any = {};
     message.accountId !== undefined && (obj.accountId = message.accountId);
     return obj;
+  },
+
+  create(base?: DeepPartial<GetOrdersRequest>): GetOrdersRequest {
+    return GetOrdersRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetOrdersRequest>): GetOrdersRequest {
@@ -1367,6 +1407,10 @@ export const GetOrdersResponse = {
       obj.orders = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<GetOrdersResponse>): GetOrdersResponse {
+    return GetOrdersResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetOrdersResponse>): GetOrdersResponse {
@@ -1603,6 +1647,10 @@ export const OrderState = {
     return obj;
   },
 
+  create(base?: DeepPartial<OrderState>): OrderState {
+    return OrderState.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<OrderState>): OrderState {
     const message = createBaseOrderState();
     message.orderId = object.orderId ?? "";
@@ -1702,6 +1750,10 @@ export const OrderStage = {
     return obj;
   },
 
+  create(base?: DeepPartial<OrderStage>): OrderStage {
+    return OrderStage.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<OrderStage>): OrderStage {
     const message = createBaseOrderStage();
     message.price = (object.price !== undefined && object.price !== null)
@@ -1793,6 +1845,10 @@ export const ReplaceOrderRequest = {
     message.price !== undefined && (obj.price = message.price ? Quotation.toJSON(message.price) : undefined);
     message.priceType !== undefined && (obj.priceType = priceTypeToJSON(message.priceType));
     return obj;
+  },
+
+  create(base?: DeepPartial<ReplaceOrderRequest>): ReplaceOrderRequest {
+    return ReplaceOrderRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<ReplaceOrderRequest>): ReplaceOrderRequest {
@@ -1887,7 +1943,7 @@ export const OrdersServiceDefinition = {
 declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
-var globalThis: any = (() => {
+var tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -1934,7 +1990,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }

@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { MoneyValue, Ping, Quotation } from "./common";
+import { InstrumentType, instrumentTypeFromJSON, instrumentTypeToJSON, MoneyValue, Ping, Quotation } from "./common";
 import { Timestamp } from "./google/protobuf/timestamp";
 
 export const protobufPackage = "tinkoff.public.invest.api.contract.v1";
@@ -562,83 +562,6 @@ export function portfolioSubscriptionStatusToJSON(object: PortfolioSubscriptionS
   }
 }
 
-/** Тип инструмента. */
-export enum InstrumentType {
-  INSTRUMENT_TYPE_UNSPECIFIED = 0,
-  /** INSTRUMENT_TYPE_BOND - Облигация. */
-  INSTRUMENT_TYPE_BOND = 1,
-  /** INSTRUMENT_TYPE_SHARE - Акция. */
-  INSTRUMENT_TYPE_SHARE = 2,
-  /** INSTRUMENT_TYPE_CURRENCY - Валюта. */
-  INSTRUMENT_TYPE_CURRENCY = 3,
-  /** INSTRUMENT_TYPE_ETF - Exchange-traded fund. Фонд. */
-  INSTRUMENT_TYPE_ETF = 4,
-  /** INSTRUMENT_TYPE_FUTURES - Фьючерс. */
-  INSTRUMENT_TYPE_FUTURES = 5,
-  /** INSTRUMENT_TYPE_SP - Структурная нота. */
-  INSTRUMENT_TYPE_SP = 6,
-  /** INSTRUMENT_TYPE_OPTION - Опцион. */
-  INSTRUMENT_TYPE_OPTION = 7,
-  UNRECOGNIZED = -1,
-}
-
-export function instrumentTypeFromJSON(object: any): InstrumentType {
-  switch (object) {
-    case 0:
-    case "INSTRUMENT_TYPE_UNSPECIFIED":
-      return InstrumentType.INSTRUMENT_TYPE_UNSPECIFIED;
-    case 1:
-    case "INSTRUMENT_TYPE_BOND":
-      return InstrumentType.INSTRUMENT_TYPE_BOND;
-    case 2:
-    case "INSTRUMENT_TYPE_SHARE":
-      return InstrumentType.INSTRUMENT_TYPE_SHARE;
-    case 3:
-    case "INSTRUMENT_TYPE_CURRENCY":
-      return InstrumentType.INSTRUMENT_TYPE_CURRENCY;
-    case 4:
-    case "INSTRUMENT_TYPE_ETF":
-      return InstrumentType.INSTRUMENT_TYPE_ETF;
-    case 5:
-    case "INSTRUMENT_TYPE_FUTURES":
-      return InstrumentType.INSTRUMENT_TYPE_FUTURES;
-    case 6:
-    case "INSTRUMENT_TYPE_SP":
-      return InstrumentType.INSTRUMENT_TYPE_SP;
-    case 7:
-    case "INSTRUMENT_TYPE_OPTION":
-      return InstrumentType.INSTRUMENT_TYPE_OPTION;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return InstrumentType.UNRECOGNIZED;
-  }
-}
-
-export function instrumentTypeToJSON(object: InstrumentType): string {
-  switch (object) {
-    case InstrumentType.INSTRUMENT_TYPE_UNSPECIFIED:
-      return "INSTRUMENT_TYPE_UNSPECIFIED";
-    case InstrumentType.INSTRUMENT_TYPE_BOND:
-      return "INSTRUMENT_TYPE_BOND";
-    case InstrumentType.INSTRUMENT_TYPE_SHARE:
-      return "INSTRUMENT_TYPE_SHARE";
-    case InstrumentType.INSTRUMENT_TYPE_CURRENCY:
-      return "INSTRUMENT_TYPE_CURRENCY";
-    case InstrumentType.INSTRUMENT_TYPE_ETF:
-      return "INSTRUMENT_TYPE_ETF";
-    case InstrumentType.INSTRUMENT_TYPE_FUTURES:
-      return "INSTRUMENT_TYPE_FUTURES";
-    case InstrumentType.INSTRUMENT_TYPE_SP:
-      return "INSTRUMENT_TYPE_SP";
-    case InstrumentType.INSTRUMENT_TYPE_OPTION:
-      return "INSTRUMENT_TYPE_OPTION";
-    case InstrumentType.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 /** Результат подписки. */
 export enum PositionsAccountSubscriptionStatus {
   /** POSITIONS_SUBSCRIPTION_STATUS_UNSPECIFIED - Тип не определён. */
@@ -751,6 +674,10 @@ export interface Operation {
   trades: OperationTrade[];
   /** Идентификатор актива */
   assetUid: string;
+  /** position_uid-идентификатора инструмента. */
+  positionUid: string;
+  /** Уникальный идентификатор инструмента. */
+  instrumentUid: string;
 }
 
 /** Сделка по операции. */
@@ -941,6 +868,10 @@ export interface PortfolioPosition {
     | undefined;
   /** Заблокировано на бирже. */
   blocked: boolean;
+  /** Количество бумаг, заблокированных выставленными заявками. */
+  blockedLots:
+    | Quotation
+    | undefined;
   /** position_uid-идентификатора инструмента */
   positionUid: string;
   /** instrument_uid-идентификатора инструмента */
@@ -1035,13 +966,13 @@ export interface PositionsOptions {
 }
 
 export interface BrokerReportRequest {
-  generateBrokerReportRequest: GenerateBrokerReportRequest | undefined;
-  getBrokerReportRequest: GetBrokerReportRequest | undefined;
+  generateBrokerReportRequest?: GenerateBrokerReportRequest | undefined;
+  getBrokerReportRequest?: GetBrokerReportRequest | undefined;
 }
 
 export interface BrokerReportResponse {
-  generateBrokerReportResponse: GenerateBrokerReportResponse | undefined;
-  getBrokerReportResponse: GetBrokerReportResponse | undefined;
+  generateBrokerReportResponse?: GenerateBrokerReportResponse | undefined;
+  getBrokerReportResponse?: GetBrokerReportResponse | undefined;
 }
 
 export interface GenerateBrokerReportRequest {
@@ -1158,20 +1089,20 @@ export interface BrokerReport {
 
 export interface GetDividendsForeignIssuerRequest {
   /** Объект запроса формирования отчёта. */
-  generateDivForeignIssuerReport:
+  generateDivForeignIssuerReport?:
     | GenerateDividendsForeignIssuerReportRequest
     | undefined;
   /** Объект запроса сформированного отчёта. */
-  getDivForeignIssuerReport: GetDividendsForeignIssuerReportRequest | undefined;
+  getDivForeignIssuerReport?: GetDividendsForeignIssuerReportRequest | undefined;
 }
 
 export interface GetDividendsForeignIssuerResponse {
   /** Объект результата задачи запуска формирования отчёта. */
-  generateDivForeignIssuerReportResponse:
+  generateDivForeignIssuerReportResponse?:
     | GenerateDividendsForeignIssuerReportResponse
     | undefined;
   /** Отчёт "Справка о доходах за пределами РФ". */
-  divForeignIssuerReport: GetDividendsForeignIssuerReportResponse | undefined;
+  divForeignIssuerReport?: GetDividendsForeignIssuerReportResponse | undefined;
 }
 
 /** Объект запроса формирования отчёта "Справка о доходах за пределами РФ". */
@@ -1261,15 +1192,15 @@ export interface PortfolioStreamRequest {
 /** Информация по позициям и доходностям портфелей. */
 export interface PortfolioStreamResponse {
   /** Объект результата подписки. */
-  subscriptions:
+  subscriptions?:
     | PortfolioSubscriptionResult
     | undefined;
   /** Объект стриминга портфеля. */
-  portfolio:
+  portfolio?:
     | PortfolioResponse
     | undefined;
   /** Проверка активности стрима. */
-  ping: Ping | undefined;
+  ping?: Ping | undefined;
 }
 
 /** Объект результата подписки. */
@@ -1356,6 +1287,8 @@ export interface OperationItem {
   instrumentType: string;
   /** Тип инструмента. */
   instrumentKind: InstrumentType;
+  /** position_uid-идентификатора инструмента. */
+  positionUid: string;
   /** Сумма операции. */
   payment:
     | MoneyValue
@@ -1436,15 +1369,15 @@ export interface PositionsStreamRequest {
 /** Информация по изменению позиций портфеля. */
 export interface PositionsStreamResponse {
   /** Объект результата подписки. */
-  subscriptions:
+  subscriptions?:
     | PositionsSubscriptionResult
     | undefined;
   /** Объект стриминга позиций. */
-  position:
+  position?:
     | PositionData
     | undefined;
   /** Проверка активности стрима. */
-  ping: Ping | undefined;
+  ping?: Ping | undefined;
 }
 
 /** Объект результата подписки. */
@@ -1561,6 +1494,10 @@ export const OperationsRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<OperationsRequest>): OperationsRequest {
+    return OperationsRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<OperationsRequest>): OperationsRequest {
     const message = createBaseOperationsRequest();
     message.accountId = object.accountId ?? "";
@@ -1618,6 +1555,10 @@ export const OperationsResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<OperationsResponse>): OperationsResponse {
+    return OperationsResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<OperationsResponse>): OperationsResponse {
     const message = createBaseOperationsResponse();
     message.operations = object.operations?.map((e) => Operation.fromPartial(e)) || [];
@@ -1642,6 +1583,8 @@ function createBaseOperation(): Operation {
     operationType: 0,
     trades: [],
     assetUid: "",
+    positionUid: "",
+    instrumentUid: "",
   };
 }
 
@@ -1691,6 +1634,12 @@ export const Operation = {
     }
     if (message.assetUid !== "") {
       writer.uint32(130).string(message.assetUid);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(138).string(message.positionUid);
+    }
+    if (message.instrumentUid !== "") {
+      writer.uint32(146).string(message.instrumentUid);
     }
     return writer;
   },
@@ -1747,6 +1696,12 @@ export const Operation = {
         case 16:
           message.assetUid = reader.string();
           break;
+        case 17:
+          message.positionUid = reader.string();
+          break;
+        case 18:
+          message.instrumentUid = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1772,6 +1727,8 @@ export const Operation = {
       operationType: isSet(object.operationType) ? operationTypeFromJSON(object.operationType) : 0,
       trades: Array.isArray(object?.trades) ? object.trades.map((e: any) => OperationTrade.fromJSON(e)) : [],
       assetUid: isSet(object.assetUid) ? String(object.assetUid) : "",
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
     };
   },
 
@@ -1796,7 +1753,13 @@ export const Operation = {
       obj.trades = [];
     }
     message.assetUid !== undefined && (obj.assetUid = message.assetUid);
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
+    message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
     return obj;
+  },
+
+  create(base?: DeepPartial<Operation>): Operation {
+    return Operation.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<Operation>): Operation {
@@ -1820,6 +1783,8 @@ export const Operation = {
     message.operationType = object.operationType ?? 0;
     message.trades = object.trades?.map((e) => OperationTrade.fromPartial(e)) || [];
     message.assetUid = object.assetUid ?? "";
+    message.positionUid = object.positionUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? "";
     return message;
   },
 };
@@ -1890,6 +1855,10 @@ export const OperationTrade = {
     return obj;
   },
 
+  create(base?: DeepPartial<OperationTrade>): OperationTrade {
+    return OperationTrade.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<OperationTrade>): OperationTrade {
     const message = createBaseOperationTrade();
     message.tradeId = object.tradeId ?? "";
@@ -1950,6 +1919,10 @@ export const PortfolioRequest = {
     message.accountId !== undefined && (obj.accountId = message.accountId);
     message.currency !== undefined && (obj.currency = portfolioRequest_CurrencyRequestToJSON(message.currency));
     return obj;
+  },
+
+  create(base?: DeepPartial<PortfolioRequest>): PortfolioRequest {
+    return PortfolioRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<PortfolioRequest>): PortfolioRequest {
@@ -2130,6 +2103,10 @@ export const PortfolioResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<PortfolioResponse>): PortfolioResponse {
+    return PortfolioResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PortfolioResponse>): PortfolioResponse {
     const message = createBasePortfolioResponse();
     message.totalAmountShares = (object.totalAmountShares !== undefined && object.totalAmountShares !== null)
@@ -2205,6 +2182,10 @@ export const PositionsRequest = {
     const obj: any = {};
     message.accountId !== undefined && (obj.accountId = message.accountId);
     return obj;
+  },
+
+  create(base?: DeepPartial<PositionsRequest>): PositionsRequest {
+    return PositionsRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<PositionsRequest>): PositionsRequest {
@@ -2318,6 +2299,10 @@ export const PositionsResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<PositionsResponse>): PositionsResponse {
+    return PositionsResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PositionsResponse>): PositionsResponse {
     const message = createBasePositionsResponse();
     message.money = object.money?.map((e) => MoneyValue.fromPartial(e)) || [];
@@ -2368,6 +2353,10 @@ export const WithdrawLimitsRequest = {
     const obj: any = {};
     message.accountId !== undefined && (obj.accountId = message.accountId);
     return obj;
+  },
+
+  create(base?: DeepPartial<WithdrawLimitsRequest>): WithdrawLimitsRequest {
+    return WithdrawLimitsRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<WithdrawLimitsRequest>): WithdrawLimitsRequest {
@@ -2449,6 +2438,10 @@ export const WithdrawLimitsResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<WithdrawLimitsResponse>): WithdrawLimitsResponse {
+    return WithdrawLimitsResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<WithdrawLimitsResponse>): WithdrawLimitsResponse {
     const message = createBaseWithdrawLimitsResponse();
     message.money = object.money?.map((e) => MoneyValue.fromPartial(e)) || [];
@@ -2471,6 +2464,7 @@ function createBasePortfolioPosition(): PortfolioPosition {
     averagePositionPriceFifo: undefined,
     quantityLots: undefined,
     blocked: false,
+    blockedLots: undefined,
     positionUid: "",
     instrumentUid: "",
     varMargin: undefined,
@@ -2512,6 +2506,9 @@ export const PortfolioPosition = {
     }
     if (message.blocked === true) {
       writer.uint32(168).bool(message.blocked);
+    }
+    if (message.blockedLots !== undefined) {
+      Quotation.encode(message.blockedLots, writer.uint32(178).fork()).ldelim();
     }
     if (message.positionUid !== "") {
       writer.uint32(194).string(message.positionUid);
@@ -2568,6 +2565,9 @@ export const PortfolioPosition = {
         case 21:
           message.blocked = reader.bool();
           break;
+        case 22:
+          message.blockedLots = Quotation.decode(reader, reader.uint32());
+          break;
         case 24:
           message.positionUid = reader.string();
           break;
@@ -2607,6 +2607,7 @@ export const PortfolioPosition = {
         : undefined,
       quantityLots: isSet(object.quantityLots) ? Quotation.fromJSON(object.quantityLots) : undefined,
       blocked: isSet(object.blocked) ? Boolean(object.blocked) : false,
+      blockedLots: isSet(object.blockedLots) ? Quotation.fromJSON(object.blockedLots) : undefined,
       positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
       instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
       varMargin: isSet(object.varMargin) ? MoneyValue.fromJSON(object.varMargin) : undefined,
@@ -2638,6 +2639,8 @@ export const PortfolioPosition = {
     message.quantityLots !== undefined &&
       (obj.quantityLots = message.quantityLots ? Quotation.toJSON(message.quantityLots) : undefined);
     message.blocked !== undefined && (obj.blocked = message.blocked);
+    message.blockedLots !== undefined &&
+      (obj.blockedLots = message.blockedLots ? Quotation.toJSON(message.blockedLots) : undefined);
     message.positionUid !== undefined && (obj.positionUid = message.positionUid);
     message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
     message.varMargin !== undefined &&
@@ -2645,6 +2648,10 @@ export const PortfolioPosition = {
     message.expectedYieldFifo !== undefined &&
       (obj.expectedYieldFifo = message.expectedYieldFifo ? Quotation.toJSON(message.expectedYieldFifo) : undefined);
     return obj;
+  },
+
+  create(base?: DeepPartial<PortfolioPosition>): PortfolioPosition {
+    return PortfolioPosition.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<PortfolioPosition>): PortfolioPosition {
@@ -2678,6 +2685,9 @@ export const PortfolioPosition = {
       ? Quotation.fromPartial(object.quantityLots)
       : undefined;
     message.blocked = object.blocked ?? false;
+    message.blockedLots = (object.blockedLots !== undefined && object.blockedLots !== null)
+      ? Quotation.fromPartial(object.blockedLots)
+      : undefined;
     message.positionUid = object.positionUid ?? "";
     message.instrumentUid = object.instrumentUid ?? "";
     message.varMargin = (object.varMargin !== undefined && object.varMargin !== null)
@@ -2836,6 +2846,10 @@ export const VirtualPortfolioPosition = {
     return obj;
   },
 
+  create(base?: DeepPartial<VirtualPortfolioPosition>): VirtualPortfolioPosition {
+    return VirtualPortfolioPosition.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<VirtualPortfolioPosition>): VirtualPortfolioPosition {
     const message = createBaseVirtualPortfolioPosition();
     message.positionUid = object.positionUid ?? "";
@@ -2964,6 +2978,10 @@ export const PositionsSecurities = {
     return obj;
   },
 
+  create(base?: DeepPartial<PositionsSecurities>): PositionsSecurities {
+    return PositionsSecurities.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PositionsSecurities>): PositionsSecurities {
     const message = createBasePositionsSecurities();
     message.figi = object.figi ?? "";
@@ -3051,6 +3069,10 @@ export const PositionsFutures = {
     return obj;
   },
 
+  create(base?: DeepPartial<PositionsFutures>): PositionsFutures {
+    return PositionsFutures.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PositionsFutures>): PositionsFutures {
     const message = createBasePositionsFutures();
     message.figi = object.figi ?? "";
@@ -3128,6 +3150,10 @@ export const PositionsOptions = {
     return obj;
   },
 
+  create(base?: DeepPartial<PositionsOptions>): PositionsOptions {
+    return PositionsOptions.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PositionsOptions>): PositionsOptions {
     const message = createBasePositionsOptions();
     message.positionUid = object.positionUid ?? "";
@@ -3195,6 +3221,10 @@ export const BrokerReportRequest = {
       ? GetBrokerReportRequest.toJSON(message.getBrokerReportRequest)
       : undefined);
     return obj;
+  },
+
+  create(base?: DeepPartial<BrokerReportRequest>): BrokerReportRequest {
+    return BrokerReportRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<BrokerReportRequest>): BrokerReportRequest {
@@ -3270,6 +3300,10 @@ export const BrokerReportResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<BrokerReportResponse>): BrokerReportResponse {
+    return BrokerReportResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<BrokerReportResponse>): BrokerReportResponse {
     const message = createBaseBrokerReportResponse();
     message.generateBrokerReportResponse =
@@ -3342,6 +3376,10 @@ export const GenerateBrokerReportRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<GenerateBrokerReportRequest>): GenerateBrokerReportRequest {
+    return GenerateBrokerReportRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GenerateBrokerReportRequest>): GenerateBrokerReportRequest {
     const message = createBaseGenerateBrokerReportRequest();
     message.accountId = object.accountId ?? "";
@@ -3389,6 +3427,10 @@ export const GenerateBrokerReportResponse = {
     const obj: any = {};
     message.taskId !== undefined && (obj.taskId = message.taskId);
     return obj;
+  },
+
+  create(base?: DeepPartial<GenerateBrokerReportResponse>): GenerateBrokerReportResponse {
+    return GenerateBrokerReportResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GenerateBrokerReportResponse>): GenerateBrokerReportResponse {
@@ -3446,6 +3488,10 @@ export const GetBrokerReportRequest = {
     message.taskId !== undefined && (obj.taskId = message.taskId);
     message.page !== undefined && (obj.page = Math.round(message.page));
     return obj;
+  },
+
+  create(base?: DeepPartial<GetBrokerReportRequest>): GetBrokerReportRequest {
+    return GetBrokerReportRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetBrokerReportRequest>): GetBrokerReportRequest {
@@ -3526,6 +3572,10 @@ export const GetBrokerReportResponse = {
     message.pagesCount !== undefined && (obj.pagesCount = Math.round(message.pagesCount));
     message.page !== undefined && (obj.page = Math.round(message.page));
     return obj;
+  },
+
+  create(base?: DeepPartial<GetBrokerReportResponse>): GetBrokerReportResponse {
+    return GetBrokerReportResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetBrokerReportResponse>): GetBrokerReportResponse {
@@ -3827,6 +3877,10 @@ export const BrokerReport = {
     return obj;
   },
 
+  create(base?: DeepPartial<BrokerReport>): BrokerReport {
+    return BrokerReport.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<BrokerReport>): BrokerReport {
     const message = createBaseBrokerReport();
     message.tradeId = object.tradeId ?? "";
@@ -3944,6 +3998,10 @@ export const GetDividendsForeignIssuerRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetDividendsForeignIssuerRequest>): GetDividendsForeignIssuerRequest {
+    return GetDividendsForeignIssuerRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetDividendsForeignIssuerRequest>): GetDividendsForeignIssuerRequest {
     const message = createBaseGetDividendsForeignIssuerRequest();
     message.generateDivForeignIssuerReport =
@@ -4023,6 +4081,10 @@ export const GetDividendsForeignIssuerResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetDividendsForeignIssuerResponse>): GetDividendsForeignIssuerResponse {
+    return GetDividendsForeignIssuerResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetDividendsForeignIssuerResponse>): GetDividendsForeignIssuerResponse {
     const message = createBaseGetDividendsForeignIssuerResponse();
     message.generateDivForeignIssuerReportResponse =
@@ -4096,6 +4158,10 @@ export const GenerateDividendsForeignIssuerReportRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<GenerateDividendsForeignIssuerReportRequest>): GenerateDividendsForeignIssuerReportRequest {
+    return GenerateDividendsForeignIssuerReportRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(
     object: DeepPartial<GenerateDividendsForeignIssuerReportRequest>,
   ): GenerateDividendsForeignIssuerReportRequest {
@@ -4157,6 +4223,10 @@ export const GetDividendsForeignIssuerReportRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetDividendsForeignIssuerReportRequest>): GetDividendsForeignIssuerReportRequest {
+    return GetDividendsForeignIssuerReportRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetDividendsForeignIssuerReportRequest>): GetDividendsForeignIssuerReportRequest {
     const message = createBaseGetDividendsForeignIssuerReportRequest();
     message.taskId = object.taskId ?? "";
@@ -4203,6 +4273,12 @@ export const GenerateDividendsForeignIssuerReportResponse = {
     const obj: any = {};
     message.taskId !== undefined && (obj.taskId = message.taskId);
     return obj;
+  },
+
+  create(
+    base?: DeepPartial<GenerateDividendsForeignIssuerReportResponse>,
+  ): GenerateDividendsForeignIssuerReportResponse {
+    return GenerateDividendsForeignIssuerReportResponse.fromPartial(base ?? {});
   },
 
   fromPartial(
@@ -4286,6 +4362,10 @@ export const GetDividendsForeignIssuerReportResponse = {
     message.pagesCount !== undefined && (obj.pagesCount = Math.round(message.pagesCount));
     message.page !== undefined && (obj.page = Math.round(message.page));
     return obj;
+  },
+
+  create(base?: DeepPartial<GetDividendsForeignIssuerReportResponse>): GetDividendsForeignIssuerReportResponse {
+    return GetDividendsForeignIssuerReportResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetDividendsForeignIssuerReportResponse>): GetDividendsForeignIssuerReportResponse {
@@ -4446,6 +4526,10 @@ export const DividendsForeignIssuerReport = {
     return obj;
   },
 
+  create(base?: DeepPartial<DividendsForeignIssuerReport>): DividendsForeignIssuerReport {
+    return DividendsForeignIssuerReport.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<DividendsForeignIssuerReport>): DividendsForeignIssuerReport {
     const message = createBaseDividendsForeignIssuerReport();
     message.recordDate = object.recordDate ?? undefined;
@@ -4514,6 +4598,10 @@ export const PortfolioStreamRequest = {
       obj.accounts = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<PortfolioStreamRequest>): PortfolioStreamRequest {
+    return PortfolioStreamRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<PortfolioStreamRequest>): PortfolioStreamRequest {
@@ -4587,6 +4675,10 @@ export const PortfolioStreamResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<PortfolioStreamResponse>): PortfolioStreamResponse {
+    return PortfolioStreamResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PortfolioStreamResponse>): PortfolioStreamResponse {
     const message = createBasePortfolioStreamResponse();
     message.subscriptions = (object.subscriptions !== undefined && object.subscriptions !== null)
@@ -4648,6 +4740,10 @@ export const PortfolioSubscriptionResult = {
     return obj;
   },
 
+  create(base?: DeepPartial<PortfolioSubscriptionResult>): PortfolioSubscriptionResult {
+    return PortfolioSubscriptionResult.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PortfolioSubscriptionResult>): PortfolioSubscriptionResult {
     const message = createBasePortfolioSubscriptionResult();
     message.accounts = object.accounts?.map((e) => AccountSubscriptionStatus.fromPartial(e)) || [];
@@ -4706,6 +4802,10 @@ export const AccountSubscriptionStatus = {
     message.subscriptionStatus !== undefined &&
       (obj.subscriptionStatus = portfolioSubscriptionStatusToJSON(message.subscriptionStatus));
     return obj;
+  },
+
+  create(base?: DeepPartial<AccountSubscriptionStatus>): AccountSubscriptionStatus {
+    return AccountSubscriptionStatus.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<AccountSubscriptionStatus>): AccountSubscriptionStatus {
@@ -4865,6 +4965,10 @@ export const GetOperationsByCursorRequest = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetOperationsByCursorRequest>): GetOperationsByCursorRequest {
+    return GetOperationsByCursorRequest.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetOperationsByCursorRequest>): GetOperationsByCursorRequest {
     const message = createBaseGetOperationsByCursorRequest();
     message.accountId = object.accountId ?? "";
@@ -4944,6 +5048,10 @@ export const GetOperationsByCursorResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<GetOperationsByCursorResponse>): GetOperationsByCursorResponse {
+    return GetOperationsByCursorResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<GetOperationsByCursorResponse>): GetOperationsByCursorResponse {
     const message = createBaseGetOperationsByCursorResponse();
     message.hasNext = object.hasNext ?? false;
@@ -4968,6 +5076,7 @@ function createBaseOperationItem(): OperationItem {
     figi: "",
     instrumentType: "",
     instrumentKind: 0,
+    positionUid: "",
     payment: undefined,
     price: undefined,
     commission: undefined,
@@ -5024,6 +5133,9 @@ export const OperationItem = {
     }
     if (message.instrumentKind !== 0) {
       writer.uint32(272).int32(message.instrumentKind);
+    }
+    if (message.positionUid !== "") {
+      writer.uint32(282).string(message.positionUid);
     }
     if (message.payment !== undefined) {
       MoneyValue.encode(message.payment, writer.uint32(330).fork()).ldelim();
@@ -5113,6 +5225,9 @@ export const OperationItem = {
         case 34:
           message.instrumentKind = reader.int32() as any;
           break;
+        case 35:
+          message.positionUid = reader.string();
+          break;
         case 41:
           message.payment = MoneyValue.decode(reader, reader.uint32());
           break;
@@ -5175,6 +5290,7 @@ export const OperationItem = {
       figi: isSet(object.figi) ? String(object.figi) : "",
       instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
       instrumentKind: isSet(object.instrumentKind) ? instrumentTypeFromJSON(object.instrumentKind) : 0,
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
       payment: isSet(object.payment) ? MoneyValue.fromJSON(object.payment) : undefined,
       price: isSet(object.price) ? MoneyValue.fromJSON(object.price) : undefined,
       commission: isSet(object.commission) ? MoneyValue.fromJSON(object.commission) : undefined,
@@ -5206,6 +5322,7 @@ export const OperationItem = {
     message.figi !== undefined && (obj.figi = message.figi);
     message.instrumentType !== undefined && (obj.instrumentType = message.instrumentType);
     message.instrumentKind !== undefined && (obj.instrumentKind = instrumentTypeToJSON(message.instrumentKind));
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
     message.payment !== undefined && (obj.payment = message.payment ? MoneyValue.toJSON(message.payment) : undefined);
     message.price !== undefined && (obj.price = message.price ? MoneyValue.toJSON(message.price) : undefined);
     message.commission !== undefined &&
@@ -5226,6 +5343,10 @@ export const OperationItem = {
     return obj;
   },
 
+  create(base?: DeepPartial<OperationItem>): OperationItem {
+    return OperationItem.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<OperationItem>): OperationItem {
     const message = createBaseOperationItem();
     message.cursor = object.cursor ?? "";
@@ -5241,6 +5362,7 @@ export const OperationItem = {
     message.figi = object.figi ?? "";
     message.instrumentType = object.instrumentType ?? "";
     message.instrumentKind = object.instrumentKind ?? 0;
+    message.positionUid = object.positionUid ?? "";
     message.payment = (object.payment !== undefined && object.payment !== null)
       ? MoneyValue.fromPartial(object.payment)
       : undefined;
@@ -5316,6 +5438,10 @@ export const OperationItemTrades = {
       obj.trades = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<OperationItemTrades>): OperationItemTrades {
+    return OperationItemTrades.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<OperationItemTrades>): OperationItemTrades {
@@ -5408,6 +5534,10 @@ export const OperationItemTrade = {
     return obj;
   },
 
+  create(base?: DeepPartial<OperationItemTrade>): OperationItemTrade {
+    return OperationItemTrade.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<OperationItemTrade>): OperationItemTrade {
     const message = createBaseOperationItemTrade();
     message.num = object.num ?? "";
@@ -5468,6 +5598,10 @@ export const PositionsStreamRequest = {
       obj.accounts = [];
     }
     return obj;
+  },
+
+  create(base?: DeepPartial<PositionsStreamRequest>): PositionsStreamRequest {
+    return PositionsStreamRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<PositionsStreamRequest>): PositionsStreamRequest {
@@ -5541,6 +5675,10 @@ export const PositionsStreamResponse = {
     return obj;
   },
 
+  create(base?: DeepPartial<PositionsStreamResponse>): PositionsStreamResponse {
+    return PositionsStreamResponse.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PositionsStreamResponse>): PositionsStreamResponse {
     const message = createBasePositionsStreamResponse();
     message.subscriptions = (object.subscriptions !== undefined && object.subscriptions !== null)
@@ -5602,6 +5740,10 @@ export const PositionsSubscriptionResult = {
     return obj;
   },
 
+  create(base?: DeepPartial<PositionsSubscriptionResult>): PositionsSubscriptionResult {
+    return PositionsSubscriptionResult.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PositionsSubscriptionResult>): PositionsSubscriptionResult {
     const message = createBasePositionsSubscriptionResult();
     message.accounts = object.accounts?.map((e) => PositionsSubscriptionStatus.fromPartial(e)) || [];
@@ -5660,6 +5802,10 @@ export const PositionsSubscriptionStatus = {
     message.subscriptionStatus !== undefined &&
       (obj.subscriptionStatus = positionsAccountSubscriptionStatusToJSON(message.subscriptionStatus));
     return obj;
+  },
+
+  create(base?: DeepPartial<PositionsSubscriptionStatus>): PositionsSubscriptionStatus {
+    return PositionsSubscriptionStatus.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<PositionsSubscriptionStatus>): PositionsSubscriptionStatus {
@@ -5770,6 +5916,10 @@ export const PositionData = {
     return obj;
   },
 
+  create(base?: DeepPartial<PositionData>): PositionData {
+    return PositionData.fromPartial(base ?? {});
+  },
+
   fromPartial(object: DeepPartial<PositionData>): PositionData {
     const message = createBasePositionData();
     message.accountId = object.accountId ?? "";
@@ -5832,6 +5982,10 @@ export const PositionsMoney = {
     message.blockedValue !== undefined &&
       (obj.blockedValue = message.blockedValue ? MoneyValue.toJSON(message.blockedValue) : undefined);
     return obj;
+  },
+
+  create(base?: DeepPartial<PositionsMoney>): PositionsMoney {
+    return PositionsMoney.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<PositionsMoney>): PositionsMoney {
@@ -5957,7 +6111,7 @@ export const OperationsStreamServiceDefinition = {
 declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
-var globalThis: any = (() => {
+var tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -6004,7 +6158,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
   }
   return long.toNumber();
 }
