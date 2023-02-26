@@ -1,9 +1,9 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { Timestamp } from "./google/protobuf/timestamp";
+import Long from 'long';
+import * as _m0 from 'protobufjs/minimal';
+import { Timestamp } from './google/protobuf/timestamp';
 
-export const protobufPackage = "tinkoff.public.invest.api.contract.v1";
+export const protobufPackage = 'tinkoff.public.invest.api.contract.v1';
 
 /** Тип инструмента. */
 export enum InstrumentType {
@@ -30,34 +30,34 @@ export enum InstrumentType {
 export function instrumentTypeFromJSON(object: any): InstrumentType {
   switch (object) {
     case 0:
-    case "INSTRUMENT_TYPE_UNSPECIFIED":
+    case 'INSTRUMENT_TYPE_UNSPECIFIED':
       return InstrumentType.INSTRUMENT_TYPE_UNSPECIFIED;
     case 1:
-    case "INSTRUMENT_TYPE_BOND":
+    case 'INSTRUMENT_TYPE_BOND':
       return InstrumentType.INSTRUMENT_TYPE_BOND;
     case 2:
-    case "INSTRUMENT_TYPE_SHARE":
+    case 'INSTRUMENT_TYPE_SHARE':
       return InstrumentType.INSTRUMENT_TYPE_SHARE;
     case 3:
-    case "INSTRUMENT_TYPE_CURRENCY":
+    case 'INSTRUMENT_TYPE_CURRENCY':
       return InstrumentType.INSTRUMENT_TYPE_CURRENCY;
     case 4:
-    case "INSTRUMENT_TYPE_ETF":
+    case 'INSTRUMENT_TYPE_ETF':
       return InstrumentType.INSTRUMENT_TYPE_ETF;
     case 5:
-    case "INSTRUMENT_TYPE_FUTURES":
+    case 'INSTRUMENT_TYPE_FUTURES':
       return InstrumentType.INSTRUMENT_TYPE_FUTURES;
     case 6:
-    case "INSTRUMENT_TYPE_SP":
+    case 'INSTRUMENT_TYPE_SP':
       return InstrumentType.INSTRUMENT_TYPE_SP;
     case 7:
-    case "INSTRUMENT_TYPE_OPTION":
+    case 'INSTRUMENT_TYPE_OPTION':
       return InstrumentType.INSTRUMENT_TYPE_OPTION;
     case 8:
-    case "INSTRUMENT_TYPE_CLEARING_CERTIFICATE":
+    case 'INSTRUMENT_TYPE_CLEARING_CERTIFICATE':
       return InstrumentType.INSTRUMENT_TYPE_CLEARING_CERTIFICATE;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return InstrumentType.UNRECOGNIZED;
   }
@@ -66,26 +66,25 @@ export function instrumentTypeFromJSON(object: any): InstrumentType {
 export function instrumentTypeToJSON(object: InstrumentType): string {
   switch (object) {
     case InstrumentType.INSTRUMENT_TYPE_UNSPECIFIED:
-      return "INSTRUMENT_TYPE_UNSPECIFIED";
+      return 'INSTRUMENT_TYPE_UNSPECIFIED';
     case InstrumentType.INSTRUMENT_TYPE_BOND:
-      return "INSTRUMENT_TYPE_BOND";
+      return 'INSTRUMENT_TYPE_BOND';
     case InstrumentType.INSTRUMENT_TYPE_SHARE:
-      return "INSTRUMENT_TYPE_SHARE";
+      return 'INSTRUMENT_TYPE_SHARE';
     case InstrumentType.INSTRUMENT_TYPE_CURRENCY:
-      return "INSTRUMENT_TYPE_CURRENCY";
+      return 'INSTRUMENT_TYPE_CURRENCY';
     case InstrumentType.INSTRUMENT_TYPE_ETF:
-      return "INSTRUMENT_TYPE_ETF";
+      return 'INSTRUMENT_TYPE_ETF';
     case InstrumentType.INSTRUMENT_TYPE_FUTURES:
-      return "INSTRUMENT_TYPE_FUTURES";
+      return 'INSTRUMENT_TYPE_FUTURES';
     case InstrumentType.INSTRUMENT_TYPE_SP:
-      return "INSTRUMENT_TYPE_SP";
+      return 'INSTRUMENT_TYPE_SP';
     case InstrumentType.INSTRUMENT_TYPE_OPTION:
-      return "INSTRUMENT_TYPE_OPTION";
+      return 'INSTRUMENT_TYPE_OPTION';
     case InstrumentType.INSTRUMENT_TYPE_CLEARING_CERTIFICATE:
-      return "INSTRUMENT_TYPE_CLEARING_CERTIFICATE";
-    case InstrumentType.UNRECOGNIZED:
+      return 'INSTRUMENT_TYPE_CLEARING_CERTIFICATE';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -131,58 +130,58 @@ export enum SecurityTradingStatus {
 export function securityTradingStatusFromJSON(object: any): SecurityTradingStatus {
   switch (object) {
     case 0:
-    case "SECURITY_TRADING_STATUS_UNSPECIFIED":
+    case 'SECURITY_TRADING_STATUS_UNSPECIFIED':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_UNSPECIFIED;
     case 1:
-    case "SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING":
+    case 'SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING;
     case 2:
-    case "SECURITY_TRADING_STATUS_OPENING_PERIOD":
+    case 'SECURITY_TRADING_STATUS_OPENING_PERIOD':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_OPENING_PERIOD;
     case 3:
-    case "SECURITY_TRADING_STATUS_CLOSING_PERIOD":
+    case 'SECURITY_TRADING_STATUS_CLOSING_PERIOD':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_CLOSING_PERIOD;
     case 4:
-    case "SECURITY_TRADING_STATUS_BREAK_IN_TRADING":
+    case 'SECURITY_TRADING_STATUS_BREAK_IN_TRADING':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_BREAK_IN_TRADING;
     case 5:
-    case "SECURITY_TRADING_STATUS_NORMAL_TRADING":
+    case 'SECURITY_TRADING_STATUS_NORMAL_TRADING':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_NORMAL_TRADING;
     case 6:
-    case "SECURITY_TRADING_STATUS_CLOSING_AUCTION":
+    case 'SECURITY_TRADING_STATUS_CLOSING_AUCTION':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_CLOSING_AUCTION;
     case 7:
-    case "SECURITY_TRADING_STATUS_DARK_POOL_AUCTION":
+    case 'SECURITY_TRADING_STATUS_DARK_POOL_AUCTION':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_DARK_POOL_AUCTION;
     case 8:
-    case "SECURITY_TRADING_STATUS_DISCRETE_AUCTION":
+    case 'SECURITY_TRADING_STATUS_DISCRETE_AUCTION':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_DISCRETE_AUCTION;
     case 9:
-    case "SECURITY_TRADING_STATUS_OPENING_AUCTION_PERIOD":
+    case 'SECURITY_TRADING_STATUS_OPENING_AUCTION_PERIOD':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_OPENING_AUCTION_PERIOD;
     case 10:
-    case "SECURITY_TRADING_STATUS_TRADING_AT_CLOSING_AUCTION_PRICE":
+    case 'SECURITY_TRADING_STATUS_TRADING_AT_CLOSING_AUCTION_PRICE':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_TRADING_AT_CLOSING_AUCTION_PRICE;
     case 11:
-    case "SECURITY_TRADING_STATUS_SESSION_ASSIGNED":
+    case 'SECURITY_TRADING_STATUS_SESSION_ASSIGNED':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_SESSION_ASSIGNED;
     case 12:
-    case "SECURITY_TRADING_STATUS_SESSION_CLOSE":
+    case 'SECURITY_TRADING_STATUS_SESSION_CLOSE':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_SESSION_CLOSE;
     case 13:
-    case "SECURITY_TRADING_STATUS_SESSION_OPEN":
+    case 'SECURITY_TRADING_STATUS_SESSION_OPEN':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_SESSION_OPEN;
     case 14:
-    case "SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING":
+    case 'SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING;
     case 15:
-    case "SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING":
+    case 'SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING;
     case 16:
-    case "SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING":
+    case 'SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING':
       return SecurityTradingStatus.SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return SecurityTradingStatus.UNRECOGNIZED;
   }
@@ -191,42 +190,41 @@ export function securityTradingStatusFromJSON(object: any): SecurityTradingStatu
 export function securityTradingStatusToJSON(object: SecurityTradingStatus): string {
   switch (object) {
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_UNSPECIFIED:
-      return "SECURITY_TRADING_STATUS_UNSPECIFIED";
+      return 'SECURITY_TRADING_STATUS_UNSPECIFIED';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING:
-      return "SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING";
+      return 'SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_OPENING_PERIOD:
-      return "SECURITY_TRADING_STATUS_OPENING_PERIOD";
+      return 'SECURITY_TRADING_STATUS_OPENING_PERIOD';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_CLOSING_PERIOD:
-      return "SECURITY_TRADING_STATUS_CLOSING_PERIOD";
+      return 'SECURITY_TRADING_STATUS_CLOSING_PERIOD';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_BREAK_IN_TRADING:
-      return "SECURITY_TRADING_STATUS_BREAK_IN_TRADING";
+      return 'SECURITY_TRADING_STATUS_BREAK_IN_TRADING';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_NORMAL_TRADING:
-      return "SECURITY_TRADING_STATUS_NORMAL_TRADING";
+      return 'SECURITY_TRADING_STATUS_NORMAL_TRADING';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_CLOSING_AUCTION:
-      return "SECURITY_TRADING_STATUS_CLOSING_AUCTION";
+      return 'SECURITY_TRADING_STATUS_CLOSING_AUCTION';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_DARK_POOL_AUCTION:
-      return "SECURITY_TRADING_STATUS_DARK_POOL_AUCTION";
+      return 'SECURITY_TRADING_STATUS_DARK_POOL_AUCTION';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_DISCRETE_AUCTION:
-      return "SECURITY_TRADING_STATUS_DISCRETE_AUCTION";
+      return 'SECURITY_TRADING_STATUS_DISCRETE_AUCTION';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_OPENING_AUCTION_PERIOD:
-      return "SECURITY_TRADING_STATUS_OPENING_AUCTION_PERIOD";
+      return 'SECURITY_TRADING_STATUS_OPENING_AUCTION_PERIOD';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_TRADING_AT_CLOSING_AUCTION_PRICE:
-      return "SECURITY_TRADING_STATUS_TRADING_AT_CLOSING_AUCTION_PRICE";
+      return 'SECURITY_TRADING_STATUS_TRADING_AT_CLOSING_AUCTION_PRICE';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_SESSION_ASSIGNED:
-      return "SECURITY_TRADING_STATUS_SESSION_ASSIGNED";
+      return 'SECURITY_TRADING_STATUS_SESSION_ASSIGNED';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_SESSION_CLOSE:
-      return "SECURITY_TRADING_STATUS_SESSION_CLOSE";
+      return 'SECURITY_TRADING_STATUS_SESSION_CLOSE';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_SESSION_OPEN:
-      return "SECURITY_TRADING_STATUS_SESSION_OPEN";
+      return 'SECURITY_TRADING_STATUS_SESSION_OPEN';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING:
-      return "SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING";
+      return 'SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING:
-      return "SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING";
+      return 'SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING';
     case SecurityTradingStatus.SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING:
-      return "SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING";
-    case SecurityTradingStatus.UNRECOGNIZED:
+      return 'SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -255,12 +253,12 @@ export interface Ping {
 }
 
 function createBaseMoneyValue(): MoneyValue {
-  return { currency: "", units: 0, nano: 0 };
+  return { currency: '', units: 0, nano: 0 };
 }
 
 export const MoneyValue = {
   encode(message: MoneyValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.currency !== "") {
+    if (message.currency !== '') {
       writer.uint32(10).string(message.currency);
     }
     if (message.units !== 0) {
@@ -298,7 +296,7 @@ export const MoneyValue = {
 
   fromJSON(object: any): MoneyValue {
     return {
-      currency: isSet(object.currency) ? String(object.currency) : "",
+      currency: isSet(object.currency) ? String(object.currency) : '',
       units: isSet(object.units) ? Number(object.units) : 0,
       nano: isSet(object.nano) ? Number(object.nano) : 0,
     };
@@ -312,13 +310,9 @@ export const MoneyValue = {
     return obj;
   },
 
-  create(base?: DeepPartial<MoneyValue>): MoneyValue {
-    return MoneyValue.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<MoneyValue>): MoneyValue {
     const message = createBaseMoneyValue();
-    message.currency = object.currency ?? "";
+    message.currency = object.currency ?? '';
     message.units = object.units ?? 0;
     message.nano = object.nano ?? 0;
     return message;
@@ -375,10 +369,6 @@ export const Quotation = {
     return obj;
   },
 
-  create(base?: DeepPartial<Quotation>): Quotation {
-    return Quotation.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<Quotation>): Quotation {
     const message = createBaseQuotation();
     message.units = object.units ?? 0;
@@ -418,17 +408,15 @@ export const Ping = {
   },
 
   fromJSON(object: any): Ping {
-    return { time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined };
+    return {
+      time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
+    };
   },
 
   toJSON(message: Ping): unknown {
     const obj: any = {};
     message.time !== undefined && (obj.time = message.time.toISOString());
     return obj;
-  },
-
-  create(base?: DeepPartial<Ping>): Ping {
-    return Ping.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<Ping>): Ping {
@@ -441,27 +429,24 @@ export const Ping = {
 declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
+var globalThis: any = (() => {
+  if (typeof globalThis !== 'undefined') return globalThis;
+  if (typeof self !== 'undefined') return self;
+  if (typeof window !== 'undefined') return window;
+  if (typeof global !== 'undefined') return global;
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 function toTimestamp(date: Date): Timestamp {
@@ -479,7 +464,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === "string") {
+  } else if (typeof o === 'string') {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -488,7 +473,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

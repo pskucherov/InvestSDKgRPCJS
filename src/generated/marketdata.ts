@@ -1,16 +1,16 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
+import Long from 'long';
+import * as _m0 from 'protobufjs/minimal';
 import {
+  SecurityTradingStatus,
   Ping,
   Quotation,
-  SecurityTradingStatus,
   securityTradingStatusFromJSON,
   securityTradingStatusToJSON,
-} from "./common";
-import { Timestamp } from "./google/protobuf/timestamp";
+} from './common';
+import { Timestamp } from './google/protobuf/timestamp';
 
-export const protobufPackage = "tinkoff.public.invest.api.contract.v1";
+export const protobufPackage = 'tinkoff.public.invest.api.contract.v1';
 
 /** Тип операции со списком подписок. */
 export enum SubscriptionAction {
@@ -26,16 +26,16 @@ export enum SubscriptionAction {
 export function subscriptionActionFromJSON(object: any): SubscriptionAction {
   switch (object) {
     case 0:
-    case "SUBSCRIPTION_ACTION_UNSPECIFIED":
+    case 'SUBSCRIPTION_ACTION_UNSPECIFIED':
       return SubscriptionAction.SUBSCRIPTION_ACTION_UNSPECIFIED;
     case 1:
-    case "SUBSCRIPTION_ACTION_SUBSCRIBE":
+    case 'SUBSCRIPTION_ACTION_SUBSCRIBE':
       return SubscriptionAction.SUBSCRIPTION_ACTION_SUBSCRIBE;
     case 2:
-    case "SUBSCRIPTION_ACTION_UNSUBSCRIBE":
+    case 'SUBSCRIPTION_ACTION_UNSUBSCRIBE':
       return SubscriptionAction.SUBSCRIPTION_ACTION_UNSUBSCRIBE;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return SubscriptionAction.UNRECOGNIZED;
   }
@@ -44,14 +44,13 @@ export function subscriptionActionFromJSON(object: any): SubscriptionAction {
 export function subscriptionActionToJSON(object: SubscriptionAction): string {
   switch (object) {
     case SubscriptionAction.SUBSCRIPTION_ACTION_UNSPECIFIED:
-      return "SUBSCRIPTION_ACTION_UNSPECIFIED";
+      return 'SUBSCRIPTION_ACTION_UNSPECIFIED';
     case SubscriptionAction.SUBSCRIPTION_ACTION_SUBSCRIBE:
-      return "SUBSCRIPTION_ACTION_SUBSCRIBE";
+      return 'SUBSCRIPTION_ACTION_SUBSCRIBE';
     case SubscriptionAction.SUBSCRIPTION_ACTION_UNSUBSCRIBE:
-      return "SUBSCRIPTION_ACTION_UNSUBSCRIBE";
-    case SubscriptionAction.UNRECOGNIZED:
+      return 'SUBSCRIPTION_ACTION_UNSUBSCRIBE';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -69,16 +68,16 @@ export enum SubscriptionInterval {
 export function subscriptionIntervalFromJSON(object: any): SubscriptionInterval {
   switch (object) {
     case 0:
-    case "SUBSCRIPTION_INTERVAL_UNSPECIFIED":
+    case 'SUBSCRIPTION_INTERVAL_UNSPECIFIED':
       return SubscriptionInterval.SUBSCRIPTION_INTERVAL_UNSPECIFIED;
     case 1:
-    case "SUBSCRIPTION_INTERVAL_ONE_MINUTE":
+    case 'SUBSCRIPTION_INTERVAL_ONE_MINUTE':
       return SubscriptionInterval.SUBSCRIPTION_INTERVAL_ONE_MINUTE;
     case 2:
-    case "SUBSCRIPTION_INTERVAL_FIVE_MINUTES":
+    case 'SUBSCRIPTION_INTERVAL_FIVE_MINUTES':
       return SubscriptionInterval.SUBSCRIPTION_INTERVAL_FIVE_MINUTES;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return SubscriptionInterval.UNRECOGNIZED;
   }
@@ -87,14 +86,13 @@ export function subscriptionIntervalFromJSON(object: any): SubscriptionInterval 
 export function subscriptionIntervalToJSON(object: SubscriptionInterval): string {
   switch (object) {
     case SubscriptionInterval.SUBSCRIPTION_INTERVAL_UNSPECIFIED:
-      return "SUBSCRIPTION_INTERVAL_UNSPECIFIED";
+      return 'SUBSCRIPTION_INTERVAL_UNSPECIFIED';
     case SubscriptionInterval.SUBSCRIPTION_INTERVAL_ONE_MINUTE:
-      return "SUBSCRIPTION_INTERVAL_ONE_MINUTE";
+      return 'SUBSCRIPTION_INTERVAL_ONE_MINUTE';
     case SubscriptionInterval.SUBSCRIPTION_INTERVAL_FIVE_MINUTES:
-      return "SUBSCRIPTION_INTERVAL_FIVE_MINUTES";
-    case SubscriptionInterval.UNRECOGNIZED:
+      return 'SUBSCRIPTION_INTERVAL_FIVE_MINUTES';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -124,34 +122,34 @@ export enum SubscriptionStatus {
 export function subscriptionStatusFromJSON(object: any): SubscriptionStatus {
   switch (object) {
     case 0:
-    case "SUBSCRIPTION_STATUS_UNSPECIFIED":
+    case 'SUBSCRIPTION_STATUS_UNSPECIFIED':
       return SubscriptionStatus.SUBSCRIPTION_STATUS_UNSPECIFIED;
     case 1:
-    case "SUBSCRIPTION_STATUS_SUCCESS":
+    case 'SUBSCRIPTION_STATUS_SUCCESS':
       return SubscriptionStatus.SUBSCRIPTION_STATUS_SUCCESS;
     case 2:
-    case "SUBSCRIPTION_STATUS_INSTRUMENT_NOT_FOUND":
+    case 'SUBSCRIPTION_STATUS_INSTRUMENT_NOT_FOUND':
       return SubscriptionStatus.SUBSCRIPTION_STATUS_INSTRUMENT_NOT_FOUND;
     case 3:
-    case "SUBSCRIPTION_STATUS_SUBSCRIPTION_ACTION_IS_INVALID":
+    case 'SUBSCRIPTION_STATUS_SUBSCRIPTION_ACTION_IS_INVALID':
       return SubscriptionStatus.SUBSCRIPTION_STATUS_SUBSCRIPTION_ACTION_IS_INVALID;
     case 4:
-    case "SUBSCRIPTION_STATUS_DEPTH_IS_INVALID":
+    case 'SUBSCRIPTION_STATUS_DEPTH_IS_INVALID':
       return SubscriptionStatus.SUBSCRIPTION_STATUS_DEPTH_IS_INVALID;
     case 5:
-    case "SUBSCRIPTION_STATUS_INTERVAL_IS_INVALID":
+    case 'SUBSCRIPTION_STATUS_INTERVAL_IS_INVALID':
       return SubscriptionStatus.SUBSCRIPTION_STATUS_INTERVAL_IS_INVALID;
     case 6:
-    case "SUBSCRIPTION_STATUS_LIMIT_IS_EXCEEDED":
+    case 'SUBSCRIPTION_STATUS_LIMIT_IS_EXCEEDED':
       return SubscriptionStatus.SUBSCRIPTION_STATUS_LIMIT_IS_EXCEEDED;
     case 7:
-    case "SUBSCRIPTION_STATUS_INTERNAL_ERROR":
+    case 'SUBSCRIPTION_STATUS_INTERNAL_ERROR':
       return SubscriptionStatus.SUBSCRIPTION_STATUS_INTERNAL_ERROR;
     case 8:
-    case "SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS":
+    case 'SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS':
       return SubscriptionStatus.SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return SubscriptionStatus.UNRECOGNIZED;
   }
@@ -160,26 +158,25 @@ export function subscriptionStatusFromJSON(object: any): SubscriptionStatus {
 export function subscriptionStatusToJSON(object: SubscriptionStatus): string {
   switch (object) {
     case SubscriptionStatus.SUBSCRIPTION_STATUS_UNSPECIFIED:
-      return "SUBSCRIPTION_STATUS_UNSPECIFIED";
+      return 'SUBSCRIPTION_STATUS_UNSPECIFIED';
     case SubscriptionStatus.SUBSCRIPTION_STATUS_SUCCESS:
-      return "SUBSCRIPTION_STATUS_SUCCESS";
+      return 'SUBSCRIPTION_STATUS_SUCCESS';
     case SubscriptionStatus.SUBSCRIPTION_STATUS_INSTRUMENT_NOT_FOUND:
-      return "SUBSCRIPTION_STATUS_INSTRUMENT_NOT_FOUND";
+      return 'SUBSCRIPTION_STATUS_INSTRUMENT_NOT_FOUND';
     case SubscriptionStatus.SUBSCRIPTION_STATUS_SUBSCRIPTION_ACTION_IS_INVALID:
-      return "SUBSCRIPTION_STATUS_SUBSCRIPTION_ACTION_IS_INVALID";
+      return 'SUBSCRIPTION_STATUS_SUBSCRIPTION_ACTION_IS_INVALID';
     case SubscriptionStatus.SUBSCRIPTION_STATUS_DEPTH_IS_INVALID:
-      return "SUBSCRIPTION_STATUS_DEPTH_IS_INVALID";
+      return 'SUBSCRIPTION_STATUS_DEPTH_IS_INVALID';
     case SubscriptionStatus.SUBSCRIPTION_STATUS_INTERVAL_IS_INVALID:
-      return "SUBSCRIPTION_STATUS_INTERVAL_IS_INVALID";
+      return 'SUBSCRIPTION_STATUS_INTERVAL_IS_INVALID';
     case SubscriptionStatus.SUBSCRIPTION_STATUS_LIMIT_IS_EXCEEDED:
-      return "SUBSCRIPTION_STATUS_LIMIT_IS_EXCEEDED";
+      return 'SUBSCRIPTION_STATUS_LIMIT_IS_EXCEEDED';
     case SubscriptionStatus.SUBSCRIPTION_STATUS_INTERNAL_ERROR:
-      return "SUBSCRIPTION_STATUS_INTERNAL_ERROR";
+      return 'SUBSCRIPTION_STATUS_INTERNAL_ERROR';
     case SubscriptionStatus.SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS:
-      return "SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS";
-    case SubscriptionStatus.UNRECOGNIZED:
+      return 'SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -197,16 +194,16 @@ export enum TradeDirection {
 export function tradeDirectionFromJSON(object: any): TradeDirection {
   switch (object) {
     case 0:
-    case "TRADE_DIRECTION_UNSPECIFIED":
+    case 'TRADE_DIRECTION_UNSPECIFIED':
       return TradeDirection.TRADE_DIRECTION_UNSPECIFIED;
     case 1:
-    case "TRADE_DIRECTION_BUY":
+    case 'TRADE_DIRECTION_BUY':
       return TradeDirection.TRADE_DIRECTION_BUY;
     case 2:
-    case "TRADE_DIRECTION_SELL":
+    case 'TRADE_DIRECTION_SELL':
       return TradeDirection.TRADE_DIRECTION_SELL;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return TradeDirection.UNRECOGNIZED;
   }
@@ -215,14 +212,13 @@ export function tradeDirectionFromJSON(object: any): TradeDirection {
 export function tradeDirectionToJSON(object: TradeDirection): string {
   switch (object) {
     case TradeDirection.TRADE_DIRECTION_UNSPECIFIED:
-      return "TRADE_DIRECTION_UNSPECIFIED";
+      return 'TRADE_DIRECTION_UNSPECIFIED';
     case TradeDirection.TRADE_DIRECTION_BUY:
-      return "TRADE_DIRECTION_BUY";
+      return 'TRADE_DIRECTION_BUY';
     case TradeDirection.TRADE_DIRECTION_SELL:
-      return "TRADE_DIRECTION_SELL";
-    case TradeDirection.UNRECOGNIZED:
+      return 'TRADE_DIRECTION_SELL';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -262,49 +258,49 @@ export enum CandleInterval {
 export function candleIntervalFromJSON(object: any): CandleInterval {
   switch (object) {
     case 0:
-    case "CANDLE_INTERVAL_UNSPECIFIED":
+    case 'CANDLE_INTERVAL_UNSPECIFIED':
       return CandleInterval.CANDLE_INTERVAL_UNSPECIFIED;
     case 1:
-    case "CANDLE_INTERVAL_1_MIN":
+    case 'CANDLE_INTERVAL_1_MIN':
       return CandleInterval.CANDLE_INTERVAL_1_MIN;
     case 2:
-    case "CANDLE_INTERVAL_5_MIN":
+    case 'CANDLE_INTERVAL_5_MIN':
       return CandleInterval.CANDLE_INTERVAL_5_MIN;
     case 3:
-    case "CANDLE_INTERVAL_15_MIN":
+    case 'CANDLE_INTERVAL_15_MIN':
       return CandleInterval.CANDLE_INTERVAL_15_MIN;
     case 4:
-    case "CANDLE_INTERVAL_HOUR":
+    case 'CANDLE_INTERVAL_HOUR':
       return CandleInterval.CANDLE_INTERVAL_HOUR;
     case 5:
-    case "CANDLE_INTERVAL_DAY":
+    case 'CANDLE_INTERVAL_DAY':
       return CandleInterval.CANDLE_INTERVAL_DAY;
     case 6:
-    case "CANDLE_INTERVAL_2_MIN":
+    case 'CANDLE_INTERVAL_2_MIN':
       return CandleInterval.CANDLE_INTERVAL_2_MIN;
     case 7:
-    case "CANDLE_INTERVAL_3_MIN":
+    case 'CANDLE_INTERVAL_3_MIN':
       return CandleInterval.CANDLE_INTERVAL_3_MIN;
     case 8:
-    case "CANDLE_INTERVAL_10_MIN":
+    case 'CANDLE_INTERVAL_10_MIN':
       return CandleInterval.CANDLE_INTERVAL_10_MIN;
     case 9:
-    case "CANDLE_INTERVAL_30_MIN":
+    case 'CANDLE_INTERVAL_30_MIN':
       return CandleInterval.CANDLE_INTERVAL_30_MIN;
     case 10:
-    case "CANDLE_INTERVAL_2_HOUR":
+    case 'CANDLE_INTERVAL_2_HOUR':
       return CandleInterval.CANDLE_INTERVAL_2_HOUR;
     case 11:
-    case "CANDLE_INTERVAL_4_HOUR":
+    case 'CANDLE_INTERVAL_4_HOUR':
       return CandleInterval.CANDLE_INTERVAL_4_HOUR;
     case 12:
-    case "CANDLE_INTERVAL_WEEK":
+    case 'CANDLE_INTERVAL_WEEK':
       return CandleInterval.CANDLE_INTERVAL_WEEK;
     case 13:
-    case "CANDLE_INTERVAL_MONTH":
+    case 'CANDLE_INTERVAL_MONTH':
       return CandleInterval.CANDLE_INTERVAL_MONTH;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return CandleInterval.UNRECOGNIZED;
   }
@@ -313,82 +309,63 @@ export function candleIntervalFromJSON(object: any): CandleInterval {
 export function candleIntervalToJSON(object: CandleInterval): string {
   switch (object) {
     case CandleInterval.CANDLE_INTERVAL_UNSPECIFIED:
-      return "CANDLE_INTERVAL_UNSPECIFIED";
+      return 'CANDLE_INTERVAL_UNSPECIFIED';
     case CandleInterval.CANDLE_INTERVAL_1_MIN:
-      return "CANDLE_INTERVAL_1_MIN";
+      return 'CANDLE_INTERVAL_1_MIN';
     case CandleInterval.CANDLE_INTERVAL_5_MIN:
-      return "CANDLE_INTERVAL_5_MIN";
+      return 'CANDLE_INTERVAL_5_MIN';
     case CandleInterval.CANDLE_INTERVAL_15_MIN:
-      return "CANDLE_INTERVAL_15_MIN";
+      return 'CANDLE_INTERVAL_15_MIN';
     case CandleInterval.CANDLE_INTERVAL_HOUR:
-      return "CANDLE_INTERVAL_HOUR";
+      return 'CANDLE_INTERVAL_HOUR';
     case CandleInterval.CANDLE_INTERVAL_DAY:
-      return "CANDLE_INTERVAL_DAY";
+      return 'CANDLE_INTERVAL_DAY';
     case CandleInterval.CANDLE_INTERVAL_2_MIN:
-      return "CANDLE_INTERVAL_2_MIN";
+      return 'CANDLE_INTERVAL_2_MIN';
     case CandleInterval.CANDLE_INTERVAL_3_MIN:
-      return "CANDLE_INTERVAL_3_MIN";
+      return 'CANDLE_INTERVAL_3_MIN';
     case CandleInterval.CANDLE_INTERVAL_10_MIN:
-      return "CANDLE_INTERVAL_10_MIN";
+      return 'CANDLE_INTERVAL_10_MIN';
     case CandleInterval.CANDLE_INTERVAL_30_MIN:
-      return "CANDLE_INTERVAL_30_MIN";
+      return 'CANDLE_INTERVAL_30_MIN';
     case CandleInterval.CANDLE_INTERVAL_2_HOUR:
-      return "CANDLE_INTERVAL_2_HOUR";
+      return 'CANDLE_INTERVAL_2_HOUR';
     case CandleInterval.CANDLE_INTERVAL_4_HOUR:
-      return "CANDLE_INTERVAL_4_HOUR";
+      return 'CANDLE_INTERVAL_4_HOUR';
     case CandleInterval.CANDLE_INTERVAL_WEEK:
-      return "CANDLE_INTERVAL_WEEK";
+      return 'CANDLE_INTERVAL_WEEK';
     case CandleInterval.CANDLE_INTERVAL_MONTH:
-      return "CANDLE_INTERVAL_MONTH";
-    case CandleInterval.UNRECOGNIZED:
+      return 'CANDLE_INTERVAL_MONTH';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
 /** Запрос подписки или отписки на определённые биржевые данные. */
 export interface MarketDataRequest {
   /** Запрос подписки на свечи. */
-  subscribeCandlesRequest?:
-    | SubscribeCandlesRequest
-    | undefined;
+  subscribeCandlesRequest: SubscribeCandlesRequest | undefined;
   /** Запрос подписки на стаканы. */
-  subscribeOrderBookRequest?:
-    | SubscribeOrderBookRequest
-    | undefined;
+  subscribeOrderBookRequest: SubscribeOrderBookRequest | undefined;
   /** Запрос подписки на ленту обезличенных сделок. */
-  subscribeTradesRequest?:
-    | SubscribeTradesRequest
-    | undefined;
+  subscribeTradesRequest: SubscribeTradesRequest | undefined;
   /** Запрос подписки на торговые статусы инструментов. */
-  subscribeInfoRequest?:
-    | SubscribeInfoRequest
-    | undefined;
+  subscribeInfoRequest: SubscribeInfoRequest | undefined;
   /** Запрос подписки на цены последних сделок. */
-  subscribeLastPriceRequest?:
-    | SubscribeLastPriceRequest
-    | undefined;
+  subscribeLastPriceRequest: SubscribeLastPriceRequest | undefined;
   /** Запрос своих подписок. */
-  getMySubscriptions?: GetMySubscriptions | undefined;
+  getMySubscriptions: GetMySubscriptions | undefined;
 }
 
 export interface MarketDataServerSideStreamRequest {
   /** Запрос подписки на свечи. */
-  subscribeCandlesRequest:
-    | SubscribeCandlesRequest
-    | undefined;
+  subscribeCandlesRequest: SubscribeCandlesRequest | undefined;
   /** Запрос подписки на стаканы. */
-  subscribeOrderBookRequest:
-    | SubscribeOrderBookRequest
-    | undefined;
+  subscribeOrderBookRequest: SubscribeOrderBookRequest | undefined;
   /** Запрос подписки на ленту обезличенных сделок. */
-  subscribeTradesRequest:
-    | SubscribeTradesRequest
-    | undefined;
+  subscribeTradesRequest: SubscribeTradesRequest | undefined;
   /** Запрос подписки на торговые статусы инструментов. */
-  subscribeInfoRequest:
-    | SubscribeInfoRequest
-    | undefined;
+  subscribeInfoRequest: SubscribeInfoRequest | undefined;
   /** Запрос подписки на цены последних сделок. */
   subscribeLastPriceRequest: SubscribeLastPriceRequest | undefined;
 }
@@ -396,47 +373,27 @@ export interface MarketDataServerSideStreamRequest {
 /** Пакет биржевой информации по подписке. */
 export interface MarketDataResponse {
   /** Результат подписки на свечи. */
-  subscribeCandlesResponse?:
-    | SubscribeCandlesResponse
-    | undefined;
+  subscribeCandlesResponse: SubscribeCandlesResponse | undefined;
   /** Результат подписки на стаканы. */
-  subscribeOrderBookResponse?:
-    | SubscribeOrderBookResponse
-    | undefined;
+  subscribeOrderBookResponse: SubscribeOrderBookResponse | undefined;
   /** Результат подписки на поток обезличенных сделок. */
-  subscribeTradesResponse?:
-    | SubscribeTradesResponse
-    | undefined;
+  subscribeTradesResponse: SubscribeTradesResponse | undefined;
   /** Результат подписки на торговые статусы инструментов. */
-  subscribeInfoResponse?:
-    | SubscribeInfoResponse
-    | undefined;
+  subscribeInfoResponse: SubscribeInfoResponse | undefined;
   /** Свеча. */
-  candle?:
-    | Candle
-    | undefined;
+  candle: Candle | undefined;
   /** Сделки. */
-  trade?:
-    | Trade
-    | undefined;
+  trade: Trade | undefined;
   /** Стакан. */
-  orderbook?:
-    | OrderBook
-    | undefined;
+  orderbook: OrderBook | undefined;
   /** Торговый статус. */
-  tradingStatus?:
-    | TradingStatus
-    | undefined;
+  tradingStatus: TradingStatus | undefined;
   /** Проверка активности стрима. */
-  ping?:
-    | Ping
-    | undefined;
+  ping: Ping | undefined;
   /** Результат подписки на цены последние сделок по инструментам. */
-  subscribeLastPriceResponse?:
-    | SubscribeLastPriceResponse
-    | undefined;
+  subscribeLastPriceResponse: SubscribeLastPriceResponse | undefined;
   /** Цена последней сделки. */
-  lastPrice?: LastPrice | undefined;
+  lastPrice: LastPrice | undefined;
 }
 
 /** subscribeCandles | Изменения статуса подписки на свечи. */
@@ -626,31 +583,19 @@ export interface Candle {
   /** Интервал свечи. */
   interval: SubscriptionInterval;
   /** Цена открытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  open:
-    | Quotation
-    | undefined;
+  open: Quotation | undefined;
   /** Максимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  high:
-    | Quotation
-    | undefined;
+  high: Quotation | undefined;
   /** Минимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  low:
-    | Quotation
-    | undefined;
+  low: Quotation | undefined;
   /** Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  close:
-    | Quotation
-    | undefined;
+  close: Quotation | undefined;
   /** Объём сделок в лотах. */
   volume: number;
   /** Время начала интервала свечи в часовом поясе UTC. */
-  time:
-    | Date
-    | undefined;
+  time: Date | undefined;
   /** Время последней сделки, вошедшей в свечу в часовом поясе UTC. */
-  lastTradeTs:
-    | Date
-    | undefined;
+  lastTradeTs: Date | undefined;
   /** Uid инструмента */
   instrumentUid: string;
 }
@@ -668,17 +613,11 @@ export interface OrderBook {
   /** Массив спроса. */
   asks: Order[];
   /** Время формирования стакана в часовом поясе UTC по времени биржи. */
-  time:
-    | Date
-    | undefined;
+  time: Date | undefined;
   /** Верхний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  limitUp:
-    | Quotation
-    | undefined;
+  limitUp: Quotation | undefined;
   /** Нижний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  limitDown:
-    | Quotation
-    | undefined;
+  limitDown: Quotation | undefined;
   /** Uid инструмента */
   instrumentUid: string;
 }
@@ -686,9 +625,7 @@ export interface OrderBook {
 /** Массив предложений/спроса. */
 export interface Order {
   /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  price:
-    | Quotation
-    | undefined;
+  price: Quotation | undefined;
   /** Количество в лотах. */
   quantity: number;
 }
@@ -700,15 +637,11 @@ export interface Trade {
   /** Направление сделки. */
   direction: TradeDirection;
   /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  price:
-    | Quotation
-    | undefined;
+  price: Quotation | undefined;
   /** Количество лотов. */
   quantity: number;
   /** Время сделки в часовом поясе UTC по времени биржи. */
-  time:
-    | Date
-    | undefined;
+  time: Date | undefined;
   /** Uid инструмента */
   instrumentUid: string;
 }
@@ -720,9 +653,7 @@ export interface TradingStatus {
   /** Статус торговли инструментом. */
   tradingStatus: SecurityTradingStatus;
   /** Время изменения торгового статуса в часовом поясе UTC. */
-  time:
-    | Date
-    | undefined;
+  time: Date | undefined;
   /** Признак доступности выставления лимитной заявки по инструменту. */
   limitOrderAvailableFlag: boolean;
   /** Признак доступности выставления рыночной заявки по инструменту. */
@@ -736,13 +667,9 @@ export interface GetCandlesRequest {
   /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Начало запрашиваемого периода в часовом поясе UTC. */
-  from:
-    | Date
-    | undefined;
+  from: Date | undefined;
   /** Окончание запрашиваемого периода в часовом поясе UTC. */
-  to:
-    | Date
-    | undefined;
+  to: Date | undefined;
   /** Интервал запрошенных свечей. */
   interval: CandleInterval;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
@@ -758,27 +685,17 @@ export interface GetCandlesResponse {
 /** Информация о свече. */
 export interface HistoricCandle {
   /** Цена открытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  open:
-    | Quotation
-    | undefined;
+  open: Quotation | undefined;
   /** Максимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  high:
-    | Quotation
-    | undefined;
+  high: Quotation | undefined;
   /** Минимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  low:
-    | Quotation
-    | undefined;
+  low: Quotation | undefined;
   /** Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  close:
-    | Quotation
-    | undefined;
+  close: Quotation | undefined;
   /** Объём торгов в лотах. */
   volume: number;
   /** Время свечи в часовом поясе UTC. */
-  time:
-    | Date
-    | undefined;
+  time: Date | undefined;
   /** Признак завершённости свечи. **false** значит, свеча за текущие интервал ещё сформирована не полностью. */
   isComplete: boolean;
 }
@@ -802,13 +719,9 @@ export interface LastPrice {
   /** Figi инструмента. */
   figi: string;
   /** Цена последней сделки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  price:
-    | Quotation
-    | undefined;
+  price: Quotation | undefined;
   /** Время получения последней цены в часовом поясе UTC по времени биржи. */
-  time:
-    | Date
-    | undefined;
+  time: Date | undefined;
   /** Uid инструмента */
   instrumentUid: string;
 }
@@ -834,33 +747,19 @@ export interface GetOrderBookResponse {
   /** Множество пар значений на продажу. */
   asks: Order[];
   /** Цена последней сделки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  lastPrice:
-    | Quotation
-    | undefined;
+  lastPrice: Quotation | undefined;
   /** Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  closePrice:
-    | Quotation
-    | undefined;
+  closePrice: Quotation | undefined;
   /** Верхний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  limitUp:
-    | Quotation
-    | undefined;
+  limitUp: Quotation | undefined;
   /** Нижний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
-  limitDown:
-    | Quotation
-    | undefined;
+  limitDown: Quotation | undefined;
   /** Время получения цены последней сделки. */
-  lastPriceTs:
-    | Date
-    | undefined;
+  lastPriceTs: Date | undefined;
   /** Время получения цены закрытия. */
-  closePriceTs:
-    | Date
-    | undefined;
+  closePriceTs: Date | undefined;
   /** Время формирования стакана на бирже. */
-  orderbookTs:
-    | Date
-    | undefined;
+  orderbookTs: Date | undefined;
   /** Uid инструмента. */
   instrumentUid: string;
 }
@@ -906,13 +805,9 @@ export interface GetLastTradesRequest {
   /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
   figi: string;
   /** Начало запрашиваемого периода в часовом поясе UTC. */
-  from:
-    | Date
-    | undefined;
+  from: Date | undefined;
   /** Окончание запрашиваемого периода в часовом поясе UTC. */
-  to:
-    | Date
-    | undefined;
+  to: Date | undefined;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
   instrumentId: string;
 }
@@ -924,8 +819,7 @@ export interface GetLastTradesResponse {
 }
 
 /** Запрос активных подписок. */
-export interface GetMySubscriptions {
-}
+export interface GetMySubscriptions {}
 
 /** Запрос цен закрытия торговой сессии по инструментам. */
 export interface GetClosePricesRequest {
@@ -952,9 +846,7 @@ export interface InstrumentClosePriceResponse {
   /** Uid инструмента. */
   instrumentUid: string;
   /** Цена закрытия торговой сессии. */
-  price:
-    | Quotation
-    | undefined;
+  price: Quotation | undefined;
   /** Дата совершения торгов. */
   time: Date | undefined;
 }
@@ -1051,57 +943,59 @@ export const MarketDataRequest = {
 
   toJSON(message: MarketDataRequest): unknown {
     const obj: any = {};
-    message.subscribeCandlesRequest !== undefined && (obj.subscribeCandlesRequest = message.subscribeCandlesRequest
-      ? SubscribeCandlesRequest.toJSON(message.subscribeCandlesRequest)
-      : undefined);
+    message.subscribeCandlesRequest !== undefined &&
+      (obj.subscribeCandlesRequest = message.subscribeCandlesRequest
+        ? SubscribeCandlesRequest.toJSON(message.subscribeCandlesRequest)
+        : undefined);
     message.subscribeOrderBookRequest !== undefined &&
       (obj.subscribeOrderBookRequest = message.subscribeOrderBookRequest
         ? SubscribeOrderBookRequest.toJSON(message.subscribeOrderBookRequest)
         : undefined);
-    message.subscribeTradesRequest !== undefined && (obj.subscribeTradesRequest = message.subscribeTradesRequest
-      ? SubscribeTradesRequest.toJSON(message.subscribeTradesRequest)
-      : undefined);
-    message.subscribeInfoRequest !== undefined && (obj.subscribeInfoRequest = message.subscribeInfoRequest
-      ? SubscribeInfoRequest.toJSON(message.subscribeInfoRequest)
-      : undefined);
+    message.subscribeTradesRequest !== undefined &&
+      (obj.subscribeTradesRequest = message.subscribeTradesRequest
+        ? SubscribeTradesRequest.toJSON(message.subscribeTradesRequest)
+        : undefined);
+    message.subscribeInfoRequest !== undefined &&
+      (obj.subscribeInfoRequest = message.subscribeInfoRequest
+        ? SubscribeInfoRequest.toJSON(message.subscribeInfoRequest)
+        : undefined);
     message.subscribeLastPriceRequest !== undefined &&
       (obj.subscribeLastPriceRequest = message.subscribeLastPriceRequest
         ? SubscribeLastPriceRequest.toJSON(message.subscribeLastPriceRequest)
         : undefined);
-    message.getMySubscriptions !== undefined && (obj.getMySubscriptions = message.getMySubscriptions
-      ? GetMySubscriptions.toJSON(message.getMySubscriptions)
-      : undefined);
+    message.getMySubscriptions !== undefined &&
+      (obj.getMySubscriptions = message.getMySubscriptions
+        ? GetMySubscriptions.toJSON(message.getMySubscriptions)
+        : undefined);
     return obj;
-  },
-
-  create(base?: DeepPartial<MarketDataRequest>): MarketDataRequest {
-    return MarketDataRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<MarketDataRequest>): MarketDataRequest {
     const message = createBaseMarketDataRequest();
     message.subscribeCandlesRequest =
-      (object.subscribeCandlesRequest !== undefined && object.subscribeCandlesRequest !== null)
+      object.subscribeCandlesRequest !== undefined && object.subscribeCandlesRequest !== null
         ? SubscribeCandlesRequest.fromPartial(object.subscribeCandlesRequest)
         : undefined;
     message.subscribeOrderBookRequest =
-      (object.subscribeOrderBookRequest !== undefined && object.subscribeOrderBookRequest !== null)
+      object.subscribeOrderBookRequest !== undefined && object.subscribeOrderBookRequest !== null
         ? SubscribeOrderBookRequest.fromPartial(object.subscribeOrderBookRequest)
         : undefined;
     message.subscribeTradesRequest =
-      (object.subscribeTradesRequest !== undefined && object.subscribeTradesRequest !== null)
+      object.subscribeTradesRequest !== undefined && object.subscribeTradesRequest !== null
         ? SubscribeTradesRequest.fromPartial(object.subscribeTradesRequest)
         : undefined;
-    message.subscribeInfoRequest = (object.subscribeInfoRequest !== undefined && object.subscribeInfoRequest !== null)
-      ? SubscribeInfoRequest.fromPartial(object.subscribeInfoRequest)
-      : undefined;
+    message.subscribeInfoRequest =
+      object.subscribeInfoRequest !== undefined && object.subscribeInfoRequest !== null
+        ? SubscribeInfoRequest.fromPartial(object.subscribeInfoRequest)
+        : undefined;
     message.subscribeLastPriceRequest =
-      (object.subscribeLastPriceRequest !== undefined && object.subscribeLastPriceRequest !== null)
+      object.subscribeLastPriceRequest !== undefined && object.subscribeLastPriceRequest !== null
         ? SubscribeLastPriceRequest.fromPartial(object.subscribeLastPriceRequest)
         : undefined;
-    message.getMySubscriptions = (object.getMySubscriptions !== undefined && object.getMySubscriptions !== null)
-      ? GetMySubscriptions.fromPartial(object.getMySubscriptions)
-      : undefined;
+    message.getMySubscriptions =
+      object.getMySubscriptions !== undefined && object.getMySubscriptions !== null
+        ? GetMySubscriptions.fromPartial(object.getMySubscriptions)
+        : undefined;
     return message;
   },
 };
@@ -1188,19 +1082,22 @@ export const MarketDataServerSideStreamRequest = {
 
   toJSON(message: MarketDataServerSideStreamRequest): unknown {
     const obj: any = {};
-    message.subscribeCandlesRequest !== undefined && (obj.subscribeCandlesRequest = message.subscribeCandlesRequest
-      ? SubscribeCandlesRequest.toJSON(message.subscribeCandlesRequest)
-      : undefined);
+    message.subscribeCandlesRequest !== undefined &&
+      (obj.subscribeCandlesRequest = message.subscribeCandlesRequest
+        ? SubscribeCandlesRequest.toJSON(message.subscribeCandlesRequest)
+        : undefined);
     message.subscribeOrderBookRequest !== undefined &&
       (obj.subscribeOrderBookRequest = message.subscribeOrderBookRequest
         ? SubscribeOrderBookRequest.toJSON(message.subscribeOrderBookRequest)
         : undefined);
-    message.subscribeTradesRequest !== undefined && (obj.subscribeTradesRequest = message.subscribeTradesRequest
-      ? SubscribeTradesRequest.toJSON(message.subscribeTradesRequest)
-      : undefined);
-    message.subscribeInfoRequest !== undefined && (obj.subscribeInfoRequest = message.subscribeInfoRequest
-      ? SubscribeInfoRequest.toJSON(message.subscribeInfoRequest)
-      : undefined);
+    message.subscribeTradesRequest !== undefined &&
+      (obj.subscribeTradesRequest = message.subscribeTradesRequest
+        ? SubscribeTradesRequest.toJSON(message.subscribeTradesRequest)
+        : undefined);
+    message.subscribeInfoRequest !== undefined &&
+      (obj.subscribeInfoRequest = message.subscribeInfoRequest
+        ? SubscribeInfoRequest.toJSON(message.subscribeInfoRequest)
+        : undefined);
     message.subscribeLastPriceRequest !== undefined &&
       (obj.subscribeLastPriceRequest = message.subscribeLastPriceRequest
         ? SubscribeLastPriceRequest.toJSON(message.subscribeLastPriceRequest)
@@ -1208,29 +1105,26 @@ export const MarketDataServerSideStreamRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<MarketDataServerSideStreamRequest>): MarketDataServerSideStreamRequest {
-    return MarketDataServerSideStreamRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<MarketDataServerSideStreamRequest>): MarketDataServerSideStreamRequest {
     const message = createBaseMarketDataServerSideStreamRequest();
     message.subscribeCandlesRequest =
-      (object.subscribeCandlesRequest !== undefined && object.subscribeCandlesRequest !== null)
+      object.subscribeCandlesRequest !== undefined && object.subscribeCandlesRequest !== null
         ? SubscribeCandlesRequest.fromPartial(object.subscribeCandlesRequest)
         : undefined;
     message.subscribeOrderBookRequest =
-      (object.subscribeOrderBookRequest !== undefined && object.subscribeOrderBookRequest !== null)
+      object.subscribeOrderBookRequest !== undefined && object.subscribeOrderBookRequest !== null
         ? SubscribeOrderBookRequest.fromPartial(object.subscribeOrderBookRequest)
         : undefined;
     message.subscribeTradesRequest =
-      (object.subscribeTradesRequest !== undefined && object.subscribeTradesRequest !== null)
+      object.subscribeTradesRequest !== undefined && object.subscribeTradesRequest !== null
         ? SubscribeTradesRequest.fromPartial(object.subscribeTradesRequest)
         : undefined;
-    message.subscribeInfoRequest = (object.subscribeInfoRequest !== undefined && object.subscribeInfoRequest !== null)
-      ? SubscribeInfoRequest.fromPartial(object.subscribeInfoRequest)
-      : undefined;
+    message.subscribeInfoRequest =
+      object.subscribeInfoRequest !== undefined && object.subscribeInfoRequest !== null
+        ? SubscribeInfoRequest.fromPartial(object.subscribeInfoRequest)
+        : undefined;
     message.subscribeLastPriceRequest =
-      (object.subscribeLastPriceRequest !== undefined && object.subscribeLastPriceRequest !== null)
+      object.subscribeLastPriceRequest !== undefined && object.subscribeLastPriceRequest !== null
         ? SubscribeLastPriceRequest.fromPartial(object.subscribeLastPriceRequest)
         : undefined;
     return message;
@@ -1367,19 +1261,22 @@ export const MarketDataResponse = {
 
   toJSON(message: MarketDataResponse): unknown {
     const obj: any = {};
-    message.subscribeCandlesResponse !== undefined && (obj.subscribeCandlesResponse = message.subscribeCandlesResponse
-      ? SubscribeCandlesResponse.toJSON(message.subscribeCandlesResponse)
-      : undefined);
+    message.subscribeCandlesResponse !== undefined &&
+      (obj.subscribeCandlesResponse = message.subscribeCandlesResponse
+        ? SubscribeCandlesResponse.toJSON(message.subscribeCandlesResponse)
+        : undefined);
     message.subscribeOrderBookResponse !== undefined &&
       (obj.subscribeOrderBookResponse = message.subscribeOrderBookResponse
         ? SubscribeOrderBookResponse.toJSON(message.subscribeOrderBookResponse)
         : undefined);
-    message.subscribeTradesResponse !== undefined && (obj.subscribeTradesResponse = message.subscribeTradesResponse
-      ? SubscribeTradesResponse.toJSON(message.subscribeTradesResponse)
-      : undefined);
-    message.subscribeInfoResponse !== undefined && (obj.subscribeInfoResponse = message.subscribeInfoResponse
-      ? SubscribeInfoResponse.toJSON(message.subscribeInfoResponse)
-      : undefined);
+    message.subscribeTradesResponse !== undefined &&
+      (obj.subscribeTradesResponse = message.subscribeTradesResponse
+        ? SubscribeTradesResponse.toJSON(message.subscribeTradesResponse)
+        : undefined);
+    message.subscribeInfoResponse !== undefined &&
+      (obj.subscribeInfoResponse = message.subscribeInfoResponse
+        ? SubscribeInfoResponse.toJSON(message.subscribeInfoResponse)
+        : undefined);
     message.candle !== undefined && (obj.candle = message.candle ? Candle.toJSON(message.candle) : undefined);
     message.trade !== undefined && (obj.trade = message.trade ? Trade.toJSON(message.trade) : undefined);
     message.orderbook !== undefined &&
@@ -1396,46 +1293,40 @@ export const MarketDataResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<MarketDataResponse>): MarketDataResponse {
-    return MarketDataResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<MarketDataResponse>): MarketDataResponse {
     const message = createBaseMarketDataResponse();
     message.subscribeCandlesResponse =
-      (object.subscribeCandlesResponse !== undefined && object.subscribeCandlesResponse !== null)
+      object.subscribeCandlesResponse !== undefined && object.subscribeCandlesResponse !== null
         ? SubscribeCandlesResponse.fromPartial(object.subscribeCandlesResponse)
         : undefined;
     message.subscribeOrderBookResponse =
-      (object.subscribeOrderBookResponse !== undefined && object.subscribeOrderBookResponse !== null)
+      object.subscribeOrderBookResponse !== undefined && object.subscribeOrderBookResponse !== null
         ? SubscribeOrderBookResponse.fromPartial(object.subscribeOrderBookResponse)
         : undefined;
     message.subscribeTradesResponse =
-      (object.subscribeTradesResponse !== undefined && object.subscribeTradesResponse !== null)
+      object.subscribeTradesResponse !== undefined && object.subscribeTradesResponse !== null
         ? SubscribeTradesResponse.fromPartial(object.subscribeTradesResponse)
         : undefined;
     message.subscribeInfoResponse =
-      (object.subscribeInfoResponse !== undefined && object.subscribeInfoResponse !== null)
+      object.subscribeInfoResponse !== undefined && object.subscribeInfoResponse !== null
         ? SubscribeInfoResponse.fromPartial(object.subscribeInfoResponse)
         : undefined;
-    message.candle = (object.candle !== undefined && object.candle !== null)
-      ? Candle.fromPartial(object.candle)
-      : undefined;
-    message.trade = (object.trade !== undefined && object.trade !== null) ? Trade.fromPartial(object.trade) : undefined;
-    message.orderbook = (object.orderbook !== undefined && object.orderbook !== null)
-      ? OrderBook.fromPartial(object.orderbook)
-      : undefined;
-    message.tradingStatus = (object.tradingStatus !== undefined && object.tradingStatus !== null)
-      ? TradingStatus.fromPartial(object.tradingStatus)
-      : undefined;
-    message.ping = (object.ping !== undefined && object.ping !== null) ? Ping.fromPartial(object.ping) : undefined;
+    message.candle =
+      object.candle !== undefined && object.candle !== null ? Candle.fromPartial(object.candle) : undefined;
+    message.trade = object.trade !== undefined && object.trade !== null ? Trade.fromPartial(object.trade) : undefined;
+    message.orderbook =
+      object.orderbook !== undefined && object.orderbook !== null ? OrderBook.fromPartial(object.orderbook) : undefined;
+    message.tradingStatus =
+      object.tradingStatus !== undefined && object.tradingStatus !== null
+        ? TradingStatus.fromPartial(object.tradingStatus)
+        : undefined;
+    message.ping = object.ping !== undefined && object.ping !== null ? Ping.fromPartial(object.ping) : undefined;
     message.subscribeLastPriceResponse =
-      (object.subscribeLastPriceResponse !== undefined && object.subscribeLastPriceResponse !== null)
+      object.subscribeLastPriceResponse !== undefined && object.subscribeLastPriceResponse !== null
         ? SubscribeLastPriceResponse.fromPartial(object.subscribeLastPriceResponse)
         : undefined;
-    message.lastPrice = (object.lastPrice !== undefined && object.lastPrice !== null)
-      ? LastPrice.fromPartial(object.lastPrice)
-      : undefined;
+    message.lastPrice =
+      object.lastPrice !== undefined && object.lastPrice !== null ? LastPrice.fromPartial(object.lastPrice) : undefined;
     return message;
   },
 };
@@ -1497,7 +1388,7 @@ export const SubscribeCandlesRequest = {
     message.subscriptionAction !== undefined &&
       (obj.subscriptionAction = subscriptionActionToJSON(message.subscriptionAction));
     if (message.instruments) {
-      obj.instruments = message.instruments.map((e) => e ? CandleInstrument.toJSON(e) : undefined);
+      obj.instruments = message.instruments.map(e => (e ? CandleInstrument.toJSON(e) : undefined));
     } else {
       obj.instruments = [];
     }
@@ -1505,32 +1396,28 @@ export const SubscribeCandlesRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<SubscribeCandlesRequest>): SubscribeCandlesRequest {
-    return SubscribeCandlesRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<SubscribeCandlesRequest>): SubscribeCandlesRequest {
     const message = createBaseSubscribeCandlesRequest();
     message.subscriptionAction = object.subscriptionAction ?? 0;
-    message.instruments = object.instruments?.map((e) => CandleInstrument.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map(e => CandleInstrument.fromPartial(e)) || [];
     message.waitingClose = object.waitingClose ?? false;
     return message;
   },
 };
 
 function createBaseCandleInstrument(): CandleInstrument {
-  return { figi: "", interval: 0, instrumentId: "" };
+  return { figi: '', interval: 0, instrumentId: '' };
 }
 
 export const CandleInstrument = {
   encode(message: CandleInstrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.interval !== 0) {
       writer.uint32(16).int32(message.interval);
     }
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(26).string(message.instrumentId);
     }
     return writer;
@@ -1562,9 +1449,9 @@ export const CandleInstrument = {
 
   fromJSON(object: any): CandleInstrument {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       interval: isSet(object.interval) ? subscriptionIntervalFromJSON(object.interval) : 0,
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
     };
   },
 
@@ -1576,26 +1463,22 @@ export const CandleInstrument = {
     return obj;
   },
 
-  create(base?: DeepPartial<CandleInstrument>): CandleInstrument {
-    return CandleInstrument.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<CandleInstrument>): CandleInstrument {
     const message = createBaseCandleInstrument();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.interval = object.interval ?? 0;
-    message.instrumentId = object.instrumentId ?? "";
+    message.instrumentId = object.instrumentId ?? '';
     return message;
   },
 };
 
 function createBaseSubscribeCandlesResponse(): SubscribeCandlesResponse {
-  return { trackingId: "", candlesSubscriptions: [] };
+  return { trackingId: '', candlesSubscriptions: [] };
 }
 
 export const SubscribeCandlesResponse = {
   encode(message: SubscribeCandlesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.trackingId !== "") {
+    if (message.trackingId !== '') {
       writer.uint32(10).string(message.trackingId);
     }
     for (const v of message.candlesSubscriptions) {
@@ -1627,7 +1510,7 @@ export const SubscribeCandlesResponse = {
 
   fromJSON(object: any): SubscribeCandlesResponse {
     return {
-      trackingId: isSet(object.trackingId) ? String(object.trackingId) : "",
+      trackingId: isSet(object.trackingId) ? String(object.trackingId) : '',
       candlesSubscriptions: Array.isArray(object?.candlesSubscriptions)
         ? object.candlesSubscriptions.map((e: any) => CandleSubscription.fromJSON(e))
         : [],
@@ -1638,32 +1521,28 @@ export const SubscribeCandlesResponse = {
     const obj: any = {};
     message.trackingId !== undefined && (obj.trackingId = message.trackingId);
     if (message.candlesSubscriptions) {
-      obj.candlesSubscriptions = message.candlesSubscriptions.map((e) => e ? CandleSubscription.toJSON(e) : undefined);
+      obj.candlesSubscriptions = message.candlesSubscriptions.map(e => (e ? CandleSubscription.toJSON(e) : undefined));
     } else {
       obj.candlesSubscriptions = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<SubscribeCandlesResponse>): SubscribeCandlesResponse {
-    return SubscribeCandlesResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<SubscribeCandlesResponse>): SubscribeCandlesResponse {
     const message = createBaseSubscribeCandlesResponse();
-    message.trackingId = object.trackingId ?? "";
-    message.candlesSubscriptions = object.candlesSubscriptions?.map((e) => CandleSubscription.fromPartial(e)) || [];
+    message.trackingId = object.trackingId ?? '';
+    message.candlesSubscriptions = object.candlesSubscriptions?.map(e => CandleSubscription.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseCandleSubscription(): CandleSubscription {
-  return { figi: "", interval: 0, subscriptionStatus: 0, instrumentUid: "" };
+  return { figi: '', interval: 0, subscriptionStatus: 0, instrumentUid: '' };
 }
 
 export const CandleSubscription = {
   encode(message: CandleSubscription, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.interval !== 0) {
@@ -1672,7 +1551,7 @@ export const CandleSubscription = {
     if (message.subscriptionStatus !== 0) {
       writer.uint32(24).int32(message.subscriptionStatus);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(34).string(message.instrumentUid);
     }
     return writer;
@@ -1707,10 +1586,10 @@ export const CandleSubscription = {
 
   fromJSON(object: any): CandleSubscription {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       interval: isSet(object.interval) ? subscriptionIntervalFromJSON(object.interval) : 0,
       subscriptionStatus: isSet(object.subscriptionStatus) ? subscriptionStatusFromJSON(object.subscriptionStatus) : 0,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -1724,16 +1603,12 @@ export const CandleSubscription = {
     return obj;
   },
 
-  create(base?: DeepPartial<CandleSubscription>): CandleSubscription {
-    return CandleSubscription.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<CandleSubscription>): CandleSubscription {
     const message = createBaseCandleSubscription();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.interval = object.interval ?? 0;
     message.subscriptionStatus = object.subscriptionStatus ?? 0;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
@@ -1788,38 +1663,34 @@ export const SubscribeOrderBookRequest = {
     message.subscriptionAction !== undefined &&
       (obj.subscriptionAction = subscriptionActionToJSON(message.subscriptionAction));
     if (message.instruments) {
-      obj.instruments = message.instruments.map((e) => e ? OrderBookInstrument.toJSON(e) : undefined);
+      obj.instruments = message.instruments.map(e => (e ? OrderBookInstrument.toJSON(e) : undefined));
     } else {
       obj.instruments = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<SubscribeOrderBookRequest>): SubscribeOrderBookRequest {
-    return SubscribeOrderBookRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<SubscribeOrderBookRequest>): SubscribeOrderBookRequest {
     const message = createBaseSubscribeOrderBookRequest();
     message.subscriptionAction = object.subscriptionAction ?? 0;
-    message.instruments = object.instruments?.map((e) => OrderBookInstrument.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map(e => OrderBookInstrument.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseOrderBookInstrument(): OrderBookInstrument {
-  return { figi: "", depth: 0, instrumentId: "" };
+  return { figi: '', depth: 0, instrumentId: '' };
 }
 
 export const OrderBookInstrument = {
   encode(message: OrderBookInstrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.depth !== 0) {
       writer.uint32(16).int32(message.depth);
     }
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(26).string(message.instrumentId);
     }
     return writer;
@@ -1851,9 +1722,9 @@ export const OrderBookInstrument = {
 
   fromJSON(object: any): OrderBookInstrument {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       depth: isSet(object.depth) ? Number(object.depth) : 0,
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
     };
   },
 
@@ -1865,26 +1736,22 @@ export const OrderBookInstrument = {
     return obj;
   },
 
-  create(base?: DeepPartial<OrderBookInstrument>): OrderBookInstrument {
-    return OrderBookInstrument.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<OrderBookInstrument>): OrderBookInstrument {
     const message = createBaseOrderBookInstrument();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.depth = object.depth ?? 0;
-    message.instrumentId = object.instrumentId ?? "";
+    message.instrumentId = object.instrumentId ?? '';
     return message;
   },
 };
 
 function createBaseSubscribeOrderBookResponse(): SubscribeOrderBookResponse {
-  return { trackingId: "", orderBookSubscriptions: [] };
+  return { trackingId: '', orderBookSubscriptions: [] };
 }
 
 export const SubscribeOrderBookResponse = {
   encode(message: SubscribeOrderBookResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.trackingId !== "") {
+    if (message.trackingId !== '') {
       writer.uint32(10).string(message.trackingId);
     }
     for (const v of message.orderBookSubscriptions) {
@@ -1916,7 +1783,7 @@ export const SubscribeOrderBookResponse = {
 
   fromJSON(object: any): SubscribeOrderBookResponse {
     return {
-      trackingId: isSet(object.trackingId) ? String(object.trackingId) : "",
+      trackingId: isSet(object.trackingId) ? String(object.trackingId) : '',
       orderBookSubscriptions: Array.isArray(object?.orderBookSubscriptions)
         ? object.orderBookSubscriptions.map((e: any) => OrderBookSubscription.fromJSON(e))
         : [],
@@ -1927,8 +1794,8 @@ export const SubscribeOrderBookResponse = {
     const obj: any = {};
     message.trackingId !== undefined && (obj.trackingId = message.trackingId);
     if (message.orderBookSubscriptions) {
-      obj.orderBookSubscriptions = message.orderBookSubscriptions.map((e) =>
-        e ? OrderBookSubscription.toJSON(e) : undefined
+      obj.orderBookSubscriptions = message.orderBookSubscriptions.map(e =>
+        e ? OrderBookSubscription.toJSON(e) : undefined,
       );
     } else {
       obj.orderBookSubscriptions = [];
@@ -1936,26 +1803,22 @@ export const SubscribeOrderBookResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<SubscribeOrderBookResponse>): SubscribeOrderBookResponse {
-    return SubscribeOrderBookResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<SubscribeOrderBookResponse>): SubscribeOrderBookResponse {
     const message = createBaseSubscribeOrderBookResponse();
-    message.trackingId = object.trackingId ?? "";
-    message.orderBookSubscriptions = object.orderBookSubscriptions?.map((e) => OrderBookSubscription.fromPartial(e)) ||
-      [];
+    message.trackingId = object.trackingId ?? '';
+    message.orderBookSubscriptions =
+      object.orderBookSubscriptions?.map(e => OrderBookSubscription.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseOrderBookSubscription(): OrderBookSubscription {
-  return { figi: "", depth: 0, subscriptionStatus: 0, instrumentUid: "" };
+  return { figi: '', depth: 0, subscriptionStatus: 0, instrumentUid: '' };
 }
 
 export const OrderBookSubscription = {
   encode(message: OrderBookSubscription, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.depth !== 0) {
@@ -1964,7 +1827,7 @@ export const OrderBookSubscription = {
     if (message.subscriptionStatus !== 0) {
       writer.uint32(24).int32(message.subscriptionStatus);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(34).string(message.instrumentUid);
     }
     return writer;
@@ -1999,10 +1862,10 @@ export const OrderBookSubscription = {
 
   fromJSON(object: any): OrderBookSubscription {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       depth: isSet(object.depth) ? Number(object.depth) : 0,
       subscriptionStatus: isSet(object.subscriptionStatus) ? subscriptionStatusFromJSON(object.subscriptionStatus) : 0,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -2016,16 +1879,12 @@ export const OrderBookSubscription = {
     return obj;
   },
 
-  create(base?: DeepPartial<OrderBookSubscription>): OrderBookSubscription {
-    return OrderBookSubscription.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<OrderBookSubscription>): OrderBookSubscription {
     const message = createBaseOrderBookSubscription();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.depth = object.depth ?? 0;
     message.subscriptionStatus = object.subscriptionStatus ?? 0;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
@@ -2080,35 +1939,31 @@ export const SubscribeTradesRequest = {
     message.subscriptionAction !== undefined &&
       (obj.subscriptionAction = subscriptionActionToJSON(message.subscriptionAction));
     if (message.instruments) {
-      obj.instruments = message.instruments.map((e) => e ? TradeInstrument.toJSON(e) : undefined);
+      obj.instruments = message.instruments.map(e => (e ? TradeInstrument.toJSON(e) : undefined));
     } else {
       obj.instruments = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<SubscribeTradesRequest>): SubscribeTradesRequest {
-    return SubscribeTradesRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<SubscribeTradesRequest>): SubscribeTradesRequest {
     const message = createBaseSubscribeTradesRequest();
     message.subscriptionAction = object.subscriptionAction ?? 0;
-    message.instruments = object.instruments?.map((e) => TradeInstrument.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map(e => TradeInstrument.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseTradeInstrument(): TradeInstrument {
-  return { figi: "", instrumentId: "" };
+  return { figi: '', instrumentId: '' };
 }
 
 export const TradeInstrument = {
   encode(message: TradeInstrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(18).string(message.instrumentId);
     }
     return writer;
@@ -2137,8 +1992,8 @@ export const TradeInstrument = {
 
   fromJSON(object: any): TradeInstrument {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
     };
   },
 
@@ -2149,25 +2004,21 @@ export const TradeInstrument = {
     return obj;
   },
 
-  create(base?: DeepPartial<TradeInstrument>): TradeInstrument {
-    return TradeInstrument.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<TradeInstrument>): TradeInstrument {
     const message = createBaseTradeInstrument();
-    message.figi = object.figi ?? "";
-    message.instrumentId = object.instrumentId ?? "";
+    message.figi = object.figi ?? '';
+    message.instrumentId = object.instrumentId ?? '';
     return message;
   },
 };
 
 function createBaseSubscribeTradesResponse(): SubscribeTradesResponse {
-  return { trackingId: "", tradeSubscriptions: [] };
+  return { trackingId: '', tradeSubscriptions: [] };
 }
 
 export const SubscribeTradesResponse = {
   encode(message: SubscribeTradesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.trackingId !== "") {
+    if (message.trackingId !== '') {
       writer.uint32(10).string(message.trackingId);
     }
     for (const v of message.tradeSubscriptions) {
@@ -2199,7 +2050,7 @@ export const SubscribeTradesResponse = {
 
   fromJSON(object: any): SubscribeTradesResponse {
     return {
-      trackingId: isSet(object.trackingId) ? String(object.trackingId) : "",
+      trackingId: isSet(object.trackingId) ? String(object.trackingId) : '',
       tradeSubscriptions: Array.isArray(object?.tradeSubscriptions)
         ? object.tradeSubscriptions.map((e: any) => TradeSubscription.fromJSON(e))
         : [],
@@ -2210,38 +2061,34 @@ export const SubscribeTradesResponse = {
     const obj: any = {};
     message.trackingId !== undefined && (obj.trackingId = message.trackingId);
     if (message.tradeSubscriptions) {
-      obj.tradeSubscriptions = message.tradeSubscriptions.map((e) => e ? TradeSubscription.toJSON(e) : undefined);
+      obj.tradeSubscriptions = message.tradeSubscriptions.map(e => (e ? TradeSubscription.toJSON(e) : undefined));
     } else {
       obj.tradeSubscriptions = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<SubscribeTradesResponse>): SubscribeTradesResponse {
-    return SubscribeTradesResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<SubscribeTradesResponse>): SubscribeTradesResponse {
     const message = createBaseSubscribeTradesResponse();
-    message.trackingId = object.trackingId ?? "";
-    message.tradeSubscriptions = object.tradeSubscriptions?.map((e) => TradeSubscription.fromPartial(e)) || [];
+    message.trackingId = object.trackingId ?? '';
+    message.tradeSubscriptions = object.tradeSubscriptions?.map(e => TradeSubscription.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseTradeSubscription(): TradeSubscription {
-  return { figi: "", subscriptionStatus: 0, instrumentUid: "" };
+  return { figi: '', subscriptionStatus: 0, instrumentUid: '' };
 }
 
 export const TradeSubscription = {
   encode(message: TradeSubscription, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.subscriptionStatus !== 0) {
       writer.uint32(16).int32(message.subscriptionStatus);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(26).string(message.instrumentUid);
     }
     return writer;
@@ -2273,9 +2120,9 @@ export const TradeSubscription = {
 
   fromJSON(object: any): TradeSubscription {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       subscriptionStatus: isSet(object.subscriptionStatus) ? subscriptionStatusFromJSON(object.subscriptionStatus) : 0,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -2288,15 +2135,11 @@ export const TradeSubscription = {
     return obj;
   },
 
-  create(base?: DeepPartial<TradeSubscription>): TradeSubscription {
-    return TradeSubscription.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<TradeSubscription>): TradeSubscription {
     const message = createBaseTradeSubscription();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.subscriptionStatus = object.subscriptionStatus ?? 0;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
@@ -2351,35 +2194,31 @@ export const SubscribeInfoRequest = {
     message.subscriptionAction !== undefined &&
       (obj.subscriptionAction = subscriptionActionToJSON(message.subscriptionAction));
     if (message.instruments) {
-      obj.instruments = message.instruments.map((e) => e ? InfoInstrument.toJSON(e) : undefined);
+      obj.instruments = message.instruments.map(e => (e ? InfoInstrument.toJSON(e) : undefined));
     } else {
       obj.instruments = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<SubscribeInfoRequest>): SubscribeInfoRequest {
-    return SubscribeInfoRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<SubscribeInfoRequest>): SubscribeInfoRequest {
     const message = createBaseSubscribeInfoRequest();
     message.subscriptionAction = object.subscriptionAction ?? 0;
-    message.instruments = object.instruments?.map((e) => InfoInstrument.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map(e => InfoInstrument.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseInfoInstrument(): InfoInstrument {
-  return { figi: "", instrumentId: "" };
+  return { figi: '', instrumentId: '' };
 }
 
 export const InfoInstrument = {
   encode(message: InfoInstrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(18).string(message.instrumentId);
     }
     return writer;
@@ -2408,8 +2247,8 @@ export const InfoInstrument = {
 
   fromJSON(object: any): InfoInstrument {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
     };
   },
 
@@ -2420,25 +2259,21 @@ export const InfoInstrument = {
     return obj;
   },
 
-  create(base?: DeepPartial<InfoInstrument>): InfoInstrument {
-    return InfoInstrument.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<InfoInstrument>): InfoInstrument {
     const message = createBaseInfoInstrument();
-    message.figi = object.figi ?? "";
-    message.instrumentId = object.instrumentId ?? "";
+    message.figi = object.figi ?? '';
+    message.instrumentId = object.instrumentId ?? '';
     return message;
   },
 };
 
 function createBaseSubscribeInfoResponse(): SubscribeInfoResponse {
-  return { trackingId: "", infoSubscriptions: [] };
+  return { trackingId: '', infoSubscriptions: [] };
 }
 
 export const SubscribeInfoResponse = {
   encode(message: SubscribeInfoResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.trackingId !== "") {
+    if (message.trackingId !== '') {
       writer.uint32(10).string(message.trackingId);
     }
     for (const v of message.infoSubscriptions) {
@@ -2470,7 +2305,7 @@ export const SubscribeInfoResponse = {
 
   fromJSON(object: any): SubscribeInfoResponse {
     return {
-      trackingId: isSet(object.trackingId) ? String(object.trackingId) : "",
+      trackingId: isSet(object.trackingId) ? String(object.trackingId) : '',
       infoSubscriptions: Array.isArray(object?.infoSubscriptions)
         ? object.infoSubscriptions.map((e: any) => InfoSubscription.fromJSON(e))
         : [],
@@ -2481,38 +2316,34 @@ export const SubscribeInfoResponse = {
     const obj: any = {};
     message.trackingId !== undefined && (obj.trackingId = message.trackingId);
     if (message.infoSubscriptions) {
-      obj.infoSubscriptions = message.infoSubscriptions.map((e) => e ? InfoSubscription.toJSON(e) : undefined);
+      obj.infoSubscriptions = message.infoSubscriptions.map(e => (e ? InfoSubscription.toJSON(e) : undefined));
     } else {
       obj.infoSubscriptions = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<SubscribeInfoResponse>): SubscribeInfoResponse {
-    return SubscribeInfoResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<SubscribeInfoResponse>): SubscribeInfoResponse {
     const message = createBaseSubscribeInfoResponse();
-    message.trackingId = object.trackingId ?? "";
-    message.infoSubscriptions = object.infoSubscriptions?.map((e) => InfoSubscription.fromPartial(e)) || [];
+    message.trackingId = object.trackingId ?? '';
+    message.infoSubscriptions = object.infoSubscriptions?.map(e => InfoSubscription.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseInfoSubscription(): InfoSubscription {
-  return { figi: "", subscriptionStatus: 0, instrumentUid: "" };
+  return { figi: '', subscriptionStatus: 0, instrumentUid: '' };
 }
 
 export const InfoSubscription = {
   encode(message: InfoSubscription, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.subscriptionStatus !== 0) {
       writer.uint32(16).int32(message.subscriptionStatus);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(26).string(message.instrumentUid);
     }
     return writer;
@@ -2544,9 +2375,9 @@ export const InfoSubscription = {
 
   fromJSON(object: any): InfoSubscription {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       subscriptionStatus: isSet(object.subscriptionStatus) ? subscriptionStatusFromJSON(object.subscriptionStatus) : 0,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -2559,15 +2390,11 @@ export const InfoSubscription = {
     return obj;
   },
 
-  create(base?: DeepPartial<InfoSubscription>): InfoSubscription {
-    return InfoSubscription.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<InfoSubscription>): InfoSubscription {
     const message = createBaseInfoSubscription();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.subscriptionStatus = object.subscriptionStatus ?? 0;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
@@ -2622,35 +2449,31 @@ export const SubscribeLastPriceRequest = {
     message.subscriptionAction !== undefined &&
       (obj.subscriptionAction = subscriptionActionToJSON(message.subscriptionAction));
     if (message.instruments) {
-      obj.instruments = message.instruments.map((e) => e ? LastPriceInstrument.toJSON(e) : undefined);
+      obj.instruments = message.instruments.map(e => (e ? LastPriceInstrument.toJSON(e) : undefined));
     } else {
       obj.instruments = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<SubscribeLastPriceRequest>): SubscribeLastPriceRequest {
-    return SubscribeLastPriceRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<SubscribeLastPriceRequest>): SubscribeLastPriceRequest {
     const message = createBaseSubscribeLastPriceRequest();
     message.subscriptionAction = object.subscriptionAction ?? 0;
-    message.instruments = object.instruments?.map((e) => LastPriceInstrument.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map(e => LastPriceInstrument.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseLastPriceInstrument(): LastPriceInstrument {
-  return { figi: "", instrumentId: "" };
+  return { figi: '', instrumentId: '' };
 }
 
 export const LastPriceInstrument = {
   encode(message: LastPriceInstrument, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(18).string(message.instrumentId);
     }
     return writer;
@@ -2679,8 +2502,8 @@ export const LastPriceInstrument = {
 
   fromJSON(object: any): LastPriceInstrument {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
     };
   },
 
@@ -2691,25 +2514,21 @@ export const LastPriceInstrument = {
     return obj;
   },
 
-  create(base?: DeepPartial<LastPriceInstrument>): LastPriceInstrument {
-    return LastPriceInstrument.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<LastPriceInstrument>): LastPriceInstrument {
     const message = createBaseLastPriceInstrument();
-    message.figi = object.figi ?? "";
-    message.instrumentId = object.instrumentId ?? "";
+    message.figi = object.figi ?? '';
+    message.instrumentId = object.instrumentId ?? '';
     return message;
   },
 };
 
 function createBaseSubscribeLastPriceResponse(): SubscribeLastPriceResponse {
-  return { trackingId: "", lastPriceSubscriptions: [] };
+  return { trackingId: '', lastPriceSubscriptions: [] };
 }
 
 export const SubscribeLastPriceResponse = {
   encode(message: SubscribeLastPriceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.trackingId !== "") {
+    if (message.trackingId !== '') {
       writer.uint32(10).string(message.trackingId);
     }
     for (const v of message.lastPriceSubscriptions) {
@@ -2741,7 +2560,7 @@ export const SubscribeLastPriceResponse = {
 
   fromJSON(object: any): SubscribeLastPriceResponse {
     return {
-      trackingId: isSet(object.trackingId) ? String(object.trackingId) : "",
+      trackingId: isSet(object.trackingId) ? String(object.trackingId) : '',
       lastPriceSubscriptions: Array.isArray(object?.lastPriceSubscriptions)
         ? object.lastPriceSubscriptions.map((e: any) => LastPriceSubscription.fromJSON(e))
         : [],
@@ -2752,8 +2571,8 @@ export const SubscribeLastPriceResponse = {
     const obj: any = {};
     message.trackingId !== undefined && (obj.trackingId = message.trackingId);
     if (message.lastPriceSubscriptions) {
-      obj.lastPriceSubscriptions = message.lastPriceSubscriptions.map((e) =>
-        e ? LastPriceSubscription.toJSON(e) : undefined
+      obj.lastPriceSubscriptions = message.lastPriceSubscriptions.map(e =>
+        e ? LastPriceSubscription.toJSON(e) : undefined,
       );
     } else {
       obj.lastPriceSubscriptions = [];
@@ -2761,32 +2580,28 @@ export const SubscribeLastPriceResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<SubscribeLastPriceResponse>): SubscribeLastPriceResponse {
-    return SubscribeLastPriceResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<SubscribeLastPriceResponse>): SubscribeLastPriceResponse {
     const message = createBaseSubscribeLastPriceResponse();
-    message.trackingId = object.trackingId ?? "";
-    message.lastPriceSubscriptions = object.lastPriceSubscriptions?.map((e) => LastPriceSubscription.fromPartial(e)) ||
-      [];
+    message.trackingId = object.trackingId ?? '';
+    message.lastPriceSubscriptions =
+      object.lastPriceSubscriptions?.map(e => LastPriceSubscription.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseLastPriceSubscription(): LastPriceSubscription {
-  return { figi: "", subscriptionStatus: 0, instrumentUid: "" };
+  return { figi: '', subscriptionStatus: 0, instrumentUid: '' };
 }
 
 export const LastPriceSubscription = {
   encode(message: LastPriceSubscription, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.subscriptionStatus !== 0) {
       writer.uint32(16).int32(message.subscriptionStatus);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(26).string(message.instrumentUid);
     }
     return writer;
@@ -2818,9 +2633,9 @@ export const LastPriceSubscription = {
 
   fromJSON(object: any): LastPriceSubscription {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       subscriptionStatus: isSet(object.subscriptionStatus) ? subscriptionStatusFromJSON(object.subscriptionStatus) : 0,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -2833,22 +2648,18 @@ export const LastPriceSubscription = {
     return obj;
   },
 
-  create(base?: DeepPartial<LastPriceSubscription>): LastPriceSubscription {
-    return LastPriceSubscription.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<LastPriceSubscription>): LastPriceSubscription {
     const message = createBaseLastPriceSubscription();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.subscriptionStatus = object.subscriptionStatus ?? 0;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
 
 function createBaseCandle(): Candle {
   return {
-    figi: "",
+    figi: '',
     interval: 0,
     open: undefined,
     high: undefined,
@@ -2857,13 +2668,13 @@ function createBaseCandle(): Candle {
     volume: 0,
     time: undefined,
     lastTradeTs: undefined,
-    instrumentUid: "",
+    instrumentUid: '',
   };
 }
 
 export const Candle = {
   encode(message: Candle, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.interval !== 0) {
@@ -2890,7 +2701,7 @@ export const Candle = {
     if (message.lastTradeTs !== undefined) {
       Timestamp.encode(toTimestamp(message.lastTradeTs), writer.uint32(74).fork()).ldelim();
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(82).string(message.instrumentUid);
     }
     return writer;
@@ -2943,7 +2754,7 @@ export const Candle = {
 
   fromJSON(object: any): Candle {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       interval: isSet(object.interval) ? subscriptionIntervalFromJSON(object.interval) : 0,
       open: isSet(object.open) ? Quotation.fromJSON(object.open) : undefined,
       high: isSet(object.high) ? Quotation.fromJSON(object.high) : undefined,
@@ -2952,7 +2763,7 @@ export const Candle = {
       volume: isSet(object.volume) ? Number(object.volume) : 0,
       time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
       lastTradeTs: isSet(object.lastTradeTs) ? fromJsonTimestamp(object.lastTradeTs) : undefined,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -2971,31 +2782,26 @@ export const Candle = {
     return obj;
   },
 
-  create(base?: DeepPartial<Candle>): Candle {
-    return Candle.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<Candle>): Candle {
     const message = createBaseCandle();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.interval = object.interval ?? 0;
-    message.open = (object.open !== undefined && object.open !== null) ? Quotation.fromPartial(object.open) : undefined;
-    message.high = (object.high !== undefined && object.high !== null) ? Quotation.fromPartial(object.high) : undefined;
-    message.low = (object.low !== undefined && object.low !== null) ? Quotation.fromPartial(object.low) : undefined;
-    message.close = (object.close !== undefined && object.close !== null)
-      ? Quotation.fromPartial(object.close)
-      : undefined;
+    message.open = object.open !== undefined && object.open !== null ? Quotation.fromPartial(object.open) : undefined;
+    message.high = object.high !== undefined && object.high !== null ? Quotation.fromPartial(object.high) : undefined;
+    message.low = object.low !== undefined && object.low !== null ? Quotation.fromPartial(object.low) : undefined;
+    message.close =
+      object.close !== undefined && object.close !== null ? Quotation.fromPartial(object.close) : undefined;
     message.volume = object.volume ?? 0;
     message.time = object.time ?? undefined;
     message.lastTradeTs = object.lastTradeTs ?? undefined;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
 
 function createBaseOrderBook(): OrderBook {
   return {
-    figi: "",
+    figi: '',
     depth: 0,
     isConsistent: false,
     bids: [],
@@ -3003,13 +2809,13 @@ function createBaseOrderBook(): OrderBook {
     time: undefined,
     limitUp: undefined,
     limitDown: undefined,
-    instrumentUid: "",
+    instrumentUid: '',
   };
 }
 
 export const OrderBook = {
   encode(message: OrderBook, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.depth !== 0) {
@@ -3033,7 +2839,7 @@ export const OrderBook = {
     if (message.limitDown !== undefined) {
       Quotation.encode(message.limitDown, writer.uint32(66).fork()).ldelim();
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(74).string(message.instrumentUid);
     }
     return writer;
@@ -3083,7 +2889,7 @@ export const OrderBook = {
 
   fromJSON(object: any): OrderBook {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       depth: isSet(object.depth) ? Number(object.depth) : 0,
       isConsistent: isSet(object.isConsistent) ? Boolean(object.isConsistent) : false,
       bids: Array.isArray(object?.bids) ? object.bids.map((e: any) => Order.fromJSON(e)) : [],
@@ -3091,7 +2897,7 @@ export const OrderBook = {
       time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
       limitUp: isSet(object.limitUp) ? Quotation.fromJSON(object.limitUp) : undefined,
       limitDown: isSet(object.limitDown) ? Quotation.fromJSON(object.limitDown) : undefined,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -3101,12 +2907,12 @@ export const OrderBook = {
     message.depth !== undefined && (obj.depth = Math.round(message.depth));
     message.isConsistent !== undefined && (obj.isConsistent = message.isConsistent);
     if (message.bids) {
-      obj.bids = message.bids.map((e) => e ? Order.toJSON(e) : undefined);
+      obj.bids = message.bids.map(e => (e ? Order.toJSON(e) : undefined));
     } else {
       obj.bids = [];
     }
     if (message.asks) {
-      obj.asks = message.asks.map((e) => e ? Order.toJSON(e) : undefined);
+      obj.asks = message.asks.map(e => (e ? Order.toJSON(e) : undefined));
     } else {
       obj.asks = [];
     }
@@ -3118,25 +2924,19 @@ export const OrderBook = {
     return obj;
   },
 
-  create(base?: DeepPartial<OrderBook>): OrderBook {
-    return OrderBook.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<OrderBook>): OrderBook {
     const message = createBaseOrderBook();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.depth = object.depth ?? 0;
     message.isConsistent = object.isConsistent ?? false;
-    message.bids = object.bids?.map((e) => Order.fromPartial(e)) || [];
-    message.asks = object.asks?.map((e) => Order.fromPartial(e)) || [];
+    message.bids = object.bids?.map(e => Order.fromPartial(e)) || [];
+    message.asks = object.asks?.map(e => Order.fromPartial(e)) || [];
     message.time = object.time ?? undefined;
-    message.limitUp = (object.limitUp !== undefined && object.limitUp !== null)
-      ? Quotation.fromPartial(object.limitUp)
-      : undefined;
-    message.limitDown = (object.limitDown !== undefined && object.limitDown !== null)
-      ? Quotation.fromPartial(object.limitDown)
-      : undefined;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.limitUp =
+      object.limitUp !== undefined && object.limitUp !== null ? Quotation.fromPartial(object.limitUp) : undefined;
+    message.limitDown =
+      object.limitDown !== undefined && object.limitDown !== null ? Quotation.fromPartial(object.limitDown) : undefined;
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
@@ -3191,27 +2991,22 @@ export const Order = {
     return obj;
   },
 
-  create(base?: DeepPartial<Order>): Order {
-    return Order.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<Order>): Order {
     const message = createBaseOrder();
-    message.price = (object.price !== undefined && object.price !== null)
-      ? Quotation.fromPartial(object.price)
-      : undefined;
+    message.price =
+      object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
     message.quantity = object.quantity ?? 0;
     return message;
   },
 };
 
 function createBaseTrade(): Trade {
-  return { figi: "", direction: 0, price: undefined, quantity: 0, time: undefined, instrumentUid: "" };
+  return { figi: '', direction: 0, price: undefined, quantity: 0, time: undefined, instrumentUid: '' };
 }
 
 export const Trade = {
   encode(message: Trade, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.direction !== 0) {
@@ -3226,7 +3021,7 @@ export const Trade = {
     if (message.time !== undefined) {
       Timestamp.encode(toTimestamp(message.time), writer.uint32(42).fork()).ldelim();
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(50).string(message.instrumentUid);
     }
     return writer;
@@ -3267,12 +3062,12 @@ export const Trade = {
 
   fromJSON(object: any): Trade {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       direction: isSet(object.direction) ? tradeDirectionFromJSON(object.direction) : 0,
       price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
       time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -3287,38 +3082,33 @@ export const Trade = {
     return obj;
   },
 
-  create(base?: DeepPartial<Trade>): Trade {
-    return Trade.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<Trade>): Trade {
     const message = createBaseTrade();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.direction = object.direction ?? 0;
-    message.price = (object.price !== undefined && object.price !== null)
-      ? Quotation.fromPartial(object.price)
-      : undefined;
+    message.price =
+      object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
     message.quantity = object.quantity ?? 0;
     message.time = object.time ?? undefined;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
 
 function createBaseTradingStatus(): TradingStatus {
   return {
-    figi: "",
+    figi: '',
     tradingStatus: 0,
     time: undefined,
     limitOrderAvailableFlag: false,
     marketOrderAvailableFlag: false,
-    instrumentUid: "",
+    instrumentUid: '',
   };
 }
 
 export const TradingStatus = {
   encode(message: TradingStatus, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.tradingStatus !== 0) {
@@ -3333,7 +3123,7 @@ export const TradingStatus = {
     if (message.marketOrderAvailableFlag === true) {
       writer.uint32(40).bool(message.marketOrderAvailableFlag);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(50).string(message.instrumentUid);
     }
     return writer;
@@ -3374,14 +3164,14 @@ export const TradingStatus = {
 
   fromJSON(object: any): TradingStatus {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       tradingStatus: isSet(object.tradingStatus) ? securityTradingStatusFromJSON(object.tradingStatus) : 0,
       time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
       limitOrderAvailableFlag: isSet(object.limitOrderAvailableFlag) ? Boolean(object.limitOrderAvailableFlag) : false,
       marketOrderAvailableFlag: isSet(object.marketOrderAvailableFlag)
         ? Boolean(object.marketOrderAvailableFlag)
         : false,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -3396,29 +3186,25 @@ export const TradingStatus = {
     return obj;
   },
 
-  create(base?: DeepPartial<TradingStatus>): TradingStatus {
-    return TradingStatus.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<TradingStatus>): TradingStatus {
     const message = createBaseTradingStatus();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.tradingStatus = object.tradingStatus ?? 0;
     message.time = object.time ?? undefined;
     message.limitOrderAvailableFlag = object.limitOrderAvailableFlag ?? false;
     message.marketOrderAvailableFlag = object.marketOrderAvailableFlag ?? false;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
 
 function createBaseGetCandlesRequest(): GetCandlesRequest {
-  return { figi: "", from: undefined, to: undefined, interval: 0, instrumentId: "" };
+  return { figi: '', from: undefined, to: undefined, interval: 0, instrumentId: '' };
 }
 
 export const GetCandlesRequest = {
   encode(message: GetCandlesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.from !== undefined) {
@@ -3430,7 +3216,7 @@ export const GetCandlesRequest = {
     if (message.interval !== 0) {
       writer.uint32(32).int32(message.interval);
     }
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(42).string(message.instrumentId);
     }
     return writer;
@@ -3468,11 +3254,11 @@ export const GetCandlesRequest = {
 
   fromJSON(object: any): GetCandlesRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
       interval: isSet(object.interval) ? candleIntervalFromJSON(object.interval) : 0,
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
     };
   },
 
@@ -3486,17 +3272,13 @@ export const GetCandlesRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetCandlesRequest>): GetCandlesRequest {
-    return GetCandlesRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetCandlesRequest>): GetCandlesRequest {
     const message = createBaseGetCandlesRequest();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
     message.interval = object.interval ?? 0;
-    message.instrumentId = object.instrumentId ?? "";
+    message.instrumentId = object.instrumentId ?? '';
     return message;
   },
 };
@@ -3540,20 +3322,16 @@ export const GetCandlesResponse = {
   toJSON(message: GetCandlesResponse): unknown {
     const obj: any = {};
     if (message.candles) {
-      obj.candles = message.candles.map((e) => e ? HistoricCandle.toJSON(e) : undefined);
+      obj.candles = message.candles.map(e => (e ? HistoricCandle.toJSON(e) : undefined));
     } else {
       obj.candles = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetCandlesResponse>): GetCandlesResponse {
-    return GetCandlesResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetCandlesResponse>): GetCandlesResponse {
     const message = createBaseGetCandlesResponse();
-    message.candles = object.candles?.map((e) => HistoricCandle.fromPartial(e)) || [];
+    message.candles = object.candles?.map(e => HistoricCandle.fromPartial(e)) || [];
     return message;
   },
 };
@@ -3656,18 +3434,13 @@ export const HistoricCandle = {
     return obj;
   },
 
-  create(base?: DeepPartial<HistoricCandle>): HistoricCandle {
-    return HistoricCandle.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<HistoricCandle>): HistoricCandle {
     const message = createBaseHistoricCandle();
-    message.open = (object.open !== undefined && object.open !== null) ? Quotation.fromPartial(object.open) : undefined;
-    message.high = (object.high !== undefined && object.high !== null) ? Quotation.fromPartial(object.high) : undefined;
-    message.low = (object.low !== undefined && object.low !== null) ? Quotation.fromPartial(object.low) : undefined;
-    message.close = (object.close !== undefined && object.close !== null)
-      ? Quotation.fromPartial(object.close)
-      : undefined;
+    message.open = object.open !== undefined && object.open !== null ? Quotation.fromPartial(object.open) : undefined;
+    message.high = object.high !== undefined && object.high !== null ? Quotation.fromPartial(object.high) : undefined;
+    message.low = object.low !== undefined && object.low !== null ? Quotation.fromPartial(object.low) : undefined;
+    message.close =
+      object.close !== undefined && object.close !== null ? Quotation.fromPartial(object.close) : undefined;
     message.volume = object.volume ?? 0;
     message.time = object.time ?? undefined;
     message.isComplete = object.isComplete ?? false;
@@ -3721,26 +3494,22 @@ export const GetLastPricesRequest = {
   toJSON(message: GetLastPricesRequest): unknown {
     const obj: any = {};
     if (message.figi) {
-      obj.figi = message.figi.map((e) => e);
+      obj.figi = message.figi.map(e => e);
     } else {
       obj.figi = [];
     }
     if (message.instrumentId) {
-      obj.instrumentId = message.instrumentId.map((e) => e);
+      obj.instrumentId = message.instrumentId.map(e => e);
     } else {
       obj.instrumentId = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetLastPricesRequest>): GetLastPricesRequest {
-    return GetLastPricesRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetLastPricesRequest>): GetLastPricesRequest {
     const message = createBaseGetLastPricesRequest();
-    message.figi = object.figi?.map((e) => e) || [];
-    message.instrumentId = object.instrumentId?.map((e) => e) || [];
+    message.figi = object.figi?.map(e => e) || [];
+    message.instrumentId = object.instrumentId?.map(e => e) || [];
     return message;
   },
 };
@@ -3784,31 +3553,27 @@ export const GetLastPricesResponse = {
   toJSON(message: GetLastPricesResponse): unknown {
     const obj: any = {};
     if (message.lastPrices) {
-      obj.lastPrices = message.lastPrices.map((e) => e ? LastPrice.toJSON(e) : undefined);
+      obj.lastPrices = message.lastPrices.map(e => (e ? LastPrice.toJSON(e) : undefined));
     } else {
       obj.lastPrices = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetLastPricesResponse>): GetLastPricesResponse {
-    return GetLastPricesResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetLastPricesResponse>): GetLastPricesResponse {
     const message = createBaseGetLastPricesResponse();
-    message.lastPrices = object.lastPrices?.map((e) => LastPrice.fromPartial(e)) || [];
+    message.lastPrices = object.lastPrices?.map(e => LastPrice.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseLastPrice(): LastPrice {
-  return { figi: "", price: undefined, time: undefined, instrumentUid: "" };
+  return { figi: '', price: undefined, time: undefined, instrumentUid: '' };
 }
 
 export const LastPrice = {
   encode(message: LastPrice, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.price !== undefined) {
@@ -3817,7 +3582,7 @@ export const LastPrice = {
     if (message.time !== undefined) {
       Timestamp.encode(toTimestamp(message.time), writer.uint32(26).fork()).ldelim();
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(90).string(message.instrumentUid);
     }
     return writer;
@@ -3852,10 +3617,10 @@ export const LastPrice = {
 
   fromJSON(object: any): LastPrice {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
       time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -3868,35 +3633,30 @@ export const LastPrice = {
     return obj;
   },
 
-  create(base?: DeepPartial<LastPrice>): LastPrice {
-    return LastPrice.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<LastPrice>): LastPrice {
     const message = createBaseLastPrice();
-    message.figi = object.figi ?? "";
-    message.price = (object.price !== undefined && object.price !== null)
-      ? Quotation.fromPartial(object.price)
-      : undefined;
+    message.figi = object.figi ?? '';
+    message.price =
+      object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
     message.time = object.time ?? undefined;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
 
 function createBaseGetOrderBookRequest(): GetOrderBookRequest {
-  return { figi: "", depth: 0, instrumentId: "" };
+  return { figi: '', depth: 0, instrumentId: '' };
 }
 
 export const GetOrderBookRequest = {
   encode(message: GetOrderBookRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.depth !== 0) {
       writer.uint32(16).int32(message.depth);
     }
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(26).string(message.instrumentId);
     }
     return writer;
@@ -3928,9 +3688,9 @@ export const GetOrderBookRequest = {
 
   fromJSON(object: any): GetOrderBookRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       depth: isSet(object.depth) ? Number(object.depth) : 0,
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
     };
   },
 
@@ -3942,22 +3702,18 @@ export const GetOrderBookRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetOrderBookRequest>): GetOrderBookRequest {
-    return GetOrderBookRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetOrderBookRequest>): GetOrderBookRequest {
     const message = createBaseGetOrderBookRequest();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.depth = object.depth ?? 0;
-    message.instrumentId = object.instrumentId ?? "";
+    message.instrumentId = object.instrumentId ?? '';
     return message;
   },
 };
 
 function createBaseGetOrderBookResponse(): GetOrderBookResponse {
   return {
-    figi: "",
+    figi: '',
     depth: 0,
     bids: [],
     asks: [],
@@ -3968,13 +3724,13 @@ function createBaseGetOrderBookResponse(): GetOrderBookResponse {
     lastPriceTs: undefined,
     closePriceTs: undefined,
     orderbookTs: undefined,
-    instrumentUid: "",
+    instrumentUid: '',
   };
 }
 
 export const GetOrderBookResponse = {
   encode(message: GetOrderBookResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.depth !== 0) {
@@ -4007,7 +3763,7 @@ export const GetOrderBookResponse = {
     if (message.orderbookTs !== undefined) {
       Timestamp.encode(toTimestamp(message.orderbookTs), writer.uint32(186).fork()).ldelim();
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(74).string(message.instrumentUid);
     }
     return writer;
@@ -4066,7 +3822,7 @@ export const GetOrderBookResponse = {
 
   fromJSON(object: any): GetOrderBookResponse {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       depth: isSet(object.depth) ? Number(object.depth) : 0,
       bids: Array.isArray(object?.bids) ? object.bids.map((e: any) => Order.fromJSON(e)) : [],
       asks: Array.isArray(object?.asks) ? object.asks.map((e: any) => Order.fromJSON(e)) : [],
@@ -4077,7 +3833,7 @@ export const GetOrderBookResponse = {
       lastPriceTs: isSet(object.lastPriceTs) ? fromJsonTimestamp(object.lastPriceTs) : undefined,
       closePriceTs: isSet(object.closePriceTs) ? fromJsonTimestamp(object.closePriceTs) : undefined,
       orderbookTs: isSet(object.orderbookTs) ? fromJsonTimestamp(object.orderbookTs) : undefined,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -4086,12 +3842,12 @@ export const GetOrderBookResponse = {
     message.figi !== undefined && (obj.figi = message.figi);
     message.depth !== undefined && (obj.depth = Math.round(message.depth));
     if (message.bids) {
-      obj.bids = message.bids.map((e) => e ? Order.toJSON(e) : undefined);
+      obj.bids = message.bids.map(e => (e ? Order.toJSON(e) : undefined));
     } else {
       obj.bids = [];
     }
     if (message.asks) {
-      obj.asks = message.asks.map((e) => e ? Order.toJSON(e) : undefined);
+      obj.asks = message.asks.map(e => (e ? Order.toJSON(e) : undefined));
     } else {
       obj.asks = [];
     }
@@ -4109,46 +3865,40 @@ export const GetOrderBookResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetOrderBookResponse>): GetOrderBookResponse {
-    return GetOrderBookResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetOrderBookResponse>): GetOrderBookResponse {
     const message = createBaseGetOrderBookResponse();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.depth = object.depth ?? 0;
-    message.bids = object.bids?.map((e) => Order.fromPartial(e)) || [];
-    message.asks = object.asks?.map((e) => Order.fromPartial(e)) || [];
-    message.lastPrice = (object.lastPrice !== undefined && object.lastPrice !== null)
-      ? Quotation.fromPartial(object.lastPrice)
-      : undefined;
-    message.closePrice = (object.closePrice !== undefined && object.closePrice !== null)
-      ? Quotation.fromPartial(object.closePrice)
-      : undefined;
-    message.limitUp = (object.limitUp !== undefined && object.limitUp !== null)
-      ? Quotation.fromPartial(object.limitUp)
-      : undefined;
-    message.limitDown = (object.limitDown !== undefined && object.limitDown !== null)
-      ? Quotation.fromPartial(object.limitDown)
-      : undefined;
+    message.bids = object.bids?.map(e => Order.fromPartial(e)) || [];
+    message.asks = object.asks?.map(e => Order.fromPartial(e)) || [];
+    message.lastPrice =
+      object.lastPrice !== undefined && object.lastPrice !== null ? Quotation.fromPartial(object.lastPrice) : undefined;
+    message.closePrice =
+      object.closePrice !== undefined && object.closePrice !== null
+        ? Quotation.fromPartial(object.closePrice)
+        : undefined;
+    message.limitUp =
+      object.limitUp !== undefined && object.limitUp !== null ? Quotation.fromPartial(object.limitUp) : undefined;
+    message.limitDown =
+      object.limitDown !== undefined && object.limitDown !== null ? Quotation.fromPartial(object.limitDown) : undefined;
     message.lastPriceTs = object.lastPriceTs ?? undefined;
     message.closePriceTs = object.closePriceTs ?? undefined;
     message.orderbookTs = object.orderbookTs ?? undefined;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
 
 function createBaseGetTradingStatusRequest(): GetTradingStatusRequest {
-  return { figi: "", instrumentId: "" };
+  return { figi: '', instrumentId: '' };
 }
 
 export const GetTradingStatusRequest = {
   encode(message: GetTradingStatusRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(18).string(message.instrumentId);
     }
     return writer;
@@ -4177,8 +3927,8 @@ export const GetTradingStatusRequest = {
 
   fromJSON(object: any): GetTradingStatusRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
     };
   },
 
@@ -4189,14 +3939,10 @@ export const GetTradingStatusRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetTradingStatusRequest>): GetTradingStatusRequest {
-    return GetTradingStatusRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetTradingStatusRequest>): GetTradingStatusRequest {
     const message = createBaseGetTradingStatusRequest();
-    message.figi = object.figi ?? "";
-    message.instrumentId = object.instrumentId ?? "";
+    message.figi = object.figi ?? '';
+    message.instrumentId = object.instrumentId ?? '';
     return message;
   },
 };
@@ -4232,26 +3978,24 @@ export const GetTradingStatusesRequest = {
   },
 
   fromJSON(object: any): GetTradingStatusesRequest {
-    return { instrumentId: Array.isArray(object?.instrumentId) ? object.instrumentId.map((e: any) => String(e)) : [] };
+    return {
+      instrumentId: Array.isArray(object?.instrumentId) ? object.instrumentId.map((e: any) => String(e)) : [],
+    };
   },
 
   toJSON(message: GetTradingStatusesRequest): unknown {
     const obj: any = {};
     if (message.instrumentId) {
-      obj.instrumentId = message.instrumentId.map((e) => e);
+      obj.instrumentId = message.instrumentId.map(e => e);
     } else {
       obj.instrumentId = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetTradingStatusesRequest>): GetTradingStatusesRequest {
-    return GetTradingStatusesRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetTradingStatusesRequest>): GetTradingStatusesRequest {
     const message = createBaseGetTradingStatusesRequest();
-    message.instrumentId = object.instrumentId?.map((e) => e) || [];
+    message.instrumentId = object.instrumentId?.map(e => e) || [];
     return message;
   },
 };
@@ -4297,38 +4041,34 @@ export const GetTradingStatusesResponse = {
   toJSON(message: GetTradingStatusesResponse): unknown {
     const obj: any = {};
     if (message.tradingStatuses) {
-      obj.tradingStatuses = message.tradingStatuses.map((e) => e ? GetTradingStatusResponse.toJSON(e) : undefined);
+      obj.tradingStatuses = message.tradingStatuses.map(e => (e ? GetTradingStatusResponse.toJSON(e) : undefined));
     } else {
       obj.tradingStatuses = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetTradingStatusesResponse>): GetTradingStatusesResponse {
-    return GetTradingStatusesResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetTradingStatusesResponse>): GetTradingStatusesResponse {
     const message = createBaseGetTradingStatusesResponse();
-    message.tradingStatuses = object.tradingStatuses?.map((e) => GetTradingStatusResponse.fromPartial(e)) || [];
+    message.tradingStatuses = object.tradingStatuses?.map(e => GetTradingStatusResponse.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseGetTradingStatusResponse(): GetTradingStatusResponse {
   return {
-    figi: "",
+    figi: '',
     tradingStatus: 0,
     limitOrderAvailableFlag: false,
     marketOrderAvailableFlag: false,
     apiTradeAvailableFlag: false,
-    instrumentUid: "",
+    instrumentUid: '',
   };
 }
 
 export const GetTradingStatusResponse = {
   encode(message: GetTradingStatusResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.tradingStatus !== 0) {
@@ -4343,7 +4083,7 @@ export const GetTradingStatusResponse = {
     if (message.apiTradeAvailableFlag === true) {
       writer.uint32(40).bool(message.apiTradeAvailableFlag);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(50).string(message.instrumentUid);
     }
     return writer;
@@ -4384,14 +4124,14 @@ export const GetTradingStatusResponse = {
 
   fromJSON(object: any): GetTradingStatusResponse {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       tradingStatus: isSet(object.tradingStatus) ? securityTradingStatusFromJSON(object.tradingStatus) : 0,
       limitOrderAvailableFlag: isSet(object.limitOrderAvailableFlag) ? Boolean(object.limitOrderAvailableFlag) : false,
       marketOrderAvailableFlag: isSet(object.marketOrderAvailableFlag)
         ? Boolean(object.marketOrderAvailableFlag)
         : false,
       apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -4406,29 +4146,25 @@ export const GetTradingStatusResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetTradingStatusResponse>): GetTradingStatusResponse {
-    return GetTradingStatusResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetTradingStatusResponse>): GetTradingStatusResponse {
     const message = createBaseGetTradingStatusResponse();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.tradingStatus = object.tradingStatus ?? 0;
     message.limitOrderAvailableFlag = object.limitOrderAvailableFlag ?? false;
     message.marketOrderAvailableFlag = object.marketOrderAvailableFlag ?? false;
     message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
 
 function createBaseGetLastTradesRequest(): GetLastTradesRequest {
-  return { figi: "", from: undefined, to: undefined, instrumentId: "" };
+  return { figi: '', from: undefined, to: undefined, instrumentId: '' };
 }
 
 export const GetLastTradesRequest = {
   encode(message: GetLastTradesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.from !== undefined) {
@@ -4437,7 +4173,7 @@ export const GetLastTradesRequest = {
     if (message.to !== undefined) {
       Timestamp.encode(toTimestamp(message.to), writer.uint32(26).fork()).ldelim();
     }
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(34).string(message.instrumentId);
     }
     return writer;
@@ -4472,10 +4208,10 @@ export const GetLastTradesRequest = {
 
   fromJSON(object: any): GetLastTradesRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
     };
   },
 
@@ -4488,16 +4224,12 @@ export const GetLastTradesRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetLastTradesRequest>): GetLastTradesRequest {
-    return GetLastTradesRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetLastTradesRequest>): GetLastTradesRequest {
     const message = createBaseGetLastTradesRequest();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
-    message.instrumentId = object.instrumentId ?? "";
+    message.instrumentId = object.instrumentId ?? '';
     return message;
   },
 };
@@ -4533,26 +4265,24 @@ export const GetLastTradesResponse = {
   },
 
   fromJSON(object: any): GetLastTradesResponse {
-    return { trades: Array.isArray(object?.trades) ? object.trades.map((e: any) => Trade.fromJSON(e)) : [] };
+    return {
+      trades: Array.isArray(object?.trades) ? object.trades.map((e: any) => Trade.fromJSON(e)) : [],
+    };
   },
 
   toJSON(message: GetLastTradesResponse): unknown {
     const obj: any = {};
     if (message.trades) {
-      obj.trades = message.trades.map((e) => e ? Trade.toJSON(e) : undefined);
+      obj.trades = message.trades.map(e => (e ? Trade.toJSON(e) : undefined));
     } else {
       obj.trades = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetLastTradesResponse>): GetLastTradesResponse {
-    return GetLastTradesResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetLastTradesResponse>): GetLastTradesResponse {
     const message = createBaseGetLastTradesResponse();
-    message.trades = object.trades?.map((e) => Trade.fromPartial(e)) || [];
+    message.trades = object.trades?.map(e => Trade.fromPartial(e)) || [];
     return message;
   },
 };
@@ -4588,10 +4318,6 @@ export const GetMySubscriptions = {
   toJSON(_: GetMySubscriptions): unknown {
     const obj: any = {};
     return obj;
-  },
-
-  create(base?: DeepPartial<GetMySubscriptions>): GetMySubscriptions {
-    return GetMySubscriptions.fromPartial(base ?? {});
   },
 
   fromPartial(_: DeepPartial<GetMySubscriptions>): GetMySubscriptions {
@@ -4641,31 +4367,27 @@ export const GetClosePricesRequest = {
   toJSON(message: GetClosePricesRequest): unknown {
     const obj: any = {};
     if (message.instruments) {
-      obj.instruments = message.instruments.map((e) => e ? InstrumentClosePriceRequest.toJSON(e) : undefined);
+      obj.instruments = message.instruments.map(e => (e ? InstrumentClosePriceRequest.toJSON(e) : undefined));
     } else {
       obj.instruments = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetClosePricesRequest>): GetClosePricesRequest {
-    return GetClosePricesRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetClosePricesRequest>): GetClosePricesRequest {
     const message = createBaseGetClosePricesRequest();
-    message.instruments = object.instruments?.map((e) => InstrumentClosePriceRequest.fromPartial(e)) || [];
+    message.instruments = object.instruments?.map(e => InstrumentClosePriceRequest.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseInstrumentClosePriceRequest(): InstrumentClosePriceRequest {
-  return { instrumentId: "" };
+  return { instrumentId: '' };
 }
 
 export const InstrumentClosePriceRequest = {
   encode(message: InstrumentClosePriceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(10).string(message.instrumentId);
     }
     return writer;
@@ -4690,7 +4412,9 @@ export const InstrumentClosePriceRequest = {
   },
 
   fromJSON(object: any): InstrumentClosePriceRequest {
-    return { instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "" };
+    return {
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
+    };
   },
 
   toJSON(message: InstrumentClosePriceRequest): unknown {
@@ -4699,13 +4423,9 @@ export const InstrumentClosePriceRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<InstrumentClosePriceRequest>): InstrumentClosePriceRequest {
-    return InstrumentClosePriceRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<InstrumentClosePriceRequest>): InstrumentClosePriceRequest {
     const message = createBaseInstrumentClosePriceRequest();
-    message.instrumentId = object.instrumentId ?? "";
+    message.instrumentId = object.instrumentId ?? '';
     return message;
   },
 };
@@ -4751,34 +4471,30 @@ export const GetClosePricesResponse = {
   toJSON(message: GetClosePricesResponse): unknown {
     const obj: any = {};
     if (message.closePrices) {
-      obj.closePrices = message.closePrices.map((e) => e ? InstrumentClosePriceResponse.toJSON(e) : undefined);
+      obj.closePrices = message.closePrices.map(e => (e ? InstrumentClosePriceResponse.toJSON(e) : undefined));
     } else {
       obj.closePrices = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetClosePricesResponse>): GetClosePricesResponse {
-    return GetClosePricesResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetClosePricesResponse>): GetClosePricesResponse {
     const message = createBaseGetClosePricesResponse();
-    message.closePrices = object.closePrices?.map((e) => InstrumentClosePriceResponse.fromPartial(e)) || [];
+    message.closePrices = object.closePrices?.map(e => InstrumentClosePriceResponse.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseInstrumentClosePriceResponse(): InstrumentClosePriceResponse {
-  return { figi: "", instrumentUid: "", price: undefined, time: undefined };
+  return { figi: '', instrumentUid: '', price: undefined, time: undefined };
 }
 
 export const InstrumentClosePriceResponse = {
   encode(message: InstrumentClosePriceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(18).string(message.instrumentUid);
     }
     if (message.price !== undefined) {
@@ -4819,8 +4535,8 @@ export const InstrumentClosePriceResponse = {
 
   fromJSON(object: any): InstrumentClosePriceResponse {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
       price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
       time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
     };
@@ -4835,17 +4551,12 @@ export const InstrumentClosePriceResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<InstrumentClosePriceResponse>): InstrumentClosePriceResponse {
-    return InstrumentClosePriceResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<InstrumentClosePriceResponse>): InstrumentClosePriceResponse {
     const message = createBaseInstrumentClosePriceResponse();
-    message.figi = object.figi ?? "";
-    message.instrumentUid = object.instrumentUid ?? "";
-    message.price = (object.price !== undefined && object.price !== null)
-      ? Quotation.fromPartial(object.price)
-      : undefined;
+    message.figi = object.figi ?? '';
+    message.instrumentUid = object.instrumentUid ?? '';
+    message.price =
+      object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
     message.time = object.time ?? undefined;
     return message;
   },
@@ -4854,12 +4565,12 @@ export const InstrumentClosePriceResponse = {
 /** Сервис получения биржевой информации:</br> **1**. свечи;</br> **2**. стаканы;</br> **3**. торговые статусы;</br> **4**. лента сделок. */
 export type MarketDataServiceDefinition = typeof MarketDataServiceDefinition;
 export const MarketDataServiceDefinition = {
-  name: "MarketDataService",
-  fullName: "tinkoff.public.invest.api.contract.v1.MarketDataService",
+  name: 'MarketDataService',
+  fullName: 'tinkoff.public.invest.api.contract.v1.MarketDataService',
   methods: {
     /** Метод запроса исторических свечей по инструменту. */
     getCandles: {
-      name: "GetCandles",
+      name: 'GetCandles',
       requestType: GetCandlesRequest,
       requestStream: false,
       responseType: GetCandlesResponse,
@@ -4868,7 +4579,7 @@ export const MarketDataServiceDefinition = {
     },
     /** Метод запроса цен последних сделок по инструментам. */
     getLastPrices: {
-      name: "GetLastPrices",
+      name: 'GetLastPrices',
       requestType: GetLastPricesRequest,
       requestStream: false,
       responseType: GetLastPricesResponse,
@@ -4877,7 +4588,7 @@ export const MarketDataServiceDefinition = {
     },
     /** Метод получения стакана по инструменту. */
     getOrderBook: {
-      name: "GetOrderBook",
+      name: 'GetOrderBook',
       requestType: GetOrderBookRequest,
       requestStream: false,
       responseType: GetOrderBookResponse,
@@ -4886,7 +4597,7 @@ export const MarketDataServiceDefinition = {
     },
     /** Метод запроса статуса торгов по инструментам. */
     getTradingStatus: {
-      name: "GetTradingStatus",
+      name: 'GetTradingStatus',
       requestType: GetTradingStatusRequest,
       requestStream: false,
       responseType: GetTradingStatusResponse,
@@ -4895,7 +4606,7 @@ export const MarketDataServiceDefinition = {
     },
     /** Метод запроса статуса торгов по инструментам. */
     getTradingStatuses: {
-      name: "GetTradingStatuses",
+      name: 'GetTradingStatuses',
       requestType: GetTradingStatusesRequest,
       requestStream: false,
       responseType: GetTradingStatusesResponse,
@@ -4904,7 +4615,7 @@ export const MarketDataServiceDefinition = {
     },
     /** Метод запроса обезличенных сделок за последний час. */
     getLastTrades: {
-      name: "GetLastTrades",
+      name: 'GetLastTrades',
       requestType: GetLastTradesRequest,
       requestStream: false,
       responseType: GetLastTradesResponse,
@@ -4913,7 +4624,7 @@ export const MarketDataServiceDefinition = {
     },
     /** Метод запроса цен закрытия торговой сессии по инструментам. */
     getClosePrices: {
-      name: "GetClosePrices",
+      name: 'GetClosePrices',
       requestType: GetClosePricesRequest,
       requestStream: false,
       responseType: GetClosePricesResponse,
@@ -4925,12 +4636,12 @@ export const MarketDataServiceDefinition = {
 
 export type MarketDataStreamServiceDefinition = typeof MarketDataStreamServiceDefinition;
 export const MarketDataStreamServiceDefinition = {
-  name: "MarketDataStreamService",
-  fullName: "tinkoff.public.invest.api.contract.v1.MarketDataStreamService",
+  name: 'MarketDataStreamService',
+  fullName: 'tinkoff.public.invest.api.contract.v1.MarketDataStreamService',
   methods: {
     /** Bi-directional стрим предоставления биржевой информации. */
     marketDataStream: {
-      name: "MarketDataStream",
+      name: 'MarketDataStream',
       requestType: MarketDataRequest,
       requestStream: true,
       responseType: MarketDataResponse,
@@ -4939,7 +4650,7 @@ export const MarketDataStreamServiceDefinition = {
     },
     /** Server-side стрим предоставления биржевой информации. */
     marketDataServerSideStream: {
-      name: "MarketDataServerSideStream",
+      name: 'MarketDataServerSideStream',
       requestType: MarketDataServerSideStreamRequest,
       requestStream: false,
       responseType: MarketDataResponse,
@@ -4952,27 +4663,24 @@ export const MarketDataStreamServiceDefinition = {
 declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
+var globalThis: any = (() => {
+  if (typeof globalThis !== 'undefined') return globalThis;
+  if (typeof self !== 'undefined') return self;
+  if (typeof window !== 'undefined') return window;
+  if (typeof global !== 'undefined') return global;
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 function toTimestamp(date: Date): Timestamp {
@@ -4990,7 +4698,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === "string") {
+  } else if (typeof o === 'string') {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -4999,7 +4707,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

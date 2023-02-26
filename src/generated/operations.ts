@@ -1,10 +1,10 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal";
-import { InstrumentType, instrumentTypeFromJSON, instrumentTypeToJSON, MoneyValue, Ping, Quotation } from "./common";
-import { Timestamp } from "./google/protobuf/timestamp";
+import Long from 'long';
+import * as _m0 from 'protobufjs/minimal';
+import { InstrumentType, MoneyValue, Quotation, Ping, instrumentTypeFromJSON, instrumentTypeToJSON } from './common';
+import { Timestamp } from './google/protobuf/timestamp';
 
-export const protobufPackage = "tinkoff.public.invest.api.contract.v1";
+export const protobufPackage = 'tinkoff.public.invest.api.contract.v1';
 
 /** Статус запрашиваемых операций. */
 export enum OperationState {
@@ -22,19 +22,19 @@ export enum OperationState {
 export function operationStateFromJSON(object: any): OperationState {
   switch (object) {
     case 0:
-    case "OPERATION_STATE_UNSPECIFIED":
+    case 'OPERATION_STATE_UNSPECIFIED':
       return OperationState.OPERATION_STATE_UNSPECIFIED;
     case 1:
-    case "OPERATION_STATE_EXECUTED":
+    case 'OPERATION_STATE_EXECUTED':
       return OperationState.OPERATION_STATE_EXECUTED;
     case 2:
-    case "OPERATION_STATE_CANCELED":
+    case 'OPERATION_STATE_CANCELED':
       return OperationState.OPERATION_STATE_CANCELED;
     case 3:
-    case "OPERATION_STATE_PROGRESS":
+    case 'OPERATION_STATE_PROGRESS':
       return OperationState.OPERATION_STATE_PROGRESS;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return OperationState.UNRECOGNIZED;
   }
@@ -43,16 +43,15 @@ export function operationStateFromJSON(object: any): OperationState {
 export function operationStateToJSON(object: OperationState): string {
   switch (object) {
     case OperationState.OPERATION_STATE_UNSPECIFIED:
-      return "OPERATION_STATE_UNSPECIFIED";
+      return 'OPERATION_STATE_UNSPECIFIED';
     case OperationState.OPERATION_STATE_EXECUTED:
-      return "OPERATION_STATE_EXECUTED";
+      return 'OPERATION_STATE_EXECUTED';
     case OperationState.OPERATION_STATE_CANCELED:
-      return "OPERATION_STATE_CANCELED";
+      return 'OPERATION_STATE_CANCELED';
     case OperationState.OPERATION_STATE_PROGRESS:
-      return "OPERATION_STATE_PROGRESS";
-    case OperationState.UNRECOGNIZED:
+      return 'OPERATION_STATE_PROGRESS';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -188,193 +187,193 @@ export enum OperationType {
 export function operationTypeFromJSON(object: any): OperationType {
   switch (object) {
     case 0:
-    case "OPERATION_TYPE_UNSPECIFIED":
+    case 'OPERATION_TYPE_UNSPECIFIED':
       return OperationType.OPERATION_TYPE_UNSPECIFIED;
     case 1:
-    case "OPERATION_TYPE_INPUT":
+    case 'OPERATION_TYPE_INPUT':
       return OperationType.OPERATION_TYPE_INPUT;
     case 2:
-    case "OPERATION_TYPE_BOND_TAX":
+    case 'OPERATION_TYPE_BOND_TAX':
       return OperationType.OPERATION_TYPE_BOND_TAX;
     case 3:
-    case "OPERATION_TYPE_OUTPUT_SECURITIES":
+    case 'OPERATION_TYPE_OUTPUT_SECURITIES':
       return OperationType.OPERATION_TYPE_OUTPUT_SECURITIES;
     case 4:
-    case "OPERATION_TYPE_OVERNIGHT":
+    case 'OPERATION_TYPE_OVERNIGHT':
       return OperationType.OPERATION_TYPE_OVERNIGHT;
     case 5:
-    case "OPERATION_TYPE_TAX":
+    case 'OPERATION_TYPE_TAX':
       return OperationType.OPERATION_TYPE_TAX;
     case 6:
-    case "OPERATION_TYPE_BOND_REPAYMENT_FULL":
+    case 'OPERATION_TYPE_BOND_REPAYMENT_FULL':
       return OperationType.OPERATION_TYPE_BOND_REPAYMENT_FULL;
     case 7:
-    case "OPERATION_TYPE_SELL_CARD":
+    case 'OPERATION_TYPE_SELL_CARD':
       return OperationType.OPERATION_TYPE_SELL_CARD;
     case 8:
-    case "OPERATION_TYPE_DIVIDEND_TAX":
+    case 'OPERATION_TYPE_DIVIDEND_TAX':
       return OperationType.OPERATION_TYPE_DIVIDEND_TAX;
     case 9:
-    case "OPERATION_TYPE_OUTPUT":
+    case 'OPERATION_TYPE_OUTPUT':
       return OperationType.OPERATION_TYPE_OUTPUT;
     case 10:
-    case "OPERATION_TYPE_BOND_REPAYMENT":
+    case 'OPERATION_TYPE_BOND_REPAYMENT':
       return OperationType.OPERATION_TYPE_BOND_REPAYMENT;
     case 11:
-    case "OPERATION_TYPE_TAX_CORRECTION":
+    case 'OPERATION_TYPE_TAX_CORRECTION':
       return OperationType.OPERATION_TYPE_TAX_CORRECTION;
     case 12:
-    case "OPERATION_TYPE_SERVICE_FEE":
+    case 'OPERATION_TYPE_SERVICE_FEE':
       return OperationType.OPERATION_TYPE_SERVICE_FEE;
     case 13:
-    case "OPERATION_TYPE_BENEFIT_TAX":
+    case 'OPERATION_TYPE_BENEFIT_TAX':
       return OperationType.OPERATION_TYPE_BENEFIT_TAX;
     case 14:
-    case "OPERATION_TYPE_MARGIN_FEE":
+    case 'OPERATION_TYPE_MARGIN_FEE':
       return OperationType.OPERATION_TYPE_MARGIN_FEE;
     case 15:
-    case "OPERATION_TYPE_BUY":
+    case 'OPERATION_TYPE_BUY':
       return OperationType.OPERATION_TYPE_BUY;
     case 16:
-    case "OPERATION_TYPE_BUY_CARD":
+    case 'OPERATION_TYPE_BUY_CARD':
       return OperationType.OPERATION_TYPE_BUY_CARD;
     case 17:
-    case "OPERATION_TYPE_INPUT_SECURITIES":
+    case 'OPERATION_TYPE_INPUT_SECURITIES':
       return OperationType.OPERATION_TYPE_INPUT_SECURITIES;
     case 18:
-    case "OPERATION_TYPE_SELL_MARGIN":
+    case 'OPERATION_TYPE_SELL_MARGIN':
       return OperationType.OPERATION_TYPE_SELL_MARGIN;
     case 19:
-    case "OPERATION_TYPE_BROKER_FEE":
+    case 'OPERATION_TYPE_BROKER_FEE':
       return OperationType.OPERATION_TYPE_BROKER_FEE;
     case 20:
-    case "OPERATION_TYPE_BUY_MARGIN":
+    case 'OPERATION_TYPE_BUY_MARGIN':
       return OperationType.OPERATION_TYPE_BUY_MARGIN;
     case 21:
-    case "OPERATION_TYPE_DIVIDEND":
+    case 'OPERATION_TYPE_DIVIDEND':
       return OperationType.OPERATION_TYPE_DIVIDEND;
     case 22:
-    case "OPERATION_TYPE_SELL":
+    case 'OPERATION_TYPE_SELL':
       return OperationType.OPERATION_TYPE_SELL;
     case 23:
-    case "OPERATION_TYPE_COUPON":
+    case 'OPERATION_TYPE_COUPON':
       return OperationType.OPERATION_TYPE_COUPON;
     case 24:
-    case "OPERATION_TYPE_SUCCESS_FEE":
+    case 'OPERATION_TYPE_SUCCESS_FEE':
       return OperationType.OPERATION_TYPE_SUCCESS_FEE;
     case 25:
-    case "OPERATION_TYPE_DIVIDEND_TRANSFER":
+    case 'OPERATION_TYPE_DIVIDEND_TRANSFER':
       return OperationType.OPERATION_TYPE_DIVIDEND_TRANSFER;
     case 26:
-    case "OPERATION_TYPE_ACCRUING_VARMARGIN":
+    case 'OPERATION_TYPE_ACCRUING_VARMARGIN':
       return OperationType.OPERATION_TYPE_ACCRUING_VARMARGIN;
     case 27:
-    case "OPERATION_TYPE_WRITING_OFF_VARMARGIN":
+    case 'OPERATION_TYPE_WRITING_OFF_VARMARGIN':
       return OperationType.OPERATION_TYPE_WRITING_OFF_VARMARGIN;
     case 28:
-    case "OPERATION_TYPE_DELIVERY_BUY":
+    case 'OPERATION_TYPE_DELIVERY_BUY':
       return OperationType.OPERATION_TYPE_DELIVERY_BUY;
     case 29:
-    case "OPERATION_TYPE_DELIVERY_SELL":
+    case 'OPERATION_TYPE_DELIVERY_SELL':
       return OperationType.OPERATION_TYPE_DELIVERY_SELL;
     case 30:
-    case "OPERATION_TYPE_TRACK_MFEE":
+    case 'OPERATION_TYPE_TRACK_MFEE':
       return OperationType.OPERATION_TYPE_TRACK_MFEE;
     case 31:
-    case "OPERATION_TYPE_TRACK_PFEE":
+    case 'OPERATION_TYPE_TRACK_PFEE':
       return OperationType.OPERATION_TYPE_TRACK_PFEE;
     case 32:
-    case "OPERATION_TYPE_TAX_PROGRESSIVE":
+    case 'OPERATION_TYPE_TAX_PROGRESSIVE':
       return OperationType.OPERATION_TYPE_TAX_PROGRESSIVE;
     case 33:
-    case "OPERATION_TYPE_BOND_TAX_PROGRESSIVE":
+    case 'OPERATION_TYPE_BOND_TAX_PROGRESSIVE':
       return OperationType.OPERATION_TYPE_BOND_TAX_PROGRESSIVE;
     case 34:
-    case "OPERATION_TYPE_DIVIDEND_TAX_PROGRESSIVE":
+    case 'OPERATION_TYPE_DIVIDEND_TAX_PROGRESSIVE':
       return OperationType.OPERATION_TYPE_DIVIDEND_TAX_PROGRESSIVE;
     case 35:
-    case "OPERATION_TYPE_BENEFIT_TAX_PROGRESSIVE":
+    case 'OPERATION_TYPE_BENEFIT_TAX_PROGRESSIVE':
       return OperationType.OPERATION_TYPE_BENEFIT_TAX_PROGRESSIVE;
     case 36:
-    case "OPERATION_TYPE_TAX_CORRECTION_PROGRESSIVE":
+    case 'OPERATION_TYPE_TAX_CORRECTION_PROGRESSIVE':
       return OperationType.OPERATION_TYPE_TAX_CORRECTION_PROGRESSIVE;
     case 37:
-    case "OPERATION_TYPE_TAX_REPO_PROGRESSIVE":
+    case 'OPERATION_TYPE_TAX_REPO_PROGRESSIVE':
       return OperationType.OPERATION_TYPE_TAX_REPO_PROGRESSIVE;
     case 38:
-    case "OPERATION_TYPE_TAX_REPO":
+    case 'OPERATION_TYPE_TAX_REPO':
       return OperationType.OPERATION_TYPE_TAX_REPO;
     case 39:
-    case "OPERATION_TYPE_TAX_REPO_HOLD":
+    case 'OPERATION_TYPE_TAX_REPO_HOLD':
       return OperationType.OPERATION_TYPE_TAX_REPO_HOLD;
     case 40:
-    case "OPERATION_TYPE_TAX_REPO_REFUND":
+    case 'OPERATION_TYPE_TAX_REPO_REFUND':
       return OperationType.OPERATION_TYPE_TAX_REPO_REFUND;
     case 41:
-    case "OPERATION_TYPE_TAX_REPO_HOLD_PROGRESSIVE":
+    case 'OPERATION_TYPE_TAX_REPO_HOLD_PROGRESSIVE':
       return OperationType.OPERATION_TYPE_TAX_REPO_HOLD_PROGRESSIVE;
     case 42:
-    case "OPERATION_TYPE_TAX_REPO_REFUND_PROGRESSIVE":
+    case 'OPERATION_TYPE_TAX_REPO_REFUND_PROGRESSIVE':
       return OperationType.OPERATION_TYPE_TAX_REPO_REFUND_PROGRESSIVE;
     case 43:
-    case "OPERATION_TYPE_DIV_EXT":
+    case 'OPERATION_TYPE_DIV_EXT':
       return OperationType.OPERATION_TYPE_DIV_EXT;
     case 44:
-    case "OPERATION_TYPE_TAX_CORRECTION_COUPON":
+    case 'OPERATION_TYPE_TAX_CORRECTION_COUPON':
       return OperationType.OPERATION_TYPE_TAX_CORRECTION_COUPON;
     case 45:
-    case "OPERATION_TYPE_CASH_FEE":
+    case 'OPERATION_TYPE_CASH_FEE':
       return OperationType.OPERATION_TYPE_CASH_FEE;
     case 46:
-    case "OPERATION_TYPE_OUT_FEE":
+    case 'OPERATION_TYPE_OUT_FEE':
       return OperationType.OPERATION_TYPE_OUT_FEE;
     case 47:
-    case "OPERATION_TYPE_OUT_STAMP_DUTY":
+    case 'OPERATION_TYPE_OUT_STAMP_DUTY':
       return OperationType.OPERATION_TYPE_OUT_STAMP_DUTY;
     case 50:
-    case "OPERATION_TYPE_OUTPUT_SWIFT":
+    case 'OPERATION_TYPE_OUTPUT_SWIFT':
       return OperationType.OPERATION_TYPE_OUTPUT_SWIFT;
     case 51:
-    case "OPERATION_TYPE_INPUT_SWIFT":
+    case 'OPERATION_TYPE_INPUT_SWIFT':
       return OperationType.OPERATION_TYPE_INPUT_SWIFT;
     case 53:
-    case "OPERATION_TYPE_OUTPUT_ACQUIRING":
+    case 'OPERATION_TYPE_OUTPUT_ACQUIRING':
       return OperationType.OPERATION_TYPE_OUTPUT_ACQUIRING;
     case 54:
-    case "OPERATION_TYPE_INPUT_ACQUIRING":
+    case 'OPERATION_TYPE_INPUT_ACQUIRING':
       return OperationType.OPERATION_TYPE_INPUT_ACQUIRING;
     case 55:
-    case "OPERATION_TYPE_OUTPUT_PENALTY":
+    case 'OPERATION_TYPE_OUTPUT_PENALTY':
       return OperationType.OPERATION_TYPE_OUTPUT_PENALTY;
     case 56:
-    case "OPERATION_TYPE_ADVICE_FEE":
+    case 'OPERATION_TYPE_ADVICE_FEE':
       return OperationType.OPERATION_TYPE_ADVICE_FEE;
     case 57:
-    case "OPERATION_TYPE_TRANS_IIS_BS":
+    case 'OPERATION_TYPE_TRANS_IIS_BS':
       return OperationType.OPERATION_TYPE_TRANS_IIS_BS;
     case 58:
-    case "OPERATION_TYPE_TRANS_BS_BS":
+    case 'OPERATION_TYPE_TRANS_BS_BS':
       return OperationType.OPERATION_TYPE_TRANS_BS_BS;
     case 59:
-    case "OPERATION_TYPE_OUT_MULTI":
+    case 'OPERATION_TYPE_OUT_MULTI':
       return OperationType.OPERATION_TYPE_OUT_MULTI;
     case 60:
-    case "OPERATION_TYPE_INP_MULTI":
+    case 'OPERATION_TYPE_INP_MULTI':
       return OperationType.OPERATION_TYPE_INP_MULTI;
     case 61:
-    case "OPERATION_TYPE_OVER_PLACEMENT":
+    case 'OPERATION_TYPE_OVER_PLACEMENT':
       return OperationType.OPERATION_TYPE_OVER_PLACEMENT;
     case 62:
-    case "OPERATION_TYPE_OVER_COM":
+    case 'OPERATION_TYPE_OVER_COM':
       return OperationType.OPERATION_TYPE_OVER_COM;
     case 63:
-    case "OPERATION_TYPE_OVER_INCOME":
+    case 'OPERATION_TYPE_OVER_INCOME':
       return OperationType.OPERATION_TYPE_OVER_INCOME;
     case 64:
-    case "OPERATION_TYPE_OPTION_EXPIRATION":
+    case 'OPERATION_TYPE_OPTION_EXPIRATION':
       return OperationType.OPERATION_TYPE_OPTION_EXPIRATION;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return OperationType.UNRECOGNIZED;
   }
@@ -383,132 +382,131 @@ export function operationTypeFromJSON(object: any): OperationType {
 export function operationTypeToJSON(object: OperationType): string {
   switch (object) {
     case OperationType.OPERATION_TYPE_UNSPECIFIED:
-      return "OPERATION_TYPE_UNSPECIFIED";
+      return 'OPERATION_TYPE_UNSPECIFIED';
     case OperationType.OPERATION_TYPE_INPUT:
-      return "OPERATION_TYPE_INPUT";
+      return 'OPERATION_TYPE_INPUT';
     case OperationType.OPERATION_TYPE_BOND_TAX:
-      return "OPERATION_TYPE_BOND_TAX";
+      return 'OPERATION_TYPE_BOND_TAX';
     case OperationType.OPERATION_TYPE_OUTPUT_SECURITIES:
-      return "OPERATION_TYPE_OUTPUT_SECURITIES";
+      return 'OPERATION_TYPE_OUTPUT_SECURITIES';
     case OperationType.OPERATION_TYPE_OVERNIGHT:
-      return "OPERATION_TYPE_OVERNIGHT";
+      return 'OPERATION_TYPE_OVERNIGHT';
     case OperationType.OPERATION_TYPE_TAX:
-      return "OPERATION_TYPE_TAX";
+      return 'OPERATION_TYPE_TAX';
     case OperationType.OPERATION_TYPE_BOND_REPAYMENT_FULL:
-      return "OPERATION_TYPE_BOND_REPAYMENT_FULL";
+      return 'OPERATION_TYPE_BOND_REPAYMENT_FULL';
     case OperationType.OPERATION_TYPE_SELL_CARD:
-      return "OPERATION_TYPE_SELL_CARD";
+      return 'OPERATION_TYPE_SELL_CARD';
     case OperationType.OPERATION_TYPE_DIVIDEND_TAX:
-      return "OPERATION_TYPE_DIVIDEND_TAX";
+      return 'OPERATION_TYPE_DIVIDEND_TAX';
     case OperationType.OPERATION_TYPE_OUTPUT:
-      return "OPERATION_TYPE_OUTPUT";
+      return 'OPERATION_TYPE_OUTPUT';
     case OperationType.OPERATION_TYPE_BOND_REPAYMENT:
-      return "OPERATION_TYPE_BOND_REPAYMENT";
+      return 'OPERATION_TYPE_BOND_REPAYMENT';
     case OperationType.OPERATION_TYPE_TAX_CORRECTION:
-      return "OPERATION_TYPE_TAX_CORRECTION";
+      return 'OPERATION_TYPE_TAX_CORRECTION';
     case OperationType.OPERATION_TYPE_SERVICE_FEE:
-      return "OPERATION_TYPE_SERVICE_FEE";
+      return 'OPERATION_TYPE_SERVICE_FEE';
     case OperationType.OPERATION_TYPE_BENEFIT_TAX:
-      return "OPERATION_TYPE_BENEFIT_TAX";
+      return 'OPERATION_TYPE_BENEFIT_TAX';
     case OperationType.OPERATION_TYPE_MARGIN_FEE:
-      return "OPERATION_TYPE_MARGIN_FEE";
+      return 'OPERATION_TYPE_MARGIN_FEE';
     case OperationType.OPERATION_TYPE_BUY:
-      return "OPERATION_TYPE_BUY";
+      return 'OPERATION_TYPE_BUY';
     case OperationType.OPERATION_TYPE_BUY_CARD:
-      return "OPERATION_TYPE_BUY_CARD";
+      return 'OPERATION_TYPE_BUY_CARD';
     case OperationType.OPERATION_TYPE_INPUT_SECURITIES:
-      return "OPERATION_TYPE_INPUT_SECURITIES";
+      return 'OPERATION_TYPE_INPUT_SECURITIES';
     case OperationType.OPERATION_TYPE_SELL_MARGIN:
-      return "OPERATION_TYPE_SELL_MARGIN";
+      return 'OPERATION_TYPE_SELL_MARGIN';
     case OperationType.OPERATION_TYPE_BROKER_FEE:
-      return "OPERATION_TYPE_BROKER_FEE";
+      return 'OPERATION_TYPE_BROKER_FEE';
     case OperationType.OPERATION_TYPE_BUY_MARGIN:
-      return "OPERATION_TYPE_BUY_MARGIN";
+      return 'OPERATION_TYPE_BUY_MARGIN';
     case OperationType.OPERATION_TYPE_DIVIDEND:
-      return "OPERATION_TYPE_DIVIDEND";
+      return 'OPERATION_TYPE_DIVIDEND';
     case OperationType.OPERATION_TYPE_SELL:
-      return "OPERATION_TYPE_SELL";
+      return 'OPERATION_TYPE_SELL';
     case OperationType.OPERATION_TYPE_COUPON:
-      return "OPERATION_TYPE_COUPON";
+      return 'OPERATION_TYPE_COUPON';
     case OperationType.OPERATION_TYPE_SUCCESS_FEE:
-      return "OPERATION_TYPE_SUCCESS_FEE";
+      return 'OPERATION_TYPE_SUCCESS_FEE';
     case OperationType.OPERATION_TYPE_DIVIDEND_TRANSFER:
-      return "OPERATION_TYPE_DIVIDEND_TRANSFER";
+      return 'OPERATION_TYPE_DIVIDEND_TRANSFER';
     case OperationType.OPERATION_TYPE_ACCRUING_VARMARGIN:
-      return "OPERATION_TYPE_ACCRUING_VARMARGIN";
+      return 'OPERATION_TYPE_ACCRUING_VARMARGIN';
     case OperationType.OPERATION_TYPE_WRITING_OFF_VARMARGIN:
-      return "OPERATION_TYPE_WRITING_OFF_VARMARGIN";
+      return 'OPERATION_TYPE_WRITING_OFF_VARMARGIN';
     case OperationType.OPERATION_TYPE_DELIVERY_BUY:
-      return "OPERATION_TYPE_DELIVERY_BUY";
+      return 'OPERATION_TYPE_DELIVERY_BUY';
     case OperationType.OPERATION_TYPE_DELIVERY_SELL:
-      return "OPERATION_TYPE_DELIVERY_SELL";
+      return 'OPERATION_TYPE_DELIVERY_SELL';
     case OperationType.OPERATION_TYPE_TRACK_MFEE:
-      return "OPERATION_TYPE_TRACK_MFEE";
+      return 'OPERATION_TYPE_TRACK_MFEE';
     case OperationType.OPERATION_TYPE_TRACK_PFEE:
-      return "OPERATION_TYPE_TRACK_PFEE";
+      return 'OPERATION_TYPE_TRACK_PFEE';
     case OperationType.OPERATION_TYPE_TAX_PROGRESSIVE:
-      return "OPERATION_TYPE_TAX_PROGRESSIVE";
+      return 'OPERATION_TYPE_TAX_PROGRESSIVE';
     case OperationType.OPERATION_TYPE_BOND_TAX_PROGRESSIVE:
-      return "OPERATION_TYPE_BOND_TAX_PROGRESSIVE";
+      return 'OPERATION_TYPE_BOND_TAX_PROGRESSIVE';
     case OperationType.OPERATION_TYPE_DIVIDEND_TAX_PROGRESSIVE:
-      return "OPERATION_TYPE_DIVIDEND_TAX_PROGRESSIVE";
+      return 'OPERATION_TYPE_DIVIDEND_TAX_PROGRESSIVE';
     case OperationType.OPERATION_TYPE_BENEFIT_TAX_PROGRESSIVE:
-      return "OPERATION_TYPE_BENEFIT_TAX_PROGRESSIVE";
+      return 'OPERATION_TYPE_BENEFIT_TAX_PROGRESSIVE';
     case OperationType.OPERATION_TYPE_TAX_CORRECTION_PROGRESSIVE:
-      return "OPERATION_TYPE_TAX_CORRECTION_PROGRESSIVE";
+      return 'OPERATION_TYPE_TAX_CORRECTION_PROGRESSIVE';
     case OperationType.OPERATION_TYPE_TAX_REPO_PROGRESSIVE:
-      return "OPERATION_TYPE_TAX_REPO_PROGRESSIVE";
+      return 'OPERATION_TYPE_TAX_REPO_PROGRESSIVE';
     case OperationType.OPERATION_TYPE_TAX_REPO:
-      return "OPERATION_TYPE_TAX_REPO";
+      return 'OPERATION_TYPE_TAX_REPO';
     case OperationType.OPERATION_TYPE_TAX_REPO_HOLD:
-      return "OPERATION_TYPE_TAX_REPO_HOLD";
+      return 'OPERATION_TYPE_TAX_REPO_HOLD';
     case OperationType.OPERATION_TYPE_TAX_REPO_REFUND:
-      return "OPERATION_TYPE_TAX_REPO_REFUND";
+      return 'OPERATION_TYPE_TAX_REPO_REFUND';
     case OperationType.OPERATION_TYPE_TAX_REPO_HOLD_PROGRESSIVE:
-      return "OPERATION_TYPE_TAX_REPO_HOLD_PROGRESSIVE";
+      return 'OPERATION_TYPE_TAX_REPO_HOLD_PROGRESSIVE';
     case OperationType.OPERATION_TYPE_TAX_REPO_REFUND_PROGRESSIVE:
-      return "OPERATION_TYPE_TAX_REPO_REFUND_PROGRESSIVE";
+      return 'OPERATION_TYPE_TAX_REPO_REFUND_PROGRESSIVE';
     case OperationType.OPERATION_TYPE_DIV_EXT:
-      return "OPERATION_TYPE_DIV_EXT";
+      return 'OPERATION_TYPE_DIV_EXT';
     case OperationType.OPERATION_TYPE_TAX_CORRECTION_COUPON:
-      return "OPERATION_TYPE_TAX_CORRECTION_COUPON";
+      return 'OPERATION_TYPE_TAX_CORRECTION_COUPON';
     case OperationType.OPERATION_TYPE_CASH_FEE:
-      return "OPERATION_TYPE_CASH_FEE";
+      return 'OPERATION_TYPE_CASH_FEE';
     case OperationType.OPERATION_TYPE_OUT_FEE:
-      return "OPERATION_TYPE_OUT_FEE";
+      return 'OPERATION_TYPE_OUT_FEE';
     case OperationType.OPERATION_TYPE_OUT_STAMP_DUTY:
-      return "OPERATION_TYPE_OUT_STAMP_DUTY";
+      return 'OPERATION_TYPE_OUT_STAMP_DUTY';
     case OperationType.OPERATION_TYPE_OUTPUT_SWIFT:
-      return "OPERATION_TYPE_OUTPUT_SWIFT";
+      return 'OPERATION_TYPE_OUTPUT_SWIFT';
     case OperationType.OPERATION_TYPE_INPUT_SWIFT:
-      return "OPERATION_TYPE_INPUT_SWIFT";
+      return 'OPERATION_TYPE_INPUT_SWIFT';
     case OperationType.OPERATION_TYPE_OUTPUT_ACQUIRING:
-      return "OPERATION_TYPE_OUTPUT_ACQUIRING";
+      return 'OPERATION_TYPE_OUTPUT_ACQUIRING';
     case OperationType.OPERATION_TYPE_INPUT_ACQUIRING:
-      return "OPERATION_TYPE_INPUT_ACQUIRING";
+      return 'OPERATION_TYPE_INPUT_ACQUIRING';
     case OperationType.OPERATION_TYPE_OUTPUT_PENALTY:
-      return "OPERATION_TYPE_OUTPUT_PENALTY";
+      return 'OPERATION_TYPE_OUTPUT_PENALTY';
     case OperationType.OPERATION_TYPE_ADVICE_FEE:
-      return "OPERATION_TYPE_ADVICE_FEE";
+      return 'OPERATION_TYPE_ADVICE_FEE';
     case OperationType.OPERATION_TYPE_TRANS_IIS_BS:
-      return "OPERATION_TYPE_TRANS_IIS_BS";
+      return 'OPERATION_TYPE_TRANS_IIS_BS';
     case OperationType.OPERATION_TYPE_TRANS_BS_BS:
-      return "OPERATION_TYPE_TRANS_BS_BS";
+      return 'OPERATION_TYPE_TRANS_BS_BS';
     case OperationType.OPERATION_TYPE_OUT_MULTI:
-      return "OPERATION_TYPE_OUT_MULTI";
+      return 'OPERATION_TYPE_OUT_MULTI';
     case OperationType.OPERATION_TYPE_INP_MULTI:
-      return "OPERATION_TYPE_INP_MULTI";
+      return 'OPERATION_TYPE_INP_MULTI';
     case OperationType.OPERATION_TYPE_OVER_PLACEMENT:
-      return "OPERATION_TYPE_OVER_PLACEMENT";
+      return 'OPERATION_TYPE_OVER_PLACEMENT';
     case OperationType.OPERATION_TYPE_OVER_COM:
-      return "OPERATION_TYPE_OVER_COM";
+      return 'OPERATION_TYPE_OVER_COM';
     case OperationType.OPERATION_TYPE_OVER_INCOME:
-      return "OPERATION_TYPE_OVER_INCOME";
+      return 'OPERATION_TYPE_OVER_INCOME';
     case OperationType.OPERATION_TYPE_OPTION_EXPIRATION:
-      return "OPERATION_TYPE_OPTION_EXPIRATION";
-    case OperationType.UNRECOGNIZED:
+      return 'OPERATION_TYPE_OPTION_EXPIRATION';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -528,19 +526,19 @@ export enum PortfolioSubscriptionStatus {
 export function portfolioSubscriptionStatusFromJSON(object: any): PortfolioSubscriptionStatus {
   switch (object) {
     case 0:
-    case "PORTFOLIO_SUBSCRIPTION_STATUS_UNSPECIFIED":
+    case 'PORTFOLIO_SUBSCRIPTION_STATUS_UNSPECIFIED':
       return PortfolioSubscriptionStatus.PORTFOLIO_SUBSCRIPTION_STATUS_UNSPECIFIED;
     case 1:
-    case "PORTFOLIO_SUBSCRIPTION_STATUS_SUCCESS":
+    case 'PORTFOLIO_SUBSCRIPTION_STATUS_SUCCESS':
       return PortfolioSubscriptionStatus.PORTFOLIO_SUBSCRIPTION_STATUS_SUCCESS;
     case 2:
-    case "PORTFOLIO_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND":
+    case 'PORTFOLIO_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND':
       return PortfolioSubscriptionStatus.PORTFOLIO_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND;
     case 3:
-    case "PORTFOLIO_SUBSCRIPTION_STATUS_INTERNAL_ERROR":
+    case 'PORTFOLIO_SUBSCRIPTION_STATUS_INTERNAL_ERROR':
       return PortfolioSubscriptionStatus.PORTFOLIO_SUBSCRIPTION_STATUS_INTERNAL_ERROR;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return PortfolioSubscriptionStatus.UNRECOGNIZED;
   }
@@ -549,16 +547,15 @@ export function portfolioSubscriptionStatusFromJSON(object: any): PortfolioSubsc
 export function portfolioSubscriptionStatusToJSON(object: PortfolioSubscriptionStatus): string {
   switch (object) {
     case PortfolioSubscriptionStatus.PORTFOLIO_SUBSCRIPTION_STATUS_UNSPECIFIED:
-      return "PORTFOLIO_SUBSCRIPTION_STATUS_UNSPECIFIED";
+      return 'PORTFOLIO_SUBSCRIPTION_STATUS_UNSPECIFIED';
     case PortfolioSubscriptionStatus.PORTFOLIO_SUBSCRIPTION_STATUS_SUCCESS:
-      return "PORTFOLIO_SUBSCRIPTION_STATUS_SUCCESS";
+      return 'PORTFOLIO_SUBSCRIPTION_STATUS_SUCCESS';
     case PortfolioSubscriptionStatus.PORTFOLIO_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND:
-      return "PORTFOLIO_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND";
+      return 'PORTFOLIO_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND';
     case PortfolioSubscriptionStatus.PORTFOLIO_SUBSCRIPTION_STATUS_INTERNAL_ERROR:
-      return "PORTFOLIO_SUBSCRIPTION_STATUS_INTERNAL_ERROR";
-    case PortfolioSubscriptionStatus.UNRECOGNIZED:
+      return 'PORTFOLIO_SUBSCRIPTION_STATUS_INTERNAL_ERROR';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -578,19 +575,19 @@ export enum PositionsAccountSubscriptionStatus {
 export function positionsAccountSubscriptionStatusFromJSON(object: any): PositionsAccountSubscriptionStatus {
   switch (object) {
     case 0:
-    case "POSITIONS_SUBSCRIPTION_STATUS_UNSPECIFIED":
+    case 'POSITIONS_SUBSCRIPTION_STATUS_UNSPECIFIED':
       return PositionsAccountSubscriptionStatus.POSITIONS_SUBSCRIPTION_STATUS_UNSPECIFIED;
     case 1:
-    case "POSITIONS_SUBSCRIPTION_STATUS_SUCCESS":
+    case 'POSITIONS_SUBSCRIPTION_STATUS_SUCCESS':
       return PositionsAccountSubscriptionStatus.POSITIONS_SUBSCRIPTION_STATUS_SUCCESS;
     case 2:
-    case "POSITIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND":
+    case 'POSITIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND':
       return PositionsAccountSubscriptionStatus.POSITIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND;
     case 3:
-    case "POSITIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR":
+    case 'POSITIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR':
       return PositionsAccountSubscriptionStatus.POSITIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return PositionsAccountSubscriptionStatus.UNRECOGNIZED;
   }
@@ -599,16 +596,15 @@ export function positionsAccountSubscriptionStatusFromJSON(object: any): Positio
 export function positionsAccountSubscriptionStatusToJSON(object: PositionsAccountSubscriptionStatus): string {
   switch (object) {
     case PositionsAccountSubscriptionStatus.POSITIONS_SUBSCRIPTION_STATUS_UNSPECIFIED:
-      return "POSITIONS_SUBSCRIPTION_STATUS_UNSPECIFIED";
+      return 'POSITIONS_SUBSCRIPTION_STATUS_UNSPECIFIED';
     case PositionsAccountSubscriptionStatus.POSITIONS_SUBSCRIPTION_STATUS_SUCCESS:
-      return "POSITIONS_SUBSCRIPTION_STATUS_SUCCESS";
+      return 'POSITIONS_SUBSCRIPTION_STATUS_SUCCESS';
     case PositionsAccountSubscriptionStatus.POSITIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND:
-      return "POSITIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND";
+      return 'POSITIONS_SUBSCRIPTION_STATUS_ACCOUNT_NOT_FOUND';
     case PositionsAccountSubscriptionStatus.POSITIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR:
-      return "POSITIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR";
-    case PositionsAccountSubscriptionStatus.UNRECOGNIZED:
+      return 'POSITIONS_SUBSCRIPTION_STATUS_INTERNAL_ERROR';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -617,13 +613,9 @@ export interface OperationsRequest {
   /** Идентификатор счёта клиента. */
   accountId: string;
   /** Начало периода (по UTC). */
-  from:
-    | Date
-    | undefined;
+  from: Date | undefined;
   /** Окончание периода (по UTC). */
-  to:
-    | Date
-    | undefined;
+  to: Date | undefined;
   /** Статус запрашиваемых операций. */
   state: OperationState;
   /** Figi-идентификатор инструмента для фильтрации. */
@@ -645,13 +637,9 @@ export interface Operation {
   /** Валюта операции. */
   currency: string;
   /** Сумма операции. */
-  payment:
-    | MoneyValue
-    | undefined;
+  payment: MoneyValue | undefined;
   /** Цена операции за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
-  price:
-    | MoneyValue
-    | undefined;
+  price: MoneyValue | undefined;
   /** Статус операции. */
   state: OperationState;
   /** Количество единиц инструмента. */
@@ -663,9 +651,7 @@ export interface Operation {
   /** Тип инструмента. Возможные значения: </br>**bond** — облигация; </br>**share** — акция; </br>**currency** — валюта; </br>**etf** — фонд; </br>**futures** — фьючерс. */
   instrumentType: string;
   /** Дата и время операции в формате часовом поясе UTC. */
-  date:
-    | Date
-    | undefined;
+  date: Date | undefined;
   /** Текстовое описание типа операции. */
   type: string;
   /** Тип операции. */
@@ -685,9 +671,7 @@ export interface OperationTrade {
   /** Идентификатор сделки. */
   tradeId: string;
   /** Дата и время сделки в часовом поясе UTC. */
-  dateTime:
-    | Date
-    | undefined;
+  dateTime: Date | undefined;
   /** Количество инструментов. */
   quantity: number;
   /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
@@ -715,16 +699,16 @@ export enum PortfolioRequest_CurrencyRequest {
 export function portfolioRequest_CurrencyRequestFromJSON(object: any): PortfolioRequest_CurrencyRequest {
   switch (object) {
     case 0:
-    case "RUB":
+    case 'RUB':
       return PortfolioRequest_CurrencyRequest.RUB;
     case 1:
-    case "USD":
+    case 'USD':
       return PortfolioRequest_CurrencyRequest.USD;
     case 2:
-    case "EUR":
+    case 'EUR':
       return PortfolioRequest_CurrencyRequest.EUR;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return PortfolioRequest_CurrencyRequest.UNRECOGNIZED;
   }
@@ -733,59 +717,40 @@ export function portfolioRequest_CurrencyRequestFromJSON(object: any): Portfolio
 export function portfolioRequest_CurrencyRequestToJSON(object: PortfolioRequest_CurrencyRequest): string {
   switch (object) {
     case PortfolioRequest_CurrencyRequest.RUB:
-      return "RUB";
+      return 'RUB';
     case PortfolioRequest_CurrencyRequest.USD:
-      return "USD";
+      return 'USD';
     case PortfolioRequest_CurrencyRequest.EUR:
-      return "EUR";
-    case PortfolioRequest_CurrencyRequest.UNRECOGNIZED:
+      return 'EUR';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
 /** Текущий портфель по счёту. */
 export interface PortfolioResponse {
   /** Общая стоимость акций в портфеле. */
-  totalAmountShares:
-    | MoneyValue
-    | undefined;
+  totalAmountShares: MoneyValue | undefined;
   /** Общая стоимость облигаций в портфеле. */
-  totalAmountBonds:
-    | MoneyValue
-    | undefined;
+  totalAmountBonds: MoneyValue | undefined;
   /** Общая стоимость фондов в портфеле. */
-  totalAmountEtf:
-    | MoneyValue
-    | undefined;
+  totalAmountEtf: MoneyValue | undefined;
   /** Общая стоимость валют в портфеле. */
-  totalAmountCurrencies:
-    | MoneyValue
-    | undefined;
+  totalAmountCurrencies: MoneyValue | undefined;
   /** Общая стоимость фьючерсов в портфеле. */
-  totalAmountFutures:
-    | MoneyValue
-    | undefined;
+  totalAmountFutures: MoneyValue | undefined;
   /** Текущая относительная доходность портфеля, в %. */
-  expectedYield:
-    | Quotation
-    | undefined;
+  expectedYield: Quotation | undefined;
   /** Список позиций портфеля. */
   positions: PortfolioPosition[];
   /** Идентификатор счёта пользователя. */
   accountId: string;
   /** Общая стоимость опционов в портфеле. */
-  totalAmountOptions:
-    | MoneyValue
-    | undefined;
+  totalAmountOptions: MoneyValue | undefined;
   /** Общая стоимость структурных нот в портфеле. */
-  totalAmountSp:
-    | MoneyValue
-    | undefined;
+  totalAmountSp: MoneyValue | undefined;
   /** Общая стоимость портфеля. */
-  totalAmountPortfolio:
-    | MoneyValue
-    | undefined;
+  totalAmountPortfolio: MoneyValue | undefined;
   /** Массив виртуальных позиций портфеля. */
   virtualPositions: VirtualPortfolioPosition[];
 }
@@ -835,51 +800,31 @@ export interface PortfolioPosition {
   /** Тип инструмента. */
   instrumentType: string;
   /** Количество инструмента в портфеле в штуках. */
-  quantity:
-    | Quotation
-    | undefined;
+  quantity: Quotation | undefined;
   /** Средневзвешенная цена позиции. **Возможна задержка до секунды для пересчёта**. */
-  averagePositionPrice:
-    | MoneyValue
-    | undefined;
+  averagePositionPrice: MoneyValue | undefined;
   /** Текущая рассчитанная доходность позиции. */
-  expectedYield:
-    | Quotation
-    | undefined;
+  expectedYield: Quotation | undefined;
   /** Текущий НКД. */
-  currentNkd:
-    | MoneyValue
-    | undefined;
+  currentNkd: MoneyValue | undefined;
   /** Deprecated Средняя цена позиции в пунктах (для фьючерсов). **Возможна задержка до секунды для пересчёта**. */
-  averagePositionPricePt:
-    | Quotation
-    | undefined;
+  averagePositionPricePt: Quotation | undefined;
   /** Текущая цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
-  currentPrice:
-    | MoneyValue
-    | undefined;
+  currentPrice: MoneyValue | undefined;
   /** Средняя цена позиции по методу FIFO. **Возможна задержка до секунды для пересчёта**. */
-  averagePositionPriceFifo:
-    | MoneyValue
-    | undefined;
+  averagePositionPriceFifo: MoneyValue | undefined;
   /** Deprecated Количество лотов в портфеле. */
-  quantityLots:
-    | Quotation
-    | undefined;
+  quantityLots: Quotation | undefined;
   /** Заблокировано на бирже. */
   blocked: boolean;
   /** Количество бумаг, заблокированных выставленными заявками. */
-  blockedLots:
-    | Quotation
-    | undefined;
+  blockedLots: Quotation | undefined;
   /** position_uid-идентификатора инструмента */
   positionUid: string;
   /** instrument_uid-идентификатора инструмента */
   instrumentUid: string;
   /** Вариационная маржа */
-  varMargin:
-    | MoneyValue
-    | undefined;
+  varMargin: MoneyValue | undefined;
   /** Текущая рассчитанная доходность позиции. */
   expectedYieldFifo: Quotation | undefined;
 }
@@ -894,29 +839,17 @@ export interface VirtualPortfolioPosition {
   /** Тип инструмента. */
   instrumentType: string;
   /** Количество инструмента в портфеле в штуках. */
-  quantity:
-    | Quotation
-    | undefined;
+  quantity: Quotation | undefined;
   /** Средневзвешенная цена позиции. **Возможна задержка до секунды для пересчёта**. */
-  averagePositionPrice:
-    | MoneyValue
-    | undefined;
+  averagePositionPrice: MoneyValue | undefined;
   /** Текущая рассчитанная доходность позиции. */
-  expectedYield:
-    | Quotation
-    | undefined;
+  expectedYield: Quotation | undefined;
   /** Текущая рассчитанная доходность позиции. */
-  expectedYieldFifo:
-    | Quotation
-    | undefined;
+  expectedYieldFifo: Quotation | undefined;
   /** Дата до которой нужно продать виртуальные бумаги, после этой даты виртуальная позиция "сгорит" */
-  expireDate:
-    | Date
-    | undefined;
+  expireDate: Date | undefined;
   /** Текущая цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
-  currentPrice:
-    | MoneyValue
-    | undefined;
+  currentPrice: MoneyValue | undefined;
   /** Средняя цена позиции по методу FIFO. **Возможна задержка до секунды для пересчёта**. */
   averagePositionPriceFifo: MoneyValue | undefined;
 }
@@ -966,22 +899,20 @@ export interface PositionsOptions {
 }
 
 export interface BrokerReportRequest {
-  generateBrokerReportRequest?: GenerateBrokerReportRequest | undefined;
-  getBrokerReportRequest?: GetBrokerReportRequest | undefined;
+  generateBrokerReportRequest: GenerateBrokerReportRequest | undefined;
+  getBrokerReportRequest: GetBrokerReportRequest | undefined;
 }
 
 export interface BrokerReportResponse {
-  generateBrokerReportResponse?: GenerateBrokerReportResponse | undefined;
-  getBrokerReportResponse?: GetBrokerReportResponse | undefined;
+  generateBrokerReportResponse: GenerateBrokerReportResponse | undefined;
+  getBrokerReportResponse: GetBrokerReportResponse | undefined;
 }
 
 export interface GenerateBrokerReportRequest {
   /** Идентификатор счёта клиента. */
   accountId: string;
   /** Начало периода в часовом поясе UTC. */
-  from:
-    | Date
-    | undefined;
+  from: Date | undefined;
   /** Окончание периода в часовом поясе UTC. */
   to: Date | undefined;
 }
@@ -1018,9 +949,7 @@ export interface BrokerReport {
   /** Признак исполнения. */
   executeSign: string;
   /** Дата и время заключения в часовом поясе UTC. */
-  tradeDatetime:
-    | Date
-    | undefined;
+  tradeDatetime: Date | undefined;
   /** Торговая площадка. */
   exchange: string;
   /** Режим торгов. */
@@ -1032,49 +961,29 @@ export interface BrokerReport {
   /** Код актива. */
   ticker: string;
   /** Цена за единицу. */
-  price:
-    | MoneyValue
-    | undefined;
+  price: MoneyValue | undefined;
   /** Количество. */
   quantity: number;
   /** Сумма (без НКД). */
-  orderAmount:
-    | MoneyValue
-    | undefined;
+  orderAmount: MoneyValue | undefined;
   /** НКД. */
-  aciValue:
-    | Quotation
-    | undefined;
+  aciValue: Quotation | undefined;
   /** Сумма сделки. */
-  totalOrderAmount:
-    | MoneyValue
-    | undefined;
+  totalOrderAmount: MoneyValue | undefined;
   /** Комиссия брокера. */
-  brokerCommission:
-    | MoneyValue
-    | undefined;
+  brokerCommission: MoneyValue | undefined;
   /** Комиссия биржи. */
-  exchangeCommission:
-    | MoneyValue
-    | undefined;
+  exchangeCommission: MoneyValue | undefined;
   /** Комиссия клир. центра. */
-  exchangeClearingCommission:
-    | MoneyValue
-    | undefined;
+  exchangeClearingCommission: MoneyValue | undefined;
   /** Ставка РЕПО (%). */
-  repoRate:
-    | Quotation
-    | undefined;
+  repoRate: Quotation | undefined;
   /** Контрагент/Брокер. */
   party: string;
   /** Дата расчётов в часовом поясе UTC. */
-  clearValueDate:
-    | Date
-    | undefined;
+  clearValueDate: Date | undefined;
   /** Дата поставки в часовом поясе UTC. */
-  secValueDate:
-    | Date
-    | undefined;
+  secValueDate: Date | undefined;
   /** Статус брокера. */
   brokerStatus: string;
   /** Тип дог. */
@@ -1089,20 +998,16 @@ export interface BrokerReport {
 
 export interface GetDividendsForeignIssuerRequest {
   /** Объект запроса формирования отчёта. */
-  generateDivForeignIssuerReport?:
-    | GenerateDividendsForeignIssuerReportRequest
-    | undefined;
+  generateDivForeignIssuerReport: GenerateDividendsForeignIssuerReportRequest | undefined;
   /** Объект запроса сформированного отчёта. */
-  getDivForeignIssuerReport?: GetDividendsForeignIssuerReportRequest | undefined;
+  getDivForeignIssuerReport: GetDividendsForeignIssuerReportRequest | undefined;
 }
 
 export interface GetDividendsForeignIssuerResponse {
   /** Объект результата задачи запуска формирования отчёта. */
-  generateDivForeignIssuerReportResponse?:
-    | GenerateDividendsForeignIssuerReportResponse
-    | undefined;
+  generateDivForeignIssuerReportResponse: GenerateDividendsForeignIssuerReportResponse | undefined;
   /** Отчёт "Справка о доходах за пределами РФ". */
-  divForeignIssuerReport?: GetDividendsForeignIssuerReportResponse | undefined;
+  divForeignIssuerReport: GetDividendsForeignIssuerReportResponse | undefined;
 }
 
 /** Объект запроса формирования отчёта "Справка о доходах за пределами РФ". */
@@ -1110,9 +1015,7 @@ export interface GenerateDividendsForeignIssuerReportRequest {
   /** Идентификатор счёта клиента. */
   accountId: string;
   /** Начало периода (по UTC). */
-  from:
-    | Date
-    | undefined;
+  from: Date | undefined;
   /** Окончание периода (по UTC). */
   to: Date | undefined;
 }
@@ -1144,13 +1047,9 @@ export interface GetDividendsForeignIssuerReportResponse {
 /** Отчёт "Справка о доходах за пределами РФ". */
 export interface DividendsForeignIssuerReport {
   /** Дата фиксации реестра. */
-  recordDate:
-    | Date
-    | undefined;
+  recordDate: Date | undefined;
   /** Дата выплаты. */
-  paymentDate:
-    | Date
-    | undefined;
+  paymentDate: Date | undefined;
   /** Наименование ценной бумаги. */
   securityName: string;
   /** ISIN-идентификатор ценной бумаги. */
@@ -1160,25 +1059,15 @@ export interface DividendsForeignIssuerReport {
   /** Количество ценных бумаг. */
   quantity: number;
   /** Выплаты на одну бумагу */
-  dividend:
-    | Quotation
-    | undefined;
+  dividend: Quotation | undefined;
   /** Комиссия внешних платёжных агентов. */
-  externalCommission:
-    | Quotation
-    | undefined;
+  externalCommission: Quotation | undefined;
   /** Сумма до удержания налога. */
-  dividendGross:
-    | Quotation
-    | undefined;
+  dividendGross: Quotation | undefined;
   /** Сумма налога, удержанного агентом. */
-  tax:
-    | Quotation
-    | undefined;
+  tax: Quotation | undefined;
   /** Итоговая сумма выплаты. */
-  dividendAmount:
-    | Quotation
-    | undefined;
+  dividendAmount: Quotation | undefined;
   /** Валюта. */
   currency: string;
 }
@@ -1192,15 +1081,11 @@ export interface PortfolioStreamRequest {
 /** Информация по позициям и доходностям портфелей. */
 export interface PortfolioStreamResponse {
   /** Объект результата подписки. */
-  subscriptions?:
-    | PortfolioSubscriptionResult
-    | undefined;
+  subscriptions: PortfolioSubscriptionResult | undefined;
   /** Объект стриминга портфеля. */
-  portfolio?:
-    | PortfolioResponse
-    | undefined;
+  portfolio: PortfolioResponse | undefined;
   /** Проверка активности стрима. */
-  ping?: Ping | undefined;
+  ping: Ping | undefined;
 }
 
 /** Объект результата подписки. */
@@ -1224,13 +1109,9 @@ export interface GetOperationsByCursorRequest {
   /** Идентификатор инструмента (Figi инструмента или uid инструмента) */
   instrumentId: string;
   /** Начало периода (по UTC). */
-  from:
-    | Date
-    | undefined;
+  from: Date | undefined;
   /** Окончание периода (по UTC). */
-  to:
-    | Date
-    | undefined;
+  to: Date | undefined;
   /** Идентификатор элемента, с которого начать формировать ответ. */
   cursor: string;
   /** Лимит количества операций. По умолчанию устанавливается значение **100**, максимальное значение 1000. */
@@ -1270,9 +1151,7 @@ export interface OperationItem {
   /** Название операции. */
   name: string;
   /** Дата поручения. */
-  date:
-    | Date
-    | undefined;
+  date: Date | undefined;
   /** Тип операции. */
   type: OperationType;
   /** Описание операции. */
@@ -1290,29 +1169,17 @@ export interface OperationItem {
   /** position_uid-идентификатора инструмента. */
   positionUid: string;
   /** Сумма операции. */
-  payment:
-    | MoneyValue
-    | undefined;
+  payment: MoneyValue | undefined;
   /** Цена операции за 1 инструмент. */
-  price:
-    | MoneyValue
-    | undefined;
+  price: MoneyValue | undefined;
   /** Комиссия. */
-  commission:
-    | MoneyValue
-    | undefined;
+  commission: MoneyValue | undefined;
   /** Доходность. */
-  yield:
-    | MoneyValue
-    | undefined;
+  yield: MoneyValue | undefined;
   /** Относительная доходность. */
-  yieldRelative:
-    | Quotation
-    | undefined;
+  yieldRelative: Quotation | undefined;
   /** Накопленный купонный доход. */
-  accruedInt:
-    | MoneyValue
-    | undefined;
+  accruedInt: MoneyValue | undefined;
   /** Количество единиц инструмента. */
   quantity: number;
   /** Неисполненный остаток по сделке. */
@@ -1320,15 +1187,11 @@ export interface OperationItem {
   /** Исполненный остаток. */
   quantityDone: number;
   /** Дата и время снятия заявки. */
-  cancelDateTime:
-    | Date
-    | undefined;
+  cancelDateTime: Date | undefined;
   /** Причина отмены операции. */
   cancelReason: string;
   /** Массив сделок. */
-  tradesInfo:
-    | OperationItemTrades
-    | undefined;
+  tradesInfo: OperationItemTrades | undefined;
   /** Идентификатор актива */
   assetUid: string;
 }
@@ -1343,19 +1206,13 @@ export interface OperationItemTrade {
   /** Номер сделки */
   num: string;
   /** Дата сделки */
-  date:
-    | Date
-    | undefined;
+  date: Date | undefined;
   /** Количество в единицах. */
   quantity: number;
   /** Цена. */
-  price:
-    | MoneyValue
-    | undefined;
+  price: MoneyValue | undefined;
   /** Доходность. */
-  yield:
-    | MoneyValue
-    | undefined;
+  yield: MoneyValue | undefined;
   /** Относительная доходность. */
   yieldRelative: Quotation | undefined;
 }
@@ -1369,15 +1226,11 @@ export interface PositionsStreamRequest {
 /** Информация по изменению позиций портфеля. */
 export interface PositionsStreamResponse {
   /** Объект результата подписки. */
-  subscriptions?:
-    | PositionsSubscriptionResult
-    | undefined;
+  subscriptions: PositionsSubscriptionResult | undefined;
   /** Объект стриминга позиций. */
-  position?:
-    | PositionData
-    | undefined;
+  position: PositionData | undefined;
   /** Проверка активности стрима. */
-  ping?: Ping | undefined;
+  ping: Ping | undefined;
 }
 
 /** Объект результата подписки. */
@@ -1413,20 +1266,18 @@ export interface PositionData {
 /** Валютная позиция портфеля. */
 export interface PositionsMoney {
   /** Доступное количество валютный позиций. */
-  availableValue:
-    | MoneyValue
-    | undefined;
+  availableValue: MoneyValue | undefined;
   /** Заблокированное количество валютный позиций. */
   blockedValue: MoneyValue | undefined;
 }
 
 function createBaseOperationsRequest(): OperationsRequest {
-  return { accountId: "", from: undefined, to: undefined, state: 0, figi: "" };
+  return { accountId: '', from: undefined, to: undefined, state: 0, figi: '' };
 }
 
 export const OperationsRequest = {
   encode(message: OperationsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
     if (message.from !== undefined) {
@@ -1438,7 +1289,7 @@ export const OperationsRequest = {
     if (message.state !== 0) {
       writer.uint32(32).int32(message.state);
     }
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(42).string(message.figi);
     }
     return writer;
@@ -1476,11 +1327,11 @@ export const OperationsRequest = {
 
   fromJSON(object: any): OperationsRequest {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
       state: isSet(object.state) ? operationStateFromJSON(object.state) : 0,
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
     };
   },
 
@@ -1494,17 +1345,13 @@ export const OperationsRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<OperationsRequest>): OperationsRequest {
-    return OperationsRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<OperationsRequest>): OperationsRequest {
     const message = createBaseOperationsRequest();
-    message.accountId = object.accountId ?? "";
+    message.accountId = object.accountId ?? '';
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
     message.state = object.state ?? 0;
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     return message;
   },
 };
@@ -1548,55 +1395,51 @@ export const OperationsResponse = {
   toJSON(message: OperationsResponse): unknown {
     const obj: any = {};
     if (message.operations) {
-      obj.operations = message.operations.map((e) => e ? Operation.toJSON(e) : undefined);
+      obj.operations = message.operations.map(e => (e ? Operation.toJSON(e) : undefined));
     } else {
       obj.operations = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<OperationsResponse>): OperationsResponse {
-    return OperationsResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<OperationsResponse>): OperationsResponse {
     const message = createBaseOperationsResponse();
-    message.operations = object.operations?.map((e) => Operation.fromPartial(e)) || [];
+    message.operations = object.operations?.map(e => Operation.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseOperation(): Operation {
   return {
-    id: "",
-    parentOperationId: "",
-    currency: "",
+    id: '',
+    parentOperationId: '',
+    currency: '',
     payment: undefined,
     price: undefined,
     state: 0,
     quantity: 0,
     quantityRest: 0,
-    figi: "",
-    instrumentType: "",
+    figi: '',
+    instrumentType: '',
     date: undefined,
-    type: "",
+    type: '',
     operationType: 0,
     trades: [],
-    assetUid: "",
-    positionUid: "",
-    instrumentUid: "",
+    assetUid: '',
+    positionUid: '',
+    instrumentUid: '',
   };
 }
 
 export const Operation = {
   encode(message: Operation, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
+    if (message.id !== '') {
       writer.uint32(10).string(message.id);
     }
-    if (message.parentOperationId !== "") {
+    if (message.parentOperationId !== '') {
       writer.uint32(18).string(message.parentOperationId);
     }
-    if (message.currency !== "") {
+    if (message.currency !== '') {
       writer.uint32(26).string(message.currency);
     }
     if (message.payment !== undefined) {
@@ -1614,16 +1457,16 @@ export const Operation = {
     if (message.quantityRest !== 0) {
       writer.uint32(64).int64(message.quantityRest);
     }
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(74).string(message.figi);
     }
-    if (message.instrumentType !== "") {
+    if (message.instrumentType !== '') {
       writer.uint32(82).string(message.instrumentType);
     }
     if (message.date !== undefined) {
       Timestamp.encode(toTimestamp(message.date), writer.uint32(90).fork()).ldelim();
     }
-    if (message.type !== "") {
+    if (message.type !== '') {
       writer.uint32(98).string(message.type);
     }
     if (message.operationType !== 0) {
@@ -1632,13 +1475,13 @@ export const Operation = {
     for (const v of message.trades) {
       OperationTrade.encode(v!, writer.uint32(114).fork()).ldelim();
     }
-    if (message.assetUid !== "") {
+    if (message.assetUid !== '') {
       writer.uint32(130).string(message.assetUid);
     }
-    if (message.positionUid !== "") {
+    if (message.positionUid !== '') {
       writer.uint32(138).string(message.positionUid);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(146).string(message.instrumentUid);
     }
     return writer;
@@ -1712,23 +1555,23 @@ export const Operation = {
 
   fromJSON(object: any): Operation {
     return {
-      id: isSet(object.id) ? String(object.id) : "",
-      parentOperationId: isSet(object.parentOperationId) ? String(object.parentOperationId) : "",
-      currency: isSet(object.currency) ? String(object.currency) : "",
+      id: isSet(object.id) ? String(object.id) : '',
+      parentOperationId: isSet(object.parentOperationId) ? String(object.parentOperationId) : '',
+      currency: isSet(object.currency) ? String(object.currency) : '',
       payment: isSet(object.payment) ? MoneyValue.fromJSON(object.payment) : undefined,
       price: isSet(object.price) ? MoneyValue.fromJSON(object.price) : undefined,
       state: isSet(object.state) ? operationStateFromJSON(object.state) : 0,
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
       quantityRest: isSet(object.quantityRest) ? Number(object.quantityRest) : 0,
-      figi: isSet(object.figi) ? String(object.figi) : "",
-      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : '',
       date: isSet(object.date) ? fromJsonTimestamp(object.date) : undefined,
-      type: isSet(object.type) ? String(object.type) : "",
+      type: isSet(object.type) ? String(object.type) : '',
       operationType: isSet(object.operationType) ? operationTypeFromJSON(object.operationType) : 0,
       trades: Array.isArray(object?.trades) ? object.trades.map((e: any) => OperationTrade.fromJSON(e)) : [],
-      assetUid: isSet(object.assetUid) ? String(object.assetUid) : "",
-      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      assetUid: isSet(object.assetUid) ? String(object.assetUid) : '',
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : '',
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -1748,7 +1591,7 @@ export const Operation = {
     message.type !== undefined && (obj.type = message.type);
     message.operationType !== undefined && (obj.operationType = operationTypeToJSON(message.operationType));
     if (message.trades) {
-      obj.trades = message.trades.map((e) => e ? OperationTrade.toJSON(e) : undefined);
+      obj.trades = message.trades.map(e => (e ? OperationTrade.toJSON(e) : undefined));
     } else {
       obj.trades = [];
     }
@@ -1758,44 +1601,38 @@ export const Operation = {
     return obj;
   },
 
-  create(base?: DeepPartial<Operation>): Operation {
-    return Operation.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<Operation>): Operation {
     const message = createBaseOperation();
-    message.id = object.id ?? "";
-    message.parentOperationId = object.parentOperationId ?? "";
-    message.currency = object.currency ?? "";
-    message.payment = (object.payment !== undefined && object.payment !== null)
-      ? MoneyValue.fromPartial(object.payment)
-      : undefined;
-    message.price = (object.price !== undefined && object.price !== null)
-      ? MoneyValue.fromPartial(object.price)
-      : undefined;
+    message.id = object.id ?? '';
+    message.parentOperationId = object.parentOperationId ?? '';
+    message.currency = object.currency ?? '';
+    message.payment =
+      object.payment !== undefined && object.payment !== null ? MoneyValue.fromPartial(object.payment) : undefined;
+    message.price =
+      object.price !== undefined && object.price !== null ? MoneyValue.fromPartial(object.price) : undefined;
     message.state = object.state ?? 0;
     message.quantity = object.quantity ?? 0;
     message.quantityRest = object.quantityRest ?? 0;
-    message.figi = object.figi ?? "";
-    message.instrumentType = object.instrumentType ?? "";
+    message.figi = object.figi ?? '';
+    message.instrumentType = object.instrumentType ?? '';
     message.date = object.date ?? undefined;
-    message.type = object.type ?? "";
+    message.type = object.type ?? '';
     message.operationType = object.operationType ?? 0;
-    message.trades = object.trades?.map((e) => OperationTrade.fromPartial(e)) || [];
-    message.assetUid = object.assetUid ?? "";
-    message.positionUid = object.positionUid ?? "";
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.trades = object.trades?.map(e => OperationTrade.fromPartial(e)) || [];
+    message.assetUid = object.assetUid ?? '';
+    message.positionUid = object.positionUid ?? '';
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
 
 function createBaseOperationTrade(): OperationTrade {
-  return { tradeId: "", dateTime: undefined, quantity: 0, price: undefined };
+  return { tradeId: '', dateTime: undefined, quantity: 0, price: undefined };
 }
 
 export const OperationTrade = {
   encode(message: OperationTrade, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.tradeId !== "") {
+    if (message.tradeId !== '') {
       writer.uint32(10).string(message.tradeId);
     }
     if (message.dateTime !== undefined) {
@@ -1839,7 +1676,7 @@ export const OperationTrade = {
 
   fromJSON(object: any): OperationTrade {
     return {
-      tradeId: isSet(object.tradeId) ? String(object.tradeId) : "",
+      tradeId: isSet(object.tradeId) ? String(object.tradeId) : '',
       dateTime: isSet(object.dateTime) ? fromJsonTimestamp(object.dateTime) : undefined,
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
       price: isSet(object.price) ? MoneyValue.fromJSON(object.price) : undefined,
@@ -1855,29 +1692,24 @@ export const OperationTrade = {
     return obj;
   },
 
-  create(base?: DeepPartial<OperationTrade>): OperationTrade {
-    return OperationTrade.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<OperationTrade>): OperationTrade {
     const message = createBaseOperationTrade();
-    message.tradeId = object.tradeId ?? "";
+    message.tradeId = object.tradeId ?? '';
     message.dateTime = object.dateTime ?? undefined;
     message.quantity = object.quantity ?? 0;
-    message.price = (object.price !== undefined && object.price !== null)
-      ? MoneyValue.fromPartial(object.price)
-      : undefined;
+    message.price =
+      object.price !== undefined && object.price !== null ? MoneyValue.fromPartial(object.price) : undefined;
     return message;
   },
 };
 
 function createBasePortfolioRequest(): PortfolioRequest {
-  return { accountId: "", currency: 0 };
+  return { accountId: '', currency: 0 };
 }
 
 export const PortfolioRequest = {
   encode(message: PortfolioRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
     if (message.currency !== 0) {
@@ -1909,7 +1741,7 @@ export const PortfolioRequest = {
 
   fromJSON(object: any): PortfolioRequest {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
       currency: isSet(object.currency) ? portfolioRequest_CurrencyRequestFromJSON(object.currency) : 0,
     };
   },
@@ -1921,13 +1753,9 @@ export const PortfolioRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<PortfolioRequest>): PortfolioRequest {
-    return PortfolioRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PortfolioRequest>): PortfolioRequest {
     const message = createBasePortfolioRequest();
-    message.accountId = object.accountId ?? "";
+    message.accountId = object.accountId ?? '';
     message.currency = object.currency ?? 0;
     return message;
   },
@@ -1942,7 +1770,7 @@ function createBasePortfolioResponse(): PortfolioResponse {
     totalAmountFutures: undefined,
     expectedYield: undefined,
     positions: [],
-    accountId: "",
+    accountId: '',
     totalAmountOptions: undefined,
     totalAmountSp: undefined,
     totalAmountPortfolio: undefined,
@@ -1973,7 +1801,7 @@ export const PortfolioResponse = {
     for (const v of message.positions) {
       PortfolioPosition.encode(v!, writer.uint32(58).fork()).ldelim();
     }
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(66).string(message.accountId);
     }
     if (message.totalAmountOptions !== undefined) {
@@ -2055,7 +1883,7 @@ export const PortfolioResponse = {
       positions: Array.isArray(object?.positions)
         ? object.positions.map((e: any) => PortfolioPosition.fromJSON(e))
         : [],
-      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
       totalAmountOptions: isSet(object.totalAmountOptions) ? MoneyValue.fromJSON(object.totalAmountOptions) : undefined,
       totalAmountSp: isSet(object.totalAmountSp) ? MoneyValue.fromJSON(object.totalAmountSp) : undefined,
       totalAmountPortfolio: isSet(object.totalAmountPortfolio)
@@ -2075,15 +1903,16 @@ export const PortfolioResponse = {
       (obj.totalAmountBonds = message.totalAmountBonds ? MoneyValue.toJSON(message.totalAmountBonds) : undefined);
     message.totalAmountEtf !== undefined &&
       (obj.totalAmountEtf = message.totalAmountEtf ? MoneyValue.toJSON(message.totalAmountEtf) : undefined);
-    message.totalAmountCurrencies !== undefined && (obj.totalAmountCurrencies = message.totalAmountCurrencies
-      ? MoneyValue.toJSON(message.totalAmountCurrencies)
-      : undefined);
+    message.totalAmountCurrencies !== undefined &&
+      (obj.totalAmountCurrencies = message.totalAmountCurrencies
+        ? MoneyValue.toJSON(message.totalAmountCurrencies)
+        : undefined);
     message.totalAmountFutures !== undefined &&
       (obj.totalAmountFutures = message.totalAmountFutures ? MoneyValue.toJSON(message.totalAmountFutures) : undefined);
     message.expectedYield !== undefined &&
       (obj.expectedYield = message.expectedYield ? Quotation.toJSON(message.expectedYield) : undefined);
     if (message.positions) {
-      obj.positions = message.positions.map((e) => e ? PortfolioPosition.toJSON(e) : undefined);
+      obj.positions = message.positions.map(e => (e ? PortfolioPosition.toJSON(e) : undefined));
     } else {
       obj.positions = [];
     }
@@ -2092,65 +1921,70 @@ export const PortfolioResponse = {
       (obj.totalAmountOptions = message.totalAmountOptions ? MoneyValue.toJSON(message.totalAmountOptions) : undefined);
     message.totalAmountSp !== undefined &&
       (obj.totalAmountSp = message.totalAmountSp ? MoneyValue.toJSON(message.totalAmountSp) : undefined);
-    message.totalAmountPortfolio !== undefined && (obj.totalAmountPortfolio = message.totalAmountPortfolio
-      ? MoneyValue.toJSON(message.totalAmountPortfolio)
-      : undefined);
+    message.totalAmountPortfolio !== undefined &&
+      (obj.totalAmountPortfolio = message.totalAmountPortfolio
+        ? MoneyValue.toJSON(message.totalAmountPortfolio)
+        : undefined);
     if (message.virtualPositions) {
-      obj.virtualPositions = message.virtualPositions.map((e) => e ? VirtualPortfolioPosition.toJSON(e) : undefined);
+      obj.virtualPositions = message.virtualPositions.map(e => (e ? VirtualPortfolioPosition.toJSON(e) : undefined));
     } else {
       obj.virtualPositions = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<PortfolioResponse>): PortfolioResponse {
-    return PortfolioResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PortfolioResponse>): PortfolioResponse {
     const message = createBasePortfolioResponse();
-    message.totalAmountShares = (object.totalAmountShares !== undefined && object.totalAmountShares !== null)
-      ? MoneyValue.fromPartial(object.totalAmountShares)
-      : undefined;
-    message.totalAmountBonds = (object.totalAmountBonds !== undefined && object.totalAmountBonds !== null)
-      ? MoneyValue.fromPartial(object.totalAmountBonds)
-      : undefined;
-    message.totalAmountEtf = (object.totalAmountEtf !== undefined && object.totalAmountEtf !== null)
-      ? MoneyValue.fromPartial(object.totalAmountEtf)
-      : undefined;
+    message.totalAmountShares =
+      object.totalAmountShares !== undefined && object.totalAmountShares !== null
+        ? MoneyValue.fromPartial(object.totalAmountShares)
+        : undefined;
+    message.totalAmountBonds =
+      object.totalAmountBonds !== undefined && object.totalAmountBonds !== null
+        ? MoneyValue.fromPartial(object.totalAmountBonds)
+        : undefined;
+    message.totalAmountEtf =
+      object.totalAmountEtf !== undefined && object.totalAmountEtf !== null
+        ? MoneyValue.fromPartial(object.totalAmountEtf)
+        : undefined;
     message.totalAmountCurrencies =
-      (object.totalAmountCurrencies !== undefined && object.totalAmountCurrencies !== null)
+      object.totalAmountCurrencies !== undefined && object.totalAmountCurrencies !== null
         ? MoneyValue.fromPartial(object.totalAmountCurrencies)
         : undefined;
-    message.totalAmountFutures = (object.totalAmountFutures !== undefined && object.totalAmountFutures !== null)
-      ? MoneyValue.fromPartial(object.totalAmountFutures)
-      : undefined;
-    message.expectedYield = (object.expectedYield !== undefined && object.expectedYield !== null)
-      ? Quotation.fromPartial(object.expectedYield)
-      : undefined;
-    message.positions = object.positions?.map((e) => PortfolioPosition.fromPartial(e)) || [];
-    message.accountId = object.accountId ?? "";
-    message.totalAmountOptions = (object.totalAmountOptions !== undefined && object.totalAmountOptions !== null)
-      ? MoneyValue.fromPartial(object.totalAmountOptions)
-      : undefined;
-    message.totalAmountSp = (object.totalAmountSp !== undefined && object.totalAmountSp !== null)
-      ? MoneyValue.fromPartial(object.totalAmountSp)
-      : undefined;
-    message.totalAmountPortfolio = (object.totalAmountPortfolio !== undefined && object.totalAmountPortfolio !== null)
-      ? MoneyValue.fromPartial(object.totalAmountPortfolio)
-      : undefined;
-    message.virtualPositions = object.virtualPositions?.map((e) => VirtualPortfolioPosition.fromPartial(e)) || [];
+    message.totalAmountFutures =
+      object.totalAmountFutures !== undefined && object.totalAmountFutures !== null
+        ? MoneyValue.fromPartial(object.totalAmountFutures)
+        : undefined;
+    message.expectedYield =
+      object.expectedYield !== undefined && object.expectedYield !== null
+        ? Quotation.fromPartial(object.expectedYield)
+        : undefined;
+    message.positions = object.positions?.map(e => PortfolioPosition.fromPartial(e)) || [];
+    message.accountId = object.accountId ?? '';
+    message.totalAmountOptions =
+      object.totalAmountOptions !== undefined && object.totalAmountOptions !== null
+        ? MoneyValue.fromPartial(object.totalAmountOptions)
+        : undefined;
+    message.totalAmountSp =
+      object.totalAmountSp !== undefined && object.totalAmountSp !== null
+        ? MoneyValue.fromPartial(object.totalAmountSp)
+        : undefined;
+    message.totalAmountPortfolio =
+      object.totalAmountPortfolio !== undefined && object.totalAmountPortfolio !== null
+        ? MoneyValue.fromPartial(object.totalAmountPortfolio)
+        : undefined;
+    message.virtualPositions = object.virtualPositions?.map(e => VirtualPortfolioPosition.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBasePositionsRequest(): PositionsRequest {
-  return { accountId: "" };
+  return { accountId: '' };
 }
 
 export const PositionsRequest = {
   encode(message: PositionsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
     return writer;
@@ -2175,7 +2009,9 @@ export const PositionsRequest = {
   },
 
   fromJSON(object: any): PositionsRequest {
-    return { accountId: isSet(object.accountId) ? String(object.accountId) : "" };
+    return {
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
+    };
   },
 
   toJSON(message: PositionsRequest): unknown {
@@ -2184,13 +2020,9 @@ export const PositionsRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<PositionsRequest>): PositionsRequest {
-    return PositionsRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionsRequest>): PositionsRequest {
     const message = createBasePositionsRequest();
-    message.accountId = object.accountId ?? "";
+    message.accountId = object.accountId ?? '';
     return message;
   },
 };
@@ -2271,57 +2103,53 @@ export const PositionsResponse = {
   toJSON(message: PositionsResponse): unknown {
     const obj: any = {};
     if (message.money) {
-      obj.money = message.money.map((e) => e ? MoneyValue.toJSON(e) : undefined);
+      obj.money = message.money.map(e => (e ? MoneyValue.toJSON(e) : undefined));
     } else {
       obj.money = [];
     }
     if (message.blocked) {
-      obj.blocked = message.blocked.map((e) => e ? MoneyValue.toJSON(e) : undefined);
+      obj.blocked = message.blocked.map(e => (e ? MoneyValue.toJSON(e) : undefined));
     } else {
       obj.blocked = [];
     }
     if (message.securities) {
-      obj.securities = message.securities.map((e) => e ? PositionsSecurities.toJSON(e) : undefined);
+      obj.securities = message.securities.map(e => (e ? PositionsSecurities.toJSON(e) : undefined));
     } else {
       obj.securities = [];
     }
     message.limitsLoadingInProgress !== undefined && (obj.limitsLoadingInProgress = message.limitsLoadingInProgress);
     if (message.futures) {
-      obj.futures = message.futures.map((e) => e ? PositionsFutures.toJSON(e) : undefined);
+      obj.futures = message.futures.map(e => (e ? PositionsFutures.toJSON(e) : undefined));
     } else {
       obj.futures = [];
     }
     if (message.options) {
-      obj.options = message.options.map((e) => e ? PositionsOptions.toJSON(e) : undefined);
+      obj.options = message.options.map(e => (e ? PositionsOptions.toJSON(e) : undefined));
     } else {
       obj.options = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<PositionsResponse>): PositionsResponse {
-    return PositionsResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionsResponse>): PositionsResponse {
     const message = createBasePositionsResponse();
-    message.money = object.money?.map((e) => MoneyValue.fromPartial(e)) || [];
-    message.blocked = object.blocked?.map((e) => MoneyValue.fromPartial(e)) || [];
-    message.securities = object.securities?.map((e) => PositionsSecurities.fromPartial(e)) || [];
+    message.money = object.money?.map(e => MoneyValue.fromPartial(e)) || [];
+    message.blocked = object.blocked?.map(e => MoneyValue.fromPartial(e)) || [];
+    message.securities = object.securities?.map(e => PositionsSecurities.fromPartial(e)) || [];
     message.limitsLoadingInProgress = object.limitsLoadingInProgress ?? false;
-    message.futures = object.futures?.map((e) => PositionsFutures.fromPartial(e)) || [];
-    message.options = object.options?.map((e) => PositionsOptions.fromPartial(e)) || [];
+    message.futures = object.futures?.map(e => PositionsFutures.fromPartial(e)) || [];
+    message.options = object.options?.map(e => PositionsOptions.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseWithdrawLimitsRequest(): WithdrawLimitsRequest {
-  return { accountId: "" };
+  return { accountId: '' };
 }
 
 export const WithdrawLimitsRequest = {
   encode(message: WithdrawLimitsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
     return writer;
@@ -2346,7 +2174,9 @@ export const WithdrawLimitsRequest = {
   },
 
   fromJSON(object: any): WithdrawLimitsRequest {
-    return { accountId: isSet(object.accountId) ? String(object.accountId) : "" };
+    return {
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
+    };
   },
 
   toJSON(message: WithdrawLimitsRequest): unknown {
@@ -2355,13 +2185,9 @@ export const WithdrawLimitsRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<WithdrawLimitsRequest>): WithdrawLimitsRequest {
-    return WithdrawLimitsRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<WithdrawLimitsRequest>): WithdrawLimitsRequest {
     const message = createBaseWithdrawLimitsRequest();
-    message.accountId = object.accountId ?? "";
+    message.accountId = object.accountId ?? '';
     return message;
   },
 };
@@ -2421,40 +2247,36 @@ export const WithdrawLimitsResponse = {
   toJSON(message: WithdrawLimitsResponse): unknown {
     const obj: any = {};
     if (message.money) {
-      obj.money = message.money.map((e) => e ? MoneyValue.toJSON(e) : undefined);
+      obj.money = message.money.map(e => (e ? MoneyValue.toJSON(e) : undefined));
     } else {
       obj.money = [];
     }
     if (message.blocked) {
-      obj.blocked = message.blocked.map((e) => e ? MoneyValue.toJSON(e) : undefined);
+      obj.blocked = message.blocked.map(e => (e ? MoneyValue.toJSON(e) : undefined));
     } else {
       obj.blocked = [];
     }
     if (message.blockedGuarantee) {
-      obj.blockedGuarantee = message.blockedGuarantee.map((e) => e ? MoneyValue.toJSON(e) : undefined);
+      obj.blockedGuarantee = message.blockedGuarantee.map(e => (e ? MoneyValue.toJSON(e) : undefined));
     } else {
       obj.blockedGuarantee = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<WithdrawLimitsResponse>): WithdrawLimitsResponse {
-    return WithdrawLimitsResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<WithdrawLimitsResponse>): WithdrawLimitsResponse {
     const message = createBaseWithdrawLimitsResponse();
-    message.money = object.money?.map((e) => MoneyValue.fromPartial(e)) || [];
-    message.blocked = object.blocked?.map((e) => MoneyValue.fromPartial(e)) || [];
-    message.blockedGuarantee = object.blockedGuarantee?.map((e) => MoneyValue.fromPartial(e)) || [];
+    message.money = object.money?.map(e => MoneyValue.fromPartial(e)) || [];
+    message.blocked = object.blocked?.map(e => MoneyValue.fromPartial(e)) || [];
+    message.blockedGuarantee = object.blockedGuarantee?.map(e => MoneyValue.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBasePortfolioPosition(): PortfolioPosition {
   return {
-    figi: "",
-    instrumentType: "",
+    figi: '',
+    instrumentType: '',
     quantity: undefined,
     averagePositionPrice: undefined,
     expectedYield: undefined,
@@ -2465,8 +2287,8 @@ function createBasePortfolioPosition(): PortfolioPosition {
     quantityLots: undefined,
     blocked: false,
     blockedLots: undefined,
-    positionUid: "",
-    instrumentUid: "",
+    positionUid: '',
+    instrumentUid: '',
     varMargin: undefined,
     expectedYieldFifo: undefined,
   };
@@ -2474,10 +2296,10 @@ function createBasePortfolioPosition(): PortfolioPosition {
 
 export const PortfolioPosition = {
   encode(message: PortfolioPosition, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
-    if (message.instrumentType !== "") {
+    if (message.instrumentType !== '') {
       writer.uint32(18).string(message.instrumentType);
     }
     if (message.quantity !== undefined) {
@@ -2510,10 +2332,10 @@ export const PortfolioPosition = {
     if (message.blockedLots !== undefined) {
       Quotation.encode(message.blockedLots, writer.uint32(178).fork()).ldelim();
     }
-    if (message.positionUid !== "") {
+    if (message.positionUid !== '') {
       writer.uint32(194).string(message.positionUid);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(202).string(message.instrumentUid);
     }
     if (message.varMargin !== undefined) {
@@ -2590,8 +2412,8 @@ export const PortfolioPosition = {
 
   fromJSON(object: any): PortfolioPosition {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
-      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : '',
       quantity: isSet(object.quantity) ? Quotation.fromJSON(object.quantity) : undefined,
       averagePositionPrice: isSet(object.averagePositionPrice)
         ? MoneyValue.fromJSON(object.averagePositionPrice)
@@ -2608,8 +2430,8 @@ export const PortfolioPosition = {
       quantityLots: isSet(object.quantityLots) ? Quotation.fromJSON(object.quantityLots) : undefined,
       blocked: isSet(object.blocked) ? Boolean(object.blocked) : false,
       blockedLots: isSet(object.blockedLots) ? Quotation.fromJSON(object.blockedLots) : undefined,
-      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : '',
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
       varMargin: isSet(object.varMargin) ? MoneyValue.fromJSON(object.varMargin) : undefined,
       expectedYieldFifo: isSet(object.expectedYieldFifo) ? Quotation.fromJSON(object.expectedYieldFifo) : undefined,
     };
@@ -2621,21 +2443,24 @@ export const PortfolioPosition = {
     message.instrumentType !== undefined && (obj.instrumentType = message.instrumentType);
     message.quantity !== undefined &&
       (obj.quantity = message.quantity ? Quotation.toJSON(message.quantity) : undefined);
-    message.averagePositionPrice !== undefined && (obj.averagePositionPrice = message.averagePositionPrice
-      ? MoneyValue.toJSON(message.averagePositionPrice)
-      : undefined);
+    message.averagePositionPrice !== undefined &&
+      (obj.averagePositionPrice = message.averagePositionPrice
+        ? MoneyValue.toJSON(message.averagePositionPrice)
+        : undefined);
     message.expectedYield !== undefined &&
       (obj.expectedYield = message.expectedYield ? Quotation.toJSON(message.expectedYield) : undefined);
     message.currentNkd !== undefined &&
       (obj.currentNkd = message.currentNkd ? MoneyValue.toJSON(message.currentNkd) : undefined);
-    message.averagePositionPricePt !== undefined && (obj.averagePositionPricePt = message.averagePositionPricePt
-      ? Quotation.toJSON(message.averagePositionPricePt)
-      : undefined);
+    message.averagePositionPricePt !== undefined &&
+      (obj.averagePositionPricePt = message.averagePositionPricePt
+        ? Quotation.toJSON(message.averagePositionPricePt)
+        : undefined);
     message.currentPrice !== undefined &&
       (obj.currentPrice = message.currentPrice ? MoneyValue.toJSON(message.currentPrice) : undefined);
-    message.averagePositionPriceFifo !== undefined && (obj.averagePositionPriceFifo = message.averagePositionPriceFifo
-      ? MoneyValue.toJSON(message.averagePositionPriceFifo)
-      : undefined);
+    message.averagePositionPriceFifo !== undefined &&
+      (obj.averagePositionPriceFifo = message.averagePositionPriceFifo
+        ? MoneyValue.toJSON(message.averagePositionPriceFifo)
+        : undefined);
     message.quantityLots !== undefined &&
       (obj.quantityLots = message.quantityLots ? Quotation.toJSON(message.quantityLots) : undefined);
     message.blocked !== undefined && (obj.blocked = message.blocked);
@@ -2650,62 +2475,65 @@ export const PortfolioPosition = {
     return obj;
   },
 
-  create(base?: DeepPartial<PortfolioPosition>): PortfolioPosition {
-    return PortfolioPosition.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PortfolioPosition>): PortfolioPosition {
     const message = createBasePortfolioPosition();
-    message.figi = object.figi ?? "";
-    message.instrumentType = object.instrumentType ?? "";
-    message.quantity = (object.quantity !== undefined && object.quantity !== null)
-      ? Quotation.fromPartial(object.quantity)
-      : undefined;
-    message.averagePositionPrice = (object.averagePositionPrice !== undefined && object.averagePositionPrice !== null)
-      ? MoneyValue.fromPartial(object.averagePositionPrice)
-      : undefined;
-    message.expectedYield = (object.expectedYield !== undefined && object.expectedYield !== null)
-      ? Quotation.fromPartial(object.expectedYield)
-      : undefined;
-    message.currentNkd = (object.currentNkd !== undefined && object.currentNkd !== null)
-      ? MoneyValue.fromPartial(object.currentNkd)
-      : undefined;
+    message.figi = object.figi ?? '';
+    message.instrumentType = object.instrumentType ?? '';
+    message.quantity =
+      object.quantity !== undefined && object.quantity !== null ? Quotation.fromPartial(object.quantity) : undefined;
+    message.averagePositionPrice =
+      object.averagePositionPrice !== undefined && object.averagePositionPrice !== null
+        ? MoneyValue.fromPartial(object.averagePositionPrice)
+        : undefined;
+    message.expectedYield =
+      object.expectedYield !== undefined && object.expectedYield !== null
+        ? Quotation.fromPartial(object.expectedYield)
+        : undefined;
+    message.currentNkd =
+      object.currentNkd !== undefined && object.currentNkd !== null
+        ? MoneyValue.fromPartial(object.currentNkd)
+        : undefined;
     message.averagePositionPricePt =
-      (object.averagePositionPricePt !== undefined && object.averagePositionPricePt !== null)
+      object.averagePositionPricePt !== undefined && object.averagePositionPricePt !== null
         ? Quotation.fromPartial(object.averagePositionPricePt)
         : undefined;
-    message.currentPrice = (object.currentPrice !== undefined && object.currentPrice !== null)
-      ? MoneyValue.fromPartial(object.currentPrice)
-      : undefined;
+    message.currentPrice =
+      object.currentPrice !== undefined && object.currentPrice !== null
+        ? MoneyValue.fromPartial(object.currentPrice)
+        : undefined;
     message.averagePositionPriceFifo =
-      (object.averagePositionPriceFifo !== undefined && object.averagePositionPriceFifo !== null)
+      object.averagePositionPriceFifo !== undefined && object.averagePositionPriceFifo !== null
         ? MoneyValue.fromPartial(object.averagePositionPriceFifo)
         : undefined;
-    message.quantityLots = (object.quantityLots !== undefined && object.quantityLots !== null)
-      ? Quotation.fromPartial(object.quantityLots)
-      : undefined;
+    message.quantityLots =
+      object.quantityLots !== undefined && object.quantityLots !== null
+        ? Quotation.fromPartial(object.quantityLots)
+        : undefined;
     message.blocked = object.blocked ?? false;
-    message.blockedLots = (object.blockedLots !== undefined && object.blockedLots !== null)
-      ? Quotation.fromPartial(object.blockedLots)
-      : undefined;
-    message.positionUid = object.positionUid ?? "";
-    message.instrumentUid = object.instrumentUid ?? "";
-    message.varMargin = (object.varMargin !== undefined && object.varMargin !== null)
-      ? MoneyValue.fromPartial(object.varMargin)
-      : undefined;
-    message.expectedYieldFifo = (object.expectedYieldFifo !== undefined && object.expectedYieldFifo !== null)
-      ? Quotation.fromPartial(object.expectedYieldFifo)
-      : undefined;
+    message.blockedLots =
+      object.blockedLots !== undefined && object.blockedLots !== null
+        ? Quotation.fromPartial(object.blockedLots)
+        : undefined;
+    message.positionUid = object.positionUid ?? '';
+    message.instrumentUid = object.instrumentUid ?? '';
+    message.varMargin =
+      object.varMargin !== undefined && object.varMargin !== null
+        ? MoneyValue.fromPartial(object.varMargin)
+        : undefined;
+    message.expectedYieldFifo =
+      object.expectedYieldFifo !== undefined && object.expectedYieldFifo !== null
+        ? Quotation.fromPartial(object.expectedYieldFifo)
+        : undefined;
     return message;
   },
 };
 
 function createBaseVirtualPortfolioPosition(): VirtualPortfolioPosition {
   return {
-    positionUid: "",
-    instrumentUid: "",
-    figi: "",
-    instrumentType: "",
+    positionUid: '',
+    instrumentUid: '',
+    figi: '',
+    instrumentType: '',
     quantity: undefined,
     averagePositionPrice: undefined,
     expectedYield: undefined,
@@ -2718,16 +2546,16 @@ function createBaseVirtualPortfolioPosition(): VirtualPortfolioPosition {
 
 export const VirtualPortfolioPosition = {
   encode(message: VirtualPortfolioPosition, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.positionUid !== "") {
+    if (message.positionUid !== '') {
       writer.uint32(10).string(message.positionUid);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(18).string(message.instrumentUid);
     }
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(26).string(message.figi);
     }
-    if (message.instrumentType !== "") {
+    if (message.instrumentType !== '') {
       writer.uint32(34).string(message.instrumentType);
     }
     if (message.quantity !== undefined) {
@@ -2804,10 +2632,10 @@ export const VirtualPortfolioPosition = {
 
   fromJSON(object: any): VirtualPortfolioPosition {
     return {
-      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
-      figi: isSet(object.figi) ? String(object.figi) : "",
-      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : '',
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : '',
       quantity: isSet(object.quantity) ? Quotation.fromJSON(object.quantity) : undefined,
       averagePositionPrice: isSet(object.averagePositionPrice)
         ? MoneyValue.fromJSON(object.averagePositionPrice)
@@ -2830,9 +2658,10 @@ export const VirtualPortfolioPosition = {
     message.instrumentType !== undefined && (obj.instrumentType = message.instrumentType);
     message.quantity !== undefined &&
       (obj.quantity = message.quantity ? Quotation.toJSON(message.quantity) : undefined);
-    message.averagePositionPrice !== undefined && (obj.averagePositionPrice = message.averagePositionPrice
-      ? MoneyValue.toJSON(message.averagePositionPrice)
-      : undefined);
+    message.averagePositionPrice !== undefined &&
+      (obj.averagePositionPrice = message.averagePositionPrice
+        ? MoneyValue.toJSON(message.averagePositionPrice)
+        : undefined);
     message.expectedYield !== undefined &&
       (obj.expectedYield = message.expectedYield ? Quotation.toJSON(message.expectedYield) : undefined);
     message.expectedYieldFifo !== undefined &&
@@ -2840,40 +2669,40 @@ export const VirtualPortfolioPosition = {
     message.expireDate !== undefined && (obj.expireDate = message.expireDate.toISOString());
     message.currentPrice !== undefined &&
       (obj.currentPrice = message.currentPrice ? MoneyValue.toJSON(message.currentPrice) : undefined);
-    message.averagePositionPriceFifo !== undefined && (obj.averagePositionPriceFifo = message.averagePositionPriceFifo
-      ? MoneyValue.toJSON(message.averagePositionPriceFifo)
-      : undefined);
+    message.averagePositionPriceFifo !== undefined &&
+      (obj.averagePositionPriceFifo = message.averagePositionPriceFifo
+        ? MoneyValue.toJSON(message.averagePositionPriceFifo)
+        : undefined);
     return obj;
-  },
-
-  create(base?: DeepPartial<VirtualPortfolioPosition>): VirtualPortfolioPosition {
-    return VirtualPortfolioPosition.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<VirtualPortfolioPosition>): VirtualPortfolioPosition {
     const message = createBaseVirtualPortfolioPosition();
-    message.positionUid = object.positionUid ?? "";
-    message.instrumentUid = object.instrumentUid ?? "";
-    message.figi = object.figi ?? "";
-    message.instrumentType = object.instrumentType ?? "";
-    message.quantity = (object.quantity !== undefined && object.quantity !== null)
-      ? Quotation.fromPartial(object.quantity)
-      : undefined;
-    message.averagePositionPrice = (object.averagePositionPrice !== undefined && object.averagePositionPrice !== null)
-      ? MoneyValue.fromPartial(object.averagePositionPrice)
-      : undefined;
-    message.expectedYield = (object.expectedYield !== undefined && object.expectedYield !== null)
-      ? Quotation.fromPartial(object.expectedYield)
-      : undefined;
-    message.expectedYieldFifo = (object.expectedYieldFifo !== undefined && object.expectedYieldFifo !== null)
-      ? Quotation.fromPartial(object.expectedYieldFifo)
-      : undefined;
+    message.positionUid = object.positionUid ?? '';
+    message.instrumentUid = object.instrumentUid ?? '';
+    message.figi = object.figi ?? '';
+    message.instrumentType = object.instrumentType ?? '';
+    message.quantity =
+      object.quantity !== undefined && object.quantity !== null ? Quotation.fromPartial(object.quantity) : undefined;
+    message.averagePositionPrice =
+      object.averagePositionPrice !== undefined && object.averagePositionPrice !== null
+        ? MoneyValue.fromPartial(object.averagePositionPrice)
+        : undefined;
+    message.expectedYield =
+      object.expectedYield !== undefined && object.expectedYield !== null
+        ? Quotation.fromPartial(object.expectedYield)
+        : undefined;
+    message.expectedYieldFifo =
+      object.expectedYieldFifo !== undefined && object.expectedYieldFifo !== null
+        ? Quotation.fromPartial(object.expectedYieldFifo)
+        : undefined;
     message.expireDate = object.expireDate ?? undefined;
-    message.currentPrice = (object.currentPrice !== undefined && object.currentPrice !== null)
-      ? MoneyValue.fromPartial(object.currentPrice)
-      : undefined;
+    message.currentPrice =
+      object.currentPrice !== undefined && object.currentPrice !== null
+        ? MoneyValue.fromPartial(object.currentPrice)
+        : undefined;
     message.averagePositionPriceFifo =
-      (object.averagePositionPriceFifo !== undefined && object.averagePositionPriceFifo !== null)
+      object.averagePositionPriceFifo !== undefined && object.averagePositionPriceFifo !== null
         ? MoneyValue.fromPartial(object.averagePositionPriceFifo)
         : undefined;
     return message;
@@ -2882,19 +2711,19 @@ export const VirtualPortfolioPosition = {
 
 function createBasePositionsSecurities(): PositionsSecurities {
   return {
-    figi: "",
+    figi: '',
     blocked: 0,
     balance: 0,
-    positionUid: "",
-    instrumentUid: "",
+    positionUid: '',
+    instrumentUid: '',
     exchangeBlocked: false,
-    instrumentType: "",
+    instrumentType: '',
   };
 }
 
 export const PositionsSecurities = {
   encode(message: PositionsSecurities, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.blocked !== 0) {
@@ -2903,16 +2732,16 @@ export const PositionsSecurities = {
     if (message.balance !== 0) {
       writer.uint32(24).int64(message.balance);
     }
-    if (message.positionUid !== "") {
+    if (message.positionUid !== '') {
       writer.uint32(34).string(message.positionUid);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(42).string(message.instrumentUid);
     }
     if (message.exchangeBlocked === true) {
       writer.uint32(88).bool(message.exchangeBlocked);
     }
-    if (message.instrumentType !== "") {
+    if (message.instrumentType !== '') {
       writer.uint32(130).string(message.instrumentType);
     }
     return writer;
@@ -2956,13 +2785,13 @@ export const PositionsSecurities = {
 
   fromJSON(object: any): PositionsSecurities {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       blocked: isSet(object.blocked) ? Number(object.blocked) : 0,
       balance: isSet(object.balance) ? Number(object.balance) : 0,
-      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : '',
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
       exchangeBlocked: isSet(object.exchangeBlocked) ? Boolean(object.exchangeBlocked) : false,
-      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : '',
     };
   },
 
@@ -2978,30 +2807,26 @@ export const PositionsSecurities = {
     return obj;
   },
 
-  create(base?: DeepPartial<PositionsSecurities>): PositionsSecurities {
-    return PositionsSecurities.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionsSecurities>): PositionsSecurities {
     const message = createBasePositionsSecurities();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.blocked = object.blocked ?? 0;
     message.balance = object.balance ?? 0;
-    message.positionUid = object.positionUid ?? "";
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.positionUid = object.positionUid ?? '';
+    message.instrumentUid = object.instrumentUid ?? '';
     message.exchangeBlocked = object.exchangeBlocked ?? false;
-    message.instrumentType = object.instrumentType ?? "";
+    message.instrumentType = object.instrumentType ?? '';
     return message;
   },
 };
 
 function createBasePositionsFutures(): PositionsFutures {
-  return { figi: "", blocked: 0, balance: 0, positionUid: "", instrumentUid: "" };
+  return { figi: '', blocked: 0, balance: 0, positionUid: '', instrumentUid: '' };
 }
 
 export const PositionsFutures = {
   encode(message: PositionsFutures, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(10).string(message.figi);
     }
     if (message.blocked !== 0) {
@@ -3010,10 +2835,10 @@ export const PositionsFutures = {
     if (message.balance !== 0) {
       writer.uint32(24).int64(message.balance);
     }
-    if (message.positionUid !== "") {
+    if (message.positionUid !== '') {
       writer.uint32(34).string(message.positionUid);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(42).string(message.instrumentUid);
     }
     return writer;
@@ -3051,11 +2876,11 @@ export const PositionsFutures = {
 
   fromJSON(object: any): PositionsFutures {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : "",
+      figi: isSet(object.figi) ? String(object.figi) : '',
       blocked: isSet(object.blocked) ? Number(object.blocked) : 0,
       balance: isSet(object.balance) ? Number(object.balance) : 0,
-      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : '',
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
     };
   },
 
@@ -3069,31 +2894,27 @@ export const PositionsFutures = {
     return obj;
   },
 
-  create(base?: DeepPartial<PositionsFutures>): PositionsFutures {
-    return PositionsFutures.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionsFutures>): PositionsFutures {
     const message = createBasePositionsFutures();
-    message.figi = object.figi ?? "";
+    message.figi = object.figi ?? '';
     message.blocked = object.blocked ?? 0;
     message.balance = object.balance ?? 0;
-    message.positionUid = object.positionUid ?? "";
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.positionUid = object.positionUid ?? '';
+    message.instrumentUid = object.instrumentUid ?? '';
     return message;
   },
 };
 
 function createBasePositionsOptions(): PositionsOptions {
-  return { positionUid: "", instrumentUid: "", blocked: 0, balance: 0 };
+  return { positionUid: '', instrumentUid: '', blocked: 0, balance: 0 };
 }
 
 export const PositionsOptions = {
   encode(message: PositionsOptions, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.positionUid !== "") {
+    if (message.positionUid !== '') {
       writer.uint32(10).string(message.positionUid);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(18).string(message.instrumentUid);
     }
     if (message.blocked !== 0) {
@@ -3134,8 +2955,8 @@ export const PositionsOptions = {
 
   fromJSON(object: any): PositionsOptions {
     return {
-      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : '',
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
       blocked: isSet(object.blocked) ? Number(object.blocked) : 0,
       balance: isSet(object.balance) ? Number(object.balance) : 0,
     };
@@ -3150,14 +2971,10 @@ export const PositionsOptions = {
     return obj;
   },
 
-  create(base?: DeepPartial<PositionsOptions>): PositionsOptions {
-    return PositionsOptions.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionsOptions>): PositionsOptions {
     const message = createBasePositionsOptions();
-    message.positionUid = object.positionUid ?? "";
-    message.instrumentUid = object.instrumentUid ?? "";
+    message.positionUid = object.positionUid ?? '';
+    message.instrumentUid = object.instrumentUid ?? '';
     message.blocked = object.blocked ?? 0;
     message.balance = object.balance ?? 0;
     return message;
@@ -3217,24 +3034,21 @@ export const BrokerReportRequest = {
       (obj.generateBrokerReportRequest = message.generateBrokerReportRequest
         ? GenerateBrokerReportRequest.toJSON(message.generateBrokerReportRequest)
         : undefined);
-    message.getBrokerReportRequest !== undefined && (obj.getBrokerReportRequest = message.getBrokerReportRequest
-      ? GetBrokerReportRequest.toJSON(message.getBrokerReportRequest)
-      : undefined);
+    message.getBrokerReportRequest !== undefined &&
+      (obj.getBrokerReportRequest = message.getBrokerReportRequest
+        ? GetBrokerReportRequest.toJSON(message.getBrokerReportRequest)
+        : undefined);
     return obj;
-  },
-
-  create(base?: DeepPartial<BrokerReportRequest>): BrokerReportRequest {
-    return BrokerReportRequest.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<BrokerReportRequest>): BrokerReportRequest {
     const message = createBaseBrokerReportRequest();
     message.generateBrokerReportRequest =
-      (object.generateBrokerReportRequest !== undefined && object.generateBrokerReportRequest !== null)
+      object.generateBrokerReportRequest !== undefined && object.generateBrokerReportRequest !== null
         ? GenerateBrokerReportRequest.fromPartial(object.generateBrokerReportRequest)
         : undefined;
     message.getBrokerReportRequest =
-      (object.getBrokerReportRequest !== undefined && object.getBrokerReportRequest !== null)
+      object.getBrokerReportRequest !== undefined && object.getBrokerReportRequest !== null
         ? GetBrokerReportRequest.fromPartial(object.getBrokerReportRequest)
         : undefined;
     return message;
@@ -3294,24 +3108,21 @@ export const BrokerReportResponse = {
       (obj.generateBrokerReportResponse = message.generateBrokerReportResponse
         ? GenerateBrokerReportResponse.toJSON(message.generateBrokerReportResponse)
         : undefined);
-    message.getBrokerReportResponse !== undefined && (obj.getBrokerReportResponse = message.getBrokerReportResponse
-      ? GetBrokerReportResponse.toJSON(message.getBrokerReportResponse)
-      : undefined);
+    message.getBrokerReportResponse !== undefined &&
+      (obj.getBrokerReportResponse = message.getBrokerReportResponse
+        ? GetBrokerReportResponse.toJSON(message.getBrokerReportResponse)
+        : undefined);
     return obj;
-  },
-
-  create(base?: DeepPartial<BrokerReportResponse>): BrokerReportResponse {
-    return BrokerReportResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<BrokerReportResponse>): BrokerReportResponse {
     const message = createBaseBrokerReportResponse();
     message.generateBrokerReportResponse =
-      (object.generateBrokerReportResponse !== undefined && object.generateBrokerReportResponse !== null)
+      object.generateBrokerReportResponse !== undefined && object.generateBrokerReportResponse !== null
         ? GenerateBrokerReportResponse.fromPartial(object.generateBrokerReportResponse)
         : undefined;
     message.getBrokerReportResponse =
-      (object.getBrokerReportResponse !== undefined && object.getBrokerReportResponse !== null)
+      object.getBrokerReportResponse !== undefined && object.getBrokerReportResponse !== null
         ? GetBrokerReportResponse.fromPartial(object.getBrokerReportResponse)
         : undefined;
     return message;
@@ -3319,12 +3130,12 @@ export const BrokerReportResponse = {
 };
 
 function createBaseGenerateBrokerReportRequest(): GenerateBrokerReportRequest {
-  return { accountId: "", from: undefined, to: undefined };
+  return { accountId: '', from: undefined, to: undefined };
 }
 
 export const GenerateBrokerReportRequest = {
   encode(message: GenerateBrokerReportRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
     if (message.from !== undefined) {
@@ -3362,7 +3173,7 @@ export const GenerateBrokerReportRequest = {
 
   fromJSON(object: any): GenerateBrokerReportRequest {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
     };
@@ -3376,13 +3187,9 @@ export const GenerateBrokerReportRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GenerateBrokerReportRequest>): GenerateBrokerReportRequest {
-    return GenerateBrokerReportRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GenerateBrokerReportRequest>): GenerateBrokerReportRequest {
     const message = createBaseGenerateBrokerReportRequest();
-    message.accountId = object.accountId ?? "";
+    message.accountId = object.accountId ?? '';
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
     return message;
@@ -3390,12 +3197,12 @@ export const GenerateBrokerReportRequest = {
 };
 
 function createBaseGenerateBrokerReportResponse(): GenerateBrokerReportResponse {
-  return { taskId: "" };
+  return { taskId: '' };
 }
 
 export const GenerateBrokerReportResponse = {
   encode(message: GenerateBrokerReportResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.taskId !== "") {
+    if (message.taskId !== '') {
       writer.uint32(10).string(message.taskId);
     }
     return writer;
@@ -3420,7 +3227,9 @@ export const GenerateBrokerReportResponse = {
   },
 
   fromJSON(object: any): GenerateBrokerReportResponse {
-    return { taskId: isSet(object.taskId) ? String(object.taskId) : "" };
+    return {
+      taskId: isSet(object.taskId) ? String(object.taskId) : '',
+    };
   },
 
   toJSON(message: GenerateBrokerReportResponse): unknown {
@@ -3429,24 +3238,20 @@ export const GenerateBrokerReportResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<GenerateBrokerReportResponse>): GenerateBrokerReportResponse {
-    return GenerateBrokerReportResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GenerateBrokerReportResponse>): GenerateBrokerReportResponse {
     const message = createBaseGenerateBrokerReportResponse();
-    message.taskId = object.taskId ?? "";
+    message.taskId = object.taskId ?? '';
     return message;
   },
 };
 
 function createBaseGetBrokerReportRequest(): GetBrokerReportRequest {
-  return { taskId: "", page: 0 };
+  return { taskId: '', page: 0 };
 }
 
 export const GetBrokerReportRequest = {
   encode(message: GetBrokerReportRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.taskId !== "") {
+    if (message.taskId !== '') {
       writer.uint32(10).string(message.taskId);
     }
     if (message.page !== 0) {
@@ -3478,7 +3283,7 @@ export const GetBrokerReportRequest = {
 
   fromJSON(object: any): GetBrokerReportRequest {
     return {
-      taskId: isSet(object.taskId) ? String(object.taskId) : "",
+      taskId: isSet(object.taskId) ? String(object.taskId) : '',
       page: isSet(object.page) ? Number(object.page) : 0,
     };
   },
@@ -3490,13 +3295,9 @@ export const GetBrokerReportRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetBrokerReportRequest>): GetBrokerReportRequest {
-    return GetBrokerReportRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetBrokerReportRequest>): GetBrokerReportRequest {
     const message = createBaseGetBrokerReportRequest();
-    message.taskId = object.taskId ?? "";
+    message.taskId = object.taskId ?? '';
     message.page = object.page ?? 0;
     return message;
   },
@@ -3564,7 +3365,7 @@ export const GetBrokerReportResponse = {
   toJSON(message: GetBrokerReportResponse): unknown {
     const obj: any = {};
     if (message.brokerReport) {
-      obj.brokerReport = message.brokerReport.map((e) => e ? BrokerReport.toJSON(e) : undefined);
+      obj.brokerReport = message.brokerReport.map(e => (e ? BrokerReport.toJSON(e) : undefined));
     } else {
       obj.brokerReport = [];
     }
@@ -3574,13 +3375,9 @@ export const GetBrokerReportResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetBrokerReportResponse>): GetBrokerReportResponse {
-    return GetBrokerReportResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetBrokerReportResponse>): GetBrokerReportResponse {
     const message = createBaseGetBrokerReportResponse();
-    message.brokerReport = object.brokerReport?.map((e) => BrokerReport.fromPartial(e)) || [];
+    message.brokerReport = object.brokerReport?.map(e => BrokerReport.fromPartial(e)) || [];
     message.itemsCount = object.itemsCount ?? 0;
     message.pagesCount = object.pagesCount ?? 0;
     message.page = object.page ?? 0;
@@ -3590,16 +3387,16 @@ export const GetBrokerReportResponse = {
 
 function createBaseBrokerReport(): BrokerReport {
   return {
-    tradeId: "",
-    orderId: "",
-    figi: "",
-    executeSign: "",
+    tradeId: '',
+    orderId: '',
+    figi: '',
+    executeSign: '',
     tradeDatetime: undefined,
-    exchange: "",
-    classCode: "",
-    direction: "",
-    name: "",
-    ticker: "",
+    exchange: '',
+    classCode: '',
+    direction: '',
+    name: '',
+    ticker: '',
     price: undefined,
     quantity: 0,
     orderAmount: undefined,
@@ -3609,47 +3406,47 @@ function createBaseBrokerReport(): BrokerReport {
     exchangeCommission: undefined,
     exchangeClearingCommission: undefined,
     repoRate: undefined,
-    party: "",
+    party: '',
     clearValueDate: undefined,
     secValueDate: undefined,
-    brokerStatus: "",
-    separateAgreementType: "",
-    separateAgreementNumber: "",
-    separateAgreementDate: "",
-    deliveryType: "",
+    brokerStatus: '',
+    separateAgreementType: '',
+    separateAgreementNumber: '',
+    separateAgreementDate: '',
+    deliveryType: '',
   };
 }
 
 export const BrokerReport = {
   encode(message: BrokerReport, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.tradeId !== "") {
+    if (message.tradeId !== '') {
       writer.uint32(10).string(message.tradeId);
     }
-    if (message.orderId !== "") {
+    if (message.orderId !== '') {
       writer.uint32(18).string(message.orderId);
     }
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(26).string(message.figi);
     }
-    if (message.executeSign !== "") {
+    if (message.executeSign !== '') {
       writer.uint32(34).string(message.executeSign);
     }
     if (message.tradeDatetime !== undefined) {
       Timestamp.encode(toTimestamp(message.tradeDatetime), writer.uint32(42).fork()).ldelim();
     }
-    if (message.exchange !== "") {
+    if (message.exchange !== '') {
       writer.uint32(50).string(message.exchange);
     }
-    if (message.classCode !== "") {
+    if (message.classCode !== '') {
       writer.uint32(58).string(message.classCode);
     }
-    if (message.direction !== "") {
+    if (message.direction !== '') {
       writer.uint32(66).string(message.direction);
     }
-    if (message.name !== "") {
+    if (message.name !== '') {
       writer.uint32(74).string(message.name);
     }
-    if (message.ticker !== "") {
+    if (message.ticker !== '') {
       writer.uint32(82).string(message.ticker);
     }
     if (message.price !== undefined) {
@@ -3679,7 +3476,7 @@ export const BrokerReport = {
     if (message.repoRate !== undefined) {
       Quotation.encode(message.repoRate, writer.uint32(154).fork()).ldelim();
     }
-    if (message.party !== "") {
+    if (message.party !== '') {
       writer.uint32(162).string(message.party);
     }
     if (message.clearValueDate !== undefined) {
@@ -3688,19 +3485,19 @@ export const BrokerReport = {
     if (message.secValueDate !== undefined) {
       Timestamp.encode(toTimestamp(message.secValueDate), writer.uint32(178).fork()).ldelim();
     }
-    if (message.brokerStatus !== "") {
+    if (message.brokerStatus !== '') {
       writer.uint32(186).string(message.brokerStatus);
     }
-    if (message.separateAgreementType !== "") {
+    if (message.separateAgreementType !== '') {
       writer.uint32(194).string(message.separateAgreementType);
     }
-    if (message.separateAgreementNumber !== "") {
+    if (message.separateAgreementNumber !== '') {
       writer.uint32(202).string(message.separateAgreementNumber);
     }
-    if (message.separateAgreementDate !== "") {
+    if (message.separateAgreementDate !== '') {
       writer.uint32(210).string(message.separateAgreementDate);
     }
-    if (message.deliveryType !== "") {
+    if (message.deliveryType !== '') {
       writer.uint32(218).string(message.deliveryType);
     }
     return writer;
@@ -3804,16 +3601,16 @@ export const BrokerReport = {
 
   fromJSON(object: any): BrokerReport {
     return {
-      tradeId: isSet(object.tradeId) ? String(object.tradeId) : "",
-      orderId: isSet(object.orderId) ? String(object.orderId) : "",
-      figi: isSet(object.figi) ? String(object.figi) : "",
-      executeSign: isSet(object.executeSign) ? String(object.executeSign) : "",
+      tradeId: isSet(object.tradeId) ? String(object.tradeId) : '',
+      orderId: isSet(object.orderId) ? String(object.orderId) : '',
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      executeSign: isSet(object.executeSign) ? String(object.executeSign) : '',
       tradeDatetime: isSet(object.tradeDatetime) ? fromJsonTimestamp(object.tradeDatetime) : undefined,
-      exchange: isSet(object.exchange) ? String(object.exchange) : "",
-      classCode: isSet(object.classCode) ? String(object.classCode) : "",
-      direction: isSet(object.direction) ? String(object.direction) : "",
-      name: isSet(object.name) ? String(object.name) : "",
-      ticker: isSet(object.ticker) ? String(object.ticker) : "",
+      exchange: isSet(object.exchange) ? String(object.exchange) : '',
+      classCode: isSet(object.classCode) ? String(object.classCode) : '',
+      direction: isSet(object.direction) ? String(object.direction) : '',
+      name: isSet(object.name) ? String(object.name) : '',
+      ticker: isSet(object.ticker) ? String(object.ticker) : '',
       price: isSet(object.price) ? MoneyValue.fromJSON(object.price) : undefined,
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
       orderAmount: isSet(object.orderAmount) ? MoneyValue.fromJSON(object.orderAmount) : undefined,
@@ -3825,14 +3622,14 @@ export const BrokerReport = {
         ? MoneyValue.fromJSON(object.exchangeClearingCommission)
         : undefined,
       repoRate: isSet(object.repoRate) ? Quotation.fromJSON(object.repoRate) : undefined,
-      party: isSet(object.party) ? String(object.party) : "",
+      party: isSet(object.party) ? String(object.party) : '',
       clearValueDate: isSet(object.clearValueDate) ? fromJsonTimestamp(object.clearValueDate) : undefined,
       secValueDate: isSet(object.secValueDate) ? fromJsonTimestamp(object.secValueDate) : undefined,
-      brokerStatus: isSet(object.brokerStatus) ? String(object.brokerStatus) : "",
-      separateAgreementType: isSet(object.separateAgreementType) ? String(object.separateAgreementType) : "",
-      separateAgreementNumber: isSet(object.separateAgreementNumber) ? String(object.separateAgreementNumber) : "",
-      separateAgreementDate: isSet(object.separateAgreementDate) ? String(object.separateAgreementDate) : "",
-      deliveryType: isSet(object.deliveryType) ? String(object.deliveryType) : "",
+      brokerStatus: isSet(object.brokerStatus) ? String(object.brokerStatus) : '',
+      separateAgreementType: isSet(object.separateAgreementType) ? String(object.separateAgreementType) : '',
+      separateAgreementNumber: isSet(object.separateAgreementNumber) ? String(object.separateAgreementNumber) : '',
+      separateAgreementDate: isSet(object.separateAgreementDate) ? String(object.separateAgreementDate) : '',
+      deliveryType: isSet(object.deliveryType) ? String(object.deliveryType) : '',
     };
   },
 
@@ -3877,56 +3674,53 @@ export const BrokerReport = {
     return obj;
   },
 
-  create(base?: DeepPartial<BrokerReport>): BrokerReport {
-    return BrokerReport.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<BrokerReport>): BrokerReport {
     const message = createBaseBrokerReport();
-    message.tradeId = object.tradeId ?? "";
-    message.orderId = object.orderId ?? "";
-    message.figi = object.figi ?? "";
-    message.executeSign = object.executeSign ?? "";
+    message.tradeId = object.tradeId ?? '';
+    message.orderId = object.orderId ?? '';
+    message.figi = object.figi ?? '';
+    message.executeSign = object.executeSign ?? '';
     message.tradeDatetime = object.tradeDatetime ?? undefined;
-    message.exchange = object.exchange ?? "";
-    message.classCode = object.classCode ?? "";
-    message.direction = object.direction ?? "";
-    message.name = object.name ?? "";
-    message.ticker = object.ticker ?? "";
-    message.price = (object.price !== undefined && object.price !== null)
-      ? MoneyValue.fromPartial(object.price)
-      : undefined;
+    message.exchange = object.exchange ?? '';
+    message.classCode = object.classCode ?? '';
+    message.direction = object.direction ?? '';
+    message.name = object.name ?? '';
+    message.ticker = object.ticker ?? '';
+    message.price =
+      object.price !== undefined && object.price !== null ? MoneyValue.fromPartial(object.price) : undefined;
     message.quantity = object.quantity ?? 0;
-    message.orderAmount = (object.orderAmount !== undefined && object.orderAmount !== null)
-      ? MoneyValue.fromPartial(object.orderAmount)
-      : undefined;
-    message.aciValue = (object.aciValue !== undefined && object.aciValue !== null)
-      ? Quotation.fromPartial(object.aciValue)
-      : undefined;
-    message.totalOrderAmount = (object.totalOrderAmount !== undefined && object.totalOrderAmount !== null)
-      ? MoneyValue.fromPartial(object.totalOrderAmount)
-      : undefined;
-    message.brokerCommission = (object.brokerCommission !== undefined && object.brokerCommission !== null)
-      ? MoneyValue.fromPartial(object.brokerCommission)
-      : undefined;
-    message.exchangeCommission = (object.exchangeCommission !== undefined && object.exchangeCommission !== null)
-      ? MoneyValue.fromPartial(object.exchangeCommission)
-      : undefined;
+    message.orderAmount =
+      object.orderAmount !== undefined && object.orderAmount !== null
+        ? MoneyValue.fromPartial(object.orderAmount)
+        : undefined;
+    message.aciValue =
+      object.aciValue !== undefined && object.aciValue !== null ? Quotation.fromPartial(object.aciValue) : undefined;
+    message.totalOrderAmount =
+      object.totalOrderAmount !== undefined && object.totalOrderAmount !== null
+        ? MoneyValue.fromPartial(object.totalOrderAmount)
+        : undefined;
+    message.brokerCommission =
+      object.brokerCommission !== undefined && object.brokerCommission !== null
+        ? MoneyValue.fromPartial(object.brokerCommission)
+        : undefined;
+    message.exchangeCommission =
+      object.exchangeCommission !== undefined && object.exchangeCommission !== null
+        ? MoneyValue.fromPartial(object.exchangeCommission)
+        : undefined;
     message.exchangeClearingCommission =
-      (object.exchangeClearingCommission !== undefined && object.exchangeClearingCommission !== null)
+      object.exchangeClearingCommission !== undefined && object.exchangeClearingCommission !== null
         ? MoneyValue.fromPartial(object.exchangeClearingCommission)
         : undefined;
-    message.repoRate = (object.repoRate !== undefined && object.repoRate !== null)
-      ? Quotation.fromPartial(object.repoRate)
-      : undefined;
-    message.party = object.party ?? "";
+    message.repoRate =
+      object.repoRate !== undefined && object.repoRate !== null ? Quotation.fromPartial(object.repoRate) : undefined;
+    message.party = object.party ?? '';
     message.clearValueDate = object.clearValueDate ?? undefined;
     message.secValueDate = object.secValueDate ?? undefined;
-    message.brokerStatus = object.brokerStatus ?? "";
-    message.separateAgreementType = object.separateAgreementType ?? "";
-    message.separateAgreementNumber = object.separateAgreementNumber ?? "";
-    message.separateAgreementDate = object.separateAgreementDate ?? "";
-    message.deliveryType = object.deliveryType ?? "";
+    message.brokerStatus = object.brokerStatus ?? '';
+    message.separateAgreementType = object.separateAgreementType ?? '';
+    message.separateAgreementNumber = object.separateAgreementNumber ?? '';
+    message.separateAgreementDate = object.separateAgreementDate ?? '';
+    message.deliveryType = object.deliveryType ?? '';
     return message;
   },
 };
@@ -3944,8 +3738,10 @@ export const GetDividendsForeignIssuerRequest = {
       ).ldelim();
     }
     if (message.getDivForeignIssuerReport !== undefined) {
-      GetDividendsForeignIssuerReportRequest.encode(message.getDivForeignIssuerReport, writer.uint32(18).fork())
-        .ldelim();
+      GetDividendsForeignIssuerReportRequest.encode(
+        message.getDivForeignIssuerReport,
+        writer.uint32(18).fork(),
+      ).ldelim();
     }
     return writer;
   },
@@ -3998,18 +3794,14 @@ export const GetDividendsForeignIssuerRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetDividendsForeignIssuerRequest>): GetDividendsForeignIssuerRequest {
-    return GetDividendsForeignIssuerRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetDividendsForeignIssuerRequest>): GetDividendsForeignIssuerRequest {
     const message = createBaseGetDividendsForeignIssuerRequest();
     message.generateDivForeignIssuerReport =
-      (object.generateDivForeignIssuerReport !== undefined && object.generateDivForeignIssuerReport !== null)
+      object.generateDivForeignIssuerReport !== undefined && object.generateDivForeignIssuerReport !== null
         ? GenerateDividendsForeignIssuerReportRequest.fromPartial(object.generateDivForeignIssuerReport)
         : undefined;
     message.getDivForeignIssuerReport =
-      (object.getDivForeignIssuerReport !== undefined && object.getDivForeignIssuerReport !== null)
+      object.getDivForeignIssuerReport !== undefined && object.getDivForeignIssuerReport !== null
         ? GetDividendsForeignIssuerReportRequest.fromPartial(object.getDivForeignIssuerReport)
         : undefined;
     return message;
@@ -4075,25 +3867,22 @@ export const GetDividendsForeignIssuerResponse = {
       (obj.generateDivForeignIssuerReportResponse = message.generateDivForeignIssuerReportResponse
         ? GenerateDividendsForeignIssuerReportResponse.toJSON(message.generateDivForeignIssuerReportResponse)
         : undefined);
-    message.divForeignIssuerReport !== undefined && (obj.divForeignIssuerReport = message.divForeignIssuerReport
-      ? GetDividendsForeignIssuerReportResponse.toJSON(message.divForeignIssuerReport)
-      : undefined);
+    message.divForeignIssuerReport !== undefined &&
+      (obj.divForeignIssuerReport = message.divForeignIssuerReport
+        ? GetDividendsForeignIssuerReportResponse.toJSON(message.divForeignIssuerReport)
+        : undefined);
     return obj;
-  },
-
-  create(base?: DeepPartial<GetDividendsForeignIssuerResponse>): GetDividendsForeignIssuerResponse {
-    return GetDividendsForeignIssuerResponse.fromPartial(base ?? {});
   },
 
   fromPartial(object: DeepPartial<GetDividendsForeignIssuerResponse>): GetDividendsForeignIssuerResponse {
     const message = createBaseGetDividendsForeignIssuerResponse();
     message.generateDivForeignIssuerReportResponse =
-      (object.generateDivForeignIssuerReportResponse !== undefined &&
-          object.generateDivForeignIssuerReportResponse !== null)
+      object.generateDivForeignIssuerReportResponse !== undefined &&
+      object.generateDivForeignIssuerReportResponse !== null
         ? GenerateDividendsForeignIssuerReportResponse.fromPartial(object.generateDivForeignIssuerReportResponse)
         : undefined;
     message.divForeignIssuerReport =
-      (object.divForeignIssuerReport !== undefined && object.divForeignIssuerReport !== null)
+      object.divForeignIssuerReport !== undefined && object.divForeignIssuerReport !== null
         ? GetDividendsForeignIssuerReportResponse.fromPartial(object.divForeignIssuerReport)
         : undefined;
     return message;
@@ -4101,12 +3890,12 @@ export const GetDividendsForeignIssuerResponse = {
 };
 
 function createBaseGenerateDividendsForeignIssuerReportRequest(): GenerateDividendsForeignIssuerReportRequest {
-  return { accountId: "", from: undefined, to: undefined };
+  return { accountId: '', from: undefined, to: undefined };
 }
 
 export const GenerateDividendsForeignIssuerReportRequest = {
   encode(message: GenerateDividendsForeignIssuerReportRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
     if (message.from !== undefined) {
@@ -4144,7 +3933,7 @@ export const GenerateDividendsForeignIssuerReportRequest = {
 
   fromJSON(object: any): GenerateDividendsForeignIssuerReportRequest {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
     };
@@ -4158,15 +3947,11 @@ export const GenerateDividendsForeignIssuerReportRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GenerateDividendsForeignIssuerReportRequest>): GenerateDividendsForeignIssuerReportRequest {
-    return GenerateDividendsForeignIssuerReportRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(
     object: DeepPartial<GenerateDividendsForeignIssuerReportRequest>,
   ): GenerateDividendsForeignIssuerReportRequest {
     const message = createBaseGenerateDividendsForeignIssuerReportRequest();
-    message.accountId = object.accountId ?? "";
+    message.accountId = object.accountId ?? '';
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
     return message;
@@ -4174,12 +3959,12 @@ export const GenerateDividendsForeignIssuerReportRequest = {
 };
 
 function createBaseGetDividendsForeignIssuerReportRequest(): GetDividendsForeignIssuerReportRequest {
-  return { taskId: "", page: 0 };
+  return { taskId: '', page: 0 };
 }
 
 export const GetDividendsForeignIssuerReportRequest = {
   encode(message: GetDividendsForeignIssuerReportRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.taskId !== "") {
+    if (message.taskId !== '') {
       writer.uint32(10).string(message.taskId);
     }
     if (message.page !== 0) {
@@ -4211,7 +3996,7 @@ export const GetDividendsForeignIssuerReportRequest = {
 
   fromJSON(object: any): GetDividendsForeignIssuerReportRequest {
     return {
-      taskId: isSet(object.taskId) ? String(object.taskId) : "",
+      taskId: isSet(object.taskId) ? String(object.taskId) : '',
       page: isSet(object.page) ? Number(object.page) : 0,
     };
   },
@@ -4223,25 +4008,21 @@ export const GetDividendsForeignIssuerReportRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetDividendsForeignIssuerReportRequest>): GetDividendsForeignIssuerReportRequest {
-    return GetDividendsForeignIssuerReportRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetDividendsForeignIssuerReportRequest>): GetDividendsForeignIssuerReportRequest {
     const message = createBaseGetDividendsForeignIssuerReportRequest();
-    message.taskId = object.taskId ?? "";
+    message.taskId = object.taskId ?? '';
     message.page = object.page ?? 0;
     return message;
   },
 };
 
 function createBaseGenerateDividendsForeignIssuerReportResponse(): GenerateDividendsForeignIssuerReportResponse {
-  return { taskId: "" };
+  return { taskId: '' };
 }
 
 export const GenerateDividendsForeignIssuerReportResponse = {
   encode(message: GenerateDividendsForeignIssuerReportResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.taskId !== "") {
+    if (message.taskId !== '') {
       writer.uint32(10).string(message.taskId);
     }
     return writer;
@@ -4266,7 +4047,9 @@ export const GenerateDividendsForeignIssuerReportResponse = {
   },
 
   fromJSON(object: any): GenerateDividendsForeignIssuerReportResponse {
-    return { taskId: isSet(object.taskId) ? String(object.taskId) : "" };
+    return {
+      taskId: isSet(object.taskId) ? String(object.taskId) : '',
+    };
   },
 
   toJSON(message: GenerateDividendsForeignIssuerReportResponse): unknown {
@@ -4275,17 +4058,11 @@ export const GenerateDividendsForeignIssuerReportResponse = {
     return obj;
   },
 
-  create(
-    base?: DeepPartial<GenerateDividendsForeignIssuerReportResponse>,
-  ): GenerateDividendsForeignIssuerReportResponse {
-    return GenerateDividendsForeignIssuerReportResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(
     object: DeepPartial<GenerateDividendsForeignIssuerReportResponse>,
   ): GenerateDividendsForeignIssuerReportResponse {
     const message = createBaseGenerateDividendsForeignIssuerReportResponse();
-    message.taskId = object.taskId ?? "";
+    message.taskId = object.taskId ?? '';
     return message;
   },
 };
@@ -4352,8 +4129,8 @@ export const GetDividendsForeignIssuerReportResponse = {
   toJSON(message: GetDividendsForeignIssuerReportResponse): unknown {
     const obj: any = {};
     if (message.dividendsForeignIssuerReport) {
-      obj.dividendsForeignIssuerReport = message.dividendsForeignIssuerReport.map((e) =>
-        e ? DividendsForeignIssuerReport.toJSON(e) : undefined
+      obj.dividendsForeignIssuerReport = message.dividendsForeignIssuerReport.map(e =>
+        e ? DividendsForeignIssuerReport.toJSON(e) : undefined,
       );
     } else {
       obj.dividendsForeignIssuerReport = [];
@@ -4364,14 +4141,10 @@ export const GetDividendsForeignIssuerReportResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetDividendsForeignIssuerReportResponse>): GetDividendsForeignIssuerReportResponse {
-    return GetDividendsForeignIssuerReportResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetDividendsForeignIssuerReportResponse>): GetDividendsForeignIssuerReportResponse {
     const message = createBaseGetDividendsForeignIssuerReportResponse();
     message.dividendsForeignIssuerReport =
-      object.dividendsForeignIssuerReport?.map((e) => DividendsForeignIssuerReport.fromPartial(e)) || [];
+      object.dividendsForeignIssuerReport?.map(e => DividendsForeignIssuerReport.fromPartial(e)) || [];
     message.itemsCount = object.itemsCount ?? 0;
     message.pagesCount = object.pagesCount ?? 0;
     message.page = object.page ?? 0;
@@ -4383,16 +4156,16 @@ function createBaseDividendsForeignIssuerReport(): DividendsForeignIssuerReport 
   return {
     recordDate: undefined,
     paymentDate: undefined,
-    securityName: "",
-    isin: "",
-    issuerCountry: "",
+    securityName: '',
+    isin: '',
+    issuerCountry: '',
     quantity: 0,
     dividend: undefined,
     externalCommission: undefined,
     dividendGross: undefined,
     tax: undefined,
     dividendAmount: undefined,
-    currency: "",
+    currency: '',
   };
 }
 
@@ -4404,13 +4177,13 @@ export const DividendsForeignIssuerReport = {
     if (message.paymentDate !== undefined) {
       Timestamp.encode(toTimestamp(message.paymentDate), writer.uint32(18).fork()).ldelim();
     }
-    if (message.securityName !== "") {
+    if (message.securityName !== '') {
       writer.uint32(26).string(message.securityName);
     }
-    if (message.isin !== "") {
+    if (message.isin !== '') {
       writer.uint32(34).string(message.isin);
     }
-    if (message.issuerCountry !== "") {
+    if (message.issuerCountry !== '') {
       writer.uint32(42).string(message.issuerCountry);
     }
     if (message.quantity !== 0) {
@@ -4431,7 +4204,7 @@ export const DividendsForeignIssuerReport = {
     if (message.dividendAmount !== undefined) {
       Quotation.encode(message.dividendAmount, writer.uint32(90).fork()).ldelim();
     }
-    if (message.currency !== "") {
+    if (message.currency !== '') {
       writer.uint32(98).string(message.currency);
     }
     return writer;
@@ -4492,16 +4265,16 @@ export const DividendsForeignIssuerReport = {
     return {
       recordDate: isSet(object.recordDate) ? fromJsonTimestamp(object.recordDate) : undefined,
       paymentDate: isSet(object.paymentDate) ? fromJsonTimestamp(object.paymentDate) : undefined,
-      securityName: isSet(object.securityName) ? String(object.securityName) : "",
-      isin: isSet(object.isin) ? String(object.isin) : "",
-      issuerCountry: isSet(object.issuerCountry) ? String(object.issuerCountry) : "",
+      securityName: isSet(object.securityName) ? String(object.securityName) : '',
+      isin: isSet(object.isin) ? String(object.isin) : '',
+      issuerCountry: isSet(object.issuerCountry) ? String(object.issuerCountry) : '',
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
       dividend: isSet(object.dividend) ? Quotation.fromJSON(object.dividend) : undefined,
       externalCommission: isSet(object.externalCommission) ? Quotation.fromJSON(object.externalCommission) : undefined,
       dividendGross: isSet(object.dividendGross) ? Quotation.fromJSON(object.dividendGross) : undefined,
       tax: isSet(object.tax) ? Quotation.fromJSON(object.tax) : undefined,
       dividendAmount: isSet(object.dividendAmount) ? Quotation.fromJSON(object.dividendAmount) : undefined,
-      currency: isSet(object.currency) ? String(object.currency) : "",
+      currency: isSet(object.currency) ? String(object.currency) : '',
     };
   },
 
@@ -4526,32 +4299,30 @@ export const DividendsForeignIssuerReport = {
     return obj;
   },
 
-  create(base?: DeepPartial<DividendsForeignIssuerReport>): DividendsForeignIssuerReport {
-    return DividendsForeignIssuerReport.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<DividendsForeignIssuerReport>): DividendsForeignIssuerReport {
     const message = createBaseDividendsForeignIssuerReport();
     message.recordDate = object.recordDate ?? undefined;
     message.paymentDate = object.paymentDate ?? undefined;
-    message.securityName = object.securityName ?? "";
-    message.isin = object.isin ?? "";
-    message.issuerCountry = object.issuerCountry ?? "";
+    message.securityName = object.securityName ?? '';
+    message.isin = object.isin ?? '';
+    message.issuerCountry = object.issuerCountry ?? '';
     message.quantity = object.quantity ?? 0;
-    message.dividend = (object.dividend !== undefined && object.dividend !== null)
-      ? Quotation.fromPartial(object.dividend)
-      : undefined;
-    message.externalCommission = (object.externalCommission !== undefined && object.externalCommission !== null)
-      ? Quotation.fromPartial(object.externalCommission)
-      : undefined;
-    message.dividendGross = (object.dividendGross !== undefined && object.dividendGross !== null)
-      ? Quotation.fromPartial(object.dividendGross)
-      : undefined;
-    message.tax = (object.tax !== undefined && object.tax !== null) ? Quotation.fromPartial(object.tax) : undefined;
-    message.dividendAmount = (object.dividendAmount !== undefined && object.dividendAmount !== null)
-      ? Quotation.fromPartial(object.dividendAmount)
-      : undefined;
-    message.currency = object.currency ?? "";
+    message.dividend =
+      object.dividend !== undefined && object.dividend !== null ? Quotation.fromPartial(object.dividend) : undefined;
+    message.externalCommission =
+      object.externalCommission !== undefined && object.externalCommission !== null
+        ? Quotation.fromPartial(object.externalCommission)
+        : undefined;
+    message.dividendGross =
+      object.dividendGross !== undefined && object.dividendGross !== null
+        ? Quotation.fromPartial(object.dividendGross)
+        : undefined;
+    message.tax = object.tax !== undefined && object.tax !== null ? Quotation.fromPartial(object.tax) : undefined;
+    message.dividendAmount =
+      object.dividendAmount !== undefined && object.dividendAmount !== null
+        ? Quotation.fromPartial(object.dividendAmount)
+        : undefined;
+    message.currency = object.currency ?? '';
     return message;
   },
 };
@@ -4587,26 +4358,24 @@ export const PortfolioStreamRequest = {
   },
 
   fromJSON(object: any): PortfolioStreamRequest {
-    return { accounts: Array.isArray(object?.accounts) ? object.accounts.map((e: any) => String(e)) : [] };
+    return {
+      accounts: Array.isArray(object?.accounts) ? object.accounts.map((e: any) => String(e)) : [],
+    };
   },
 
   toJSON(message: PortfolioStreamRequest): unknown {
     const obj: any = {};
     if (message.accounts) {
-      obj.accounts = message.accounts.map((e) => e);
+      obj.accounts = message.accounts.map(e => e);
     } else {
       obj.accounts = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<PortfolioStreamRequest>): PortfolioStreamRequest {
-    return PortfolioStreamRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PortfolioStreamRequest>): PortfolioStreamRequest {
     const message = createBasePortfolioStreamRequest();
-    message.accounts = object.accounts?.map((e) => e) || [];
+    message.accounts = object.accounts?.map(e => e) || [];
     return message;
   },
 };
@@ -4675,19 +4444,17 @@ export const PortfolioStreamResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<PortfolioStreamResponse>): PortfolioStreamResponse {
-    return PortfolioStreamResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PortfolioStreamResponse>): PortfolioStreamResponse {
     const message = createBasePortfolioStreamResponse();
-    message.subscriptions = (object.subscriptions !== undefined && object.subscriptions !== null)
-      ? PortfolioSubscriptionResult.fromPartial(object.subscriptions)
-      : undefined;
-    message.portfolio = (object.portfolio !== undefined && object.portfolio !== null)
-      ? PortfolioResponse.fromPartial(object.portfolio)
-      : undefined;
-    message.ping = (object.ping !== undefined && object.ping !== null) ? Ping.fromPartial(object.ping) : undefined;
+    message.subscriptions =
+      object.subscriptions !== undefined && object.subscriptions !== null
+        ? PortfolioSubscriptionResult.fromPartial(object.subscriptions)
+        : undefined;
+    message.portfolio =
+      object.portfolio !== undefined && object.portfolio !== null
+        ? PortfolioResponse.fromPartial(object.portfolio)
+        : undefined;
+    message.ping = object.ping !== undefined && object.ping !== null ? Ping.fromPartial(object.ping) : undefined;
     return message;
   },
 };
@@ -4733,31 +4500,27 @@ export const PortfolioSubscriptionResult = {
   toJSON(message: PortfolioSubscriptionResult): unknown {
     const obj: any = {};
     if (message.accounts) {
-      obj.accounts = message.accounts.map((e) => e ? AccountSubscriptionStatus.toJSON(e) : undefined);
+      obj.accounts = message.accounts.map(e => (e ? AccountSubscriptionStatus.toJSON(e) : undefined));
     } else {
       obj.accounts = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<PortfolioSubscriptionResult>): PortfolioSubscriptionResult {
-    return PortfolioSubscriptionResult.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PortfolioSubscriptionResult>): PortfolioSubscriptionResult {
     const message = createBasePortfolioSubscriptionResult();
-    message.accounts = object.accounts?.map((e) => AccountSubscriptionStatus.fromPartial(e)) || [];
+    message.accounts = object.accounts?.map(e => AccountSubscriptionStatus.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseAccountSubscriptionStatus(): AccountSubscriptionStatus {
-  return { accountId: "", subscriptionStatus: 0 };
+  return { accountId: '', subscriptionStatus: 0 };
 }
 
 export const AccountSubscriptionStatus = {
   encode(message: AccountSubscriptionStatus, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
     if (message.subscriptionStatus !== 0) {
@@ -4789,7 +4552,7 @@ export const AccountSubscriptionStatus = {
 
   fromJSON(object: any): AccountSubscriptionStatus {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
       subscriptionStatus: isSet(object.subscriptionStatus)
         ? portfolioSubscriptionStatusFromJSON(object.subscriptionStatus)
         : 0,
@@ -4804,13 +4567,9 @@ export const AccountSubscriptionStatus = {
     return obj;
   },
 
-  create(base?: DeepPartial<AccountSubscriptionStatus>): AccountSubscriptionStatus {
-    return AccountSubscriptionStatus.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<AccountSubscriptionStatus>): AccountSubscriptionStatus {
     const message = createBaseAccountSubscriptionStatus();
-    message.accountId = object.accountId ?? "";
+    message.accountId = object.accountId ?? '';
     message.subscriptionStatus = object.subscriptionStatus ?? 0;
     return message;
   },
@@ -4818,11 +4577,11 @@ export const AccountSubscriptionStatus = {
 
 function createBaseGetOperationsByCursorRequest(): GetOperationsByCursorRequest {
   return {
-    accountId: "",
-    instrumentId: "",
+    accountId: '',
+    instrumentId: '',
     from: undefined,
     to: undefined,
-    cursor: "",
+    cursor: '',
     limit: 0,
     operationTypes: [],
     state: 0,
@@ -4834,10 +4593,10 @@ function createBaseGetOperationsByCursorRequest(): GetOperationsByCursorRequest 
 
 export const GetOperationsByCursorRequest = {
   encode(message: GetOperationsByCursorRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
-    if (message.instrumentId !== "") {
+    if (message.instrumentId !== '') {
       writer.uint32(18).string(message.instrumentId);
     }
     if (message.from !== undefined) {
@@ -4846,7 +4605,7 @@ export const GetOperationsByCursorRequest = {
     if (message.to !== undefined) {
       Timestamp.encode(toTimestamp(message.to), writer.uint32(58).fork()).ldelim();
     }
-    if (message.cursor !== "") {
+    if (message.cursor !== '') {
       writer.uint32(90).string(message.cursor);
     }
     if (message.limit !== 0) {
@@ -4929,11 +4688,11 @@ export const GetOperationsByCursorRequest = {
 
   fromJSON(object: any): GetOperationsByCursorRequest {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : "",
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : "",
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
-      cursor: isSet(object.cursor) ? String(object.cursor) : "",
+      cursor: isSet(object.cursor) ? String(object.cursor) : '',
       limit: isSet(object.limit) ? Number(object.limit) : 0,
       operationTypes: Array.isArray(object?.operationTypes)
         ? object.operationTypes.map((e: any) => operationTypeFromJSON(e))
@@ -4954,7 +4713,7 @@ export const GetOperationsByCursorRequest = {
     message.cursor !== undefined && (obj.cursor = message.cursor);
     message.limit !== undefined && (obj.limit = Math.round(message.limit));
     if (message.operationTypes) {
-      obj.operationTypes = message.operationTypes.map((e) => operationTypeToJSON(e));
+      obj.operationTypes = message.operationTypes.map(e => operationTypeToJSON(e));
     } else {
       obj.operationTypes = [];
     }
@@ -4965,19 +4724,15 @@ export const GetOperationsByCursorRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetOperationsByCursorRequest>): GetOperationsByCursorRequest {
-    return GetOperationsByCursorRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetOperationsByCursorRequest>): GetOperationsByCursorRequest {
     const message = createBaseGetOperationsByCursorRequest();
-    message.accountId = object.accountId ?? "";
-    message.instrumentId = object.instrumentId ?? "";
+    message.accountId = object.accountId ?? '';
+    message.instrumentId = object.instrumentId ?? '';
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
-    message.cursor = object.cursor ?? "";
+    message.cursor = object.cursor ?? '';
     message.limit = object.limit ?? 0;
-    message.operationTypes = object.operationTypes?.map((e) => e) || [];
+    message.operationTypes = object.operationTypes?.map(e => e) || [];
     message.state = object.state ?? 0;
     message.withoutCommissions = object.withoutCommissions ?? false;
     message.withoutTrades = object.withoutTrades ?? false;
@@ -4987,7 +4742,7 @@ export const GetOperationsByCursorRequest = {
 };
 
 function createBaseGetOperationsByCursorResponse(): GetOperationsByCursorResponse {
-  return { hasNext: false, nextCursor: "", items: [] };
+  return { hasNext: false, nextCursor: '', items: [] };
 }
 
 export const GetOperationsByCursorResponse = {
@@ -4995,7 +4750,7 @@ export const GetOperationsByCursorResponse = {
     if (message.hasNext === true) {
       writer.uint32(8).bool(message.hasNext);
     }
-    if (message.nextCursor !== "") {
+    if (message.nextCursor !== '') {
       writer.uint32(18).string(message.nextCursor);
     }
     for (const v of message.items) {
@@ -5031,7 +4786,7 @@ export const GetOperationsByCursorResponse = {
   fromJSON(object: any): GetOperationsByCursorResponse {
     return {
       hasNext: isSet(object.hasNext) ? Boolean(object.hasNext) : false,
-      nextCursor: isSet(object.nextCursor) ? String(object.nextCursor) : "",
+      nextCursor: isSet(object.nextCursor) ? String(object.nextCursor) : '',
       items: Array.isArray(object?.items) ? object.items.map((e: any) => OperationItem.fromJSON(e)) : [],
     };
   },
@@ -5041,42 +4796,38 @@ export const GetOperationsByCursorResponse = {
     message.hasNext !== undefined && (obj.hasNext = message.hasNext);
     message.nextCursor !== undefined && (obj.nextCursor = message.nextCursor);
     if (message.items) {
-      obj.items = message.items.map((e) => e ? OperationItem.toJSON(e) : undefined);
+      obj.items = message.items.map(e => (e ? OperationItem.toJSON(e) : undefined));
     } else {
       obj.items = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetOperationsByCursorResponse>): GetOperationsByCursorResponse {
-    return GetOperationsByCursorResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetOperationsByCursorResponse>): GetOperationsByCursorResponse {
     const message = createBaseGetOperationsByCursorResponse();
     message.hasNext = object.hasNext ?? false;
-    message.nextCursor = object.nextCursor ?? "";
-    message.items = object.items?.map((e) => OperationItem.fromPartial(e)) || [];
+    message.nextCursor = object.nextCursor ?? '';
+    message.items = object.items?.map(e => OperationItem.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseOperationItem(): OperationItem {
   return {
-    cursor: "",
-    brokerAccountId: "",
-    id: "",
-    parentOperationId: "",
-    name: "",
+    cursor: '',
+    brokerAccountId: '',
+    id: '',
+    parentOperationId: '',
+    name: '',
     date: undefined,
     type: 0,
-    description: "",
+    description: '',
     state: 0,
-    instrumentUid: "",
-    figi: "",
-    instrumentType: "",
+    instrumentUid: '',
+    figi: '',
+    instrumentType: '',
     instrumentKind: 0,
-    positionUid: "",
+    positionUid: '',
     payment: undefined,
     price: undefined,
     commission: undefined,
@@ -5087,27 +4838,27 @@ function createBaseOperationItem(): OperationItem {
     quantityRest: 0,
     quantityDone: 0,
     cancelDateTime: undefined,
-    cancelReason: "",
+    cancelReason: '',
     tradesInfo: undefined,
-    assetUid: "",
+    assetUid: '',
   };
 }
 
 export const OperationItem = {
   encode(message: OperationItem, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.cursor !== "") {
+    if (message.cursor !== '') {
       writer.uint32(10).string(message.cursor);
     }
-    if (message.brokerAccountId !== "") {
+    if (message.brokerAccountId !== '') {
       writer.uint32(50).string(message.brokerAccountId);
     }
-    if (message.id !== "") {
+    if (message.id !== '') {
       writer.uint32(130).string(message.id);
     }
-    if (message.parentOperationId !== "") {
+    if (message.parentOperationId !== '') {
       writer.uint32(138).string(message.parentOperationId);
     }
-    if (message.name !== "") {
+    if (message.name !== '') {
       writer.uint32(146).string(message.name);
     }
     if (message.date !== undefined) {
@@ -5116,25 +4867,25 @@ export const OperationItem = {
     if (message.type !== 0) {
       writer.uint32(176).int32(message.type);
     }
-    if (message.description !== "") {
+    if (message.description !== '') {
       writer.uint32(186).string(message.description);
     }
     if (message.state !== 0) {
       writer.uint32(192).int32(message.state);
     }
-    if (message.instrumentUid !== "") {
+    if (message.instrumentUid !== '') {
       writer.uint32(250).string(message.instrumentUid);
     }
-    if (message.figi !== "") {
+    if (message.figi !== '') {
       writer.uint32(258).string(message.figi);
     }
-    if (message.instrumentType !== "") {
+    if (message.instrumentType !== '') {
       writer.uint32(266).string(message.instrumentType);
     }
     if (message.instrumentKind !== 0) {
       writer.uint32(272).int32(message.instrumentKind);
     }
-    if (message.positionUid !== "") {
+    if (message.positionUid !== '') {
       writer.uint32(282).string(message.positionUid);
     }
     if (message.payment !== undefined) {
@@ -5167,13 +4918,13 @@ export const OperationItem = {
     if (message.cancelDateTime !== undefined) {
       Timestamp.encode(toTimestamp(message.cancelDateTime), writer.uint32(450).fork()).ldelim();
     }
-    if (message.cancelReason !== "") {
+    if (message.cancelReason !== '') {
       writer.uint32(458).string(message.cancelReason);
     }
     if (message.tradesInfo !== undefined) {
       OperationItemTrades.encode(message.tradesInfo, writer.uint32(490).fork()).ldelim();
     }
-    if (message.assetUid !== "") {
+    if (message.assetUid !== '') {
       writer.uint32(514).string(message.assetUid);
     }
     return writer;
@@ -5277,20 +5028,20 @@ export const OperationItem = {
 
   fromJSON(object: any): OperationItem {
     return {
-      cursor: isSet(object.cursor) ? String(object.cursor) : "",
-      brokerAccountId: isSet(object.brokerAccountId) ? String(object.brokerAccountId) : "",
-      id: isSet(object.id) ? String(object.id) : "",
-      parentOperationId: isSet(object.parentOperationId) ? String(object.parentOperationId) : "",
-      name: isSet(object.name) ? String(object.name) : "",
+      cursor: isSet(object.cursor) ? String(object.cursor) : '',
+      brokerAccountId: isSet(object.brokerAccountId) ? String(object.brokerAccountId) : '',
+      id: isSet(object.id) ? String(object.id) : '',
+      parentOperationId: isSet(object.parentOperationId) ? String(object.parentOperationId) : '',
+      name: isSet(object.name) ? String(object.name) : '',
       date: isSet(object.date) ? fromJsonTimestamp(object.date) : undefined,
       type: isSet(object.type) ? operationTypeFromJSON(object.type) : 0,
-      description: isSet(object.description) ? String(object.description) : "",
+      description: isSet(object.description) ? String(object.description) : '',
       state: isSet(object.state) ? operationStateFromJSON(object.state) : 0,
-      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : "",
-      figi: isSet(object.figi) ? String(object.figi) : "",
-      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : "",
+      instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
+      figi: isSet(object.figi) ? String(object.figi) : '',
+      instrumentType: isSet(object.instrumentType) ? String(object.instrumentType) : '',
       instrumentKind: isSet(object.instrumentKind) ? instrumentTypeFromJSON(object.instrumentKind) : 0,
-      positionUid: isSet(object.positionUid) ? String(object.positionUid) : "",
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : '',
       payment: isSet(object.payment) ? MoneyValue.fromJSON(object.payment) : undefined,
       price: isSet(object.price) ? MoneyValue.fromJSON(object.price) : undefined,
       commission: isSet(object.commission) ? MoneyValue.fromJSON(object.commission) : undefined,
@@ -5301,9 +5052,9 @@ export const OperationItem = {
       quantityRest: isSet(object.quantityRest) ? Number(object.quantityRest) : 0,
       quantityDone: isSet(object.quantityDone) ? Number(object.quantityDone) : 0,
       cancelDateTime: isSet(object.cancelDateTime) ? fromJsonTimestamp(object.cancelDateTime) : undefined,
-      cancelReason: isSet(object.cancelReason) ? String(object.cancelReason) : "",
+      cancelReason: isSet(object.cancelReason) ? String(object.cancelReason) : '',
       tradesInfo: isSet(object.tradesInfo) ? OperationItemTrades.fromJSON(object.tradesInfo) : undefined,
-      assetUid: isSet(object.assetUid) ? String(object.assetUid) : "",
+      assetUid: isSet(object.assetUid) ? String(object.assetUid) : '',
     };
   },
 
@@ -5343,53 +5094,50 @@ export const OperationItem = {
     return obj;
   },
 
-  create(base?: DeepPartial<OperationItem>): OperationItem {
-    return OperationItem.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<OperationItem>): OperationItem {
     const message = createBaseOperationItem();
-    message.cursor = object.cursor ?? "";
-    message.brokerAccountId = object.brokerAccountId ?? "";
-    message.id = object.id ?? "";
-    message.parentOperationId = object.parentOperationId ?? "";
-    message.name = object.name ?? "";
+    message.cursor = object.cursor ?? '';
+    message.brokerAccountId = object.brokerAccountId ?? '';
+    message.id = object.id ?? '';
+    message.parentOperationId = object.parentOperationId ?? '';
+    message.name = object.name ?? '';
     message.date = object.date ?? undefined;
     message.type = object.type ?? 0;
-    message.description = object.description ?? "";
+    message.description = object.description ?? '';
     message.state = object.state ?? 0;
-    message.instrumentUid = object.instrumentUid ?? "";
-    message.figi = object.figi ?? "";
-    message.instrumentType = object.instrumentType ?? "";
+    message.instrumentUid = object.instrumentUid ?? '';
+    message.figi = object.figi ?? '';
+    message.instrumentType = object.instrumentType ?? '';
     message.instrumentKind = object.instrumentKind ?? 0;
-    message.positionUid = object.positionUid ?? "";
-    message.payment = (object.payment !== undefined && object.payment !== null)
-      ? MoneyValue.fromPartial(object.payment)
-      : undefined;
-    message.price = (object.price !== undefined && object.price !== null)
-      ? MoneyValue.fromPartial(object.price)
-      : undefined;
-    message.commission = (object.commission !== undefined && object.commission !== null)
-      ? MoneyValue.fromPartial(object.commission)
-      : undefined;
-    message.yield = (object.yield !== undefined && object.yield !== null)
-      ? MoneyValue.fromPartial(object.yield)
-      : undefined;
-    message.yieldRelative = (object.yieldRelative !== undefined && object.yieldRelative !== null)
-      ? Quotation.fromPartial(object.yieldRelative)
-      : undefined;
-    message.accruedInt = (object.accruedInt !== undefined && object.accruedInt !== null)
-      ? MoneyValue.fromPartial(object.accruedInt)
-      : undefined;
+    message.positionUid = object.positionUid ?? '';
+    message.payment =
+      object.payment !== undefined && object.payment !== null ? MoneyValue.fromPartial(object.payment) : undefined;
+    message.price =
+      object.price !== undefined && object.price !== null ? MoneyValue.fromPartial(object.price) : undefined;
+    message.commission =
+      object.commission !== undefined && object.commission !== null
+        ? MoneyValue.fromPartial(object.commission)
+        : undefined;
+    message.yield =
+      object.yield !== undefined && object.yield !== null ? MoneyValue.fromPartial(object.yield) : undefined;
+    message.yieldRelative =
+      object.yieldRelative !== undefined && object.yieldRelative !== null
+        ? Quotation.fromPartial(object.yieldRelative)
+        : undefined;
+    message.accruedInt =
+      object.accruedInt !== undefined && object.accruedInt !== null
+        ? MoneyValue.fromPartial(object.accruedInt)
+        : undefined;
     message.quantity = object.quantity ?? 0;
     message.quantityRest = object.quantityRest ?? 0;
     message.quantityDone = object.quantityDone ?? 0;
     message.cancelDateTime = object.cancelDateTime ?? undefined;
-    message.cancelReason = object.cancelReason ?? "";
-    message.tradesInfo = (object.tradesInfo !== undefined && object.tradesInfo !== null)
-      ? OperationItemTrades.fromPartial(object.tradesInfo)
-      : undefined;
-    message.assetUid = object.assetUid ?? "";
+    message.cancelReason = object.cancelReason ?? '';
+    message.tradesInfo =
+      object.tradesInfo !== undefined && object.tradesInfo !== null
+        ? OperationItemTrades.fromPartial(object.tradesInfo)
+        : undefined;
+    message.assetUid = object.assetUid ?? '';
     return message;
   },
 };
@@ -5433,31 +5181,27 @@ export const OperationItemTrades = {
   toJSON(message: OperationItemTrades): unknown {
     const obj: any = {};
     if (message.trades) {
-      obj.trades = message.trades.map((e) => e ? OperationItemTrade.toJSON(e) : undefined);
+      obj.trades = message.trades.map(e => (e ? OperationItemTrade.toJSON(e) : undefined));
     } else {
       obj.trades = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<OperationItemTrades>): OperationItemTrades {
-    return OperationItemTrades.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<OperationItemTrades>): OperationItemTrades {
     const message = createBaseOperationItemTrades();
-    message.trades = object.trades?.map((e) => OperationItemTrade.fromPartial(e)) || [];
+    message.trades = object.trades?.map(e => OperationItemTrade.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseOperationItemTrade(): OperationItemTrade {
-  return { num: "", date: undefined, quantity: 0, price: undefined, yield: undefined, yieldRelative: undefined };
+  return { num: '', date: undefined, quantity: 0, price: undefined, yield: undefined, yieldRelative: undefined };
 }
 
 export const OperationItemTrade = {
   encode(message: OperationItemTrade, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.num !== "") {
+    if (message.num !== '') {
       writer.uint32(10).string(message.num);
     }
     if (message.date !== undefined) {
@@ -5513,7 +5257,7 @@ export const OperationItemTrade = {
 
   fromJSON(object: any): OperationItemTrade {
     return {
-      num: isSet(object.num) ? String(object.num) : "",
+      num: isSet(object.num) ? String(object.num) : '',
       date: isSet(object.date) ? fromJsonTimestamp(object.date) : undefined,
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
       price: isSet(object.price) ? MoneyValue.fromJSON(object.price) : undefined,
@@ -5534,24 +5278,19 @@ export const OperationItemTrade = {
     return obj;
   },
 
-  create(base?: DeepPartial<OperationItemTrade>): OperationItemTrade {
-    return OperationItemTrade.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<OperationItemTrade>): OperationItemTrade {
     const message = createBaseOperationItemTrade();
-    message.num = object.num ?? "";
+    message.num = object.num ?? '';
     message.date = object.date ?? undefined;
     message.quantity = object.quantity ?? 0;
-    message.price = (object.price !== undefined && object.price !== null)
-      ? MoneyValue.fromPartial(object.price)
-      : undefined;
-    message.yield = (object.yield !== undefined && object.yield !== null)
-      ? MoneyValue.fromPartial(object.yield)
-      : undefined;
-    message.yieldRelative = (object.yieldRelative !== undefined && object.yieldRelative !== null)
-      ? Quotation.fromPartial(object.yieldRelative)
-      : undefined;
+    message.price =
+      object.price !== undefined && object.price !== null ? MoneyValue.fromPartial(object.price) : undefined;
+    message.yield =
+      object.yield !== undefined && object.yield !== null ? MoneyValue.fromPartial(object.yield) : undefined;
+    message.yieldRelative =
+      object.yieldRelative !== undefined && object.yieldRelative !== null
+        ? Quotation.fromPartial(object.yieldRelative)
+        : undefined;
     return message;
   },
 };
@@ -5587,26 +5326,24 @@ export const PositionsStreamRequest = {
   },
 
   fromJSON(object: any): PositionsStreamRequest {
-    return { accounts: Array.isArray(object?.accounts) ? object.accounts.map((e: any) => String(e)) : [] };
+    return {
+      accounts: Array.isArray(object?.accounts) ? object.accounts.map((e: any) => String(e)) : [],
+    };
   },
 
   toJSON(message: PositionsStreamRequest): unknown {
     const obj: any = {};
     if (message.accounts) {
-      obj.accounts = message.accounts.map((e) => e);
+      obj.accounts = message.accounts.map(e => e);
     } else {
       obj.accounts = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<PositionsStreamRequest>): PositionsStreamRequest {
-    return PositionsStreamRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionsStreamRequest>): PositionsStreamRequest {
     const message = createBasePositionsStreamRequest();
-    message.accounts = object.accounts?.map((e) => e) || [];
+    message.accounts = object.accounts?.map(e => e) || [];
     return message;
   },
 };
@@ -5675,19 +5412,15 @@ export const PositionsStreamResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<PositionsStreamResponse>): PositionsStreamResponse {
-    return PositionsStreamResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionsStreamResponse>): PositionsStreamResponse {
     const message = createBasePositionsStreamResponse();
-    message.subscriptions = (object.subscriptions !== undefined && object.subscriptions !== null)
-      ? PositionsSubscriptionResult.fromPartial(object.subscriptions)
-      : undefined;
-    message.position = (object.position !== undefined && object.position !== null)
-      ? PositionData.fromPartial(object.position)
-      : undefined;
-    message.ping = (object.ping !== undefined && object.ping !== null) ? Ping.fromPartial(object.ping) : undefined;
+    message.subscriptions =
+      object.subscriptions !== undefined && object.subscriptions !== null
+        ? PositionsSubscriptionResult.fromPartial(object.subscriptions)
+        : undefined;
+    message.position =
+      object.position !== undefined && object.position !== null ? PositionData.fromPartial(object.position) : undefined;
+    message.ping = object.ping !== undefined && object.ping !== null ? Ping.fromPartial(object.ping) : undefined;
     return message;
   },
 };
@@ -5733,31 +5466,27 @@ export const PositionsSubscriptionResult = {
   toJSON(message: PositionsSubscriptionResult): unknown {
     const obj: any = {};
     if (message.accounts) {
-      obj.accounts = message.accounts.map((e) => e ? PositionsSubscriptionStatus.toJSON(e) : undefined);
+      obj.accounts = message.accounts.map(e => (e ? PositionsSubscriptionStatus.toJSON(e) : undefined));
     } else {
       obj.accounts = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<PositionsSubscriptionResult>): PositionsSubscriptionResult {
-    return PositionsSubscriptionResult.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionsSubscriptionResult>): PositionsSubscriptionResult {
     const message = createBasePositionsSubscriptionResult();
-    message.accounts = object.accounts?.map((e) => PositionsSubscriptionStatus.fromPartial(e)) || [];
+    message.accounts = object.accounts?.map(e => PositionsSubscriptionStatus.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBasePositionsSubscriptionStatus(): PositionsSubscriptionStatus {
-  return { accountId: "", subscriptionStatus: 0 };
+  return { accountId: '', subscriptionStatus: 0 };
 }
 
 export const PositionsSubscriptionStatus = {
   encode(message: PositionsSubscriptionStatus, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
     if (message.subscriptionStatus !== 0) {
@@ -5789,7 +5518,7 @@ export const PositionsSubscriptionStatus = {
 
   fromJSON(object: any): PositionsSubscriptionStatus {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
       subscriptionStatus: isSet(object.subscriptionStatus)
         ? positionsAccountSubscriptionStatusFromJSON(object.subscriptionStatus)
         : 0,
@@ -5804,25 +5533,21 @@ export const PositionsSubscriptionStatus = {
     return obj;
   },
 
-  create(base?: DeepPartial<PositionsSubscriptionStatus>): PositionsSubscriptionStatus {
-    return PositionsSubscriptionStatus.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionsSubscriptionStatus>): PositionsSubscriptionStatus {
     const message = createBasePositionsSubscriptionStatus();
-    message.accountId = object.accountId ?? "";
+    message.accountId = object.accountId ?? '';
     message.subscriptionStatus = object.subscriptionStatus ?? 0;
     return message;
   },
 };
 
 function createBasePositionData(): PositionData {
-  return { accountId: "", money: [], securities: [], futures: [], options: [], date: undefined };
+  return { accountId: '', money: [], securities: [], futures: [], options: [], date: undefined };
 }
 
 export const PositionData = {
   encode(message: PositionData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
     for (const v of message.money) {
@@ -5878,7 +5603,7 @@ export const PositionData = {
 
   fromJSON(object: any): PositionData {
     return {
-      accountId: isSet(object.accountId) ? String(object.accountId) : "",
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
       money: Array.isArray(object?.money) ? object.money.map((e: any) => PositionsMoney.fromJSON(e)) : [],
       securities: Array.isArray(object?.securities)
         ? object.securities.map((e: any) => PositionsSecurities.fromJSON(e))
@@ -5893,22 +5618,22 @@ export const PositionData = {
     const obj: any = {};
     message.accountId !== undefined && (obj.accountId = message.accountId);
     if (message.money) {
-      obj.money = message.money.map((e) => e ? PositionsMoney.toJSON(e) : undefined);
+      obj.money = message.money.map(e => (e ? PositionsMoney.toJSON(e) : undefined));
     } else {
       obj.money = [];
     }
     if (message.securities) {
-      obj.securities = message.securities.map((e) => e ? PositionsSecurities.toJSON(e) : undefined);
+      obj.securities = message.securities.map(e => (e ? PositionsSecurities.toJSON(e) : undefined));
     } else {
       obj.securities = [];
     }
     if (message.futures) {
-      obj.futures = message.futures.map((e) => e ? PositionsFutures.toJSON(e) : undefined);
+      obj.futures = message.futures.map(e => (e ? PositionsFutures.toJSON(e) : undefined));
     } else {
       obj.futures = [];
     }
     if (message.options) {
-      obj.options = message.options.map((e) => e ? PositionsOptions.toJSON(e) : undefined);
+      obj.options = message.options.map(e => (e ? PositionsOptions.toJSON(e) : undefined));
     } else {
       obj.options = [];
     }
@@ -5916,17 +5641,13 @@ export const PositionData = {
     return obj;
   },
 
-  create(base?: DeepPartial<PositionData>): PositionData {
-    return PositionData.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionData>): PositionData {
     const message = createBasePositionData();
-    message.accountId = object.accountId ?? "";
-    message.money = object.money?.map((e) => PositionsMoney.fromPartial(e)) || [];
-    message.securities = object.securities?.map((e) => PositionsSecurities.fromPartial(e)) || [];
-    message.futures = object.futures?.map((e) => PositionsFutures.fromPartial(e)) || [];
-    message.options = object.options?.map((e) => PositionsOptions.fromPartial(e)) || [];
+    message.accountId = object.accountId ?? '';
+    message.money = object.money?.map(e => PositionsMoney.fromPartial(e)) || [];
+    message.securities = object.securities?.map(e => PositionsSecurities.fromPartial(e)) || [];
+    message.futures = object.futures?.map(e => PositionsFutures.fromPartial(e)) || [];
+    message.options = object.options?.map(e => PositionsOptions.fromPartial(e)) || [];
     message.date = object.date ?? undefined;
     return message;
   },
@@ -5984,18 +5705,16 @@ export const PositionsMoney = {
     return obj;
   },
 
-  create(base?: DeepPartial<PositionsMoney>): PositionsMoney {
-    return PositionsMoney.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<PositionsMoney>): PositionsMoney {
     const message = createBasePositionsMoney();
-    message.availableValue = (object.availableValue !== undefined && object.availableValue !== null)
-      ? MoneyValue.fromPartial(object.availableValue)
-      : undefined;
-    message.blockedValue = (object.blockedValue !== undefined && object.blockedValue !== null)
-      ? MoneyValue.fromPartial(object.blockedValue)
-      : undefined;
+    message.availableValue =
+      object.availableValue !== undefined && object.availableValue !== null
+        ? MoneyValue.fromPartial(object.availableValue)
+        : undefined;
+    message.blockedValue =
+      object.blockedValue !== undefined && object.blockedValue !== null
+        ? MoneyValue.fromPartial(object.blockedValue)
+        : undefined;
     return message;
   },
 };
@@ -6007,15 +5726,15 @@ export const PositionsMoney = {
  */
 export type OperationsServiceDefinition = typeof OperationsServiceDefinition;
 export const OperationsServiceDefinition = {
-  name: "OperationsService",
-  fullName: "tinkoff.public.invest.api.contract.v1.OperationsService",
+  name: 'OperationsService',
+  fullName: 'tinkoff.public.invest.api.contract.v1.OperationsService',
   methods: {
     /**
      * Метод получения списка операций по счёту.При работе с данным методом необходимо учитывать
      * [особенности взаимодействия](/investAPI/operations_problems) с данным методом.
      */
     getOperations: {
-      name: "GetOperations",
+      name: 'GetOperations',
       requestType: OperationsRequest,
       requestStream: false,
       responseType: OperationsResponse,
@@ -6024,7 +5743,7 @@ export const OperationsServiceDefinition = {
     },
     /** Метод получения портфеля по счёту. */
     getPortfolio: {
-      name: "GetPortfolio",
+      name: 'GetPortfolio',
       requestType: PortfolioRequest,
       requestStream: false,
       responseType: PortfolioResponse,
@@ -6033,7 +5752,7 @@ export const OperationsServiceDefinition = {
     },
     /** Метод получения списка позиций по счёту. */
     getPositions: {
-      name: "GetPositions",
+      name: 'GetPositions',
       requestType: PositionsRequest,
       requestStream: false,
       responseType: PositionsResponse,
@@ -6042,7 +5761,7 @@ export const OperationsServiceDefinition = {
     },
     /** Метод получения доступного остатка для вывода средств. */
     getWithdrawLimits: {
-      name: "GetWithdrawLimits",
+      name: 'GetWithdrawLimits',
       requestType: WithdrawLimitsRequest,
       requestStream: false,
       responseType: WithdrawLimitsResponse,
@@ -6051,7 +5770,7 @@ export const OperationsServiceDefinition = {
     },
     /** Метод получения брокерского отчёта. */
     getBrokerReport: {
-      name: "GetBrokerReport",
+      name: 'GetBrokerReport',
       requestType: BrokerReportRequest,
       requestStream: false,
       responseType: BrokerReportResponse,
@@ -6060,7 +5779,7 @@ export const OperationsServiceDefinition = {
     },
     /** Метод получения отчёта "Справка о доходах за пределами РФ". */
     getDividendsForeignIssuer: {
-      name: "GetDividendsForeignIssuer",
+      name: 'GetDividendsForeignIssuer',
       requestType: GetDividendsForeignIssuerRequest,
       requestStream: false,
       responseType: GetDividendsForeignIssuerResponse,
@@ -6072,7 +5791,7 @@ export const OperationsServiceDefinition = {
      * [особенности взаимодействия](/investAPI/operations_problems) с данным методом.
      */
     getOperationsByCursor: {
-      name: "GetOperationsByCursor",
+      name: 'GetOperationsByCursor',
       requestType: GetOperationsByCursorRequest,
       requestStream: false,
       responseType: GetOperationsByCursorResponse,
@@ -6084,12 +5803,12 @@ export const OperationsServiceDefinition = {
 
 export type OperationsStreamServiceDefinition = typeof OperationsStreamServiceDefinition;
 export const OperationsStreamServiceDefinition = {
-  name: "OperationsStreamService",
-  fullName: "tinkoff.public.invest.api.contract.v1.OperationsStreamService",
+  name: 'OperationsStreamService',
+  fullName: 'tinkoff.public.invest.api.contract.v1.OperationsStreamService',
   methods: {
     /** Server-side stream обновлений портфеля */
     portfolioStream: {
-      name: "PortfolioStream",
+      name: 'PortfolioStream',
       requestType: PortfolioStreamRequest,
       requestStream: false,
       responseType: PortfolioStreamResponse,
@@ -6098,7 +5817,7 @@ export const OperationsStreamServiceDefinition = {
     },
     /** Server-side stream обновлений информации по изменению позиций портфеля */
     positionsStream: {
-      name: "PositionsStream",
+      name: 'PositionsStream',
       requestType: PositionsStreamRequest,
       requestStream: false,
       responseType: PositionsStreamResponse,
@@ -6111,27 +5830,24 @@ export const OperationsStreamServiceDefinition = {
 declare var self: any | undefined;
 declare var window: any | undefined;
 declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
-  if (typeof globalThis !== "undefined") {
-    return globalThis;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  throw "Unable to locate global object";
+var globalThis: any = (() => {
+  if (typeof globalThis !== 'undefined') return globalThis;
+  if (typeof self !== 'undefined') return self;
+  if (typeof window !== 'undefined') return window;
+  if (typeof global !== 'undefined') return global;
+  throw 'Unable to locate global object';
 })();
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 function toTimestamp(date: Date): Timestamp {
@@ -6149,7 +5865,7 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === "string") {
+  } else if (typeof o === 'string') {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
@@ -6158,7 +5874,7 @@ function fromJsonTimestamp(o: any): Date {
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new tsProtoGlobalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
   }
   return long.toNumber();
 }

@@ -1,9 +1,10 @@
 /* eslint-disable */
-import _m0 from "protobufjs/minimal";
-import { MoneyValue, Quotation } from "./common";
-import { Timestamp } from "./google/protobuf/timestamp";
+import Long from 'long';
+import * as _m0 from 'protobufjs/minimal';
+import { Timestamp } from './google/protobuf/timestamp';
+import { MoneyValue, Quotation } from './common';
 
-export const protobufPackage = "tinkoff.public.invest.api.contract.v1";
+export const protobufPackage = 'tinkoff.public.invest.api.contract.v1';
 
 /** Тип счёта. */
 export enum AccountType {
@@ -21,19 +22,19 @@ export enum AccountType {
 export function accountTypeFromJSON(object: any): AccountType {
   switch (object) {
     case 0:
-    case "ACCOUNT_TYPE_UNSPECIFIED":
+    case 'ACCOUNT_TYPE_UNSPECIFIED':
       return AccountType.ACCOUNT_TYPE_UNSPECIFIED;
     case 1:
-    case "ACCOUNT_TYPE_TINKOFF":
+    case 'ACCOUNT_TYPE_TINKOFF':
       return AccountType.ACCOUNT_TYPE_TINKOFF;
     case 2:
-    case "ACCOUNT_TYPE_TINKOFF_IIS":
+    case 'ACCOUNT_TYPE_TINKOFF_IIS':
       return AccountType.ACCOUNT_TYPE_TINKOFF_IIS;
     case 3:
-    case "ACCOUNT_TYPE_INVEST_BOX":
+    case 'ACCOUNT_TYPE_INVEST_BOX':
       return AccountType.ACCOUNT_TYPE_INVEST_BOX;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return AccountType.UNRECOGNIZED;
   }
@@ -42,16 +43,15 @@ export function accountTypeFromJSON(object: any): AccountType {
 export function accountTypeToJSON(object: AccountType): string {
   switch (object) {
     case AccountType.ACCOUNT_TYPE_UNSPECIFIED:
-      return "ACCOUNT_TYPE_UNSPECIFIED";
+      return 'ACCOUNT_TYPE_UNSPECIFIED';
     case AccountType.ACCOUNT_TYPE_TINKOFF:
-      return "ACCOUNT_TYPE_TINKOFF";
+      return 'ACCOUNT_TYPE_TINKOFF';
     case AccountType.ACCOUNT_TYPE_TINKOFF_IIS:
-      return "ACCOUNT_TYPE_TINKOFF_IIS";
+      return 'ACCOUNT_TYPE_TINKOFF_IIS';
     case AccountType.ACCOUNT_TYPE_INVEST_BOX:
-      return "ACCOUNT_TYPE_INVEST_BOX";
-    case AccountType.UNRECOGNIZED:
+      return 'ACCOUNT_TYPE_INVEST_BOX';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -71,19 +71,19 @@ export enum AccountStatus {
 export function accountStatusFromJSON(object: any): AccountStatus {
   switch (object) {
     case 0:
-    case "ACCOUNT_STATUS_UNSPECIFIED":
+    case 'ACCOUNT_STATUS_UNSPECIFIED':
       return AccountStatus.ACCOUNT_STATUS_UNSPECIFIED;
     case 1:
-    case "ACCOUNT_STATUS_NEW":
+    case 'ACCOUNT_STATUS_NEW':
       return AccountStatus.ACCOUNT_STATUS_NEW;
     case 2:
-    case "ACCOUNT_STATUS_OPEN":
+    case 'ACCOUNT_STATUS_OPEN':
       return AccountStatus.ACCOUNT_STATUS_OPEN;
     case 3:
-    case "ACCOUNT_STATUS_CLOSED":
+    case 'ACCOUNT_STATUS_CLOSED':
       return AccountStatus.ACCOUNT_STATUS_CLOSED;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return AccountStatus.UNRECOGNIZED;
   }
@@ -92,16 +92,15 @@ export function accountStatusFromJSON(object: any): AccountStatus {
 export function accountStatusToJSON(object: AccountStatus): string {
   switch (object) {
     case AccountStatus.ACCOUNT_STATUS_UNSPECIFIED:
-      return "ACCOUNT_STATUS_UNSPECIFIED";
+      return 'ACCOUNT_STATUS_UNSPECIFIED';
     case AccountStatus.ACCOUNT_STATUS_NEW:
-      return "ACCOUNT_STATUS_NEW";
+      return 'ACCOUNT_STATUS_NEW';
     case AccountStatus.ACCOUNT_STATUS_OPEN:
-      return "ACCOUNT_STATUS_OPEN";
+      return 'ACCOUNT_STATUS_OPEN';
     case AccountStatus.ACCOUNT_STATUS_CLOSED:
-      return "ACCOUNT_STATUS_CLOSED";
-    case AccountStatus.UNRECOGNIZED:
+      return 'ACCOUNT_STATUS_CLOSED';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
@@ -121,19 +120,19 @@ export enum AccessLevel {
 export function accessLevelFromJSON(object: any): AccessLevel {
   switch (object) {
     case 0:
-    case "ACCOUNT_ACCESS_LEVEL_UNSPECIFIED":
+    case 'ACCOUNT_ACCESS_LEVEL_UNSPECIFIED':
       return AccessLevel.ACCOUNT_ACCESS_LEVEL_UNSPECIFIED;
     case 1:
-    case "ACCOUNT_ACCESS_LEVEL_FULL_ACCESS":
+    case 'ACCOUNT_ACCESS_LEVEL_FULL_ACCESS':
       return AccessLevel.ACCOUNT_ACCESS_LEVEL_FULL_ACCESS;
     case 2:
-    case "ACCOUNT_ACCESS_LEVEL_READ_ONLY":
+    case 'ACCOUNT_ACCESS_LEVEL_READ_ONLY':
       return AccessLevel.ACCOUNT_ACCESS_LEVEL_READ_ONLY;
     case 3:
-    case "ACCOUNT_ACCESS_LEVEL_NO_ACCESS":
+    case 'ACCOUNT_ACCESS_LEVEL_NO_ACCESS':
       return AccessLevel.ACCOUNT_ACCESS_LEVEL_NO_ACCESS;
     case -1:
-    case "UNRECOGNIZED":
+    case 'UNRECOGNIZED':
     default:
       return AccessLevel.UNRECOGNIZED;
   }
@@ -142,22 +141,20 @@ export function accessLevelFromJSON(object: any): AccessLevel {
 export function accessLevelToJSON(object: AccessLevel): string {
   switch (object) {
     case AccessLevel.ACCOUNT_ACCESS_LEVEL_UNSPECIFIED:
-      return "ACCOUNT_ACCESS_LEVEL_UNSPECIFIED";
+      return 'ACCOUNT_ACCESS_LEVEL_UNSPECIFIED';
     case AccessLevel.ACCOUNT_ACCESS_LEVEL_FULL_ACCESS:
-      return "ACCOUNT_ACCESS_LEVEL_FULL_ACCESS";
+      return 'ACCOUNT_ACCESS_LEVEL_FULL_ACCESS';
     case AccessLevel.ACCOUNT_ACCESS_LEVEL_READ_ONLY:
-      return "ACCOUNT_ACCESS_LEVEL_READ_ONLY";
+      return 'ACCOUNT_ACCESS_LEVEL_READ_ONLY';
     case AccessLevel.ACCOUNT_ACCESS_LEVEL_NO_ACCESS:
-      return "ACCOUNT_ACCESS_LEVEL_NO_ACCESS";
-    case AccessLevel.UNRECOGNIZED:
+      return 'ACCOUNT_ACCESS_LEVEL_NO_ACCESS';
     default:
-      return "UNRECOGNIZED";
+      return 'UNKNOWN';
   }
 }
 
 /** Запрос получения счетов пользователя. */
-export interface GetAccountsRequest {
-}
+export interface GetAccountsRequest {}
 
 /** Список счетов пользователя. */
 export interface GetAccountsResponse {
@@ -176,13 +173,9 @@ export interface Account {
   /** Статус счёта. */
   status: AccountStatus;
   /** Дата открытия счёта в часовом поясе UTC. */
-  openedDate:
-    | Date
-    | undefined;
+  openedDate: Date | undefined;
   /** Дата закрытия счёта в часовом поясе UTC. */
-  closedDate:
-    | Date
-    | undefined;
+  closedDate: Date | undefined;
   /** Уровень доступа к текущему счёту (определяется токеном). */
   accessLevel: AccessLevel;
 }
@@ -196,32 +189,21 @@ export interface GetMarginAttributesRequest {
 /** Маржинальные показатели по счёту. */
 export interface GetMarginAttributesResponse {
   /** Ликвидная стоимость портфеля. Подробнее: [что такое ликвидный портфель?](https://help.tinkoff.ru/margin-trade/short/liquid-portfolio/). */
-  liquidPortfolio:
-    | MoneyValue
-    | undefined;
+  liquidPortfolio: MoneyValue | undefined;
   /** Начальная маржа — начальное обеспечение для совершения новой сделки. Подробнее: [начальная и минимальная маржа](https://help.tinkoff.ru/margin-trade/short/initial-and-maintenance-margin/). */
-  startingMargin:
-    | MoneyValue
-    | undefined;
+  startingMargin: MoneyValue | undefined;
   /** Минимальная маржа — это минимальное обеспечение для поддержания позиции, которую вы уже открыли. Подробнее: [начальная и минимальная маржа](https://help.tinkoff.ru/margin-trade/short/initial-and-maintenance-margin/). */
-  minimalMargin:
-    | MoneyValue
-    | undefined;
+  minimalMargin: MoneyValue | undefined;
   /** Уровень достаточности средств. Соотношение стоимости ликвидного портфеля к начальной марже. */
-  fundsSufficiencyLevel:
-    | Quotation
-    | undefined;
+  fundsSufficiencyLevel: Quotation | undefined;
   /** Объем недостающих средств. Разница между стартовой маржой и ликвидной стоимости портфеля. */
-  amountOfMissingFunds:
-    | MoneyValue
-    | undefined;
+  amountOfMissingFunds: MoneyValue | undefined;
   /** Скорректированная маржа.Начальная маржа, в которой плановые позиции рассчитываются с учётом активных заявок на покупку позиций лонг или продажу позиций шорт. */
   correctedMargin: MoneyValue | undefined;
 }
 
 /** Запрос текущих лимитов пользователя. */
-export interface GetUserTariffRequest {
-}
+export interface GetUserTariffRequest {}
 
 /** Текущие лимиты пользователя. */
 export interface GetUserTariffResponse {
@@ -248,8 +230,7 @@ export interface StreamLimit {
 }
 
 /** Запрос информации о пользователе. */
-export interface GetInfoRequest {
-}
+export interface GetInfoRequest {}
 
 /** Информация о пользователе. */
 export interface GetInfoResponse {
@@ -296,10 +277,6 @@ export const GetAccountsRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetAccountsRequest>): GetAccountsRequest {
-    return GetAccountsRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(_: DeepPartial<GetAccountsRequest>): GetAccountsRequest {
     const message = createBaseGetAccountsRequest();
     return message;
@@ -337,43 +314,41 @@ export const GetAccountsResponse = {
   },
 
   fromJSON(object: any): GetAccountsResponse {
-    return { accounts: Array.isArray(object?.accounts) ? object.accounts.map((e: any) => Account.fromJSON(e)) : [] };
+    return {
+      accounts: Array.isArray(object?.accounts) ? object.accounts.map((e: any) => Account.fromJSON(e)) : [],
+    };
   },
 
   toJSON(message: GetAccountsResponse): unknown {
     const obj: any = {};
     if (message.accounts) {
-      obj.accounts = message.accounts.map((e) => e ? Account.toJSON(e) : undefined);
+      obj.accounts = message.accounts.map(e => (e ? Account.toJSON(e) : undefined));
     } else {
       obj.accounts = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetAccountsResponse>): GetAccountsResponse {
-    return GetAccountsResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetAccountsResponse>): GetAccountsResponse {
     const message = createBaseGetAccountsResponse();
-    message.accounts = object.accounts?.map((e) => Account.fromPartial(e)) || [];
+    message.accounts = object.accounts?.map(e => Account.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseAccount(): Account {
-  return { id: "", type: 0, name: "", status: 0, openedDate: undefined, closedDate: undefined, accessLevel: 0 };
+  return { id: '', type: 0, name: '', status: 0, openedDate: undefined, closedDate: undefined, accessLevel: 0 };
 }
 
 export const Account = {
   encode(message: Account, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== "") {
+    if (message.id !== '') {
       writer.uint32(10).string(message.id);
     }
     if (message.type !== 0) {
       writer.uint32(16).int32(message.type);
     }
-    if (message.name !== "") {
+    if (message.name !== '') {
       writer.uint32(26).string(message.name);
     }
     if (message.status !== 0) {
@@ -429,9 +404,9 @@ export const Account = {
 
   fromJSON(object: any): Account {
     return {
-      id: isSet(object.id) ? String(object.id) : "",
+      id: isSet(object.id) ? String(object.id) : '',
       type: isSet(object.type) ? accountTypeFromJSON(object.type) : 0,
-      name: isSet(object.name) ? String(object.name) : "",
+      name: isSet(object.name) ? String(object.name) : '',
       status: isSet(object.status) ? accountStatusFromJSON(object.status) : 0,
       openedDate: isSet(object.openedDate) ? fromJsonTimestamp(object.openedDate) : undefined,
       closedDate: isSet(object.closedDate) ? fromJsonTimestamp(object.closedDate) : undefined,
@@ -451,15 +426,11 @@ export const Account = {
     return obj;
   },
 
-  create(base?: DeepPartial<Account>): Account {
-    return Account.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<Account>): Account {
     const message = createBaseAccount();
-    message.id = object.id ?? "";
+    message.id = object.id ?? '';
     message.type = object.type ?? 0;
-    message.name = object.name ?? "";
+    message.name = object.name ?? '';
     message.status = object.status ?? 0;
     message.openedDate = object.openedDate ?? undefined;
     message.closedDate = object.closedDate ?? undefined;
@@ -469,12 +440,12 @@ export const Account = {
 };
 
 function createBaseGetMarginAttributesRequest(): GetMarginAttributesRequest {
-  return { accountId: "" };
+  return { accountId: '' };
 }
 
 export const GetMarginAttributesRequest = {
   encode(message: GetMarginAttributesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.accountId !== "") {
+    if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
     return writer;
@@ -499,7 +470,9 @@ export const GetMarginAttributesRequest = {
   },
 
   fromJSON(object: any): GetMarginAttributesRequest {
-    return { accountId: isSet(object.accountId) ? String(object.accountId) : "" };
+    return {
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
+    };
   },
 
   toJSON(message: GetMarginAttributesRequest): unknown {
@@ -508,13 +481,9 @@ export const GetMarginAttributesRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetMarginAttributesRequest>): GetMarginAttributesRequest {
-    return GetMarginAttributesRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetMarginAttributesRequest>): GetMarginAttributesRequest {
     const message = createBaseGetMarginAttributesRequest();
-    message.accountId = object.accountId ?? "";
+    message.accountId = object.accountId ?? '';
     return message;
   },
 };
@@ -609,42 +578,45 @@ export const GetMarginAttributesResponse = {
       (obj.startingMargin = message.startingMargin ? MoneyValue.toJSON(message.startingMargin) : undefined);
     message.minimalMargin !== undefined &&
       (obj.minimalMargin = message.minimalMargin ? MoneyValue.toJSON(message.minimalMargin) : undefined);
-    message.fundsSufficiencyLevel !== undefined && (obj.fundsSufficiencyLevel = message.fundsSufficiencyLevel
-      ? Quotation.toJSON(message.fundsSufficiencyLevel)
-      : undefined);
-    message.amountOfMissingFunds !== undefined && (obj.amountOfMissingFunds = message.amountOfMissingFunds
-      ? MoneyValue.toJSON(message.amountOfMissingFunds)
-      : undefined);
+    message.fundsSufficiencyLevel !== undefined &&
+      (obj.fundsSufficiencyLevel = message.fundsSufficiencyLevel
+        ? Quotation.toJSON(message.fundsSufficiencyLevel)
+        : undefined);
+    message.amountOfMissingFunds !== undefined &&
+      (obj.amountOfMissingFunds = message.amountOfMissingFunds
+        ? MoneyValue.toJSON(message.amountOfMissingFunds)
+        : undefined);
     message.correctedMargin !== undefined &&
       (obj.correctedMargin = message.correctedMargin ? MoneyValue.toJSON(message.correctedMargin) : undefined);
     return obj;
   },
 
-  create(base?: DeepPartial<GetMarginAttributesResponse>): GetMarginAttributesResponse {
-    return GetMarginAttributesResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetMarginAttributesResponse>): GetMarginAttributesResponse {
     const message = createBaseGetMarginAttributesResponse();
-    message.liquidPortfolio = (object.liquidPortfolio !== undefined && object.liquidPortfolio !== null)
-      ? MoneyValue.fromPartial(object.liquidPortfolio)
-      : undefined;
-    message.startingMargin = (object.startingMargin !== undefined && object.startingMargin !== null)
-      ? MoneyValue.fromPartial(object.startingMargin)
-      : undefined;
-    message.minimalMargin = (object.minimalMargin !== undefined && object.minimalMargin !== null)
-      ? MoneyValue.fromPartial(object.minimalMargin)
-      : undefined;
+    message.liquidPortfolio =
+      object.liquidPortfolio !== undefined && object.liquidPortfolio !== null
+        ? MoneyValue.fromPartial(object.liquidPortfolio)
+        : undefined;
+    message.startingMargin =
+      object.startingMargin !== undefined && object.startingMargin !== null
+        ? MoneyValue.fromPartial(object.startingMargin)
+        : undefined;
+    message.minimalMargin =
+      object.minimalMargin !== undefined && object.minimalMargin !== null
+        ? MoneyValue.fromPartial(object.minimalMargin)
+        : undefined;
     message.fundsSufficiencyLevel =
-      (object.fundsSufficiencyLevel !== undefined && object.fundsSufficiencyLevel !== null)
+      object.fundsSufficiencyLevel !== undefined && object.fundsSufficiencyLevel !== null
         ? Quotation.fromPartial(object.fundsSufficiencyLevel)
         : undefined;
-    message.amountOfMissingFunds = (object.amountOfMissingFunds !== undefined && object.amountOfMissingFunds !== null)
-      ? MoneyValue.fromPartial(object.amountOfMissingFunds)
-      : undefined;
-    message.correctedMargin = (object.correctedMargin !== undefined && object.correctedMargin !== null)
-      ? MoneyValue.fromPartial(object.correctedMargin)
-      : undefined;
+    message.amountOfMissingFunds =
+      object.amountOfMissingFunds !== undefined && object.amountOfMissingFunds !== null
+        ? MoneyValue.fromPartial(object.amountOfMissingFunds)
+        : undefined;
+    message.correctedMargin =
+      object.correctedMargin !== undefined && object.correctedMargin !== null
+        ? MoneyValue.fromPartial(object.correctedMargin)
+        : undefined;
     return message;
   },
 };
@@ -680,10 +652,6 @@ export const GetUserTariffRequest = {
   toJSON(_: GetUserTariffRequest): unknown {
     const obj: any = {};
     return obj;
-  },
-
-  create(base?: DeepPartial<GetUserTariffRequest>): GetUserTariffRequest {
-    return GetUserTariffRequest.fromPartial(base ?? {});
   },
 
   fromPartial(_: DeepPartial<GetUserTariffRequest>): GetUserTariffRequest {
@@ -740,26 +708,22 @@ export const GetUserTariffResponse = {
   toJSON(message: GetUserTariffResponse): unknown {
     const obj: any = {};
     if (message.unaryLimits) {
-      obj.unaryLimits = message.unaryLimits.map((e) => e ? UnaryLimit.toJSON(e) : undefined);
+      obj.unaryLimits = message.unaryLimits.map(e => (e ? UnaryLimit.toJSON(e) : undefined));
     } else {
       obj.unaryLimits = [];
     }
     if (message.streamLimits) {
-      obj.streamLimits = message.streamLimits.map((e) => e ? StreamLimit.toJSON(e) : undefined);
+      obj.streamLimits = message.streamLimits.map(e => (e ? StreamLimit.toJSON(e) : undefined));
     } else {
       obj.streamLimits = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<GetUserTariffResponse>): GetUserTariffResponse {
-    return GetUserTariffResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetUserTariffResponse>): GetUserTariffResponse {
     const message = createBaseGetUserTariffResponse();
-    message.unaryLimits = object.unaryLimits?.map((e) => UnaryLimit.fromPartial(e)) || [];
-    message.streamLimits = object.streamLimits?.map((e) => StreamLimit.fromPartial(e)) || [];
+    message.unaryLimits = object.unaryLimits?.map(e => UnaryLimit.fromPartial(e)) || [];
+    message.streamLimits = object.streamLimits?.map(e => StreamLimit.fromPartial(e)) || [];
     return message;
   },
 };
@@ -811,21 +775,17 @@ export const UnaryLimit = {
     const obj: any = {};
     message.limitPerMinute !== undefined && (obj.limitPerMinute = Math.round(message.limitPerMinute));
     if (message.methods) {
-      obj.methods = message.methods.map((e) => e);
+      obj.methods = message.methods.map(e => e);
     } else {
       obj.methods = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<UnaryLimit>): UnaryLimit {
-    return UnaryLimit.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<UnaryLimit>): UnaryLimit {
     const message = createBaseUnaryLimit();
     message.limitPerMinute = object.limitPerMinute ?? 0;
-    message.methods = object.methods?.map((e) => e) || [];
+    message.methods = object.methods?.map(e => e) || [];
     return message;
   },
 };
@@ -877,21 +837,17 @@ export const StreamLimit = {
     const obj: any = {};
     message.limit !== undefined && (obj.limit = Math.round(message.limit));
     if (message.streams) {
-      obj.streams = message.streams.map((e) => e);
+      obj.streams = message.streams.map(e => e);
     } else {
       obj.streams = [];
     }
     return obj;
   },
 
-  create(base?: DeepPartial<StreamLimit>): StreamLimit {
-    return StreamLimit.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<StreamLimit>): StreamLimit {
     const message = createBaseStreamLimit();
     message.limit = object.limit ?? 0;
-    message.streams = object.streams?.map((e) => e) || [];
+    message.streams = object.streams?.map(e => e) || [];
     return message;
   },
 };
@@ -929,10 +885,6 @@ export const GetInfoRequest = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetInfoRequest>): GetInfoRequest {
-    return GetInfoRequest.fromPartial(base ?? {});
-  },
-
   fromPartial(_: DeepPartial<GetInfoRequest>): GetInfoRequest {
     const message = createBaseGetInfoRequest();
     return message;
@@ -940,7 +892,7 @@ export const GetInfoRequest = {
 };
 
 function createBaseGetInfoResponse(): GetInfoResponse {
-  return { premStatus: false, qualStatus: false, qualifiedForWorkWith: [], tariff: "" };
+  return { premStatus: false, qualStatus: false, qualifiedForWorkWith: [], tariff: '' };
 }
 
 export const GetInfoResponse = {
@@ -954,7 +906,7 @@ export const GetInfoResponse = {
     for (const v of message.qualifiedForWorkWith) {
       writer.uint32(26).string(v!);
     }
-    if (message.tariff !== "") {
+    if (message.tariff !== '') {
       writer.uint32(34).string(message.tariff);
     }
     return writer;
@@ -994,7 +946,7 @@ export const GetInfoResponse = {
       qualifiedForWorkWith: Array.isArray(object?.qualifiedForWorkWith)
         ? object.qualifiedForWorkWith.map((e: any) => String(e))
         : [],
-      tariff: isSet(object.tariff) ? String(object.tariff) : "",
+      tariff: isSet(object.tariff) ? String(object.tariff) : '',
     };
   },
 
@@ -1003,7 +955,7 @@ export const GetInfoResponse = {
     message.premStatus !== undefined && (obj.premStatus = message.premStatus);
     message.qualStatus !== undefined && (obj.qualStatus = message.qualStatus);
     if (message.qualifiedForWorkWith) {
-      obj.qualifiedForWorkWith = message.qualifiedForWorkWith.map((e) => e);
+      obj.qualifiedForWorkWith = message.qualifiedForWorkWith.map(e => e);
     } else {
       obj.qualifiedForWorkWith = [];
     }
@@ -1011,16 +963,12 @@ export const GetInfoResponse = {
     return obj;
   },
 
-  create(base?: DeepPartial<GetInfoResponse>): GetInfoResponse {
-    return GetInfoResponse.fromPartial(base ?? {});
-  },
-
   fromPartial(object: DeepPartial<GetInfoResponse>): GetInfoResponse {
     const message = createBaseGetInfoResponse();
     message.premStatus = object.premStatus ?? false;
     message.qualStatus = object.qualStatus ?? false;
-    message.qualifiedForWorkWith = object.qualifiedForWorkWith?.map((e) => e) || [];
-    message.tariff = object.tariff ?? "";
+    message.qualifiedForWorkWith = object.qualifiedForWorkWith?.map(e => e) || [];
+    message.tariff = object.tariff ?? '';
     return message;
   },
 };
@@ -1031,12 +979,12 @@ export const GetInfoResponse = {
  */
 export type UsersServiceDefinition = typeof UsersServiceDefinition;
 export const UsersServiceDefinition = {
-  name: "UsersService",
-  fullName: "tinkoff.public.invest.api.contract.v1.UsersService",
+  name: 'UsersService',
+  fullName: 'tinkoff.public.invest.api.contract.v1.UsersService',
   methods: {
     /** Метод получения счетов пользователя. */
     getAccounts: {
-      name: "GetAccounts",
+      name: 'GetAccounts',
       requestType: GetAccountsRequest,
       requestStream: false,
       responseType: GetAccountsResponse,
@@ -1045,7 +993,7 @@ export const UsersServiceDefinition = {
     },
     /** Расчёт маржинальных показателей по счёту. */
     getMarginAttributes: {
-      name: "GetMarginAttributes",
+      name: 'GetMarginAttributes',
       requestType: GetMarginAttributesRequest,
       requestStream: false,
       responseType: GetMarginAttributesResponse,
@@ -1054,7 +1002,7 @@ export const UsersServiceDefinition = {
     },
     /** Запрос тарифа пользователя. */
     getUserTariff: {
-      name: "GetUserTariff",
+      name: 'GetUserTariff',
       requestType: GetUserTariffRequest,
       requestStream: false,
       responseType: GetUserTariffResponse,
@@ -1063,7 +1011,7 @@ export const UsersServiceDefinition = {
     },
     /** Метод получения информации о пользователе. */
     getInfo: {
-      name: "GetInfo",
+      name: 'GetInfo',
       requestType: GetInfoRequest,
       requestStream: false,
       responseType: GetInfoResponse,
@@ -1075,9 +1023,14 @@ export const UsersServiceDefinition = {
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 function toTimestamp(date: Date): Timestamp {
@@ -1095,11 +1048,16 @@ function fromTimestamp(t: Timestamp): Date {
 function fromJsonTimestamp(o: any): Date {
   if (o instanceof Date) {
     return o;
-  } else if (typeof o === "string") {
+  } else if (typeof o === 'string') {
     return new Date(o);
   } else {
     return fromTimestamp(Timestamp.fromJSON(o));
   }
+}
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
 }
 
 function isSet(value: any): boolean {
