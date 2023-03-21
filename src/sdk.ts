@@ -12,8 +12,16 @@ import {
   SubscriptionAction,
   SubscriptionInterval,
 } from './generated/marketdata';
-import { OperationsServiceDefinition, OperationsStreamServiceDefinition } from './generated/operations';
+import {
+  OperationsServiceDefinition,
+  OperationsStreamServiceDefinition,
+  OperationState,
+  OperationType,
+  PortfolioSubscriptionStatus,
+  PositionsAccountSubscriptionStatus,
+} from './generated/operations';
 import { OrdersServiceDefinition, OrdersStreamServiceDefinition, OrderDirection, OrderType } from './generated/orders';
+import { AccountType, AccountStatus, AccessLevel, } from './generated/users';
 import { SandboxServiceDefinition } from './generated/sandbox';
 import { getMiddleware, TypeLoggerCb } from './middlewares/response';
 
@@ -48,5 +56,14 @@ export const createSdk = (token: string, appName?: string, loggerCb?: TypeLogger
 
     OrderDirection,
     OrderType,
+
+    AccountType,
+    AccountStatus,
+    AccessLevel,
+
+    OperationState,
+    OperationType,
+    PortfolioSubscriptionStatus,
+    PositionsAccountSubscriptionStatus,
   };
 };
