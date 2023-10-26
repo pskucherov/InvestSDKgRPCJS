@@ -260,7 +260,7 @@ export function optionSettlementTypeToJSON(object: OptionSettlementType): string
   }
 }
 
-/** Тип идентификатора инструмента. Подробнее об идентификации инструментов: [Идентификация инструментов](https://tinkoff.github.io/investAPI/faq_identification/) */
+/** Тип идентификатора инструмента. Подробнее об идентификации инструментов: [Идентификация инструментов](https://russianinvestments.github.io/investAPI/faq_identification/) */
 export enum InstrumentIdType {
   /** INSTRUMENT_ID_UNSPECIFIED - Значение не определено. */
   INSTRUMENT_ID_UNSPECIFIED = 0,
@@ -320,7 +320,7 @@ export function instrumentIdTypeToJSON(object: InstrumentIdType): string {
 export enum InstrumentStatus {
   /** INSTRUMENT_STATUS_UNSPECIFIED - Значение не определено. */
   INSTRUMENT_STATUS_UNSPECIFIED = 0,
-  /** INSTRUMENT_STATUS_BASE - Базовый список инструментов (по умолчанию). Инструменты доступные для торговли через TINKOFF INVEST API. */
+  /** INSTRUMENT_STATUS_BASE - Базовый список инструментов (по умолчанию). Инструменты доступные для торговли через TINKOFF INVEST API. Cейчас списки бумаг, доступных из api и других интерфейсах совпадают (за исключением внебиржевых бумаг), но в будущем возможны ситуации, когда списки инструментов будут отличаться */
   INSTRUMENT_STATUS_BASE = 1,
   /** INSTRUMENT_STATUS_ALL - Список всех инструментов. */
   INSTRUMENT_STATUS_ALL = 2,
@@ -633,30 +633,26 @@ export function realExchangeToJSON(object: RealExchange): string {
 
 /** Уровень риска облигации. */
 export enum RiskLevel {
-  RISK_LEVEL_UNSPECIFIED = 0,
-  /** RISK_LEVEL_LOW - Низкий уровень риска */
-  RISK_LEVEL_LOW = 1,
-  /** RISK_LEVEL_MODERATE - Средний уровень риска */
-  RISK_LEVEL_MODERATE = 2,
   /** RISK_LEVEL_HIGH - Высокий уровень риска */
-  RISK_LEVEL_HIGH = 3,
+  RISK_LEVEL_HIGH = 0,
+  /** RISK_LEVEL_MODERATE - Средний уровень риска */
+  RISK_LEVEL_MODERATE = 1,
+  /** RISK_LEVEL_LOW - Низкий уровень риска */
+  RISK_LEVEL_LOW = 2,
   UNRECOGNIZED = -1,
 }
 
 export function riskLevelFromJSON(object: any): RiskLevel {
   switch (object) {
     case 0:
-    case 'RISK_LEVEL_UNSPECIFIED':
-      return RiskLevel.RISK_LEVEL_UNSPECIFIED;
-    case 1:
-    case 'RISK_LEVEL_LOW':
-      return RiskLevel.RISK_LEVEL_LOW;
-    case 2:
-    case 'RISK_LEVEL_MODERATE':
-      return RiskLevel.RISK_LEVEL_MODERATE;
-    case 3:
     case 'RISK_LEVEL_HIGH':
       return RiskLevel.RISK_LEVEL_HIGH;
+    case 1:
+    case 'RISK_LEVEL_MODERATE':
+      return RiskLevel.RISK_LEVEL_MODERATE;
+    case 2:
+    case 'RISK_LEVEL_LOW':
+      return RiskLevel.RISK_LEVEL_LOW;
     case -1:
     case 'UNRECOGNIZED':
     default:
@@ -666,14 +662,12 @@ export function riskLevelFromJSON(object: any): RiskLevel {
 
 export function riskLevelToJSON(object: RiskLevel): string {
   switch (object) {
-    case RiskLevel.RISK_LEVEL_UNSPECIFIED:
-      return 'RISK_LEVEL_UNSPECIFIED';
-    case RiskLevel.RISK_LEVEL_LOW:
-      return 'RISK_LEVEL_LOW';
-    case RiskLevel.RISK_LEVEL_MODERATE:
-      return 'RISK_LEVEL_MODERATE';
     case RiskLevel.RISK_LEVEL_HIGH:
       return 'RISK_LEVEL_HIGH';
+    case RiskLevel.RISK_LEVEL_MODERATE:
+      return 'RISK_LEVEL_MODERATE';
+    case RiskLevel.RISK_LEVEL_LOW:
+      return 'RISK_LEVEL_LOW';
     default:
       return 'UNKNOWN';
   }
@@ -739,7 +733,7 @@ export interface TradingDay {
 
 /** Запрос получения инструмента по идентификатору. */
 export interface InstrumentRequest {
-  /** Тип идентификатора инструмента. Возможные значения: figi, ticker. Подробнее об идентификации инструментов: [Идентификация инструментов](https://tinkoff.github.io/investAPI/faq_identification/) */
+  /** Тип идентификатора инструмента. Возможные значения: figi, ticker. Подробнее об идентификации инструментов: [Идентификация инструментов](https://russianinvestments.github.io/investAPI/faq_identification/) */
   idType: InstrumentIdType;
   /** Идентификатор class_code. Обязателен при id_type = ticker. */
   classCode: string;
@@ -751,6 +745,14 @@ export interface InstrumentRequest {
 export interface InstrumentsRequest {
   /** Статус запрашиваемых инструментов. Возможные значения: [InstrumentStatus](#instrumentstatus) */
   instrumentStatus: InstrumentStatus;
+}
+
+/** Параметры фильтрации опционов */
+export interface FilterOptionsRequest {
+  /** Идентификатор базового актива опциона.  Обязательный параметр. */
+  basicAssetUid: string;
+  /** Идентификатор позиции базового актива опциона */
+  basicAssetPositionUid: string;
 }
 
 /** Информация об облигации. */
@@ -864,7 +866,7 @@ export interface Option {
   basicAssetPositionUid: string;
   /** Текущий режим торгов инструмента. */
   tradingStatus: SecurityTradingStatus;
-  /** Реальная площадка исполнения расчётов. Допустимые значения: [REAL_EXCHANGE_MOEX, REAL_EXCHANGE_RTS] */
+  /** Реальная площадка исполнения расчётов (биржа). Допустимые значения: [REAL_EXCHANGE_MOEX, REAL_EXCHANGE_RTS] */
   realExchange: RealExchange;
   /** Направление опциона. */
   direction: OptionDirection;
@@ -884,7 +886,7 @@ export interface Option {
   assetType: string;
   /** Основной актив. */
   basicAsset: string;
-  /** Биржа. */
+  /** Tорговая площадка (секция биржи). */
   exchange: string;
   /** Код страны рисков. */
   countryOfRisk: string;
@@ -896,17 +898,17 @@ export interface Option {
   lot: number;
   /** Размер основного актива. */
   basicAssetSize: Quotation | undefined;
-  /** Коэффициент ставки риска длинной позиции по клиенту. */
+  /** Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   klong: Quotation | undefined;
-  /** Коэффициент ставки риска короткой позиции по клиенту. */
+  /** Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   kshort: Quotation | undefined;
-  /** Ставка риска минимальной маржи лонг. */
+  /** Ставка риска начальной маржи для КСУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlong: Quotation | undefined;
-  /** Ставка риска минимальной маржи шорт. */
+  /** Ставка риска начальной маржи для КСУР шорт.  Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshort: Quotation | undefined;
-  /** Ставка риска начальной маржи лонг. */
+  /** Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlongMin: Quotation | undefined;
-  /** Ставка риска начальной маржи шорт. */
+  /** Ставка риска начальной маржи для КПУР шорт.  Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshortMin: Quotation | undefined;
   /** Минимальный шаг цены. */
   minPriceIncrement: Quotation | undefined;
@@ -964,27 +966,27 @@ export interface Bond {
   classCode: string;
   /** Isin-идентификатор инструмента. */
   isin: string;
-  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://tinkoff.github.io/investAPI/glossary#lot) */
+  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://russianinvestments.github.io/investAPI/glossary#lot) */
   lot: number;
   /** Валюта расчётов. */
   currency: string;
-  /** Коэффициент ставки риска длинной позиции по инструменту. */
+  /** Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   klong: Quotation | undefined;
-  /** Коэффициент ставки риска короткой позиции по инструменту. */
+  /** Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   kshort: Quotation | undefined;
-  /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlong: Quotation | undefined;
-  /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshort: Quotation | undefined;
-  /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlongMin: Quotation | undefined;
-  /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshortMin: Quotation | undefined;
   /** Признак доступности для операций в шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
   name: string;
-  /** Торговая площадка. */
+  /** Tорговая площадка (секция биржи). */
   exchange: string;
   /** Количество выплат по купонам в год. */
   couponQuantityPerYear: number;
@@ -1034,7 +1036,7 @@ export interface Bond {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
-  /** Реальная площадка исполнения расчётов. */
+  /** Реальная площадка исполнения расчётов. (биржа) */
   realExchange: RealExchange;
   /** Уникальный идентификатор позиции инструмента. */
   positionUid: string;
@@ -1048,6 +1050,8 @@ export interface Bond {
   blockedTcaFlag: boolean;
   /** Признак субординированной облигации. */
   subordinatedFlag: boolean;
+  /** Флаг достаточной ликвидности */
+  liquidityFlag: boolean;
   /** Дата первой минутной свечи. */
   first1minCandleDate: Date | undefined;
   /** Дата первой дневной свечи. */
@@ -1066,27 +1070,27 @@ export interface Currency {
   classCode: string;
   /** Isin-идентификатор инструмента. */
   isin: string;
-  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://tinkoff.github.io/investAPI/glossary#lot) */
+  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://russianinvestments.github.io/investAPI/glossary#lot) */
   lot: number;
   /** Валюта расчётов. */
   currency: string;
-  /** Коэффициент ставки риска длинной позиции по инструменту. */
+  /** Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   klong: Quotation | undefined;
-  /** Коэффициент ставки риска короткой позиции по инструменту. */
+  /** Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   kshort: Quotation | undefined;
-  /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР лонг.Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlong: Quotation | undefined;
-  /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshort: Quotation | undefined;
-  /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlongMin: Quotation | undefined;
-  /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshortMin: Quotation | undefined;
   /** Признак доступности для операций в шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
   name: string;
-  /** Торговая площадка. */
+  /** Tорговая площадка (секция биржи) */
   exchange: string;
   /** Номинал. */
   nominal: MoneyValue | undefined;
@@ -1110,7 +1114,7 @@ export interface Currency {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
-  /** Реальная площадка исполнения расчётов. */
+  /** Реальная площадка исполнения расчётов (биржа). */
   realExchange: RealExchange;
   /** Уникальный идентификатор позиции инструмента. */
   positionUid: string;
@@ -1138,27 +1142,27 @@ export interface Etf {
   classCode: string;
   /** Isin-идентификатор инструмента. */
   isin: string;
-  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://tinkoff.github.io/investAPI/glossary#lot) */
+  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://russianinvestments.github.io/investAPI/glossary#lot) */
   lot: number;
   /** Валюта расчётов. */
   currency: string;
-  /** Коэффициент ставки риска длинной позиции по инструменту. */
+  /** Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   klong: Quotation | undefined;
-  /** Коэффициент ставки риска короткой позиции по инструменту. */
+  /** Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   kshort: Quotation | undefined;
-  /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР лонг.Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlong: Quotation | undefined;
-  /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshort: Quotation | undefined;
-  /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlongMin: Quotation | undefined;
-  /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshortMin: Quotation | undefined;
   /** Признак доступности для операций в шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
   name: string;
-  /** Торговая площадка. */
+  /** Tорговая площадка (секция биржи). */
   exchange: string;
   /** Размер фиксированной комиссии фонда. */
   fixedCommission: Quotation | undefined;
@@ -1190,7 +1194,7 @@ export interface Etf {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
-  /** Реальная площадка исполнения расчётов. */
+  /** Реальная площадка исполнения расчётов (биржа). */
   realExchange: RealExchange;
   /** Уникальный идентификатор позиции инструмента. */
   positionUid: string;
@@ -1202,6 +1206,8 @@ export interface Etf {
   weekendFlag: boolean;
   /** Флаг заблокированного ТКС. */
   blockedTcaFlag: boolean;
+  /** Флаг достаточной ликвидности */
+  liquidityFlag: boolean;
   /** Дата первой минутной свечи. */
   first1minCandleDate: Date | undefined;
   /** Дата первой дневной свечи. */
@@ -1216,27 +1222,27 @@ export interface Future {
   ticker: string;
   /** Класс-код (секция торгов). */
   classCode: string;
-  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://tinkoff.github.io/investAPI/glossary#lot) */
+  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://russianinvestments.github.io/investAPI/glossary#lot) */
   lot: number;
   /** Валюта расчётов. */
   currency: string;
-  /** Коэффициент ставки риска длинной позиции по клиенту. */
+  /** Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   klong: Quotation | undefined;
-  /** Коэффициент ставки риска короткой позиции по клиенту. */
+  /** Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   kshort: Quotation | undefined;
-  /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР лонг.Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlong: Quotation | undefined;
-  /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshort: Quotation | undefined;
-  /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlongMin: Quotation | undefined;
-  /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshortMin: Quotation | undefined;
   /** Признак доступности для операций шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
   name: string;
-  /** Торговая площадка. */
+  /** Tорговая площадка (секция биржи). */
   exchange: string;
   /** Дата начала обращения контракта в часовом поясе UTC. */
   firstTradeDate: Date | undefined;
@@ -1272,7 +1278,7 @@ export interface Future {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
-  /** Реальная площадка исполнения расчётов. */
+  /** Реальная площадка исполнения расчётов (биржа). */
   realExchange: RealExchange;
   /** Уникальный идентификатор позиции инструмента. */
   positionUid: string;
@@ -1302,27 +1308,27 @@ export interface Share {
   classCode: string;
   /** Isin-идентификатор инструмента. */
   isin: string;
-  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://tinkoff.github.io/investAPI/glossary#lot) */
+  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://russianinvestments.github.io/investAPI/glossary#lot) */
   lot: number;
   /** Валюта расчётов. */
   currency: string;
-  /** Коэффициент ставки риска длинной позиции по инструменту. */
+  /** Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   klong: Quotation | undefined;
-  /** Коэффициент ставки риска короткой позиции по инструменту. */
+  /** Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   kshort: Quotation | undefined;
-  /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР лонг.Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlong: Quotation | undefined;
-  /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshort: Quotation | undefined;
-  /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlongMin: Quotation | undefined;
-  /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshortMin: Quotation | undefined;
   /** Признак доступности для операций в шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
   name: string;
-  /** Торговая площадка. */
+  /** Tорговая площадка (секция биржи). */
   exchange: string;
   /** Дата IPO акции в часовом поясе UTC. */
   ipoDate: Date | undefined;
@@ -1348,7 +1354,7 @@ export interface Share {
   sellAvailableFlag: boolean;
   /** Признак наличия дивидендной доходности. */
   divYieldFlag: boolean;
-  /** Тип акции. Возможные значения: [ShareType](https://tinkoff.github.io/investAPI/instruments#sharetype) */
+  /** Тип акции. Возможные значения: [ShareType](https://russianinvestments.github.io/investAPI/instruments#sharetype) */
   shareType: ShareType;
   /** Шаг цены. */
   minPriceIncrement: Quotation | undefined;
@@ -1356,7 +1362,7 @@ export interface Share {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
-  /** Реальная площадка исполнения расчётов. */
+  /** Реальная площадка исполнения расчётов (биржа). */
   realExchange: RealExchange;
   /** Уникальный идентификатор позиции инструмента. */
   positionUid: string;
@@ -1368,6 +1374,8 @@ export interface Share {
   weekendFlag: boolean;
   /** Флаг заблокированного ТКС */
   blockedTcaFlag: boolean;
+  /** Флаг достаточной ликвидности */
+  liquidityFlag: boolean;
   /** Дата первой минутной свечи. */
   first1minCandleDate: Date | undefined;
   /** Дата первой дневной свечи. */
@@ -1436,27 +1444,27 @@ export interface Instrument {
   classCode: string;
   /** Isin-идентификатор инструмента. */
   isin: string;
-  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://tinkoff.github.io/investAPI/glossary#lot) */
+  /** Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру *lot*. Подробнее: [лот](https://russianinvestments.github.io/investAPI/glossary#lot) */
   lot: number;
   /** Валюта расчётов. */
   currency: string;
-  /** Коэффициент ставки риска длинной позиции по инструменту. */
+  /** Коэффициент ставки риска длинной позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   klong: Quotation | undefined;
-  /** Коэффициент ставки риска короткой позиции по инструменту. */
+  /** Коэффициент ставки риска короткой позиции по клиенту. 2 – клиент со стандартным уровнем риска (КСУР). 1 – клиент с повышенным уровнем риска (КПУР) */
   kshort: Quotation | undefined;
-  /** Ставка риска минимальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР лонг.Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlong: Quotation | undefined;
-  /** Ставка риска минимальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КСУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshort: Quotation | undefined;
-  /** Ставка риска начальной маржи в лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР лонг. Подробнее: [ставка риска в лонг](https://help.tinkoff.ru/margin-trade/long/risk-rate/) */
   dlongMin: Quotation | undefined;
-  /** Ставка риска начальной маржи в шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
+  /** Ставка риска начальной маржи для КПУР шорт. Подробнее: [ставка риска в шорт](https://help.tinkoff.ru/margin-trade/short/risk-rate/) */
   dshortMin: Quotation | undefined;
   /** Признак доступности для операций в шорт. */
   shortEnabledFlag: boolean;
   /** Название инструмента. */
   name: string;
-  /** Торговая площадка. */
+  /** Tорговая площадка (секция биржи). */
   exchange: string;
   /** Код страны риска, т.е. страны, в которой компания ведёт основной бизнес. */
   countryOfRisk: string;
@@ -1478,7 +1486,7 @@ export interface Instrument {
   apiTradeAvailableFlag: boolean;
   /** Уникальный идентификатор инструмента. */
   uid: string;
-  /** Реальная площадка исполнения расчётов. */
+  /** Реальная площадка исполнения расчётов (биржа). */
   realExchange: RealExchange;
   /** Уникальный идентификатор позиции инструмента. */
   positionUid: string;
@@ -1550,7 +1558,9 @@ export interface AssetResponse {
 }
 
 /** Запрос списка активов. */
-export interface AssetsRequest {}
+export interface AssetsRequest {
+  instrumentType: InstrumentType;
+}
 
 /** Список активов. */
 export interface AssetsResponse {
@@ -1855,6 +1865,8 @@ export interface AssetInstrument {
   links: InstrumentLink[];
   /** Тип инструмента. */
   instrumentKind: InstrumentType;
+  /** id позиции. */
+  positionUid: string;
 }
 
 /** Связь с другим инструментом. */
@@ -1939,6 +1951,10 @@ export interface CountryResponse {
 export interface FindInstrumentRequest {
   /** Строка поиска. */
   query: string;
+  /** Фильтр по типу инструмента. */
+  instrumentKind: InstrumentType;
+  /** Фильтр для отображения только торговых инструментов. */
+  apiTradeAvailableFlag: boolean;
 }
 
 /** Результат поиска инструментов. */
@@ -1996,6 +2012,127 @@ export interface GetBrandRequest {
 export interface GetBrandsResponse {
   /** Массив брендов. */
   brands: Brand[];
+}
+
+export interface GetAssetFundamentalsRequest {
+  /** Массив идентификаторов активов. */
+  assets: string[];
+}
+
+export interface GetAssetFundamentalsResponse {
+  fundamentals: GetAssetFundamentalsResponse_StatisticResponse[];
+}
+
+export interface GetAssetFundamentalsResponse_StatisticResponse {
+  assetUid: string;
+  /** Валюта */
+  currency: string;
+  /** Рыночная капитализация */
+  marketCapitalization: number;
+  /** Максимум за год */
+  highPriceLast52Weeks: number;
+  /** Минимум за год */
+  lowPriceLast52Weeks: number;
+  /** Средний объем торгов за 10 дней */
+  averageDailyVolumeLast10Days: number;
+  /** Средний объем торгов за месяц */
+  averageDailyVolumeLast4Weeks: number;
+  beta: number;
+  /** Доля акций в свободном обращении */
+  freeFloat: number;
+  /** Процент форвардной дивидендной доходности по отношению к цене акций. */
+  forwardAnnualDividendYield: number;
+  /** Количество акций в обращении */
+  sharesOutstanding: number;
+  /** Выручка */
+  revenueTtm: number;
+  /** EBITDA Прибыль до вычета процентов, налогов, износа и амортизации */
+  ebitdaTtm: number;
+  /** Чистая прибыль */
+  netIncomeTtm: number;
+  /** EPS Величина чистой прибыли компании, приходящуюся на каждую обыкновенную акцию */
+  epsTtm: number;
+  /** EPS компании с допущением, что все конвертируемые ценные бумаги компании были сконвертированы в обыкновенные акции */
+  dilutedEpsTtm: number;
+  /** Свободный денежный поток */
+  freeCashFlowTtm: number;
+  /** Среднегодовой  рocт выручки (за 5 лет) */
+  fiveYearAnnualRevenueGrowthRate: number;
+  /** Среднегодовой  рocт выручки (за 3 года) */
+  threeYearAnnualRevenueGrowthRate: number;
+  /** Показывает соотношение рыночной капитализации компании к ее чистой прибыли */
+  peRatioTtm: number;
+  /** Показывает соотношение рыночной капитализации компании к ее выручке */
+  priceToSalesTtm: number;
+  /** Показывает соотношение рыночной капитализации компании к ее балансовой стоимости */
+  priceToBookTtm: number;
+  /** Показывает соотношение рыночной капитализации компании к ее свободному денежному потоку */
+  priceToFreeCashFlowTtm: number;
+  /** Рыночная стоимость компании */
+  totalEnterpriseValueMrq: number;
+  /** Соотношение EV и EBITDA */
+  evToEbitdaMrq: number;
+  /** Маржа чистой прибыли */
+  netMarginMrq: number;
+  /** Рентабельность чистой прибыли */
+  netInterestMarginMrq: number;
+  /** Рентабельность собственного капитала */
+  roe: number;
+  /** Рентабельность активов */
+  roa: number;
+  /** Рентабельность активов */
+  roic: number;
+  /** Сумма краткосрочных и долгосрочных обязательств компании */
+  totalDebtMrq: number;
+  /** Соотношение долга к собственному капиталу */
+  totalDebtToEquityMrq: number;
+  /** Total Debt/EBITDA */
+  totalDebtToEbitdaMrq: number;
+  /** Отношение свободглго кэша к стоимости */
+  freeCashFlowToPrice: number;
+  /** Отношение чистого долга к ebitda */
+  netDebtToEbitda: number;
+  /** Коэффициент текущей ликвидности */
+  currentRatioMrq: number;
+  /** Коэффициент покрытия фиксированных платежей (FCCR) */
+  fixedChargeCoverageRatioFy: number;
+  /** Дивидендная доходность за 12 мес */
+  dividendYieldDailyTtm: number;
+  /** Выплаченные дивиденды за 12 мес. */
+  dividendRateTtm: number;
+  /** Значение дивидендов на акцию */
+  dividendsPerShare: number;
+  /** Средняя дивидендная доходность за 5 лет */
+  fiveYearsAverageDividendYield: number;
+  /** Среднегодовой рост дивидендов за 5 лет */
+  fiveYearAnnualDividendGrowthRate: number;
+  /** Процент чистой прибыли, уходящий на выплату дивидендов */
+  dividendPayoutRatioFy: number;
+  /** Деньги, потраченные на обратный выкуп акций */
+  buyBackTtm: number;
+  /** Рост выручки за 1 год */
+  oneYearAnnualRevenueGrowthRate: number;
+  /** Код страны */
+  domicileIndicatorCode: string;
+  /** Соотношение депозитарной расписки к акциям */
+  adrToCommonShareRatio: number;
+  /** Количество сотрудников */
+  numberOfEmployees: number;
+  exDividendDate: Date | undefined;
+  /** Начало фискального периода */
+  fiscalPeriodStartDate: Date | undefined;
+  /** Конец фискального периода */
+  fiscalPeriodEndDate: Date | undefined;
+  /** Изменение общего дохода за 5 лет */
+  revenueChangeFiveYears: number;
+  /** Изменение eps за 5 лет */
+  epsChangeFiveYears: number;
+  /** Изменение ebitda за 5 лет */
+  ebitdaChangeFiveYears: number;
+  /** Изменение общей задолжности за 5 лет */
+  totalDebtChangeFiveYears: number;
+  /** Отношение EV к выручке */
+  evToSales: number;
 }
 
 function createBaseTradingSchedulesRequest(): TradingSchedulesRequest {
@@ -2498,6 +2635,64 @@ export const InstrumentsRequest = {
   fromPartial(object: DeepPartial<InstrumentsRequest>): InstrumentsRequest {
     const message = createBaseInstrumentsRequest();
     message.instrumentStatus = object.instrumentStatus ?? 0;
+    return message;
+  },
+};
+
+function createBaseFilterOptionsRequest(): FilterOptionsRequest {
+  return { basicAssetUid: '', basicAssetPositionUid: '' };
+}
+
+export const FilterOptionsRequest = {
+  encode(message: FilterOptionsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.basicAssetUid !== '') {
+      writer.uint32(10).string(message.basicAssetUid);
+    }
+    if (message.basicAssetPositionUid !== '') {
+      writer.uint32(18).string(message.basicAssetPositionUid);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): FilterOptionsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFilterOptionsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.basicAssetUid = reader.string();
+          break;
+        case 2:
+          message.basicAssetPositionUid = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FilterOptionsRequest {
+    return {
+      basicAssetUid: isSet(object.basicAssetUid) ? String(object.basicAssetUid) : '',
+      basicAssetPositionUid: isSet(object.basicAssetPositionUid) ? String(object.basicAssetPositionUid) : '',
+    };
+  },
+
+  toJSON(message: FilterOptionsRequest): unknown {
+    const obj: any = {};
+    message.basicAssetUid !== undefined && (obj.basicAssetUid = message.basicAssetUid);
+    message.basicAssetPositionUid !== undefined && (obj.basicAssetPositionUid = message.basicAssetPositionUid);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<FilterOptionsRequest>): FilterOptionsRequest {
+    const message = createBaseFilterOptionsRequest();
+    message.basicAssetUid = object.basicAssetUid ?? '';
+    message.basicAssetPositionUid = object.basicAssetPositionUid ?? '';
     return message;
   },
 };
@@ -3936,6 +4131,7 @@ function createBaseBond(): Bond {
     weekendFlag: false,
     blockedTcaFlag: false,
     subordinatedFlag: false,
+    liquidityFlag: false,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
     riskLevel: 0,
@@ -4081,6 +4277,9 @@ export const Bond = {
     }
     if (message.subordinatedFlag === true) {
       writer.uint32(440).bool(message.subordinatedFlag);
+    }
+    if (message.liquidityFlag === true) {
+      writer.uint32(448).bool(message.liquidityFlag);
     }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(490).fork()).ldelim();
@@ -4239,6 +4438,9 @@ export const Bond = {
         case 55:
           message.subordinatedFlag = reader.bool();
           break;
+        case 56:
+          message.liquidityFlag = reader.bool();
+          break;
         case 61:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -4304,6 +4506,7 @@ export const Bond = {
       weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
       blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
       subordinatedFlag: isSet(object.subordinatedFlag) ? Boolean(object.subordinatedFlag) : false,
+      liquidityFlag: isSet(object.liquidityFlag) ? Boolean(object.liquidityFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
@@ -4369,6 +4572,7 @@ export const Bond = {
     message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
     message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
     message.subordinatedFlag !== undefined && (obj.subordinatedFlag = message.subordinatedFlag);
+    message.liquidityFlag !== undefined && (obj.liquidityFlag = message.liquidityFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     message.riskLevel !== undefined && (obj.riskLevel = riskLevelToJSON(message.riskLevel));
@@ -4440,6 +4644,7 @@ export const Bond = {
     message.weekendFlag = object.weekendFlag ?? false;
     message.blockedTcaFlag = object.blockedTcaFlag ?? false;
     message.subordinatedFlag = object.subordinatedFlag ?? false;
+    message.liquidityFlag = object.liquidityFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     message.riskLevel = object.riskLevel ?? 0;
@@ -4883,6 +5088,7 @@ function createBaseEtf(): Etf {
     forQualInvestorFlag: false,
     weekendFlag: false,
     blockedTcaFlag: false,
+    liquidityFlag: false,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
   };
@@ -4997,6 +5203,9 @@ export const Etf = {
     }
     if (message.blockedTcaFlag === true) {
       writer.uint32(352).bool(message.blockedTcaFlag);
+    }
+    if (message.liquidityFlag === true) {
+      writer.uint32(360).bool(message.liquidityFlag);
     }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
@@ -5122,6 +5331,9 @@ export const Etf = {
         case 44:
           message.blockedTcaFlag = reader.bool();
           break;
+        case 45:
+          message.liquidityFlag = reader.bool();
+          break;
         case 56:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -5174,6 +5386,7 @@ export const Etf = {
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
       weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
       blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
+      liquidityFlag: isSet(object.liquidityFlag) ? Boolean(object.liquidityFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
@@ -5226,6 +5439,7 @@ export const Etf = {
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
     message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
     message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
+    message.liquidityFlag !== undefined && (obj.liquidityFlag = message.liquidityFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
@@ -5282,6 +5496,7 @@ export const Etf = {
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
     message.weekendFlag = object.weekendFlag ?? false;
     message.blockedTcaFlag = object.blockedTcaFlag ?? false;
+    message.liquidityFlag = object.liquidityFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
@@ -5788,6 +6003,7 @@ function createBaseShare(): Share {
     forQualInvestorFlag: false,
     weekendFlag: false,
     blockedTcaFlag: false,
+    liquidityFlag: false,
     first1minCandleDate: undefined,
     first1dayCandleDate: undefined,
   };
@@ -5905,6 +6121,9 @@ export const Share = {
     }
     if (message.blockedTcaFlag === true) {
       writer.uint32(392).bool(message.blockedTcaFlag);
+    }
+    if (message.liquidityFlag === true) {
+      writer.uint32(400).bool(message.liquidityFlag);
     }
     if (message.first1minCandleDate !== undefined) {
       Timestamp.encode(toTimestamp(message.first1minCandleDate), writer.uint32(450).fork()).ldelim();
@@ -6033,6 +6252,9 @@ export const Share = {
         case 49:
           message.blockedTcaFlag = reader.bool();
           break;
+        case 50:
+          message.liquidityFlag = reader.bool();
+          break;
         case 56:
           message.first1minCandleDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -6086,6 +6308,7 @@ export const Share = {
       forQualInvestorFlag: isSet(object.forQualInvestorFlag) ? Boolean(object.forQualInvestorFlag) : false,
       weekendFlag: isSet(object.weekendFlag) ? Boolean(object.weekendFlag) : false,
       blockedTcaFlag: isSet(object.blockedTcaFlag) ? Boolean(object.blockedTcaFlag) : false,
+      liquidityFlag: isSet(object.liquidityFlag) ? Boolean(object.liquidityFlag) : false,
       first1minCandleDate: isSet(object.first1minCandleDate)
         ? fromJsonTimestamp(object.first1minCandleDate)
         : undefined,
@@ -6137,6 +6360,7 @@ export const Share = {
     message.forQualInvestorFlag !== undefined && (obj.forQualInvestorFlag = message.forQualInvestorFlag);
     message.weekendFlag !== undefined && (obj.weekendFlag = message.weekendFlag);
     message.blockedTcaFlag !== undefined && (obj.blockedTcaFlag = message.blockedTcaFlag);
+    message.liquidityFlag !== undefined && (obj.liquidityFlag = message.liquidityFlag);
     message.first1minCandleDate !== undefined && (obj.first1minCandleDate = message.first1minCandleDate.toISOString());
     message.first1dayCandleDate !== undefined && (obj.first1dayCandleDate = message.first1dayCandleDate.toISOString());
     return obj;
@@ -6191,6 +6415,7 @@ export const Share = {
     message.forQualInvestorFlag = object.forQualInvestorFlag ?? false;
     message.weekendFlag = object.weekendFlag ?? false;
     message.blockedTcaFlag = object.blockedTcaFlag ?? false;
+    message.liquidityFlag = object.liquidityFlag ?? false;
     message.first1minCandleDate = object.first1minCandleDate ?? undefined;
     message.first1dayCandleDate = object.first1dayCandleDate ?? undefined;
     return message;
@@ -7378,11 +7603,14 @@ export const AssetResponse = {
 };
 
 function createBaseAssetsRequest(): AssetsRequest {
-  return {};
+  return { instrumentType: 0 };
 }
 
 export const AssetsRequest = {
-  encode(_: AssetsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(message: AssetsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.instrumentType !== 0) {
+      writer.uint32(8).int32(message.instrumentType);
+    }
     return writer;
   },
 
@@ -7393,6 +7621,9 @@ export const AssetsRequest = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.instrumentType = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -7401,17 +7632,21 @@ export const AssetsRequest = {
     return message;
   },
 
-  fromJSON(_: any): AssetsRequest {
-    return {};
+  fromJSON(object: any): AssetsRequest {
+    return {
+      instrumentType: isSet(object.instrumentType) ? instrumentTypeFromJSON(object.instrumentType) : 0,
+    };
   },
 
-  toJSON(_: AssetsRequest): unknown {
+  toJSON(message: AssetsRequest): unknown {
     const obj: any = {};
+    message.instrumentType !== undefined && (obj.instrumentType = instrumentTypeToJSON(message.instrumentType));
     return obj;
   },
 
-  fromPartial(_: DeepPartial<AssetsRequest>): AssetsRequest {
+  fromPartial(object: DeepPartial<AssetsRequest>): AssetsRequest {
     const message = createBaseAssetsRequest();
+    message.instrumentType = object.instrumentType ?? 0;
     return message;
   },
 };
@@ -9210,7 +9445,16 @@ export const Brand = {
 };
 
 function createBaseAssetInstrument(): AssetInstrument {
-  return { uid: '', figi: '', instrumentType: '', ticker: '', classCode: '', links: [], instrumentKind: 0 };
+  return {
+    uid: '',
+    figi: '',
+    instrumentType: '',
+    ticker: '',
+    classCode: '',
+    links: [],
+    instrumentKind: 0,
+    positionUid: '',
+  };
 }
 
 export const AssetInstrument = {
@@ -9235,6 +9479,9 @@ export const AssetInstrument = {
     }
     if (message.instrumentKind !== 0) {
       writer.uint32(80).int32(message.instrumentKind);
+    }
+    if (message.positionUid !== '') {
+      writer.uint32(90).string(message.positionUid);
     }
     return writer;
   },
@@ -9267,6 +9514,9 @@ export const AssetInstrument = {
         case 10:
           message.instrumentKind = reader.int32() as any;
           break;
+        case 11:
+          message.positionUid = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -9284,6 +9534,7 @@ export const AssetInstrument = {
       classCode: isSet(object.classCode) ? String(object.classCode) : '',
       links: Array.isArray(object?.links) ? object.links.map((e: any) => InstrumentLink.fromJSON(e)) : [],
       instrumentKind: isSet(object.instrumentKind) ? instrumentTypeFromJSON(object.instrumentKind) : 0,
+      positionUid: isSet(object.positionUid) ? String(object.positionUid) : '',
     };
   },
 
@@ -9300,6 +9551,7 @@ export const AssetInstrument = {
       obj.links = [];
     }
     message.instrumentKind !== undefined && (obj.instrumentKind = instrumentTypeToJSON(message.instrumentKind));
+    message.positionUid !== undefined && (obj.positionUid = message.positionUid);
     return obj;
   },
 
@@ -9312,6 +9564,7 @@ export const AssetInstrument = {
     message.classCode = object.classCode ?? '';
     message.links = object.links?.map(e => InstrumentLink.fromPartial(e)) || [];
     message.instrumentKind = object.instrumentKind ?? 0;
+    message.positionUid = object.positionUid ?? '';
     return message;
   },
 };
@@ -9926,13 +10179,19 @@ export const CountryResponse = {
 };
 
 function createBaseFindInstrumentRequest(): FindInstrumentRequest {
-  return { query: '' };
+  return { query: '', instrumentKind: 0, apiTradeAvailableFlag: false };
 }
 
 export const FindInstrumentRequest = {
   encode(message: FindInstrumentRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.query !== '') {
       writer.uint32(10).string(message.query);
+    }
+    if (message.instrumentKind !== 0) {
+      writer.uint32(16).int32(message.instrumentKind);
+    }
+    if (message.apiTradeAvailableFlag === true) {
+      writer.uint32(24).bool(message.apiTradeAvailableFlag);
     }
     return writer;
   },
@@ -9947,6 +10206,12 @@ export const FindInstrumentRequest = {
         case 1:
           message.query = reader.string();
           break;
+        case 2:
+          message.instrumentKind = reader.int32() as any;
+          break;
+        case 3:
+          message.apiTradeAvailableFlag = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -9958,18 +10223,24 @@ export const FindInstrumentRequest = {
   fromJSON(object: any): FindInstrumentRequest {
     return {
       query: isSet(object.query) ? String(object.query) : '',
+      instrumentKind: isSet(object.instrumentKind) ? instrumentTypeFromJSON(object.instrumentKind) : 0,
+      apiTradeAvailableFlag: isSet(object.apiTradeAvailableFlag) ? Boolean(object.apiTradeAvailableFlag) : false,
     };
   },
 
   toJSON(message: FindInstrumentRequest): unknown {
     const obj: any = {};
     message.query !== undefined && (obj.query = message.query);
+    message.instrumentKind !== undefined && (obj.instrumentKind = instrumentTypeToJSON(message.instrumentKind));
+    message.apiTradeAvailableFlag !== undefined && (obj.apiTradeAvailableFlag = message.apiTradeAvailableFlag);
     return obj;
   },
 
   fromPartial(object: DeepPartial<FindInstrumentRequest>): FindInstrumentRequest {
     const message = createBaseFindInstrumentRequest();
     message.query = object.query ?? '';
+    message.instrumentKind = object.instrumentKind ?? 0;
+    message.apiTradeAvailableFlag = object.apiTradeAvailableFlag ?? false;
     return message;
   },
 };
@@ -10375,6 +10646,755 @@ export const GetBrandsResponse = {
   },
 };
 
+function createBaseGetAssetFundamentalsRequest(): GetAssetFundamentalsRequest {
+  return { assets: [] };
+}
+
+export const GetAssetFundamentalsRequest = {
+  encode(message: GetAssetFundamentalsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.assets) {
+      writer.uint32(10).string(v!);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetAssetFundamentalsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetAssetFundamentalsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.assets.push(reader.string());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetAssetFundamentalsRequest {
+    return {
+      assets: Array.isArray(object?.assets) ? object.assets.map((e: any) => String(e)) : [],
+    };
+  },
+
+  toJSON(message: GetAssetFundamentalsRequest): unknown {
+    const obj: any = {};
+    if (message.assets) {
+      obj.assets = message.assets.map(e => e);
+    } else {
+      obj.assets = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetAssetFundamentalsRequest>): GetAssetFundamentalsRequest {
+    const message = createBaseGetAssetFundamentalsRequest();
+    message.assets = object.assets?.map(e => e) || [];
+    return message;
+  },
+};
+
+function createBaseGetAssetFundamentalsResponse(): GetAssetFundamentalsResponse {
+  return { fundamentals: [] };
+}
+
+export const GetAssetFundamentalsResponse = {
+  encode(message: GetAssetFundamentalsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.fundamentals) {
+      GetAssetFundamentalsResponse_StatisticResponse.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetAssetFundamentalsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetAssetFundamentalsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.fundamentals.push(GetAssetFundamentalsResponse_StatisticResponse.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetAssetFundamentalsResponse {
+    return {
+      fundamentals: Array.isArray(object?.fundamentals)
+        ? object.fundamentals.map((e: any) => GetAssetFundamentalsResponse_StatisticResponse.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: GetAssetFundamentalsResponse): unknown {
+    const obj: any = {};
+    if (message.fundamentals) {
+      obj.fundamentals = message.fundamentals.map(e =>
+        e ? GetAssetFundamentalsResponse_StatisticResponse.toJSON(e) : undefined,
+      );
+    } else {
+      obj.fundamentals = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetAssetFundamentalsResponse>): GetAssetFundamentalsResponse {
+    const message = createBaseGetAssetFundamentalsResponse();
+    message.fundamentals =
+      object.fundamentals?.map(e => GetAssetFundamentalsResponse_StatisticResponse.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseGetAssetFundamentalsResponse_StatisticResponse(): GetAssetFundamentalsResponse_StatisticResponse {
+  return {
+    assetUid: '',
+    currency: '',
+    marketCapitalization: 0,
+    highPriceLast52Weeks: 0,
+    lowPriceLast52Weeks: 0,
+    averageDailyVolumeLast10Days: 0,
+    averageDailyVolumeLast4Weeks: 0,
+    beta: 0,
+    freeFloat: 0,
+    forwardAnnualDividendYield: 0,
+    sharesOutstanding: 0,
+    revenueTtm: 0,
+    ebitdaTtm: 0,
+    netIncomeTtm: 0,
+    epsTtm: 0,
+    dilutedEpsTtm: 0,
+    freeCashFlowTtm: 0,
+    fiveYearAnnualRevenueGrowthRate: 0,
+    threeYearAnnualRevenueGrowthRate: 0,
+    peRatioTtm: 0,
+    priceToSalesTtm: 0,
+    priceToBookTtm: 0,
+    priceToFreeCashFlowTtm: 0,
+    totalEnterpriseValueMrq: 0,
+    evToEbitdaMrq: 0,
+    netMarginMrq: 0,
+    netInterestMarginMrq: 0,
+    roe: 0,
+    roa: 0,
+    roic: 0,
+    totalDebtMrq: 0,
+    totalDebtToEquityMrq: 0,
+    totalDebtToEbitdaMrq: 0,
+    freeCashFlowToPrice: 0,
+    netDebtToEbitda: 0,
+    currentRatioMrq: 0,
+    fixedChargeCoverageRatioFy: 0,
+    dividendYieldDailyTtm: 0,
+    dividendRateTtm: 0,
+    dividendsPerShare: 0,
+    fiveYearsAverageDividendYield: 0,
+    fiveYearAnnualDividendGrowthRate: 0,
+    dividendPayoutRatioFy: 0,
+    buyBackTtm: 0,
+    oneYearAnnualRevenueGrowthRate: 0,
+    domicileIndicatorCode: '',
+    adrToCommonShareRatio: 0,
+    numberOfEmployees: 0,
+    exDividendDate: undefined,
+    fiscalPeriodStartDate: undefined,
+    fiscalPeriodEndDate: undefined,
+    revenueChangeFiveYears: 0,
+    epsChangeFiveYears: 0,
+    ebitdaChangeFiveYears: 0,
+    totalDebtChangeFiveYears: 0,
+    evToSales: 0,
+  };
+}
+
+export const GetAssetFundamentalsResponse_StatisticResponse = {
+  encode(
+    message: GetAssetFundamentalsResponse_StatisticResponse,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.assetUid !== '') {
+      writer.uint32(10).string(message.assetUid);
+    }
+    if (message.currency !== '') {
+      writer.uint32(18).string(message.currency);
+    }
+    if (message.marketCapitalization !== 0) {
+      writer.uint32(25).double(message.marketCapitalization);
+    }
+    if (message.highPriceLast52Weeks !== 0) {
+      writer.uint32(33).double(message.highPriceLast52Weeks);
+    }
+    if (message.lowPriceLast52Weeks !== 0) {
+      writer.uint32(41).double(message.lowPriceLast52Weeks);
+    }
+    if (message.averageDailyVolumeLast10Days !== 0) {
+      writer.uint32(49).double(message.averageDailyVolumeLast10Days);
+    }
+    if (message.averageDailyVolumeLast4Weeks !== 0) {
+      writer.uint32(57).double(message.averageDailyVolumeLast4Weeks);
+    }
+    if (message.beta !== 0) {
+      writer.uint32(65).double(message.beta);
+    }
+    if (message.freeFloat !== 0) {
+      writer.uint32(73).double(message.freeFloat);
+    }
+    if (message.forwardAnnualDividendYield !== 0) {
+      writer.uint32(81).double(message.forwardAnnualDividendYield);
+    }
+    if (message.sharesOutstanding !== 0) {
+      writer.uint32(89).double(message.sharesOutstanding);
+    }
+    if (message.revenueTtm !== 0) {
+      writer.uint32(97).double(message.revenueTtm);
+    }
+    if (message.ebitdaTtm !== 0) {
+      writer.uint32(105).double(message.ebitdaTtm);
+    }
+    if (message.netIncomeTtm !== 0) {
+      writer.uint32(113).double(message.netIncomeTtm);
+    }
+    if (message.epsTtm !== 0) {
+      writer.uint32(121).double(message.epsTtm);
+    }
+    if (message.dilutedEpsTtm !== 0) {
+      writer.uint32(129).double(message.dilutedEpsTtm);
+    }
+    if (message.freeCashFlowTtm !== 0) {
+      writer.uint32(137).double(message.freeCashFlowTtm);
+    }
+    if (message.fiveYearAnnualRevenueGrowthRate !== 0) {
+      writer.uint32(145).double(message.fiveYearAnnualRevenueGrowthRate);
+    }
+    if (message.threeYearAnnualRevenueGrowthRate !== 0) {
+      writer.uint32(153).double(message.threeYearAnnualRevenueGrowthRate);
+    }
+    if (message.peRatioTtm !== 0) {
+      writer.uint32(161).double(message.peRatioTtm);
+    }
+    if (message.priceToSalesTtm !== 0) {
+      writer.uint32(169).double(message.priceToSalesTtm);
+    }
+    if (message.priceToBookTtm !== 0) {
+      writer.uint32(177).double(message.priceToBookTtm);
+    }
+    if (message.priceToFreeCashFlowTtm !== 0) {
+      writer.uint32(185).double(message.priceToFreeCashFlowTtm);
+    }
+    if (message.totalEnterpriseValueMrq !== 0) {
+      writer.uint32(193).double(message.totalEnterpriseValueMrq);
+    }
+    if (message.evToEbitdaMrq !== 0) {
+      writer.uint32(201).double(message.evToEbitdaMrq);
+    }
+    if (message.netMarginMrq !== 0) {
+      writer.uint32(209).double(message.netMarginMrq);
+    }
+    if (message.netInterestMarginMrq !== 0) {
+      writer.uint32(217).double(message.netInterestMarginMrq);
+    }
+    if (message.roe !== 0) {
+      writer.uint32(225).double(message.roe);
+    }
+    if (message.roa !== 0) {
+      writer.uint32(233).double(message.roa);
+    }
+    if (message.roic !== 0) {
+      writer.uint32(241).double(message.roic);
+    }
+    if (message.totalDebtMrq !== 0) {
+      writer.uint32(249).double(message.totalDebtMrq);
+    }
+    if (message.totalDebtToEquityMrq !== 0) {
+      writer.uint32(257).double(message.totalDebtToEquityMrq);
+    }
+    if (message.totalDebtToEbitdaMrq !== 0) {
+      writer.uint32(265).double(message.totalDebtToEbitdaMrq);
+    }
+    if (message.freeCashFlowToPrice !== 0) {
+      writer.uint32(273).double(message.freeCashFlowToPrice);
+    }
+    if (message.netDebtToEbitda !== 0) {
+      writer.uint32(281).double(message.netDebtToEbitda);
+    }
+    if (message.currentRatioMrq !== 0) {
+      writer.uint32(289).double(message.currentRatioMrq);
+    }
+    if (message.fixedChargeCoverageRatioFy !== 0) {
+      writer.uint32(297).double(message.fixedChargeCoverageRatioFy);
+    }
+    if (message.dividendYieldDailyTtm !== 0) {
+      writer.uint32(305).double(message.dividendYieldDailyTtm);
+    }
+    if (message.dividendRateTtm !== 0) {
+      writer.uint32(313).double(message.dividendRateTtm);
+    }
+    if (message.dividendsPerShare !== 0) {
+      writer.uint32(321).double(message.dividendsPerShare);
+    }
+    if (message.fiveYearsAverageDividendYield !== 0) {
+      writer.uint32(329).double(message.fiveYearsAverageDividendYield);
+    }
+    if (message.fiveYearAnnualDividendGrowthRate !== 0) {
+      writer.uint32(337).double(message.fiveYearAnnualDividendGrowthRate);
+    }
+    if (message.dividendPayoutRatioFy !== 0) {
+      writer.uint32(345).double(message.dividendPayoutRatioFy);
+    }
+    if (message.buyBackTtm !== 0) {
+      writer.uint32(353).double(message.buyBackTtm);
+    }
+    if (message.oneYearAnnualRevenueGrowthRate !== 0) {
+      writer.uint32(361).double(message.oneYearAnnualRevenueGrowthRate);
+    }
+    if (message.domicileIndicatorCode !== '') {
+      writer.uint32(370).string(message.domicileIndicatorCode);
+    }
+    if (message.adrToCommonShareRatio !== 0) {
+      writer.uint32(377).double(message.adrToCommonShareRatio);
+    }
+    if (message.numberOfEmployees !== 0) {
+      writer.uint32(385).double(message.numberOfEmployees);
+    }
+    if (message.exDividendDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.exDividendDate), writer.uint32(394).fork()).ldelim();
+    }
+    if (message.fiscalPeriodStartDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.fiscalPeriodStartDate), writer.uint32(402).fork()).ldelim();
+    }
+    if (message.fiscalPeriodEndDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.fiscalPeriodEndDate), writer.uint32(410).fork()).ldelim();
+    }
+    if (message.revenueChangeFiveYears !== 0) {
+      writer.uint32(425).double(message.revenueChangeFiveYears);
+    }
+    if (message.epsChangeFiveYears !== 0) {
+      writer.uint32(433).double(message.epsChangeFiveYears);
+    }
+    if (message.ebitdaChangeFiveYears !== 0) {
+      writer.uint32(441).double(message.ebitdaChangeFiveYears);
+    }
+    if (message.totalDebtChangeFiveYears !== 0) {
+      writer.uint32(449).double(message.totalDebtChangeFiveYears);
+    }
+    if (message.evToSales !== 0) {
+      writer.uint32(457).double(message.evToSales);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetAssetFundamentalsResponse_StatisticResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetAssetFundamentalsResponse_StatisticResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.assetUid = reader.string();
+          break;
+        case 2:
+          message.currency = reader.string();
+          break;
+        case 3:
+          message.marketCapitalization = reader.double();
+          break;
+        case 4:
+          message.highPriceLast52Weeks = reader.double();
+          break;
+        case 5:
+          message.lowPriceLast52Weeks = reader.double();
+          break;
+        case 6:
+          message.averageDailyVolumeLast10Days = reader.double();
+          break;
+        case 7:
+          message.averageDailyVolumeLast4Weeks = reader.double();
+          break;
+        case 8:
+          message.beta = reader.double();
+          break;
+        case 9:
+          message.freeFloat = reader.double();
+          break;
+        case 10:
+          message.forwardAnnualDividendYield = reader.double();
+          break;
+        case 11:
+          message.sharesOutstanding = reader.double();
+          break;
+        case 12:
+          message.revenueTtm = reader.double();
+          break;
+        case 13:
+          message.ebitdaTtm = reader.double();
+          break;
+        case 14:
+          message.netIncomeTtm = reader.double();
+          break;
+        case 15:
+          message.epsTtm = reader.double();
+          break;
+        case 16:
+          message.dilutedEpsTtm = reader.double();
+          break;
+        case 17:
+          message.freeCashFlowTtm = reader.double();
+          break;
+        case 18:
+          message.fiveYearAnnualRevenueGrowthRate = reader.double();
+          break;
+        case 19:
+          message.threeYearAnnualRevenueGrowthRate = reader.double();
+          break;
+        case 20:
+          message.peRatioTtm = reader.double();
+          break;
+        case 21:
+          message.priceToSalesTtm = reader.double();
+          break;
+        case 22:
+          message.priceToBookTtm = reader.double();
+          break;
+        case 23:
+          message.priceToFreeCashFlowTtm = reader.double();
+          break;
+        case 24:
+          message.totalEnterpriseValueMrq = reader.double();
+          break;
+        case 25:
+          message.evToEbitdaMrq = reader.double();
+          break;
+        case 26:
+          message.netMarginMrq = reader.double();
+          break;
+        case 27:
+          message.netInterestMarginMrq = reader.double();
+          break;
+        case 28:
+          message.roe = reader.double();
+          break;
+        case 29:
+          message.roa = reader.double();
+          break;
+        case 30:
+          message.roic = reader.double();
+          break;
+        case 31:
+          message.totalDebtMrq = reader.double();
+          break;
+        case 32:
+          message.totalDebtToEquityMrq = reader.double();
+          break;
+        case 33:
+          message.totalDebtToEbitdaMrq = reader.double();
+          break;
+        case 34:
+          message.freeCashFlowToPrice = reader.double();
+          break;
+        case 35:
+          message.netDebtToEbitda = reader.double();
+          break;
+        case 36:
+          message.currentRatioMrq = reader.double();
+          break;
+        case 37:
+          message.fixedChargeCoverageRatioFy = reader.double();
+          break;
+        case 38:
+          message.dividendYieldDailyTtm = reader.double();
+          break;
+        case 39:
+          message.dividendRateTtm = reader.double();
+          break;
+        case 40:
+          message.dividendsPerShare = reader.double();
+          break;
+        case 41:
+          message.fiveYearsAverageDividendYield = reader.double();
+          break;
+        case 42:
+          message.fiveYearAnnualDividendGrowthRate = reader.double();
+          break;
+        case 43:
+          message.dividendPayoutRatioFy = reader.double();
+          break;
+        case 44:
+          message.buyBackTtm = reader.double();
+          break;
+        case 45:
+          message.oneYearAnnualRevenueGrowthRate = reader.double();
+          break;
+        case 46:
+          message.domicileIndicatorCode = reader.string();
+          break;
+        case 47:
+          message.adrToCommonShareRatio = reader.double();
+          break;
+        case 48:
+          message.numberOfEmployees = reader.double();
+          break;
+        case 49:
+          message.exDividendDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 50:
+          message.fiscalPeriodStartDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 51:
+          message.fiscalPeriodEndDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 53:
+          message.revenueChangeFiveYears = reader.double();
+          break;
+        case 54:
+          message.epsChangeFiveYears = reader.double();
+          break;
+        case 55:
+          message.ebitdaChangeFiveYears = reader.double();
+          break;
+        case 56:
+          message.totalDebtChangeFiveYears = reader.double();
+          break;
+        case 57:
+          message.evToSales = reader.double();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetAssetFundamentalsResponse_StatisticResponse {
+    return {
+      assetUid: isSet(object.assetUid) ? String(object.assetUid) : '',
+      currency: isSet(object.currency) ? String(object.currency) : '',
+      marketCapitalization: isSet(object.marketCapitalization) ? Number(object.marketCapitalization) : 0,
+      highPriceLast52Weeks: isSet(object.highPriceLast52Weeks) ? Number(object.highPriceLast52Weeks) : 0,
+      lowPriceLast52Weeks: isSet(object.lowPriceLast52Weeks) ? Number(object.lowPriceLast52Weeks) : 0,
+      averageDailyVolumeLast10Days: isSet(object.averageDailyVolumeLast10Days)
+        ? Number(object.averageDailyVolumeLast10Days)
+        : 0,
+      averageDailyVolumeLast4Weeks: isSet(object.averageDailyVolumeLast4Weeks)
+        ? Number(object.averageDailyVolumeLast4Weeks)
+        : 0,
+      beta: isSet(object.beta) ? Number(object.beta) : 0,
+      freeFloat: isSet(object.freeFloat) ? Number(object.freeFloat) : 0,
+      forwardAnnualDividendYield: isSet(object.forwardAnnualDividendYield)
+        ? Number(object.forwardAnnualDividendYield)
+        : 0,
+      sharesOutstanding: isSet(object.sharesOutstanding) ? Number(object.sharesOutstanding) : 0,
+      revenueTtm: isSet(object.revenueTtm) ? Number(object.revenueTtm) : 0,
+      ebitdaTtm: isSet(object.ebitdaTtm) ? Number(object.ebitdaTtm) : 0,
+      netIncomeTtm: isSet(object.netIncomeTtm) ? Number(object.netIncomeTtm) : 0,
+      epsTtm: isSet(object.epsTtm) ? Number(object.epsTtm) : 0,
+      dilutedEpsTtm: isSet(object.dilutedEpsTtm) ? Number(object.dilutedEpsTtm) : 0,
+      freeCashFlowTtm: isSet(object.freeCashFlowTtm) ? Number(object.freeCashFlowTtm) : 0,
+      fiveYearAnnualRevenueGrowthRate: isSet(object.fiveYearAnnualRevenueGrowthRate)
+        ? Number(object.fiveYearAnnualRevenueGrowthRate)
+        : 0,
+      threeYearAnnualRevenueGrowthRate: isSet(object.threeYearAnnualRevenueGrowthRate)
+        ? Number(object.threeYearAnnualRevenueGrowthRate)
+        : 0,
+      peRatioTtm: isSet(object.peRatioTtm) ? Number(object.peRatioTtm) : 0,
+      priceToSalesTtm: isSet(object.priceToSalesTtm) ? Number(object.priceToSalesTtm) : 0,
+      priceToBookTtm: isSet(object.priceToBookTtm) ? Number(object.priceToBookTtm) : 0,
+      priceToFreeCashFlowTtm: isSet(object.priceToFreeCashFlowTtm) ? Number(object.priceToFreeCashFlowTtm) : 0,
+      totalEnterpriseValueMrq: isSet(object.totalEnterpriseValueMrq) ? Number(object.totalEnterpriseValueMrq) : 0,
+      evToEbitdaMrq: isSet(object.evToEbitdaMrq) ? Number(object.evToEbitdaMrq) : 0,
+      netMarginMrq: isSet(object.netMarginMrq) ? Number(object.netMarginMrq) : 0,
+      netInterestMarginMrq: isSet(object.netInterestMarginMrq) ? Number(object.netInterestMarginMrq) : 0,
+      roe: isSet(object.roe) ? Number(object.roe) : 0,
+      roa: isSet(object.roa) ? Number(object.roa) : 0,
+      roic: isSet(object.roic) ? Number(object.roic) : 0,
+      totalDebtMrq: isSet(object.totalDebtMrq) ? Number(object.totalDebtMrq) : 0,
+      totalDebtToEquityMrq: isSet(object.totalDebtToEquityMrq) ? Number(object.totalDebtToEquityMrq) : 0,
+      totalDebtToEbitdaMrq: isSet(object.totalDebtToEbitdaMrq) ? Number(object.totalDebtToEbitdaMrq) : 0,
+      freeCashFlowToPrice: isSet(object.freeCashFlowToPrice) ? Number(object.freeCashFlowToPrice) : 0,
+      netDebtToEbitda: isSet(object.netDebtToEbitda) ? Number(object.netDebtToEbitda) : 0,
+      currentRatioMrq: isSet(object.currentRatioMrq) ? Number(object.currentRatioMrq) : 0,
+      fixedChargeCoverageRatioFy: isSet(object.fixedChargeCoverageRatioFy)
+        ? Number(object.fixedChargeCoverageRatioFy)
+        : 0,
+      dividendYieldDailyTtm: isSet(object.dividendYieldDailyTtm) ? Number(object.dividendYieldDailyTtm) : 0,
+      dividendRateTtm: isSet(object.dividendRateTtm) ? Number(object.dividendRateTtm) : 0,
+      dividendsPerShare: isSet(object.dividendsPerShare) ? Number(object.dividendsPerShare) : 0,
+      fiveYearsAverageDividendYield: isSet(object.fiveYearsAverageDividendYield)
+        ? Number(object.fiveYearsAverageDividendYield)
+        : 0,
+      fiveYearAnnualDividendGrowthRate: isSet(object.fiveYearAnnualDividendGrowthRate)
+        ? Number(object.fiveYearAnnualDividendGrowthRate)
+        : 0,
+      dividendPayoutRatioFy: isSet(object.dividendPayoutRatioFy) ? Number(object.dividendPayoutRatioFy) : 0,
+      buyBackTtm: isSet(object.buyBackTtm) ? Number(object.buyBackTtm) : 0,
+      oneYearAnnualRevenueGrowthRate: isSet(object.oneYearAnnualRevenueGrowthRate)
+        ? Number(object.oneYearAnnualRevenueGrowthRate)
+        : 0,
+      domicileIndicatorCode: isSet(object.domicileIndicatorCode) ? String(object.domicileIndicatorCode) : '',
+      adrToCommonShareRatio: isSet(object.adrToCommonShareRatio) ? Number(object.adrToCommonShareRatio) : 0,
+      numberOfEmployees: isSet(object.numberOfEmployees) ? Number(object.numberOfEmployees) : 0,
+      exDividendDate: isSet(object.exDividendDate) ? fromJsonTimestamp(object.exDividendDate) : undefined,
+      fiscalPeriodStartDate: isSet(object.fiscalPeriodStartDate)
+        ? fromJsonTimestamp(object.fiscalPeriodStartDate)
+        : undefined,
+      fiscalPeriodEndDate: isSet(object.fiscalPeriodEndDate)
+        ? fromJsonTimestamp(object.fiscalPeriodEndDate)
+        : undefined,
+      revenueChangeFiveYears: isSet(object.revenueChangeFiveYears) ? Number(object.revenueChangeFiveYears) : 0,
+      epsChangeFiveYears: isSet(object.epsChangeFiveYears) ? Number(object.epsChangeFiveYears) : 0,
+      ebitdaChangeFiveYears: isSet(object.ebitdaChangeFiveYears) ? Number(object.ebitdaChangeFiveYears) : 0,
+      totalDebtChangeFiveYears: isSet(object.totalDebtChangeFiveYears) ? Number(object.totalDebtChangeFiveYears) : 0,
+      evToSales: isSet(object.evToSales) ? Number(object.evToSales) : 0,
+    };
+  },
+
+  toJSON(message: GetAssetFundamentalsResponse_StatisticResponse): unknown {
+    const obj: any = {};
+    message.assetUid !== undefined && (obj.assetUid = message.assetUid);
+    message.currency !== undefined && (obj.currency = message.currency);
+    message.marketCapitalization !== undefined && (obj.marketCapitalization = message.marketCapitalization);
+    message.highPriceLast52Weeks !== undefined && (obj.highPriceLast52Weeks = message.highPriceLast52Weeks);
+    message.lowPriceLast52Weeks !== undefined && (obj.lowPriceLast52Weeks = message.lowPriceLast52Weeks);
+    message.averageDailyVolumeLast10Days !== undefined &&
+      (obj.averageDailyVolumeLast10Days = message.averageDailyVolumeLast10Days);
+    message.averageDailyVolumeLast4Weeks !== undefined &&
+      (obj.averageDailyVolumeLast4Weeks = message.averageDailyVolumeLast4Weeks);
+    message.beta !== undefined && (obj.beta = message.beta);
+    message.freeFloat !== undefined && (obj.freeFloat = message.freeFloat);
+    message.forwardAnnualDividendYield !== undefined &&
+      (obj.forwardAnnualDividendYield = message.forwardAnnualDividendYield);
+    message.sharesOutstanding !== undefined && (obj.sharesOutstanding = message.sharesOutstanding);
+    message.revenueTtm !== undefined && (obj.revenueTtm = message.revenueTtm);
+    message.ebitdaTtm !== undefined && (obj.ebitdaTtm = message.ebitdaTtm);
+    message.netIncomeTtm !== undefined && (obj.netIncomeTtm = message.netIncomeTtm);
+    message.epsTtm !== undefined && (obj.epsTtm = message.epsTtm);
+    message.dilutedEpsTtm !== undefined && (obj.dilutedEpsTtm = message.dilutedEpsTtm);
+    message.freeCashFlowTtm !== undefined && (obj.freeCashFlowTtm = message.freeCashFlowTtm);
+    message.fiveYearAnnualRevenueGrowthRate !== undefined &&
+      (obj.fiveYearAnnualRevenueGrowthRate = message.fiveYearAnnualRevenueGrowthRate);
+    message.threeYearAnnualRevenueGrowthRate !== undefined &&
+      (obj.threeYearAnnualRevenueGrowthRate = message.threeYearAnnualRevenueGrowthRate);
+    message.peRatioTtm !== undefined && (obj.peRatioTtm = message.peRatioTtm);
+    message.priceToSalesTtm !== undefined && (obj.priceToSalesTtm = message.priceToSalesTtm);
+    message.priceToBookTtm !== undefined && (obj.priceToBookTtm = message.priceToBookTtm);
+    message.priceToFreeCashFlowTtm !== undefined && (obj.priceToFreeCashFlowTtm = message.priceToFreeCashFlowTtm);
+    message.totalEnterpriseValueMrq !== undefined && (obj.totalEnterpriseValueMrq = message.totalEnterpriseValueMrq);
+    message.evToEbitdaMrq !== undefined && (obj.evToEbitdaMrq = message.evToEbitdaMrq);
+    message.netMarginMrq !== undefined && (obj.netMarginMrq = message.netMarginMrq);
+    message.netInterestMarginMrq !== undefined && (obj.netInterestMarginMrq = message.netInterestMarginMrq);
+    message.roe !== undefined && (obj.roe = message.roe);
+    message.roa !== undefined && (obj.roa = message.roa);
+    message.roic !== undefined && (obj.roic = message.roic);
+    message.totalDebtMrq !== undefined && (obj.totalDebtMrq = message.totalDebtMrq);
+    message.totalDebtToEquityMrq !== undefined && (obj.totalDebtToEquityMrq = message.totalDebtToEquityMrq);
+    message.totalDebtToEbitdaMrq !== undefined && (obj.totalDebtToEbitdaMrq = message.totalDebtToEbitdaMrq);
+    message.freeCashFlowToPrice !== undefined && (obj.freeCashFlowToPrice = message.freeCashFlowToPrice);
+    message.netDebtToEbitda !== undefined && (obj.netDebtToEbitda = message.netDebtToEbitda);
+    message.currentRatioMrq !== undefined && (obj.currentRatioMrq = message.currentRatioMrq);
+    message.fixedChargeCoverageRatioFy !== undefined &&
+      (obj.fixedChargeCoverageRatioFy = message.fixedChargeCoverageRatioFy);
+    message.dividendYieldDailyTtm !== undefined && (obj.dividendYieldDailyTtm = message.dividendYieldDailyTtm);
+    message.dividendRateTtm !== undefined && (obj.dividendRateTtm = message.dividendRateTtm);
+    message.dividendsPerShare !== undefined && (obj.dividendsPerShare = message.dividendsPerShare);
+    message.fiveYearsAverageDividendYield !== undefined &&
+      (obj.fiveYearsAverageDividendYield = message.fiveYearsAverageDividendYield);
+    message.fiveYearAnnualDividendGrowthRate !== undefined &&
+      (obj.fiveYearAnnualDividendGrowthRate = message.fiveYearAnnualDividendGrowthRate);
+    message.dividendPayoutRatioFy !== undefined && (obj.dividendPayoutRatioFy = message.dividendPayoutRatioFy);
+    message.buyBackTtm !== undefined && (obj.buyBackTtm = message.buyBackTtm);
+    message.oneYearAnnualRevenueGrowthRate !== undefined &&
+      (obj.oneYearAnnualRevenueGrowthRate = message.oneYearAnnualRevenueGrowthRate);
+    message.domicileIndicatorCode !== undefined && (obj.domicileIndicatorCode = message.domicileIndicatorCode);
+    message.adrToCommonShareRatio !== undefined && (obj.adrToCommonShareRatio = message.adrToCommonShareRatio);
+    message.numberOfEmployees !== undefined && (obj.numberOfEmployees = message.numberOfEmployees);
+    message.exDividendDate !== undefined && (obj.exDividendDate = message.exDividendDate.toISOString());
+    message.fiscalPeriodStartDate !== undefined &&
+      (obj.fiscalPeriodStartDate = message.fiscalPeriodStartDate.toISOString());
+    message.fiscalPeriodEndDate !== undefined && (obj.fiscalPeriodEndDate = message.fiscalPeriodEndDate.toISOString());
+    message.revenueChangeFiveYears !== undefined && (obj.revenueChangeFiveYears = message.revenueChangeFiveYears);
+    message.epsChangeFiveYears !== undefined && (obj.epsChangeFiveYears = message.epsChangeFiveYears);
+    message.ebitdaChangeFiveYears !== undefined && (obj.ebitdaChangeFiveYears = message.ebitdaChangeFiveYears);
+    message.totalDebtChangeFiveYears !== undefined && (obj.totalDebtChangeFiveYears = message.totalDebtChangeFiveYears);
+    message.evToSales !== undefined && (obj.evToSales = message.evToSales);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<GetAssetFundamentalsResponse_StatisticResponse>,
+  ): GetAssetFundamentalsResponse_StatisticResponse {
+    const message = createBaseGetAssetFundamentalsResponse_StatisticResponse();
+    message.assetUid = object.assetUid ?? '';
+    message.currency = object.currency ?? '';
+    message.marketCapitalization = object.marketCapitalization ?? 0;
+    message.highPriceLast52Weeks = object.highPriceLast52Weeks ?? 0;
+    message.lowPriceLast52Weeks = object.lowPriceLast52Weeks ?? 0;
+    message.averageDailyVolumeLast10Days = object.averageDailyVolumeLast10Days ?? 0;
+    message.averageDailyVolumeLast4Weeks = object.averageDailyVolumeLast4Weeks ?? 0;
+    message.beta = object.beta ?? 0;
+    message.freeFloat = object.freeFloat ?? 0;
+    message.forwardAnnualDividendYield = object.forwardAnnualDividendYield ?? 0;
+    message.sharesOutstanding = object.sharesOutstanding ?? 0;
+    message.revenueTtm = object.revenueTtm ?? 0;
+    message.ebitdaTtm = object.ebitdaTtm ?? 0;
+    message.netIncomeTtm = object.netIncomeTtm ?? 0;
+    message.epsTtm = object.epsTtm ?? 0;
+    message.dilutedEpsTtm = object.dilutedEpsTtm ?? 0;
+    message.freeCashFlowTtm = object.freeCashFlowTtm ?? 0;
+    message.fiveYearAnnualRevenueGrowthRate = object.fiveYearAnnualRevenueGrowthRate ?? 0;
+    message.threeYearAnnualRevenueGrowthRate = object.threeYearAnnualRevenueGrowthRate ?? 0;
+    message.peRatioTtm = object.peRatioTtm ?? 0;
+    message.priceToSalesTtm = object.priceToSalesTtm ?? 0;
+    message.priceToBookTtm = object.priceToBookTtm ?? 0;
+    message.priceToFreeCashFlowTtm = object.priceToFreeCashFlowTtm ?? 0;
+    message.totalEnterpriseValueMrq = object.totalEnterpriseValueMrq ?? 0;
+    message.evToEbitdaMrq = object.evToEbitdaMrq ?? 0;
+    message.netMarginMrq = object.netMarginMrq ?? 0;
+    message.netInterestMarginMrq = object.netInterestMarginMrq ?? 0;
+    message.roe = object.roe ?? 0;
+    message.roa = object.roa ?? 0;
+    message.roic = object.roic ?? 0;
+    message.totalDebtMrq = object.totalDebtMrq ?? 0;
+    message.totalDebtToEquityMrq = object.totalDebtToEquityMrq ?? 0;
+    message.totalDebtToEbitdaMrq = object.totalDebtToEbitdaMrq ?? 0;
+    message.freeCashFlowToPrice = object.freeCashFlowToPrice ?? 0;
+    message.netDebtToEbitda = object.netDebtToEbitda ?? 0;
+    message.currentRatioMrq = object.currentRatioMrq ?? 0;
+    message.fixedChargeCoverageRatioFy = object.fixedChargeCoverageRatioFy ?? 0;
+    message.dividendYieldDailyTtm = object.dividendYieldDailyTtm ?? 0;
+    message.dividendRateTtm = object.dividendRateTtm ?? 0;
+    message.dividendsPerShare = object.dividendsPerShare ?? 0;
+    message.fiveYearsAverageDividendYield = object.fiveYearsAverageDividendYield ?? 0;
+    message.fiveYearAnnualDividendGrowthRate = object.fiveYearAnnualDividendGrowthRate ?? 0;
+    message.dividendPayoutRatioFy = object.dividendPayoutRatioFy ?? 0;
+    message.buyBackTtm = object.buyBackTtm ?? 0;
+    message.oneYearAnnualRevenueGrowthRate = object.oneYearAnnualRevenueGrowthRate ?? 0;
+    message.domicileIndicatorCode = object.domicileIndicatorCode ?? '';
+    message.adrToCommonShareRatio = object.adrToCommonShareRatio ?? 0;
+    message.numberOfEmployees = object.numberOfEmployees ?? 0;
+    message.exDividendDate = object.exDividendDate ?? undefined;
+    message.fiscalPeriodStartDate = object.fiscalPeriodStartDate ?? undefined;
+    message.fiscalPeriodEndDate = object.fiscalPeriodEndDate ?? undefined;
+    message.revenueChangeFiveYears = object.revenueChangeFiveYears ?? 0;
+    message.epsChangeFiveYears = object.epsChangeFiveYears ?? 0;
+    message.ebitdaChangeFiveYears = object.ebitdaChangeFiveYears ?? 0;
+    message.totalDebtChangeFiveYears = object.totalDebtChangeFiveYears ?? 0;
+    message.evToSales = object.evToSales ?? 0;
+    return message;
+  },
+};
+
 /**
  * Сервис предназначен для получения:</br>**1**. информации об инструментах;</br>**2**.
  * расписания торговых сессий;</br>**3**. календаря выплат купонов по облигациям;</br>**4**.
@@ -10484,10 +11504,23 @@ export const InstrumentsServiceDefinition = {
       responseStream: false,
       options: {},
     },
-    /** Метод получения списка опционов. */
+    /**
+     * Deprecated Метод получения списка опционов.
+     *
+     * @deprecated
+     */
     options: {
       name: 'Options',
       requestType: InstrumentsRequest,
+      requestStream: false,
+      responseType: OptionsResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод получения списка опционов. */
+    optionsBy: {
+      name: 'OptionsBy',
+      requestType: FilterOptionsRequest,
       requestStream: false,
       responseType: OptionsResponse,
       responseStream: false,
@@ -10556,7 +11589,7 @@ export const InstrumentsServiceDefinition = {
       responseStream: false,
       options: {},
     },
-    /** Метод получения списка активов. */
+    /** Метод получения списка активов. Метод работает для всех инструментов, за исключением срочных - опционов и фьючерсов. */
     getAssets: {
       name: 'GetAssets',
       requestType: AssetsRequest,
@@ -10616,6 +11649,15 @@ export const InstrumentsServiceDefinition = {
       requestType: GetBrandRequest,
       requestStream: false,
       responseType: Brand,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод получения фундаментальных показателей по активу */
+    getAssetFundamentals: {
+      name: 'GetAssetFundamentals',
+      requestType: GetAssetFundamentalsRequest,
+      requestStream: false,
+      responseType: GetAssetFundamentalsResponse,
       responseStream: false,
       options: {},
     },

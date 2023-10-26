@@ -227,6 +227,8 @@ export interface StreamLimit {
   limit: number;
   /** Названия stream-методов. */
   streams: string[];
+  /** Текущее количество открытых stream-соединений. */
+  open: number;
 }
 
 /** Запрос информации о пользователе. */
@@ -238,7 +240,7 @@ export interface GetInfoResponse {
   premStatus: boolean;
   /** Признак квалифицированного инвестора. */
   qualStatus: boolean;
-  /** Набор требующих тестирования инструментов и возможностей, с которыми может работать пользователь. [Подробнее](https://tinkoff.github.io/investAPI/faq_users/). */
+  /** Набор требующих тестирования инструментов и возможностей, с которыми может работать пользователь. [Подробнее](https://russianinvestments.github.io/investAPI/faq_users/). */
   qualifiedForWorkWith: string[];
   /** Наименование тарифа пользователя. */
   tariff: string;
@@ -791,7 +793,7 @@ export const UnaryLimit = {
 };
 
 function createBaseStreamLimit(): StreamLimit {
-  return { limit: 0, streams: [] };
+  return { limit: 0, streams: [], open: 0 };
 }
 
 export const StreamLimit = {
@@ -801,6 +803,9 @@ export const StreamLimit = {
     }
     for (const v of message.streams) {
       writer.uint32(18).string(v!);
+    }
+    if (message.open !== 0) {
+      writer.uint32(24).int32(message.open);
     }
     return writer;
   },
@@ -818,6 +823,9 @@ export const StreamLimit = {
         case 2:
           message.streams.push(reader.string());
           break;
+        case 3:
+          message.open = reader.int32();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -830,6 +838,7 @@ export const StreamLimit = {
     return {
       limit: isSet(object.limit) ? Number(object.limit) : 0,
       streams: Array.isArray(object?.streams) ? object.streams.map((e: any) => String(e)) : [],
+      open: isSet(object.open) ? Number(object.open) : 0,
     };
   },
 
@@ -841,6 +850,7 @@ export const StreamLimit = {
     } else {
       obj.streams = [];
     }
+    message.open !== undefined && (obj.open = Math.round(message.open));
     return obj;
   },
 
@@ -848,6 +858,7 @@ export const StreamLimit = {
     const message = createBaseStreamLimit();
     message.limit = object.limit ?? 0;
     message.streams = object.streams?.map(e => e) || [];
+    message.open = object.open ?? 0;
     return message;
   },
 };

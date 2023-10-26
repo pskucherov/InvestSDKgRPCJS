@@ -62,6 +62,28 @@ export enum SubscriptionInterval {
   SUBSCRIPTION_INTERVAL_ONE_MINUTE = 1,
   /** SUBSCRIPTION_INTERVAL_FIVE_MINUTES - Пятиминутные свечи. */
   SUBSCRIPTION_INTERVAL_FIVE_MINUTES = 2,
+  /** SUBSCRIPTION_INTERVAL_FIFTEEN_MINUTES - Пятнадцатиминутные свечи */
+  SUBSCRIPTION_INTERVAL_FIFTEEN_MINUTES = 3,
+  /** SUBSCRIPTION_INTERVAL_ONE_HOUR - Часовые свечи */
+  SUBSCRIPTION_INTERVAL_ONE_HOUR = 4,
+  /** SUBSCRIPTION_INTERVAL_ONE_DAY - Дневные свечи */
+  SUBSCRIPTION_INTERVAL_ONE_DAY = 5,
+  /** SUBSCRIPTION_INTERVAL_2_MIN - Двухминутные свечи */
+  SUBSCRIPTION_INTERVAL_2_MIN = 6,
+  /** SUBSCRIPTION_INTERVAL_3_MIN - Трехминутные свечи */
+  SUBSCRIPTION_INTERVAL_3_MIN = 7,
+  /** SUBSCRIPTION_INTERVAL_10_MIN - Десятиминутные свечи */
+  SUBSCRIPTION_INTERVAL_10_MIN = 8,
+  /** SUBSCRIPTION_INTERVAL_30_MIN - Тридцатиминутные свечи */
+  SUBSCRIPTION_INTERVAL_30_MIN = 9,
+  /** SUBSCRIPTION_INTERVAL_2_HOUR - Двухчасовые свечи */
+  SUBSCRIPTION_INTERVAL_2_HOUR = 10,
+  /** SUBSCRIPTION_INTERVAL_4_HOUR - Четырехчасовые свечи */
+  SUBSCRIPTION_INTERVAL_4_HOUR = 11,
+  /** SUBSCRIPTION_INTERVAL_WEEK - Недельные свечи */
+  SUBSCRIPTION_INTERVAL_WEEK = 12,
+  /** SUBSCRIPTION_INTERVAL_MONTH - Месячные свечи */
+  SUBSCRIPTION_INTERVAL_MONTH = 13,
   UNRECOGNIZED = -1,
 }
 
@@ -76,6 +98,39 @@ export function subscriptionIntervalFromJSON(object: any): SubscriptionInterval 
     case 2:
     case 'SUBSCRIPTION_INTERVAL_FIVE_MINUTES':
       return SubscriptionInterval.SUBSCRIPTION_INTERVAL_FIVE_MINUTES;
+    case 3:
+    case 'SUBSCRIPTION_INTERVAL_FIFTEEN_MINUTES':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_FIFTEEN_MINUTES;
+    case 4:
+    case 'SUBSCRIPTION_INTERVAL_ONE_HOUR':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_ONE_HOUR;
+    case 5:
+    case 'SUBSCRIPTION_INTERVAL_ONE_DAY':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_ONE_DAY;
+    case 6:
+    case 'SUBSCRIPTION_INTERVAL_2_MIN':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_2_MIN;
+    case 7:
+    case 'SUBSCRIPTION_INTERVAL_3_MIN':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_3_MIN;
+    case 8:
+    case 'SUBSCRIPTION_INTERVAL_10_MIN':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_10_MIN;
+    case 9:
+    case 'SUBSCRIPTION_INTERVAL_30_MIN':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_30_MIN;
+    case 10:
+    case 'SUBSCRIPTION_INTERVAL_2_HOUR':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_2_HOUR;
+    case 11:
+    case 'SUBSCRIPTION_INTERVAL_4_HOUR':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_4_HOUR;
+    case 12:
+    case 'SUBSCRIPTION_INTERVAL_WEEK':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_WEEK;
+    case 13:
+    case 'SUBSCRIPTION_INTERVAL_MONTH':
+      return SubscriptionInterval.SUBSCRIPTION_INTERVAL_MONTH;
     case -1:
     case 'UNRECOGNIZED':
     default:
@@ -91,6 +146,28 @@ export function subscriptionIntervalToJSON(object: SubscriptionInterval): string
       return 'SUBSCRIPTION_INTERVAL_ONE_MINUTE';
     case SubscriptionInterval.SUBSCRIPTION_INTERVAL_FIVE_MINUTES:
       return 'SUBSCRIPTION_INTERVAL_FIVE_MINUTES';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_FIFTEEN_MINUTES:
+      return 'SUBSCRIPTION_INTERVAL_FIFTEEN_MINUTES';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_ONE_HOUR:
+      return 'SUBSCRIPTION_INTERVAL_ONE_HOUR';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_ONE_DAY:
+      return 'SUBSCRIPTION_INTERVAL_ONE_DAY';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_2_MIN:
+      return 'SUBSCRIPTION_INTERVAL_2_MIN';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_3_MIN:
+      return 'SUBSCRIPTION_INTERVAL_3_MIN';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_10_MIN:
+      return 'SUBSCRIPTION_INTERVAL_10_MIN';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_30_MIN:
+      return 'SUBSCRIPTION_INTERVAL_30_MIN';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_2_HOUR:
+      return 'SUBSCRIPTION_INTERVAL_2_HOUR';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_4_HOUR:
+      return 'SUBSCRIPTION_INTERVAL_4_HOUR';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_WEEK:
+      return 'SUBSCRIPTION_INTERVAL_WEEK';
+    case SubscriptionInterval.SUBSCRIPTION_INTERVAL_MONTH:
+      return 'SUBSCRIPTION_INTERVAL_MONTH';
     default:
       return 'UNKNOWN';
   }
@@ -104,18 +181,20 @@ export enum SubscriptionStatus {
   SUBSCRIPTION_STATUS_SUCCESS = 1,
   /** SUBSCRIPTION_STATUS_INSTRUMENT_NOT_FOUND - Инструмент не найден. */
   SUBSCRIPTION_STATUS_INSTRUMENT_NOT_FOUND = 2,
-  /** SUBSCRIPTION_STATUS_SUBSCRIPTION_ACTION_IS_INVALID - Некорректный статус подписки, список возможных значений: [SubscriptionAction](https://tinkoff.github.io/investAPI/marketdata#subscriptionaction). */
+  /** SUBSCRIPTION_STATUS_SUBSCRIPTION_ACTION_IS_INVALID - Некорректный статус подписки, список возможных значений: [SubscriptionAction](https://russianinvestments.github.io/investAPI/marketdata#subscriptionaction). */
   SUBSCRIPTION_STATUS_SUBSCRIPTION_ACTION_IS_INVALID = 3,
   /** SUBSCRIPTION_STATUS_DEPTH_IS_INVALID - Некорректная глубина стакана, доступные значения: 1, 10, 20, 30, 40, 50. */
   SUBSCRIPTION_STATUS_DEPTH_IS_INVALID = 4,
-  /** SUBSCRIPTION_STATUS_INTERVAL_IS_INVALID - Некорректный интервал свечей, список возможных значений: [SubscriptionInterval](https://tinkoff.github.io/investAPI/marketdata#subscriptioninterval). */
+  /** SUBSCRIPTION_STATUS_INTERVAL_IS_INVALID - Некорректный интервал свечей, список возможных значений: [SubscriptionInterval](https://russianinvestments.github.io/investAPI/marketdata#subscriptioninterval). */
   SUBSCRIPTION_STATUS_INTERVAL_IS_INVALID = 5,
-  /** SUBSCRIPTION_STATUS_LIMIT_IS_EXCEEDED - Превышен лимит на общее количество подписок в рамках стрима, подробнее: [Лимитная политика](https://tinkoff.github.io/investAPI/limits/). */
+  /** SUBSCRIPTION_STATUS_LIMIT_IS_EXCEEDED - Превышен лимит на общее количество подписок в рамках стрима, подробнее: [Лимитная политика](https://russianinvestments.github.io/investAPI/limits/). */
   SUBSCRIPTION_STATUS_LIMIT_IS_EXCEEDED = 6,
   /** SUBSCRIPTION_STATUS_INTERNAL_ERROR - Внутренняя ошибка сервиса. */
   SUBSCRIPTION_STATUS_INTERNAL_ERROR = 7,
   /** SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS - Превышен лимит на количество запросов на подписки в течение установленного отрезка времени */
   SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS = 8,
+  /** SUBSCRIPTION_STATUS_SUBSCRIPTION_NOT_FOUND - Активная подписка не найдена. Ошибка может возникнуть только при отписке от не существующей отписки */
+  SUBSCRIPTION_STATUS_SUBSCRIPTION_NOT_FOUND = 9,
   UNRECOGNIZED = -1,
 }
 
@@ -148,6 +227,9 @@ export function subscriptionStatusFromJSON(object: any): SubscriptionStatus {
     case 8:
     case 'SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS':
       return SubscriptionStatus.SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS;
+    case 9:
+    case 'SUBSCRIPTION_STATUS_SUBSCRIPTION_NOT_FOUND':
+      return SubscriptionStatus.SUBSCRIPTION_STATUS_SUBSCRIPTION_NOT_FOUND;
     case -1:
     case 'UNRECOGNIZED':
     default:
@@ -175,6 +257,8 @@ export function subscriptionStatusToJSON(object: SubscriptionStatus): string {
       return 'SUBSCRIPTION_STATUS_INTERNAL_ERROR';
     case SubscriptionStatus.SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS:
       return 'SUBSCRIPTION_STATUS_TOO_MANY_REQUESTS';
+    case SubscriptionStatus.SUBSCRIPTION_STATUS_SUBSCRIPTION_NOT_FOUND:
+      return 'SUBSCRIPTION_STATUS_SUBSCRIPTION_NOT_FOUND';
     default:
       return 'UNKNOWN';
   }
@@ -226,31 +310,31 @@ export function tradeDirectionToJSON(object: TradeDirection): string {
 export enum CandleInterval {
   /** CANDLE_INTERVAL_UNSPECIFIED - Интервал не определён. */
   CANDLE_INTERVAL_UNSPECIFIED = 0,
-  /** CANDLE_INTERVAL_1_MIN - 1 минута. */
+  /** CANDLE_INTERVAL_1_MIN - от 1 минуты до 1 дня. */
   CANDLE_INTERVAL_1_MIN = 1,
-  /** CANDLE_INTERVAL_5_MIN - 5 минут. */
+  /** CANDLE_INTERVAL_5_MIN - от 5 минут до 1 дня. */
   CANDLE_INTERVAL_5_MIN = 2,
-  /** CANDLE_INTERVAL_15_MIN - 15 минут. */
+  /** CANDLE_INTERVAL_15_MIN - от 15 минут до 1 дня. */
   CANDLE_INTERVAL_15_MIN = 3,
-  /** CANDLE_INTERVAL_HOUR - 1 час. */
+  /** CANDLE_INTERVAL_HOUR - от 1 часа до 1 недели. */
   CANDLE_INTERVAL_HOUR = 4,
-  /** CANDLE_INTERVAL_DAY - 1 день. */
+  /** CANDLE_INTERVAL_DAY - от 1 дня до 1 года. */
   CANDLE_INTERVAL_DAY = 5,
-  /** CANDLE_INTERVAL_2_MIN - 2 минуты. */
+  /** CANDLE_INTERVAL_2_MIN - от 2 минут до 1 дня. */
   CANDLE_INTERVAL_2_MIN = 6,
-  /** CANDLE_INTERVAL_3_MIN - 3 минуты. */
+  /** CANDLE_INTERVAL_3_MIN - от 3 минут до 1 дня. */
   CANDLE_INTERVAL_3_MIN = 7,
-  /** CANDLE_INTERVAL_10_MIN - 10 минут. */
+  /** CANDLE_INTERVAL_10_MIN - от 10 минут до 1 дня. */
   CANDLE_INTERVAL_10_MIN = 8,
-  /** CANDLE_INTERVAL_30_MIN - 30 минут. */
+  /** CANDLE_INTERVAL_30_MIN - от 30 минут до 2 дней. */
   CANDLE_INTERVAL_30_MIN = 9,
-  /** CANDLE_INTERVAL_2_HOUR - 2 часа. */
+  /** CANDLE_INTERVAL_2_HOUR - от 2 часов до 1 месяца. */
   CANDLE_INTERVAL_2_HOUR = 10,
-  /** CANDLE_INTERVAL_4_HOUR - 4 часа. */
+  /** CANDLE_INTERVAL_4_HOUR - от 4 часов до 1 месяца. */
   CANDLE_INTERVAL_4_HOUR = 11,
-  /** CANDLE_INTERVAL_WEEK - 1 неделя. */
+  /** CANDLE_INTERVAL_WEEK - от 1 недели до 2 лет. */
   CANDLE_INTERVAL_WEEK = 12,
-  /** CANDLE_INTERVAL_MONTH - 1 месяц. */
+  /** CANDLE_INTERVAL_MONTH - от 1 месяца до 10 лет. */
   CANDLE_INTERVAL_MONTH = 13,
   UNRECOGNIZED = -1,
 }
@@ -402,13 +486,17 @@ export interface SubscribeCandlesRequest {
   subscriptionAction: SubscriptionAction;
   /** Массив инструментов для подписки на свечи. */
   instruments: CandleInstrument[];
-  /** Флаг ожидания закрытия временного интервала для отправки свечи, применяется только для минутных свечей. */
+  /** Флаг ожидания закрытия временного интервала для отправки свечи. */
   waitingClose: boolean;
 }
 
 /** Запрос изменения статус подписки на свечи. */
 export interface CandleInstrument {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Интервал свечей. */
   interval: SubscriptionInterval;
@@ -418,7 +506,7 @@ export interface CandleInstrument {
 
 /** Результат изменения статус подписки на свечи. */
 export interface SubscribeCandlesResponse {
-  /** Уникальный идентификатор запроса, подробнее: [tracking_id](https://tinkoff.github.io/investAPI/grpc#tracking-id). */
+  /** Уникальный идентификатор запроса, подробнее: [tracking_id](https://russianinvestments.github.io/investAPI/grpc#tracking-id). */
   trackingId: string;
   /** Массив статусов подписки на свечи. */
   candlesSubscriptions: CandleSubscription[];
@@ -434,6 +522,8 @@ export interface CandleSubscription {
   subscriptionStatus: SubscriptionStatus;
   /** Uid инструмента */
   instrumentUid: string;
+  /** Флаг ожидания закрытия временного интервала для отправки свечи */
+  waitingClose: boolean;
 }
 
 /** Запрос на изменение статуса подписки на стаканы. */
@@ -446,7 +536,11 @@ export interface SubscribeOrderBookRequest {
 
 /** Запрос подписки на стаканы. */
 export interface OrderBookInstrument {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Глубина стакана. */
   depth: number;
@@ -456,7 +550,7 @@ export interface OrderBookInstrument {
 
 /** Результат изменения статуса подписки на стаканы. */
 export interface SubscribeOrderBookResponse {
-  /** Уникальный идентификатор запроса, подробнее: [tracking_id](https://tinkoff.github.io/investAPI/grpc#tracking-id). */
+  /** Уникальный идентификатор запроса, подробнее: [tracking_id](https://russianinvestments.github.io/investAPI/grpc#tracking-id). */
   trackingId: string;
   /** Массив статусов подписки на стаканы. */
   orderBookSubscriptions: OrderBookSubscription[];
@@ -484,7 +578,11 @@ export interface SubscribeTradesRequest {
 
 /** Запрос подписки на поток обезличенных сделок. */
 export interface TradeInstrument {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid */
   instrumentId: string;
@@ -492,7 +590,7 @@ export interface TradeInstrument {
 
 /** Результат изменения статуса подписки на поток обезличенных сделок. */
 export interface SubscribeTradesResponse {
-  /** Уникальный идентификатор запроса, подробнее: [tracking_id](https://tinkoff.github.io/investAPI/grpc#tracking-id). */
+  /** Уникальный идентификатор запроса, подробнее: [tracking_id](https://russianinvestments.github.io/investAPI/grpc#tracking-id). */
   trackingId: string;
   /** Массив статусов подписки на поток сделок. */
   tradeSubscriptions: TradeSubscription[];
@@ -518,7 +616,11 @@ export interface SubscribeInfoRequest {
 
 /** Запрос подписки на торговый статус. */
 export interface InfoInstrument {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid */
   instrumentId: string;
@@ -526,7 +628,7 @@ export interface InfoInstrument {
 
 /** Результат изменения статуса подписки на торговый статус. */
 export interface SubscribeInfoResponse {
-  /** Уникальный идентификатор запроса, подробнее: [tracking_id](https://tinkoff.github.io/investAPI/grpc#tracking-id). */
+  /** Уникальный идентификатор запроса, подробнее: [tracking_id](https://russianinvestments.github.io/investAPI/grpc#tracking-id). */
   trackingId: string;
   /** Массив статусов подписки на торговый статус. */
   infoSubscriptions: InfoSubscription[];
@@ -552,7 +654,11 @@ export interface SubscribeLastPriceRequest {
 
 /** Запрос подписки на последнюю цену. */
 export interface LastPriceInstrument {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid */
   instrumentId: string;
@@ -560,7 +666,7 @@ export interface LastPriceInstrument {
 
 /** Результат изменения статуса подписки на цену последней сделки. */
 export interface SubscribeLastPriceResponse {
-  /** Уникальный идентификатор запроса, подробнее: [tracking_id](https://tinkoff.github.io/investAPI/grpc#tracking-id). */
+  /** Уникальный идентификатор запроса, подробнее: [tracking_id](https://russianinvestments.github.io/investAPI/grpc#tracking-id). */
   trackingId: string;
   /** Массив статусов подписки на цену последней сделки. */
   lastPriceSubscriptions: LastPriceSubscription[];
@@ -582,13 +688,13 @@ export interface Candle {
   figi: string;
   /** Интервал свечи. */
   interval: SubscriptionInterval;
-  /** Цена открытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Цена открытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   open: Quotation | undefined;
-  /** Максимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Максимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   high: Quotation | undefined;
-  /** Минимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Минимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   low: Quotation | undefined;
-  /** Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   close: Quotation | undefined;
   /** Объём сделок в лотах. */
   volume: number;
@@ -614,9 +720,9 @@ export interface OrderBook {
   asks: Order[];
   /** Время формирования стакана в часовом поясе UTC по времени биржи. */
   time: Date | undefined;
-  /** Верхний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Верхний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   limitUp: Quotation | undefined;
-  /** Нижний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Нижний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   limitDown: Quotation | undefined;
   /** Uid инструмента */
   instrumentUid: string;
@@ -624,7 +730,7 @@ export interface OrderBook {
 
 /** Массив предложений/спроса. */
 export interface Order {
-  /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   price: Quotation | undefined;
   /** Количество в лотах. */
   quantity: number;
@@ -636,7 +742,7 @@ export interface Trade {
   figi: string;
   /** Направление сделки. */
   direction: TradeDirection;
-  /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   price: Quotation | undefined;
   /** Количество лотов. */
   quantity: number;
@@ -664,7 +770,11 @@ export interface TradingStatus {
 
 /** Запрос исторических свечей. */
 export interface GetCandlesRequest {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Начало запрашиваемого периода в часовом поясе UTC. */
   from: Date | undefined;
@@ -684,13 +794,13 @@ export interface GetCandlesResponse {
 
 /** Информация о свече. */
 export interface HistoricCandle {
-  /** Цена открытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Цена открытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   open: Quotation | undefined;
-  /** Максимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Максимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   high: Quotation | undefined;
-  /** Минимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Минимальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   low: Quotation | undefined;
-  /** Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   close: Quotation | undefined;
   /** Объём торгов в лотах. */
   volume: number;
@@ -702,7 +812,11 @@ export interface HistoricCandle {
 
 /** Запрос получения цен последних сделок. */
 export interface GetLastPricesRequest {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string[];
   /** Массив идентификаторов инструмента, принимает значения figi или instrument_uid. */
   instrumentId: string[];
@@ -718,7 +832,7 @@ export interface GetLastPricesResponse {
 export interface LastPrice {
   /** Figi инструмента. */
   figi: string;
-  /** Цена последней сделки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Цена последней сделки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   price: Quotation | undefined;
   /** Время получения последней цены в часовом поясе UTC по времени биржи. */
   time: Date | undefined;
@@ -728,7 +842,11 @@ export interface LastPrice {
 
 /** Запрос стакана. */
 export interface GetOrderBookRequest {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Глубина стакана. */
   depth: number;
@@ -746,13 +864,13 @@ export interface GetOrderBookResponse {
   bids: Order[];
   /** Множество пар значений на продажу. */
   asks: Order[];
-  /** Цена последней сделки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Цена последней сделки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   lastPrice: Quotation | undefined;
-  /** Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Цена закрытия за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   closePrice: Quotation | undefined;
-  /** Верхний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Верхний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   limitUp: Quotation | undefined;
-  /** Нижний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://tinkoff.github.io/investAPI/faq_marketdata/) */
+  /** Нижний лимит цены за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Для перевод цен в валюту рекомендуем использовать [информацию со страницы](https://russianinvestments.github.io/investAPI/faq_marketdata/) */
   limitDown: Quotation | undefined;
   /** Время получения цены последней сделки. */
   lastPriceTs: Date | undefined;
@@ -766,7 +884,11 @@ export interface GetOrderBookResponse {
 
 /** Запрос получения торгового статуса. */
 export interface GetTradingStatusRequest {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
   instrumentId: string;
@@ -802,7 +924,11 @@ export interface GetTradingStatusResponse {
 
 /** Запрос обезличенных сделок за последний час. */
 export interface GetLastTradesRequest {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Начало запрашиваемого периода в часовом поясе UTC. */
   from: Date | undefined;
@@ -847,6 +973,8 @@ export interface InstrumentClosePriceResponse {
   instrumentUid: string;
   /** Цена закрытия торговой сессии. */
   price: Quotation | undefined;
+  /** Цена последней сделки с вечерней сессии */
+  eveningSessionPrice: Quotation | undefined;
   /** Дата совершения торгов. */
   time: Date | undefined;
 }
@@ -1537,7 +1665,7 @@ export const SubscribeCandlesResponse = {
 };
 
 function createBaseCandleSubscription(): CandleSubscription {
-  return { figi: '', interval: 0, subscriptionStatus: 0, instrumentUid: '' };
+  return { figi: '', interval: 0, subscriptionStatus: 0, instrumentUid: '', waitingClose: false };
 }
 
 export const CandleSubscription = {
@@ -1553,6 +1681,9 @@ export const CandleSubscription = {
     }
     if (message.instrumentUid !== '') {
       writer.uint32(34).string(message.instrumentUid);
+    }
+    if (message.waitingClose === true) {
+      writer.uint32(40).bool(message.waitingClose);
     }
     return writer;
   },
@@ -1576,6 +1707,9 @@ export const CandleSubscription = {
         case 4:
           message.instrumentUid = reader.string();
           break;
+        case 5:
+          message.waitingClose = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1590,6 +1724,7 @@ export const CandleSubscription = {
       interval: isSet(object.interval) ? subscriptionIntervalFromJSON(object.interval) : 0,
       subscriptionStatus: isSet(object.subscriptionStatus) ? subscriptionStatusFromJSON(object.subscriptionStatus) : 0,
       instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
+      waitingClose: isSet(object.waitingClose) ? Boolean(object.waitingClose) : false,
     };
   },
 
@@ -1600,6 +1735,7 @@ export const CandleSubscription = {
     message.subscriptionStatus !== undefined &&
       (obj.subscriptionStatus = subscriptionStatusToJSON(message.subscriptionStatus));
     message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
+    message.waitingClose !== undefined && (obj.waitingClose = message.waitingClose);
     return obj;
   },
 
@@ -1609,6 +1745,7 @@ export const CandleSubscription = {
     message.interval = object.interval ?? 0;
     message.subscriptionStatus = object.subscriptionStatus ?? 0;
     message.instrumentUid = object.instrumentUid ?? '';
+    message.waitingClose = object.waitingClose ?? false;
     return message;
   },
 };
@@ -4486,7 +4623,7 @@ export const GetClosePricesResponse = {
 };
 
 function createBaseInstrumentClosePriceResponse(): InstrumentClosePriceResponse {
-  return { figi: '', instrumentUid: '', price: undefined, time: undefined };
+  return { figi: '', instrumentUid: '', price: undefined, eveningSessionPrice: undefined, time: undefined };
 }
 
 export const InstrumentClosePriceResponse = {
@@ -4499,6 +4636,9 @@ export const InstrumentClosePriceResponse = {
     }
     if (message.price !== undefined) {
       Quotation.encode(message.price, writer.uint32(90).fork()).ldelim();
+    }
+    if (message.eveningSessionPrice !== undefined) {
+      Quotation.encode(message.eveningSessionPrice, writer.uint32(98).fork()).ldelim();
     }
     if (message.time !== undefined) {
       Timestamp.encode(toTimestamp(message.time), writer.uint32(170).fork()).ldelim();
@@ -4522,6 +4662,9 @@ export const InstrumentClosePriceResponse = {
         case 11:
           message.price = Quotation.decode(reader, reader.uint32());
           break;
+        case 12:
+          message.eveningSessionPrice = Quotation.decode(reader, reader.uint32());
+          break;
         case 21:
           message.time = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
@@ -4538,6 +4681,9 @@ export const InstrumentClosePriceResponse = {
       figi: isSet(object.figi) ? String(object.figi) : '',
       instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
       price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
+      eveningSessionPrice: isSet(object.eveningSessionPrice)
+        ? Quotation.fromJSON(object.eveningSessionPrice)
+        : undefined,
       time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
     };
   },
@@ -4547,6 +4693,10 @@ export const InstrumentClosePriceResponse = {
     message.figi !== undefined && (obj.figi = message.figi);
     message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
     message.price !== undefined && (obj.price = message.price ? Quotation.toJSON(message.price) : undefined);
+    message.eveningSessionPrice !== undefined &&
+      (obj.eveningSessionPrice = message.eveningSessionPrice
+        ? Quotation.toJSON(message.eveningSessionPrice)
+        : undefined);
     message.time !== undefined && (obj.time = message.time.toISOString());
     return obj;
   },
@@ -4557,6 +4707,10 @@ export const InstrumentClosePriceResponse = {
     message.instrumentUid = object.instrumentUid ?? '';
     message.price =
       object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
+    message.eveningSessionPrice =
+      object.eveningSessionPrice !== undefined && object.eveningSessionPrice !== null
+        ? Quotation.fromPartial(object.eveningSessionPrice)
+        : undefined;
     message.time = object.time ?? undefined;
     return message;
   },

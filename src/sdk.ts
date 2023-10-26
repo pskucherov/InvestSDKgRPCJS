@@ -21,7 +21,7 @@ import {
   PositionsAccountSubscriptionStatus,
 } from './generated/operations';
 import { OrdersServiceDefinition, OrdersStreamServiceDefinition, OrderDirection, OrderType } from './generated/orders';
-import { AccountType, AccountStatus, AccessLevel, } from './generated/users';
+import { AccountType, AccountStatus, AccessLevel } from './generated/users';
 import { SandboxServiceDefinition } from './generated/sandbox';
 import { getMiddleware, TypeLoggerCb } from './middlewares/response';
 

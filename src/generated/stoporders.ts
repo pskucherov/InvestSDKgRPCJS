@@ -141,7 +141,11 @@ export function stopOrderTypeToJSON(object: StopOrderType): string {
 
 /** Запрос выставления стоп-заявки. */
 export interface PostStopOrderRequest {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Количество лотов. */
   quantity: number;

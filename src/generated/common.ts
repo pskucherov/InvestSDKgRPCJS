@@ -228,6 +228,48 @@ export function securityTradingStatusToJSON(object: SecurityTradingStatus): stri
   }
 }
 
+/** Тип цены. */
+export enum PriceType {
+  /** PRICE_TYPE_UNSPECIFIED - Значение не определено. */
+  PRICE_TYPE_UNSPECIFIED = 0,
+  /** PRICE_TYPE_POINT - Цена в пунктах (только для фьючерсов и облигаций). */
+  PRICE_TYPE_POINT = 1,
+  /** PRICE_TYPE_CURRENCY - Цена в валюте расчётов по инструменту. */
+  PRICE_TYPE_CURRENCY = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function priceTypeFromJSON(object: any): PriceType {
+  switch (object) {
+    case 0:
+    case 'PRICE_TYPE_UNSPECIFIED':
+      return PriceType.PRICE_TYPE_UNSPECIFIED;
+    case 1:
+    case 'PRICE_TYPE_POINT':
+      return PriceType.PRICE_TYPE_POINT;
+    case 2:
+    case 'PRICE_TYPE_CURRENCY':
+      return PriceType.PRICE_TYPE_CURRENCY;
+    case -1:
+    case 'UNRECOGNIZED':
+    default:
+      return PriceType.UNRECOGNIZED;
+  }
+}
+
+export function priceTypeToJSON(object: PriceType): string {
+  switch (object) {
+    case PriceType.PRICE_TYPE_UNSPECIFIED:
+      return 'PRICE_TYPE_UNSPECIFIED';
+    case PriceType.PRICE_TYPE_POINT:
+      return 'PRICE_TYPE_POINT';
+    case PriceType.PRICE_TYPE_CURRENCY:
+      return 'PRICE_TYPE_CURRENCY';
+    default:
+      return 'UNKNOWN';
+  }
+}
+
 /** Денежная сумма в определенной валюте */
 export interface MoneyValue {
   /** строковый ISO-код валюты */
@@ -238,7 +280,7 @@ export interface MoneyValue {
   nano: number;
 }
 
-/** Котировка - денежная сумма без указания валюты */
+/** Котировка — денежная сумма без указания валюты */
 export interface Quotation {
   /** целая часть суммы, может быть отрицательным числом */
   units: number;

@@ -1,8 +1,8 @@
 /* eslint-disable */
 import Long from 'long';
 import * as _m0 from 'protobufjs/minimal';
+import { PriceType, Ping, Quotation, MoneyValue, priceTypeFromJSON, priceTypeToJSON } from './common';
 import { Timestamp } from './google/protobuf/timestamp';
-import { Ping, Quotation, MoneyValue } from './common';
 
 export const protobufPackage = 'tinkoff.public.invest.api.contract.v1';
 
@@ -56,6 +56,8 @@ export enum OrderType {
   ORDER_TYPE_LIMIT = 1,
   /** ORDER_TYPE_MARKET - Рыночная */
   ORDER_TYPE_MARKET = 2,
+  /** ORDER_TYPE_BESTPRICE - Лучшая цена */
+  ORDER_TYPE_BESTPRICE = 3,
   UNRECOGNIZED = -1,
 }
 
@@ -70,6 +72,9 @@ export function orderTypeFromJSON(object: any): OrderType {
     case 2:
     case 'ORDER_TYPE_MARKET':
       return OrderType.ORDER_TYPE_MARKET;
+    case 3:
+    case 'ORDER_TYPE_BESTPRICE':
+      return OrderType.ORDER_TYPE_BESTPRICE;
     case -1:
     case 'UNRECOGNIZED':
     default:
@@ -85,6 +90,8 @@ export function orderTypeToJSON(object: OrderType): string {
       return 'ORDER_TYPE_LIMIT';
     case OrderType.ORDER_TYPE_MARKET:
       return 'ORDER_TYPE_MARKET';
+    case OrderType.ORDER_TYPE_BESTPRICE:
+      return 'ORDER_TYPE_BESTPRICE';
     default:
       return 'UNKNOWN';
   }
@@ -152,43 +159,49 @@ export function orderExecutionReportStatusToJSON(object: OrderExecutionReportSta
   }
 }
 
-/** Тип цены. */
-export enum PriceType {
-  /** PRICE_TYPE_UNSPECIFIED - Значение не определено. */
-  PRICE_TYPE_UNSPECIFIED = 0,
-  /** PRICE_TYPE_POINT - Цена в пунктах (только для фьючерсов и облигаций). */
-  PRICE_TYPE_POINT = 1,
-  /** PRICE_TYPE_CURRENCY - Цена в валюте расчётов по инструменту. */
-  PRICE_TYPE_CURRENCY = 2,
+export enum TimeInForceType {
+  /** TIME_IN_FORCE_UNSPECIFIED - Значение не определено см. TIME_IN_FORCE_DAY */
+  TIME_IN_FORCE_UNSPECIFIED = 0,
+  /** TIME_IN_FORCE_DAY - заявка действует до конца торгового дня. значение по умолчанию */
+  TIME_IN_FORCE_DAY = 1,
+  /** TIME_IN_FORCE_FILL_AND_KILL - заявка исполнена(возможно частично) и уничтожена. */
+  TIME_IN_FORCE_FILL_AND_KILL = 2,
+  /** TIME_IN_FORCE_FILL_OR_KILL - заявка исполнения полностью или уничтожена */
+  TIME_IN_FORCE_FILL_OR_KILL = 3,
   UNRECOGNIZED = -1,
 }
 
-export function priceTypeFromJSON(object: any): PriceType {
+export function timeInForceTypeFromJSON(object: any): TimeInForceType {
   switch (object) {
     case 0:
-    case 'PRICE_TYPE_UNSPECIFIED':
-      return PriceType.PRICE_TYPE_UNSPECIFIED;
+    case 'TIME_IN_FORCE_UNSPECIFIED':
+      return TimeInForceType.TIME_IN_FORCE_UNSPECIFIED;
     case 1:
-    case 'PRICE_TYPE_POINT':
-      return PriceType.PRICE_TYPE_POINT;
+    case 'TIME_IN_FORCE_DAY':
+      return TimeInForceType.TIME_IN_FORCE_DAY;
     case 2:
-    case 'PRICE_TYPE_CURRENCY':
-      return PriceType.PRICE_TYPE_CURRENCY;
+    case 'TIME_IN_FORCE_FILL_AND_KILL':
+      return TimeInForceType.TIME_IN_FORCE_FILL_AND_KILL;
+    case 3:
+    case 'TIME_IN_FORCE_FILL_OR_KILL':
+      return TimeInForceType.TIME_IN_FORCE_FILL_OR_KILL;
     case -1:
     case 'UNRECOGNIZED':
     default:
-      return PriceType.UNRECOGNIZED;
+      return TimeInForceType.UNRECOGNIZED;
   }
 }
 
-export function priceTypeToJSON(object: PriceType): string {
+export function timeInForceTypeToJSON(object: TimeInForceType): string {
   switch (object) {
-    case PriceType.PRICE_TYPE_UNSPECIFIED:
-      return 'PRICE_TYPE_UNSPECIFIED';
-    case PriceType.PRICE_TYPE_POINT:
-      return 'PRICE_TYPE_POINT';
-    case PriceType.PRICE_TYPE_CURRENCY:
-      return 'PRICE_TYPE_CURRENCY';
+    case TimeInForceType.TIME_IN_FORCE_UNSPECIFIED:
+      return 'TIME_IN_FORCE_UNSPECIFIED';
+    case TimeInForceType.TIME_IN_FORCE_DAY:
+      return 'TIME_IN_FORCE_DAY';
+    case TimeInForceType.TIME_IN_FORCE_FILL_AND_KILL:
+      return 'TIME_IN_FORCE_FILL_AND_KILL';
+    case TimeInForceType.TIME_IN_FORCE_FILL_OR_KILL:
+      return 'TIME_IN_FORCE_FILL_OR_KILL';
     default:
       return 'UNKNOWN';
   }
@@ -240,7 +253,11 @@ export interface OrderTrade {
 
 /** Запрос выставления торгового поручения. */
 export interface PostOrderRequest {
-  /** Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id. */
+  /**
+   * Deprecated Figi-идентификатор инструмента. Необходимо использовать instrument_id.
+   *
+   * @deprecated
+   */
   figi: string;
   /** Количество лотов. */
   quantity: number;
@@ -252,15 +269,17 @@ export interface PostOrderRequest {
   accountId: string;
   /** Тип заявки. */
   orderType: OrderType;
-  /** Идентификатор запроса выставления поручения для целей идемпотентности. Максимальная длина 36 символов. */
+  /** Идентификатор запроса выставления поручения для целей идемпотентности в формате UID. Максимальная длина 36 символов. */
   orderId: string;
   /** Идентификатор инструмента, принимает значения Figi или Instrument_uid. */
   instrumentId: string;
+  /** Алгоритм исполнения поручения */
+  timeInForce: TimeInForceType;
 }
 
 /** Информация о выставлении поручения. */
 export interface PostOrderResponse {
-  /** Идентификатор заявки. */
+  /** Биржевой идентификатор заявки. */
   orderId: string;
   /** Текущий статус заявки. */
   executionReportStatus: OrderExecutionReportStatus;
@@ -270,7 +289,7 @@ export interface PostOrderResponse {
   lotsExecuted: number;
   /** Начальная цена заявки. Произведение количества запрошенных лотов на цену. */
   initialOrderPrice: MoneyValue | undefined;
-  /** Исполненная средняя цена 1 одного инструмента в заявки. */
+  /** Исполненная средняя цена одного инструмента в заявке. */
   executedOrderPrice: MoneyValue | undefined;
   /** Итоговая стоимость заявки, включающая все комиссии. */
   totalOrderAmount: MoneyValue | undefined;
@@ -278,7 +297,7 @@ export interface PostOrderResponse {
   initialCommission: MoneyValue | undefined;
   /** Фактическая комиссия по итогам исполнения заявки. */
   executedCommission: MoneyValue | undefined;
-  /** Значение НКД (накопленного купонного дохода) на дату. Подробнее: [НКД при выставлении торговых поручений](https://tinkoff.github.io/investAPI/head-orders#coupon) */
+  /** Значение НКД (накопленного купонного дохода) на дату. Подробнее: [НКД при выставлении торговых поручений](https://russianinvestments.github.io/investAPI/head-orders#coupon) */
   aciValue: MoneyValue | undefined;
   /** Figi-идентификатор инструмента. */
   figi: string;
@@ -294,6 +313,8 @@ export interface PostOrderResponse {
   initialOrderPricePt: Quotation | undefined;
   /** UID идентификатор инструмента. */
   instrumentUid: string;
+  /** Идентификатор ключа идемпотентности, переданный клиентом, в формате UID. Максимальная длина 36 символов. */
+  orderRequestId: string;
 }
 
 /** Запрос отмены торгового поручения. */
@@ -332,7 +353,7 @@ export interface GetOrdersResponse {
 
 /** Информация о торговом поручении. */
 export interface OrderState {
-  /** Идентификатор заявки. */
+  /** Биржевой идентификатор заявки. */
   orderId: string;
   /** Текущий статус заявки. */
   executionReportStatus: OrderExecutionReportStatus;
@@ -370,6 +391,8 @@ export interface OrderState {
   orderDate: Date | undefined;
   /** UID идентификатор инструмента. */
   instrumentUid: string;
+  /** Идентификатор ключа идемпотентности, переданный клиентом, в формате UID. Максимальная длина 36 символов. */
+  orderRequestId: string;
 }
 
 /** Сделки в рамках торгового поручения. */
@@ -396,6 +419,44 @@ export interface ReplaceOrderRequest {
   price: Quotation | undefined;
   /** Тип цены. */
   priceType: PriceType;
+}
+
+/** Запрос на расчет количества доступных для покупки/продажи лотов. Если не указывать цену инструмента, то расчет произведется по текущум ценам в стакане: по лучшему предложению для покупки и по лучшему спросу для продажи. */
+export interface GetMaxLotsRequest {
+  /** Номер счета */
+  accountId: string;
+  /** Идентификатор инструмента, принимает значения Figi или instrument_uid */
+  instrumentId: string;
+  /** Цена инструмента */
+  price: Quotation | undefined;
+}
+
+/** Результат количество доступных для покупки/продажи лотов */
+export interface GetMaxLotsResponse {
+  /** Валюта инструмента */
+  currency: string;
+  /** Лимиты для покупок на собственные деньги */
+  buyLimits: GetMaxLotsResponse_BuyLimitsView | undefined;
+  /** Лимиты для покупок с учетом маржинального кредитования */
+  buyMarginLimits: GetMaxLotsResponse_BuyLimitsView | undefined;
+  /** Лимиты для продаж по собственной позиции */
+  sellLimits: GetMaxLotsResponse_SellLimitsView | undefined;
+  /** Лимиты для продаж с учетом маржинального кредитования */
+  sellMarginLimits: GetMaxLotsResponse_SellLimitsView | undefined;
+}
+
+export interface GetMaxLotsResponse_BuyLimitsView {
+  /** Количество доступной валюты для покупки */
+  buyMoneyAmount: Quotation | undefined;
+  /** Максимальное доступное количество лотов для покупки */
+  buyMaxLots: number;
+  /** Максимальное доступное количество лотов для покупки для заявки по рыночной цене на текущий момент */
+  buyMaxMarketLots: number;
+}
+
+export interface GetMaxLotsResponse_SellLimitsView {
+  /** Максимальное доступное количество лотов для продажи */
+  sellMaxLots: number;
 }
 
 function createBaseTradesStreamRequest(): TradesStreamRequest {
@@ -707,6 +768,7 @@ function createBasePostOrderRequest(): PostOrderRequest {
     orderType: 0,
     orderId: '',
     instrumentId: '',
+    timeInForce: 0,
   };
 }
 
@@ -735,6 +797,9 @@ export const PostOrderRequest = {
     }
     if (message.instrumentId !== '') {
       writer.uint32(66).string(message.instrumentId);
+    }
+    if (message.timeInForce !== 0) {
+      writer.uint32(72).int32(message.timeInForce);
     }
     return writer;
   },
@@ -770,6 +835,9 @@ export const PostOrderRequest = {
         case 8:
           message.instrumentId = reader.string();
           break;
+        case 9:
+          message.timeInForce = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -788,6 +856,7 @@ export const PostOrderRequest = {
       orderType: isSet(object.orderType) ? orderTypeFromJSON(object.orderType) : 0,
       orderId: isSet(object.orderId) ? String(object.orderId) : '',
       instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
+      timeInForce: isSet(object.timeInForce) ? timeInForceTypeFromJSON(object.timeInForce) : 0,
     };
   },
 
@@ -801,6 +870,7 @@ export const PostOrderRequest = {
     message.orderType !== undefined && (obj.orderType = orderTypeToJSON(message.orderType));
     message.orderId !== undefined && (obj.orderId = message.orderId);
     message.instrumentId !== undefined && (obj.instrumentId = message.instrumentId);
+    message.timeInForce !== undefined && (obj.timeInForce = timeInForceTypeToJSON(message.timeInForce));
     return obj;
   },
 
@@ -815,6 +885,7 @@ export const PostOrderRequest = {
     message.orderType = object.orderType ?? 0;
     message.orderId = object.orderId ?? '';
     message.instrumentId = object.instrumentId ?? '';
+    message.timeInForce = object.timeInForce ?? 0;
     return message;
   },
 };
@@ -838,6 +909,7 @@ function createBasePostOrderResponse(): PostOrderResponse {
     message: '',
     initialOrderPricePt: undefined,
     instrumentUid: '',
+    orderRequestId: '',
   };
 }
 
@@ -893,6 +965,9 @@ export const PostOrderResponse = {
     }
     if (message.instrumentUid !== '') {
       writer.uint32(138).string(message.instrumentUid);
+    }
+    if (message.orderRequestId !== '') {
+      writer.uint32(162).string(message.orderRequestId);
     }
     return writer;
   },
@@ -955,6 +1030,9 @@ export const PostOrderResponse = {
         case 17:
           message.instrumentUid = reader.string();
           break;
+        case 20:
+          message.orderRequestId = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -988,6 +1066,7 @@ export const PostOrderResponse = {
         ? Quotation.fromJSON(object.initialOrderPricePt)
         : undefined,
       instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
+      orderRequestId: isSet(object.orderRequestId) ? String(object.orderRequestId) : '',
     };
   },
 
@@ -1023,6 +1102,7 @@ export const PostOrderResponse = {
         ? Quotation.toJSON(message.initialOrderPricePt)
         : undefined);
     message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
+    message.orderRequestId !== undefined && (obj.orderRequestId = message.orderRequestId);
     return obj;
   },
 
@@ -1067,6 +1147,7 @@ export const PostOrderResponse = {
         ? Quotation.fromPartial(object.initialOrderPricePt)
         : undefined;
     message.instrumentUid = object.instrumentUid ?? '';
+    message.orderRequestId = object.orderRequestId ?? '';
     return message;
   },
 };
@@ -1359,6 +1440,7 @@ function createBaseOrderState(): OrderState {
     orderType: 0,
     orderDate: undefined,
     instrumentUid: '',
+    orderRequestId: '',
   };
 }
 
@@ -1420,6 +1502,9 @@ export const OrderState = {
     }
     if (message.instrumentUid !== '') {
       writer.uint32(154).string(message.instrumentUid);
+    }
+    if (message.orderRequestId !== '') {
+      writer.uint32(162).string(message.orderRequestId);
     }
     return writer;
   },
@@ -1488,6 +1573,9 @@ export const OrderState = {
         case 19:
           message.instrumentUid = reader.string();
           break;
+        case 20:
+          message.orderRequestId = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1523,6 +1611,7 @@ export const OrderState = {
       orderType: isSet(object.orderType) ? orderTypeFromJSON(object.orderType) : 0,
       orderDate: isSet(object.orderDate) ? fromJsonTimestamp(object.orderDate) : undefined,
       instrumentUid: isSet(object.instrumentUid) ? String(object.instrumentUid) : '',
+      orderRequestId: isSet(object.orderRequestId) ? String(object.orderRequestId) : '',
     };
   },
 
@@ -1564,6 +1653,7 @@ export const OrderState = {
     message.orderType !== undefined && (obj.orderType = orderTypeToJSON(message.orderType));
     message.orderDate !== undefined && (obj.orderDate = message.orderDate.toISOString());
     message.instrumentUid !== undefined && (obj.instrumentUid = message.instrumentUid);
+    message.orderRequestId !== undefined && (obj.orderRequestId = message.orderRequestId);
     return obj;
   },
 
@@ -1612,6 +1702,7 @@ export const OrderState = {
     message.orderType = object.orderType ?? 0;
     message.orderDate = object.orderDate ?? undefined;
     message.instrumentUid = object.instrumentUid ?? '';
+    message.orderRequestId = object.orderRequestId ?? '';
     return message;
   },
 };
@@ -1779,6 +1870,309 @@ export const ReplaceOrderRequest = {
   },
 };
 
+function createBaseGetMaxLotsRequest(): GetMaxLotsRequest {
+  return { accountId: '', instrumentId: '', price: undefined };
+}
+
+export const GetMaxLotsRequest = {
+  encode(message: GetMaxLotsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.accountId !== '') {
+      writer.uint32(10).string(message.accountId);
+    }
+    if (message.instrumentId !== '') {
+      writer.uint32(18).string(message.instrumentId);
+    }
+    if (message.price !== undefined) {
+      Quotation.encode(message.price, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetMaxLotsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetMaxLotsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.accountId = reader.string();
+          break;
+        case 2:
+          message.instrumentId = reader.string();
+          break;
+        case 3:
+          message.price = Quotation.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetMaxLotsRequest {
+    return {
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
+      price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
+    };
+  },
+
+  toJSON(message: GetMaxLotsRequest): unknown {
+    const obj: any = {};
+    message.accountId !== undefined && (obj.accountId = message.accountId);
+    message.instrumentId !== undefined && (obj.instrumentId = message.instrumentId);
+    message.price !== undefined && (obj.price = message.price ? Quotation.toJSON(message.price) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetMaxLotsRequest>): GetMaxLotsRequest {
+    const message = createBaseGetMaxLotsRequest();
+    message.accountId = object.accountId ?? '';
+    message.instrumentId = object.instrumentId ?? '';
+    message.price =
+      object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
+    return message;
+  },
+};
+
+function createBaseGetMaxLotsResponse(): GetMaxLotsResponse {
+  return {
+    currency: '',
+    buyLimits: undefined,
+    buyMarginLimits: undefined,
+    sellLimits: undefined,
+    sellMarginLimits: undefined,
+  };
+}
+
+export const GetMaxLotsResponse = {
+  encode(message: GetMaxLotsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.currency !== '') {
+      writer.uint32(10).string(message.currency);
+    }
+    if (message.buyLimits !== undefined) {
+      GetMaxLotsResponse_BuyLimitsView.encode(message.buyLimits, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.buyMarginLimits !== undefined) {
+      GetMaxLotsResponse_BuyLimitsView.encode(message.buyMarginLimits, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.sellLimits !== undefined) {
+      GetMaxLotsResponse_SellLimitsView.encode(message.sellLimits, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.sellMarginLimits !== undefined) {
+      GetMaxLotsResponse_SellLimitsView.encode(message.sellMarginLimits, writer.uint32(42).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetMaxLotsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetMaxLotsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.currency = reader.string();
+          break;
+        case 2:
+          message.buyLimits = GetMaxLotsResponse_BuyLimitsView.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.buyMarginLimits = GetMaxLotsResponse_BuyLimitsView.decode(reader, reader.uint32());
+          break;
+        case 4:
+          message.sellLimits = GetMaxLotsResponse_SellLimitsView.decode(reader, reader.uint32());
+          break;
+        case 5:
+          message.sellMarginLimits = GetMaxLotsResponse_SellLimitsView.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetMaxLotsResponse {
+    return {
+      currency: isSet(object.currency) ? String(object.currency) : '',
+      buyLimits: isSet(object.buyLimits) ? GetMaxLotsResponse_BuyLimitsView.fromJSON(object.buyLimits) : undefined,
+      buyMarginLimits: isSet(object.buyMarginLimits)
+        ? GetMaxLotsResponse_BuyLimitsView.fromJSON(object.buyMarginLimits)
+        : undefined,
+      sellLimits: isSet(object.sellLimits) ? GetMaxLotsResponse_SellLimitsView.fromJSON(object.sellLimits) : undefined,
+      sellMarginLimits: isSet(object.sellMarginLimits)
+        ? GetMaxLotsResponse_SellLimitsView.fromJSON(object.sellMarginLimits)
+        : undefined,
+    };
+  },
+
+  toJSON(message: GetMaxLotsResponse): unknown {
+    const obj: any = {};
+    message.currency !== undefined && (obj.currency = message.currency);
+    message.buyLimits !== undefined &&
+      (obj.buyLimits = message.buyLimits ? GetMaxLotsResponse_BuyLimitsView.toJSON(message.buyLimits) : undefined);
+    message.buyMarginLimits !== undefined &&
+      (obj.buyMarginLimits = message.buyMarginLimits
+        ? GetMaxLotsResponse_BuyLimitsView.toJSON(message.buyMarginLimits)
+        : undefined);
+    message.sellLimits !== undefined &&
+      (obj.sellLimits = message.sellLimits ? GetMaxLotsResponse_SellLimitsView.toJSON(message.sellLimits) : undefined);
+    message.sellMarginLimits !== undefined &&
+      (obj.sellMarginLimits = message.sellMarginLimits
+        ? GetMaxLotsResponse_SellLimitsView.toJSON(message.sellMarginLimits)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetMaxLotsResponse>): GetMaxLotsResponse {
+    const message = createBaseGetMaxLotsResponse();
+    message.currency = object.currency ?? '';
+    message.buyLimits =
+      object.buyLimits !== undefined && object.buyLimits !== null
+        ? GetMaxLotsResponse_BuyLimitsView.fromPartial(object.buyLimits)
+        : undefined;
+    message.buyMarginLimits =
+      object.buyMarginLimits !== undefined && object.buyMarginLimits !== null
+        ? GetMaxLotsResponse_BuyLimitsView.fromPartial(object.buyMarginLimits)
+        : undefined;
+    message.sellLimits =
+      object.sellLimits !== undefined && object.sellLimits !== null
+        ? GetMaxLotsResponse_SellLimitsView.fromPartial(object.sellLimits)
+        : undefined;
+    message.sellMarginLimits =
+      object.sellMarginLimits !== undefined && object.sellMarginLimits !== null
+        ? GetMaxLotsResponse_SellLimitsView.fromPartial(object.sellMarginLimits)
+        : undefined;
+    return message;
+  },
+};
+
+function createBaseGetMaxLotsResponse_BuyLimitsView(): GetMaxLotsResponse_BuyLimitsView {
+  return { buyMoneyAmount: undefined, buyMaxLots: 0, buyMaxMarketLots: 0 };
+}
+
+export const GetMaxLotsResponse_BuyLimitsView = {
+  encode(message: GetMaxLotsResponse_BuyLimitsView, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.buyMoneyAmount !== undefined) {
+      Quotation.encode(message.buyMoneyAmount, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.buyMaxLots !== 0) {
+      writer.uint32(16).int64(message.buyMaxLots);
+    }
+    if (message.buyMaxMarketLots !== 0) {
+      writer.uint32(24).int64(message.buyMaxMarketLots);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetMaxLotsResponse_BuyLimitsView {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetMaxLotsResponse_BuyLimitsView();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.buyMoneyAmount = Quotation.decode(reader, reader.uint32());
+          break;
+        case 2:
+          message.buyMaxLots = longToNumber(reader.int64() as Long);
+          break;
+        case 3:
+          message.buyMaxMarketLots = longToNumber(reader.int64() as Long);
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetMaxLotsResponse_BuyLimitsView {
+    return {
+      buyMoneyAmount: isSet(object.buyMoneyAmount) ? Quotation.fromJSON(object.buyMoneyAmount) : undefined,
+      buyMaxLots: isSet(object.buyMaxLots) ? Number(object.buyMaxLots) : 0,
+      buyMaxMarketLots: isSet(object.buyMaxMarketLots) ? Number(object.buyMaxMarketLots) : 0,
+    };
+  },
+
+  toJSON(message: GetMaxLotsResponse_BuyLimitsView): unknown {
+    const obj: any = {};
+    message.buyMoneyAmount !== undefined &&
+      (obj.buyMoneyAmount = message.buyMoneyAmount ? Quotation.toJSON(message.buyMoneyAmount) : undefined);
+    message.buyMaxLots !== undefined && (obj.buyMaxLots = Math.round(message.buyMaxLots));
+    message.buyMaxMarketLots !== undefined && (obj.buyMaxMarketLots = Math.round(message.buyMaxMarketLots));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetMaxLotsResponse_BuyLimitsView>): GetMaxLotsResponse_BuyLimitsView {
+    const message = createBaseGetMaxLotsResponse_BuyLimitsView();
+    message.buyMoneyAmount =
+      object.buyMoneyAmount !== undefined && object.buyMoneyAmount !== null
+        ? Quotation.fromPartial(object.buyMoneyAmount)
+        : undefined;
+    message.buyMaxLots = object.buyMaxLots ?? 0;
+    message.buyMaxMarketLots = object.buyMaxMarketLots ?? 0;
+    return message;
+  },
+};
+
+function createBaseGetMaxLotsResponse_SellLimitsView(): GetMaxLotsResponse_SellLimitsView {
+  return { sellMaxLots: 0 };
+}
+
+export const GetMaxLotsResponse_SellLimitsView = {
+  encode(message: GetMaxLotsResponse_SellLimitsView, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.sellMaxLots !== 0) {
+      writer.uint32(8).int64(message.sellMaxLots);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetMaxLotsResponse_SellLimitsView {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetMaxLotsResponse_SellLimitsView();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.sellMaxLots = longToNumber(reader.int64() as Long);
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetMaxLotsResponse_SellLimitsView {
+    return {
+      sellMaxLots: isSet(object.sellMaxLots) ? Number(object.sellMaxLots) : 0,
+    };
+  },
+
+  toJSON(message: GetMaxLotsResponse_SellLimitsView): unknown {
+    const obj: any = {};
+    message.sellMaxLots !== undefined && (obj.sellMaxLots = Math.round(message.sellMaxLots));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetMaxLotsResponse_SellLimitsView>): GetMaxLotsResponse_SellLimitsView {
+    const message = createBaseGetMaxLotsResponse_SellLimitsView();
+    message.sellMaxLots = object.sellMaxLots ?? 0;
+    return message;
+  },
+};
+
 export type OrdersStreamServiceDefinition = typeof OrdersStreamServiceDefinition;
 export const OrdersStreamServiceDefinition = {
   name: 'OrdersStreamService',
@@ -1848,6 +2242,15 @@ export const OrdersServiceDefinition = {
       requestType: ReplaceOrderRequest,
       requestStream: false,
       responseType: PostOrderResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** расчет количества доступных для покупки/продажи лотов */
+    getMaxLots: {
+      name: 'GetMaxLots',
+      requestType: GetMaxLotsRequest,
+      requestStream: false,
+      responseType: GetMaxLotsResponse,
       responseStream: false,
       options: {},
     },

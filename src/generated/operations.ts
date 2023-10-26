@@ -807,13 +807,21 @@ export interface PortfolioPosition {
   expectedYield: Quotation | undefined;
   /** Текущий НКД. */
   currentNkd: MoneyValue | undefined;
-  /** Deprecated Средняя цена позиции в пунктах (для фьючерсов). **Возможна задержка до секунды для пересчёта**. */
+  /**
+   * Deprecated Средняя цена позиции в пунктах (для фьючерсов). **Возможна задержка до секунды для пересчёта**.
+   *
+   * @deprecated
+   */
   averagePositionPricePt: Quotation | undefined;
   /** Текущая цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. */
   currentPrice: MoneyValue | undefined;
   /** Средняя цена позиции по методу FIFO. **Возможна задержка до секунды для пересчёта**. */
   averagePositionPriceFifo: MoneyValue | undefined;
-  /** Deprecated Количество лотов в портфеле. */
+  /**
+   * Deprecated Количество лотов в портфеле.
+   *
+   * @deprecated
+   */
   quantityLots: Quotation | undefined;
   /** Заблокировано на бирже. */
   blocked: boolean;
