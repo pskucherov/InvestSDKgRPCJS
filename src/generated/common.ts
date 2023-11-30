@@ -294,6 +294,22 @@ export interface Ping {
   time: Date | undefined;
 }
 
+export interface Page {
+  /** Максимальное число возвращаемых записей. */
+  limit: number;
+  /** Порядковый номер страницы, начиная с 0. */
+  pageNumber: number;
+}
+
+export interface PageResponse {
+  /** Максимальное число возвращаемых записей. */
+  limit: number;
+  /** Порядковый номер страницы, начиная с 0. */
+  pageNumber: number;
+  /** Общее количество записей. */
+  totalCount: number;
+}
+
 function createBaseMoneyValue(): MoneyValue {
   return { currency: '', units: 0, nano: 0 };
 }
@@ -464,6 +480,131 @@ export const Ping = {
   fromPartial(object: DeepPartial<Ping>): Ping {
     const message = createBasePing();
     message.time = object.time ?? undefined;
+    return message;
+  },
+};
+
+function createBasePage(): Page {
+  return { limit: 0, pageNumber: 0 };
+}
+
+export const Page = {
+  encode(message: Page, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.limit !== 0) {
+      writer.uint32(8).int32(message.limit);
+    }
+    if (message.pageNumber !== 0) {
+      writer.uint32(16).int32(message.pageNumber);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Page {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBasePage();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.limit = reader.int32();
+          break;
+        case 2:
+          message.pageNumber = reader.int32();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Page {
+    return {
+      limit: isSet(object.limit) ? Number(object.limit) : 0,
+      pageNumber: isSet(object.pageNumber) ? Number(object.pageNumber) : 0,
+    };
+  },
+
+  toJSON(message: Page): unknown {
+    const obj: any = {};
+    message.limit !== undefined && (obj.limit = Math.round(message.limit));
+    message.pageNumber !== undefined && (obj.pageNumber = Math.round(message.pageNumber));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<Page>): Page {
+    const message = createBasePage();
+    message.limit = object.limit ?? 0;
+    message.pageNumber = object.pageNumber ?? 0;
+    return message;
+  },
+};
+
+function createBasePageResponse(): PageResponse {
+  return { limit: 0, pageNumber: 0, totalCount: 0 };
+}
+
+export const PageResponse = {
+  encode(message: PageResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.limit !== 0) {
+      writer.uint32(8).int32(message.limit);
+    }
+    if (message.pageNumber !== 0) {
+      writer.uint32(16).int32(message.pageNumber);
+    }
+    if (message.totalCount !== 0) {
+      writer.uint32(24).int32(message.totalCount);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): PageResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBasePageResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.limit = reader.int32();
+          break;
+        case 2:
+          message.pageNumber = reader.int32();
+          break;
+        case 3:
+          message.totalCount = reader.int32();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): PageResponse {
+    return {
+      limit: isSet(object.limit) ? Number(object.limit) : 0,
+      pageNumber: isSet(object.pageNumber) ? Number(object.pageNumber) : 0,
+      totalCount: isSet(object.totalCount) ? Number(object.totalCount) : 0,
+    };
+  },
+
+  toJSON(message: PageResponse): unknown {
+    const obj: any = {};
+    message.limit !== undefined && (obj.limit = Math.round(message.limit));
+    message.pageNumber !== undefined && (obj.pageNumber = Math.round(message.pageNumber));
+    message.totalCount !== undefined && (obj.totalCount = Math.round(message.totalCount));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<PageResponse>): PageResponse {
+    const message = createBasePageResponse();
+    message.limit = object.limit ?? 0;
+    message.pageNumber = object.pageNumber ?? 0;
+    message.totalCount = object.totalCount ?? 0;
     return message;
   },
 };

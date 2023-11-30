@@ -162,11 +162,11 @@ export function orderExecutionReportStatusToJSON(object: OrderExecutionReportSta
 export enum TimeInForceType {
   /** TIME_IN_FORCE_UNSPECIFIED - Значение не определено см. TIME_IN_FORCE_DAY */
   TIME_IN_FORCE_UNSPECIFIED = 0,
-  /** TIME_IN_FORCE_DAY - заявка действует до конца торгового дня. значение по умолчанию */
+  /** TIME_IN_FORCE_DAY - Заявка действует до конца торгового дня. значение по умолчанию */
   TIME_IN_FORCE_DAY = 1,
-  /** TIME_IN_FORCE_FILL_AND_KILL - заявка исполнена(возможно частично) и уничтожена. */
+  /** TIME_IN_FORCE_FILL_AND_KILL - Заявка исполнена(возможно частично) и уничтожена */
   TIME_IN_FORCE_FILL_AND_KILL = 2,
-  /** TIME_IN_FORCE_FILL_OR_KILL - заявка исполнения полностью или уничтожена */
+  /** TIME_IN_FORCE_FILL_OR_KILL - Заявка исполнена полностью или уничтожена, недоступно для срочного рынка */
   TIME_IN_FORCE_FILL_OR_KILL = 3,
   UNRECOGNIZED = -1,
 }
@@ -258,11 +258,11 @@ export interface PostOrderRequest {
    *
    * @deprecated
    */
-  figi: string;
+  figi?: string | undefined;
   /** Количество лотов. */
   quantity: number;
   /** Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Игнорируется для рыночных поручений. */
-  price: Quotation | undefined;
+  price?: Quotation | undefined;
   /** Направление операции. */
   direction: OrderDirection;
   /** Номер счёта. */
@@ -273,8 +273,10 @@ export interface PostOrderRequest {
   orderId: string;
   /** Идентификатор инструмента, принимает значения Figi или Instrument_uid. */
   instrumentId: string;
-  /** Алгоритм исполнения поручения */
+  /** Алгоритм исполнения поручения, применяется только к лимитной заявке. */
   timeInForce: TimeInForceType;
+  /** Тип цены. */
+  priceType: PriceType;
 }
 
 /** Информация о выставлении поручения. */
@@ -337,6 +339,8 @@ export interface GetOrderStateRequest {
   accountId: string;
   /** Идентификатор заявки. */
   orderId: string;
+  /** Тип цены. */
+  priceType: PriceType;
 }
 
 /** Запрос получения списка активных торговых поручений. */
@@ -416,9 +420,9 @@ export interface ReplaceOrderRequest {
   /** Количество лотов. */
   quantity: number;
   /** Цена за 1 инструмент. */
-  price: Quotation | undefined;
+  price?: Quotation | undefined;
   /** Тип цены. */
-  priceType: PriceType;
+  priceType?: PriceType | undefined;
 }
 
 /** Запрос на расчет количества доступных для покупки/продажи лотов. Если не указывать цену инструмента, то расчет произведется по текущум ценам в стакане: по лучшему предложению для покупки и по лучшему спросу для продажи. */
@@ -428,7 +432,7 @@ export interface GetMaxLotsRequest {
   /** Идентификатор инструмента, принимает значения Figi или instrument_uid */
   instrumentId: string;
   /** Цена инструмента */
-  price: Quotation | undefined;
+  price?: Quotation | undefined;
 }
 
 /** Результат количество доступных для покупки/продажи лотов */
@@ -457,6 +461,52 @@ export interface GetMaxLotsResponse_BuyLimitsView {
 export interface GetMaxLotsResponse_SellLimitsView {
   /** Максимальное доступное количество лотов для продажи */
   sellMaxLots: number;
+}
+
+export interface GetOrderPriceRequest {
+  /** Номер счета */
+  accountId: string;
+  /** Идентификатор инструмента, принимает значения Figi или instrument_uid */
+  instrumentId: string;
+  /** Цена инструмента */
+  price: Quotation | undefined;
+  /** Направление заявки */
+  direction: OrderDirection;
+  /** Количество лотов */
+  quantity: number;
+}
+
+export interface GetOrderPriceResponse {
+  /** Итоговая стоимость заявки */
+  totalOrderAmount: MoneyValue | undefined;
+  /** Стоимость заявки без комиссий, НКД, ГО (для фьючерсов — стоимость контрактов) */
+  initialOrderAmount: MoneyValue | undefined;
+  /** Запрошено лотов */
+  lotsRequested: number;
+  /** Общая комиссия */
+  executedCommission: MoneyValue | undefined;
+  /** Общая комиссия в рублях */
+  executedCommissionRub: MoneyValue | undefined;
+  /** Сервисная комиссия */
+  serviceCommission: MoneyValue | undefined;
+  /** Комиссия за проведение сделки */
+  dealCommission: MoneyValue | undefined;
+  /** Дополнительная информация по облигациям */
+  extraBond: GetOrderPriceResponse_ExtraBond | undefined;
+  /** Дополнительная информация по фьючерсам */
+  extraFuture: GetOrderPriceResponse_ExtraFuture | undefined;
+}
+
+export interface GetOrderPriceResponse_ExtraBond {
+  /** Значение НКД (накопленного купонного дохода) на дату */
+  aciValue: MoneyValue | undefined;
+  /** Курс конвертации для замещающих облигаций */
+  nominalConversionRate: Quotation | undefined;
+}
+
+export interface GetOrderPriceResponse_ExtraFuture {
+  /** Гарантийное обеспечение для фьючерса */
+  initialMargin: MoneyValue | undefined;
 }
 
 function createBaseTradesStreamRequest(): TradesStreamRequest {
@@ -760,7 +810,7 @@ export const OrderTrade = {
 
 function createBasePostOrderRequest(): PostOrderRequest {
   return {
-    figi: '',
+    figi: undefined,
     quantity: 0,
     price: undefined,
     direction: 0,
@@ -769,12 +819,13 @@ function createBasePostOrderRequest(): PostOrderRequest {
     orderId: '',
     instrumentId: '',
     timeInForce: 0,
+    priceType: 0,
   };
 }
 
 export const PostOrderRequest = {
   encode(message: PostOrderRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== undefined) {
       writer.uint32(10).string(message.figi);
     }
     if (message.quantity !== 0) {
@@ -800,6 +851,9 @@ export const PostOrderRequest = {
     }
     if (message.timeInForce !== 0) {
       writer.uint32(72).int32(message.timeInForce);
+    }
+    if (message.priceType !== 0) {
+      writer.uint32(80).int32(message.priceType);
     }
     return writer;
   },
@@ -838,6 +892,9 @@ export const PostOrderRequest = {
         case 9:
           message.timeInForce = reader.int32() as any;
           break;
+        case 10:
+          message.priceType = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -848,7 +905,7 @@ export const PostOrderRequest = {
 
   fromJSON(object: any): PostOrderRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : undefined,
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
       price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
       direction: isSet(object.direction) ? orderDirectionFromJSON(object.direction) : 0,
@@ -857,6 +914,7 @@ export const PostOrderRequest = {
       orderId: isSet(object.orderId) ? String(object.orderId) : '',
       instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
       timeInForce: isSet(object.timeInForce) ? timeInForceTypeFromJSON(object.timeInForce) : 0,
+      priceType: isSet(object.priceType) ? priceTypeFromJSON(object.priceType) : 0,
     };
   },
 
@@ -871,12 +929,13 @@ export const PostOrderRequest = {
     message.orderId !== undefined && (obj.orderId = message.orderId);
     message.instrumentId !== undefined && (obj.instrumentId = message.instrumentId);
     message.timeInForce !== undefined && (obj.timeInForce = timeInForceTypeToJSON(message.timeInForce));
+    message.priceType !== undefined && (obj.priceType = priceTypeToJSON(message.priceType));
     return obj;
   },
 
   fromPartial(object: DeepPartial<PostOrderRequest>): PostOrderRequest {
     const message = createBasePostOrderRequest();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? undefined;
     message.quantity = object.quantity ?? 0;
     message.price =
       object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
@@ -886,6 +945,7 @@ export const PostOrderRequest = {
     message.orderId = object.orderId ?? '';
     message.instrumentId = object.instrumentId ?? '';
     message.timeInForce = object.timeInForce ?? 0;
+    message.priceType = object.priceType ?? 0;
     return message;
   },
 };
@@ -1260,7 +1320,7 @@ export const CancelOrderResponse = {
 };
 
 function createBaseGetOrderStateRequest(): GetOrderStateRequest {
-  return { accountId: '', orderId: '' };
+  return { accountId: '', orderId: '', priceType: 0 };
 }
 
 export const GetOrderStateRequest = {
@@ -1270,6 +1330,9 @@ export const GetOrderStateRequest = {
     }
     if (message.orderId !== '') {
       writer.uint32(18).string(message.orderId);
+    }
+    if (message.priceType !== 0) {
+      writer.uint32(24).int32(message.priceType);
     }
     return writer;
   },
@@ -1287,6 +1350,9 @@ export const GetOrderStateRequest = {
         case 2:
           message.orderId = reader.string();
           break;
+        case 3:
+          message.priceType = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1299,6 +1365,7 @@ export const GetOrderStateRequest = {
     return {
       accountId: isSet(object.accountId) ? String(object.accountId) : '',
       orderId: isSet(object.orderId) ? String(object.orderId) : '',
+      priceType: isSet(object.priceType) ? priceTypeFromJSON(object.priceType) : 0,
     };
   },
 
@@ -1306,6 +1373,7 @@ export const GetOrderStateRequest = {
     const obj: any = {};
     message.accountId !== undefined && (obj.accountId = message.accountId);
     message.orderId !== undefined && (obj.orderId = message.orderId);
+    message.priceType !== undefined && (obj.priceType = priceTypeToJSON(message.priceType));
     return obj;
   },
 
@@ -1313,6 +1381,7 @@ export const GetOrderStateRequest = {
     const message = createBaseGetOrderStateRequest();
     message.accountId = object.accountId ?? '';
     message.orderId = object.orderId ?? '';
+    message.priceType = object.priceType ?? 0;
     return message;
   },
 };
@@ -1776,7 +1845,7 @@ export const OrderStage = {
 };
 
 function createBaseReplaceOrderRequest(): ReplaceOrderRequest {
-  return { accountId: '', orderId: '', idempotencyKey: '', quantity: 0, price: undefined, priceType: 0 };
+  return { accountId: '', orderId: '', idempotencyKey: '', quantity: 0, price: undefined, priceType: undefined };
 }
 
 export const ReplaceOrderRequest = {
@@ -1796,7 +1865,7 @@ export const ReplaceOrderRequest = {
     if (message.price !== undefined) {
       Quotation.encode(message.price, writer.uint32(98).fork()).ldelim();
     }
-    if (message.priceType !== 0) {
+    if (message.priceType !== undefined) {
       writer.uint32(104).int32(message.priceType);
     }
     return writer;
@@ -1842,7 +1911,7 @@ export const ReplaceOrderRequest = {
       idempotencyKey: isSet(object.idempotencyKey) ? String(object.idempotencyKey) : '',
       quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
       price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
-      priceType: isSet(object.priceType) ? priceTypeFromJSON(object.priceType) : 0,
+      priceType: isSet(object.priceType) ? priceTypeFromJSON(object.priceType) : undefined,
     };
   },
 
@@ -1853,7 +1922,8 @@ export const ReplaceOrderRequest = {
     message.idempotencyKey !== undefined && (obj.idempotencyKey = message.idempotencyKey);
     message.quantity !== undefined && (obj.quantity = Math.round(message.quantity));
     message.price !== undefined && (obj.price = message.price ? Quotation.toJSON(message.price) : undefined);
-    message.priceType !== undefined && (obj.priceType = priceTypeToJSON(message.priceType));
+    message.priceType !== undefined &&
+      (obj.priceType = message.priceType !== undefined ? priceTypeToJSON(message.priceType) : undefined);
     return obj;
   },
 
@@ -1865,7 +1935,7 @@ export const ReplaceOrderRequest = {
     message.quantity = object.quantity ?? 0;
     message.price =
       object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
-    message.priceType = object.priceType ?? 0;
+    message.priceType = object.priceType ?? undefined;
     return message;
   },
 };
@@ -2173,6 +2243,384 @@ export const GetMaxLotsResponse_SellLimitsView = {
   },
 };
 
+function createBaseGetOrderPriceRequest(): GetOrderPriceRequest {
+  return { accountId: '', instrumentId: '', price: undefined, direction: 0, quantity: 0 };
+}
+
+export const GetOrderPriceRequest = {
+  encode(message: GetOrderPriceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.accountId !== '') {
+      writer.uint32(10).string(message.accountId);
+    }
+    if (message.instrumentId !== '') {
+      writer.uint32(18).string(message.instrumentId);
+    }
+    if (message.price !== undefined) {
+      Quotation.encode(message.price, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.direction !== 0) {
+      writer.uint32(96).int32(message.direction);
+    }
+    if (message.quantity !== 0) {
+      writer.uint32(104).int64(message.quantity);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetOrderPriceRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetOrderPriceRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.accountId = reader.string();
+          break;
+        case 2:
+          message.instrumentId = reader.string();
+          break;
+        case 3:
+          message.price = Quotation.decode(reader, reader.uint32());
+          break;
+        case 12:
+          message.direction = reader.int32() as any;
+          break;
+        case 13:
+          message.quantity = longToNumber(reader.int64() as Long);
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetOrderPriceRequest {
+    return {
+      accountId: isSet(object.accountId) ? String(object.accountId) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
+      price: isSet(object.price) ? Quotation.fromJSON(object.price) : undefined,
+      direction: isSet(object.direction) ? orderDirectionFromJSON(object.direction) : 0,
+      quantity: isSet(object.quantity) ? Number(object.quantity) : 0,
+    };
+  },
+
+  toJSON(message: GetOrderPriceRequest): unknown {
+    const obj: any = {};
+    message.accountId !== undefined && (obj.accountId = message.accountId);
+    message.instrumentId !== undefined && (obj.instrumentId = message.instrumentId);
+    message.price !== undefined && (obj.price = message.price ? Quotation.toJSON(message.price) : undefined);
+    message.direction !== undefined && (obj.direction = orderDirectionToJSON(message.direction));
+    message.quantity !== undefined && (obj.quantity = Math.round(message.quantity));
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetOrderPriceRequest>): GetOrderPriceRequest {
+    const message = createBaseGetOrderPriceRequest();
+    message.accountId = object.accountId ?? '';
+    message.instrumentId = object.instrumentId ?? '';
+    message.price =
+      object.price !== undefined && object.price !== null ? Quotation.fromPartial(object.price) : undefined;
+    message.direction = object.direction ?? 0;
+    message.quantity = object.quantity ?? 0;
+    return message;
+  },
+};
+
+function createBaseGetOrderPriceResponse(): GetOrderPriceResponse {
+  return {
+    totalOrderAmount: undefined,
+    initialOrderAmount: undefined,
+    lotsRequested: 0,
+    executedCommission: undefined,
+    executedCommissionRub: undefined,
+    serviceCommission: undefined,
+    dealCommission: undefined,
+    extraBond: undefined,
+    extraFuture: undefined,
+  };
+}
+
+export const GetOrderPriceResponse = {
+  encode(message: GetOrderPriceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.totalOrderAmount !== undefined) {
+      MoneyValue.encode(message.totalOrderAmount, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.initialOrderAmount !== undefined) {
+      MoneyValue.encode(message.initialOrderAmount, writer.uint32(42).fork()).ldelim();
+    }
+    if (message.lotsRequested !== 0) {
+      writer.uint32(24).int64(message.lotsRequested);
+    }
+    if (message.executedCommission !== undefined) {
+      MoneyValue.encode(message.executedCommission, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.executedCommissionRub !== undefined) {
+      MoneyValue.encode(message.executedCommissionRub, writer.uint32(66).fork()).ldelim();
+    }
+    if (message.serviceCommission !== undefined) {
+      MoneyValue.encode(message.serviceCommission, writer.uint32(74).fork()).ldelim();
+    }
+    if (message.dealCommission !== undefined) {
+      MoneyValue.encode(message.dealCommission, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.extraBond !== undefined) {
+      GetOrderPriceResponse_ExtraBond.encode(message.extraBond, writer.uint32(98).fork()).ldelim();
+    }
+    if (message.extraFuture !== undefined) {
+      GetOrderPriceResponse_ExtraFuture.encode(message.extraFuture, writer.uint32(106).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetOrderPriceResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetOrderPriceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.totalOrderAmount = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 5:
+          message.initialOrderAmount = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.lotsRequested = longToNumber(reader.int64() as Long);
+          break;
+        case 7:
+          message.executedCommission = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 8:
+          message.executedCommissionRub = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 9:
+          message.serviceCommission = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 10:
+          message.dealCommission = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 12:
+          message.extraBond = GetOrderPriceResponse_ExtraBond.decode(reader, reader.uint32());
+          break;
+        case 13:
+          message.extraFuture = GetOrderPriceResponse_ExtraFuture.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetOrderPriceResponse {
+    return {
+      totalOrderAmount: isSet(object.totalOrderAmount) ? MoneyValue.fromJSON(object.totalOrderAmount) : undefined,
+      initialOrderAmount: isSet(object.initialOrderAmount) ? MoneyValue.fromJSON(object.initialOrderAmount) : undefined,
+      lotsRequested: isSet(object.lotsRequested) ? Number(object.lotsRequested) : 0,
+      executedCommission: isSet(object.executedCommission) ? MoneyValue.fromJSON(object.executedCommission) : undefined,
+      executedCommissionRub: isSet(object.executedCommissionRub)
+        ? MoneyValue.fromJSON(object.executedCommissionRub)
+        : undefined,
+      serviceCommission: isSet(object.serviceCommission) ? MoneyValue.fromJSON(object.serviceCommission) : undefined,
+      dealCommission: isSet(object.dealCommission) ? MoneyValue.fromJSON(object.dealCommission) : undefined,
+      extraBond: isSet(object.extraBond) ? GetOrderPriceResponse_ExtraBond.fromJSON(object.extraBond) : undefined,
+      extraFuture: isSet(object.extraFuture)
+        ? GetOrderPriceResponse_ExtraFuture.fromJSON(object.extraFuture)
+        : undefined,
+    };
+  },
+
+  toJSON(message: GetOrderPriceResponse): unknown {
+    const obj: any = {};
+    message.totalOrderAmount !== undefined &&
+      (obj.totalOrderAmount = message.totalOrderAmount ? MoneyValue.toJSON(message.totalOrderAmount) : undefined);
+    message.initialOrderAmount !== undefined &&
+      (obj.initialOrderAmount = message.initialOrderAmount ? MoneyValue.toJSON(message.initialOrderAmount) : undefined);
+    message.lotsRequested !== undefined && (obj.lotsRequested = Math.round(message.lotsRequested));
+    message.executedCommission !== undefined &&
+      (obj.executedCommission = message.executedCommission ? MoneyValue.toJSON(message.executedCommission) : undefined);
+    message.executedCommissionRub !== undefined &&
+      (obj.executedCommissionRub = message.executedCommissionRub
+        ? MoneyValue.toJSON(message.executedCommissionRub)
+        : undefined);
+    message.serviceCommission !== undefined &&
+      (obj.serviceCommission = message.serviceCommission ? MoneyValue.toJSON(message.serviceCommission) : undefined);
+    message.dealCommission !== undefined &&
+      (obj.dealCommission = message.dealCommission ? MoneyValue.toJSON(message.dealCommission) : undefined);
+    message.extraBond !== undefined &&
+      (obj.extraBond = message.extraBond ? GetOrderPriceResponse_ExtraBond.toJSON(message.extraBond) : undefined);
+    message.extraFuture !== undefined &&
+      (obj.extraFuture = message.extraFuture
+        ? GetOrderPriceResponse_ExtraFuture.toJSON(message.extraFuture)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetOrderPriceResponse>): GetOrderPriceResponse {
+    const message = createBaseGetOrderPriceResponse();
+    message.totalOrderAmount =
+      object.totalOrderAmount !== undefined && object.totalOrderAmount !== null
+        ? MoneyValue.fromPartial(object.totalOrderAmount)
+        : undefined;
+    message.initialOrderAmount =
+      object.initialOrderAmount !== undefined && object.initialOrderAmount !== null
+        ? MoneyValue.fromPartial(object.initialOrderAmount)
+        : undefined;
+    message.lotsRequested = object.lotsRequested ?? 0;
+    message.executedCommission =
+      object.executedCommission !== undefined && object.executedCommission !== null
+        ? MoneyValue.fromPartial(object.executedCommission)
+        : undefined;
+    message.executedCommissionRub =
+      object.executedCommissionRub !== undefined && object.executedCommissionRub !== null
+        ? MoneyValue.fromPartial(object.executedCommissionRub)
+        : undefined;
+    message.serviceCommission =
+      object.serviceCommission !== undefined && object.serviceCommission !== null
+        ? MoneyValue.fromPartial(object.serviceCommission)
+        : undefined;
+    message.dealCommission =
+      object.dealCommission !== undefined && object.dealCommission !== null
+        ? MoneyValue.fromPartial(object.dealCommission)
+        : undefined;
+    message.extraBond =
+      object.extraBond !== undefined && object.extraBond !== null
+        ? GetOrderPriceResponse_ExtraBond.fromPartial(object.extraBond)
+        : undefined;
+    message.extraFuture =
+      object.extraFuture !== undefined && object.extraFuture !== null
+        ? GetOrderPriceResponse_ExtraFuture.fromPartial(object.extraFuture)
+        : undefined;
+    return message;
+  },
+};
+
+function createBaseGetOrderPriceResponse_ExtraBond(): GetOrderPriceResponse_ExtraBond {
+  return { aciValue: undefined, nominalConversionRate: undefined };
+}
+
+export const GetOrderPriceResponse_ExtraBond = {
+  encode(message: GetOrderPriceResponse_ExtraBond, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.aciValue !== undefined) {
+      MoneyValue.encode(message.aciValue, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.nominalConversionRate !== undefined) {
+      Quotation.encode(message.nominalConversionRate, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetOrderPriceResponse_ExtraBond {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetOrderPriceResponse_ExtraBond();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 2:
+          message.aciValue = MoneyValue.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.nominalConversionRate = Quotation.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetOrderPriceResponse_ExtraBond {
+    return {
+      aciValue: isSet(object.aciValue) ? MoneyValue.fromJSON(object.aciValue) : undefined,
+      nominalConversionRate: isSet(object.nominalConversionRate)
+        ? Quotation.fromJSON(object.nominalConversionRate)
+        : undefined,
+    };
+  },
+
+  toJSON(message: GetOrderPriceResponse_ExtraBond): unknown {
+    const obj: any = {};
+    message.aciValue !== undefined &&
+      (obj.aciValue = message.aciValue ? MoneyValue.toJSON(message.aciValue) : undefined);
+    message.nominalConversionRate !== undefined &&
+      (obj.nominalConversionRate = message.nominalConversionRate
+        ? Quotation.toJSON(message.nominalConversionRate)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetOrderPriceResponse_ExtraBond>): GetOrderPriceResponse_ExtraBond {
+    const message = createBaseGetOrderPriceResponse_ExtraBond();
+    message.aciValue =
+      object.aciValue !== undefined && object.aciValue !== null ? MoneyValue.fromPartial(object.aciValue) : undefined;
+    message.nominalConversionRate =
+      object.nominalConversionRate !== undefined && object.nominalConversionRate !== null
+        ? Quotation.fromPartial(object.nominalConversionRate)
+        : undefined;
+    return message;
+  },
+};
+
+function createBaseGetOrderPriceResponse_ExtraFuture(): GetOrderPriceResponse_ExtraFuture {
+  return { initialMargin: undefined };
+}
+
+export const GetOrderPriceResponse_ExtraFuture = {
+  encode(message: GetOrderPriceResponse_ExtraFuture, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.initialMargin !== undefined) {
+      MoneyValue.encode(message.initialMargin, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetOrderPriceResponse_ExtraFuture {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetOrderPriceResponse_ExtraFuture();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 2:
+          message.initialMargin = MoneyValue.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetOrderPriceResponse_ExtraFuture {
+    return {
+      initialMargin: isSet(object.initialMargin) ? MoneyValue.fromJSON(object.initialMargin) : undefined,
+    };
+  },
+
+  toJSON(message: GetOrderPriceResponse_ExtraFuture): unknown {
+    const obj: any = {};
+    message.initialMargin !== undefined &&
+      (obj.initialMargin = message.initialMargin ? MoneyValue.toJSON(message.initialMargin) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<GetOrderPriceResponse_ExtraFuture>): GetOrderPriceResponse_ExtraFuture {
+    const message = createBaseGetOrderPriceResponse_ExtraFuture();
+    message.initialMargin =
+      object.initialMargin !== undefined && object.initialMargin !== null
+        ? MoneyValue.fromPartial(object.initialMargin)
+        : undefined;
+    return message;
+  },
+};
+
 export type OrdersStreamServiceDefinition = typeof OrdersStreamServiceDefinition;
 export const OrdersStreamServiceDefinition = {
   name: 'OrdersStreamService',
@@ -2251,6 +2699,15 @@ export const OrdersServiceDefinition = {
       requestType: GetMaxLotsRequest,
       requestStream: false,
       responseType: GetMaxLotsResponse,
+      responseStream: false,
+      options: {},
+    },
+    /** Метод получения предварительной стоимости для лимитной заявки */
+    getOrderPrice: {
+      name: 'GetOrderPrice',
+      requestType: GetOrderPriceRequest,
+      requestStream: false,
+      responseType: GetOrderPriceResponse,
       responseStream: false,
       options: {},
     },

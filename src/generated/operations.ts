@@ -613,13 +613,13 @@ export interface OperationsRequest {
   /** Идентификатор счёта клиента. */
   accountId: string;
   /** Начало периода (по UTC). */
-  from: Date | undefined;
+  from?: Date | undefined;
   /** Окончание периода (по UTC). */
-  to: Date | undefined;
+  to?: Date | undefined;
   /** Статус запрашиваемых операций. */
-  state: OperationState;
+  state?: OperationState | undefined;
   /** Figi-идентификатор инструмента для фильтрации. */
-  figi: string;
+  figi?: string | undefined;
 }
 
 /** Список операций. */
@@ -683,7 +683,7 @@ export interface PortfolioRequest {
   /** Идентификатор счёта пользователя. */
   accountId: string;
   /** Валюта, в которой требуется рассчитать портфель */
-  currency: PortfolioRequest_CurrencyRequest;
+  currency?: PortfolioRequest_CurrencyRequest | undefined;
 }
 
 export enum PortfolioRequest_CurrencyRequest {
@@ -934,7 +934,7 @@ export interface GetBrokerReportRequest {
   /** Идентификатор задачи формирования брокерского отчёта. */
   taskId: string;
   /** Номер страницы отчета (начинается с 1), значение по умолчанию: 0. */
-  page: number;
+  page?: number | undefined;
 }
 
 export interface GetBrokerReportResponse {
@@ -1024,7 +1024,7 @@ export interface GenerateDividendsForeignIssuerReportRequest {
   accountId: string;
   /** Начало периода (по UTC). */
   from: Date | undefined;
-  /** Окончание периода (по UTC). */
+  /** Окончание периода (по UTC), как правило, возможно сформировать отчет по дату, на несколько дней меньше текущей. Начало и окончание периода должны быть в рамках одного календарного года. */
   to: Date | undefined;
 }
 
@@ -1033,7 +1033,7 @@ export interface GetDividendsForeignIssuerReportRequest {
   /** Идентификатор задачи формирования отчёта. */
   taskId: string;
   /** Номер страницы отчета (начинается с 0), значение по умолчанию: 0. */
-  page: number;
+  page?: number | undefined;
 }
 
 /** Объект результата задачи запуска формирования отчёта "Справка о доходах за пределами РФ". */
@@ -1115,25 +1115,25 @@ export interface GetOperationsByCursorRequest {
   /** Идентификатор счёта клиента. Обязательный параметр для данного метода, остальные параметры опциональны. */
   accountId: string;
   /** Идентификатор инструмента (Figi инструмента или uid инструмента) */
-  instrumentId: string;
+  instrumentId?: string | undefined;
   /** Начало периода (по UTC). */
-  from: Date | undefined;
+  from?: Date | undefined;
   /** Окончание периода (по UTC). */
-  to: Date | undefined;
+  to?: Date | undefined;
   /** Идентификатор элемента, с которого начать формировать ответ. */
-  cursor: string;
+  cursor?: string | undefined;
   /** Лимит количества операций. По умолчанию устанавливается значение **100**, максимальное значение 1000. */
-  limit: number;
+  limit?: number | undefined;
   /** Тип операции. Принимает значение из списка OperationType. */
   operationTypes: OperationType[];
   /** Статус запрашиваемых операций, возможные значения указаны в OperationState. */
-  state: OperationState;
+  state?: OperationState | undefined;
   /** Флаг возвращать ли комиссии, по умолчанию false */
-  withoutCommissions: boolean;
+  withoutCommissions?: boolean | undefined;
   /** Флаг получения ответа без массива сделок. */
-  withoutTrades: boolean;
+  withoutTrades?: boolean | undefined;
   /** Флаг не показывать overnight операций. */
-  withoutOvernights: boolean;
+  withoutOvernights?: boolean | undefined;
 }
 
 /** Список операций по счёту с пагинацией. */
@@ -1280,7 +1280,7 @@ export interface PositionsMoney {
 }
 
 function createBaseOperationsRequest(): OperationsRequest {
-  return { accountId: '', from: undefined, to: undefined, state: 0, figi: '' };
+  return { accountId: '', from: undefined, to: undefined, state: undefined, figi: undefined };
 }
 
 export const OperationsRequest = {
@@ -1294,10 +1294,10 @@ export const OperationsRequest = {
     if (message.to !== undefined) {
       Timestamp.encode(toTimestamp(message.to), writer.uint32(26).fork()).ldelim();
     }
-    if (message.state !== 0) {
+    if (message.state !== undefined) {
       writer.uint32(32).int32(message.state);
     }
-    if (message.figi !== '') {
+    if (message.figi !== undefined) {
       writer.uint32(42).string(message.figi);
     }
     return writer;
@@ -1338,8 +1338,8 @@ export const OperationsRequest = {
       accountId: isSet(object.accountId) ? String(object.accountId) : '',
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
-      state: isSet(object.state) ? operationStateFromJSON(object.state) : 0,
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      state: isSet(object.state) ? operationStateFromJSON(object.state) : undefined,
+      figi: isSet(object.figi) ? String(object.figi) : undefined,
     };
   },
 
@@ -1348,7 +1348,8 @@ export const OperationsRequest = {
     message.accountId !== undefined && (obj.accountId = message.accountId);
     message.from !== undefined && (obj.from = message.from.toISOString());
     message.to !== undefined && (obj.to = message.to.toISOString());
-    message.state !== undefined && (obj.state = operationStateToJSON(message.state));
+    message.state !== undefined &&
+      (obj.state = message.state !== undefined ? operationStateToJSON(message.state) : undefined);
     message.figi !== undefined && (obj.figi = message.figi);
     return obj;
   },
@@ -1358,8 +1359,8 @@ export const OperationsRequest = {
     message.accountId = object.accountId ?? '';
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
-    message.state = object.state ?? 0;
-    message.figi = object.figi ?? '';
+    message.state = object.state ?? undefined;
+    message.figi = object.figi ?? undefined;
     return message;
   },
 };
@@ -1712,7 +1713,7 @@ export const OperationTrade = {
 };
 
 function createBasePortfolioRequest(): PortfolioRequest {
-  return { accountId: '', currency: 0 };
+  return { accountId: '', currency: undefined };
 }
 
 export const PortfolioRequest = {
@@ -1720,7 +1721,7 @@ export const PortfolioRequest = {
     if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
-    if (message.currency !== 0) {
+    if (message.currency !== undefined) {
       writer.uint32(16).int32(message.currency);
     }
     return writer;
@@ -1750,21 +1751,23 @@ export const PortfolioRequest = {
   fromJSON(object: any): PortfolioRequest {
     return {
       accountId: isSet(object.accountId) ? String(object.accountId) : '',
-      currency: isSet(object.currency) ? portfolioRequest_CurrencyRequestFromJSON(object.currency) : 0,
+      currency: isSet(object.currency) ? portfolioRequest_CurrencyRequestFromJSON(object.currency) : undefined,
     };
   },
 
   toJSON(message: PortfolioRequest): unknown {
     const obj: any = {};
     message.accountId !== undefined && (obj.accountId = message.accountId);
-    message.currency !== undefined && (obj.currency = portfolioRequest_CurrencyRequestToJSON(message.currency));
+    message.currency !== undefined &&
+      (obj.currency =
+        message.currency !== undefined ? portfolioRequest_CurrencyRequestToJSON(message.currency) : undefined);
     return obj;
   },
 
   fromPartial(object: DeepPartial<PortfolioRequest>): PortfolioRequest {
     const message = createBasePortfolioRequest();
     message.accountId = object.accountId ?? '';
-    message.currency = object.currency ?? 0;
+    message.currency = object.currency ?? undefined;
     return message;
   },
 };
@@ -3254,7 +3257,7 @@ export const GenerateBrokerReportResponse = {
 };
 
 function createBaseGetBrokerReportRequest(): GetBrokerReportRequest {
-  return { taskId: '', page: 0 };
+  return { taskId: '', page: undefined };
 }
 
 export const GetBrokerReportRequest = {
@@ -3262,7 +3265,7 @@ export const GetBrokerReportRequest = {
     if (message.taskId !== '') {
       writer.uint32(10).string(message.taskId);
     }
-    if (message.page !== 0) {
+    if (message.page !== undefined) {
       writer.uint32(16).int32(message.page);
     }
     return writer;
@@ -3292,7 +3295,7 @@ export const GetBrokerReportRequest = {
   fromJSON(object: any): GetBrokerReportRequest {
     return {
       taskId: isSet(object.taskId) ? String(object.taskId) : '',
-      page: isSet(object.page) ? Number(object.page) : 0,
+      page: isSet(object.page) ? Number(object.page) : undefined,
     };
   },
 
@@ -3306,7 +3309,7 @@ export const GetBrokerReportRequest = {
   fromPartial(object: DeepPartial<GetBrokerReportRequest>): GetBrokerReportRequest {
     const message = createBaseGetBrokerReportRequest();
     message.taskId = object.taskId ?? '';
-    message.page = object.page ?? 0;
+    message.page = object.page ?? undefined;
     return message;
   },
 };
@@ -3967,7 +3970,7 @@ export const GenerateDividendsForeignIssuerReportRequest = {
 };
 
 function createBaseGetDividendsForeignIssuerReportRequest(): GetDividendsForeignIssuerReportRequest {
-  return { taskId: '', page: 0 };
+  return { taskId: '', page: undefined };
 }
 
 export const GetDividendsForeignIssuerReportRequest = {
@@ -3975,7 +3978,7 @@ export const GetDividendsForeignIssuerReportRequest = {
     if (message.taskId !== '') {
       writer.uint32(10).string(message.taskId);
     }
-    if (message.page !== 0) {
+    if (message.page !== undefined) {
       writer.uint32(16).int32(message.page);
     }
     return writer;
@@ -4005,7 +4008,7 @@ export const GetDividendsForeignIssuerReportRequest = {
   fromJSON(object: any): GetDividendsForeignIssuerReportRequest {
     return {
       taskId: isSet(object.taskId) ? String(object.taskId) : '',
-      page: isSet(object.page) ? Number(object.page) : 0,
+      page: isSet(object.page) ? Number(object.page) : undefined,
     };
   },
 
@@ -4019,7 +4022,7 @@ export const GetDividendsForeignIssuerReportRequest = {
   fromPartial(object: DeepPartial<GetDividendsForeignIssuerReportRequest>): GetDividendsForeignIssuerReportRequest {
     const message = createBaseGetDividendsForeignIssuerReportRequest();
     message.taskId = object.taskId ?? '';
-    message.page = object.page ?? 0;
+    message.page = object.page ?? undefined;
     return message;
   },
 };
@@ -4586,16 +4589,16 @@ export const AccountSubscriptionStatus = {
 function createBaseGetOperationsByCursorRequest(): GetOperationsByCursorRequest {
   return {
     accountId: '',
-    instrumentId: '',
+    instrumentId: undefined,
     from: undefined,
     to: undefined,
-    cursor: '',
-    limit: 0,
+    cursor: undefined,
+    limit: undefined,
     operationTypes: [],
-    state: 0,
-    withoutCommissions: false,
-    withoutTrades: false,
-    withoutOvernights: false,
+    state: undefined,
+    withoutCommissions: undefined,
+    withoutTrades: undefined,
+    withoutOvernights: undefined,
   };
 }
 
@@ -4604,7 +4607,7 @@ export const GetOperationsByCursorRequest = {
     if (message.accountId !== '') {
       writer.uint32(10).string(message.accountId);
     }
-    if (message.instrumentId !== '') {
+    if (message.instrumentId !== undefined) {
       writer.uint32(18).string(message.instrumentId);
     }
     if (message.from !== undefined) {
@@ -4613,10 +4616,10 @@ export const GetOperationsByCursorRequest = {
     if (message.to !== undefined) {
       Timestamp.encode(toTimestamp(message.to), writer.uint32(58).fork()).ldelim();
     }
-    if (message.cursor !== '') {
+    if (message.cursor !== undefined) {
       writer.uint32(90).string(message.cursor);
     }
-    if (message.limit !== 0) {
+    if (message.limit !== undefined) {
       writer.uint32(96).int32(message.limit);
     }
     writer.uint32(106).fork();
@@ -4624,16 +4627,16 @@ export const GetOperationsByCursorRequest = {
       writer.int32(v);
     }
     writer.ldelim();
-    if (message.state !== 0) {
+    if (message.state !== undefined) {
       writer.uint32(112).int32(message.state);
     }
-    if (message.withoutCommissions === true) {
+    if (message.withoutCommissions !== undefined) {
       writer.uint32(120).bool(message.withoutCommissions);
     }
-    if (message.withoutTrades === true) {
+    if (message.withoutTrades !== undefined) {
       writer.uint32(128).bool(message.withoutTrades);
     }
-    if (message.withoutOvernights === true) {
+    if (message.withoutOvernights !== undefined) {
       writer.uint32(136).bool(message.withoutOvernights);
     }
     return writer;
@@ -4697,18 +4700,18 @@ export const GetOperationsByCursorRequest = {
   fromJSON(object: any): GetOperationsByCursorRequest {
     return {
       accountId: isSet(object.accountId) ? String(object.accountId) : '',
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : undefined,
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
-      cursor: isSet(object.cursor) ? String(object.cursor) : '',
-      limit: isSet(object.limit) ? Number(object.limit) : 0,
+      cursor: isSet(object.cursor) ? String(object.cursor) : undefined,
+      limit: isSet(object.limit) ? Number(object.limit) : undefined,
       operationTypes: Array.isArray(object?.operationTypes)
         ? object.operationTypes.map((e: any) => operationTypeFromJSON(e))
         : [],
-      state: isSet(object.state) ? operationStateFromJSON(object.state) : 0,
-      withoutCommissions: isSet(object.withoutCommissions) ? Boolean(object.withoutCommissions) : false,
-      withoutTrades: isSet(object.withoutTrades) ? Boolean(object.withoutTrades) : false,
-      withoutOvernights: isSet(object.withoutOvernights) ? Boolean(object.withoutOvernights) : false,
+      state: isSet(object.state) ? operationStateFromJSON(object.state) : undefined,
+      withoutCommissions: isSet(object.withoutCommissions) ? Boolean(object.withoutCommissions) : undefined,
+      withoutTrades: isSet(object.withoutTrades) ? Boolean(object.withoutTrades) : undefined,
+      withoutOvernights: isSet(object.withoutOvernights) ? Boolean(object.withoutOvernights) : undefined,
     };
   },
 
@@ -4725,7 +4728,8 @@ export const GetOperationsByCursorRequest = {
     } else {
       obj.operationTypes = [];
     }
-    message.state !== undefined && (obj.state = operationStateToJSON(message.state));
+    message.state !== undefined &&
+      (obj.state = message.state !== undefined ? operationStateToJSON(message.state) : undefined);
     message.withoutCommissions !== undefined && (obj.withoutCommissions = message.withoutCommissions);
     message.withoutTrades !== undefined && (obj.withoutTrades = message.withoutTrades);
     message.withoutOvernights !== undefined && (obj.withoutOvernights = message.withoutOvernights);
@@ -4735,16 +4739,16 @@ export const GetOperationsByCursorRequest = {
   fromPartial(object: DeepPartial<GetOperationsByCursorRequest>): GetOperationsByCursorRequest {
     const message = createBaseGetOperationsByCursorRequest();
     message.accountId = object.accountId ?? '';
-    message.instrumentId = object.instrumentId ?? '';
+    message.instrumentId = object.instrumentId ?? undefined;
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
-    message.cursor = object.cursor ?? '';
-    message.limit = object.limit ?? 0;
+    message.cursor = object.cursor ?? undefined;
+    message.limit = object.limit ?? undefined;
     message.operationTypes = object.operationTypes?.map(e => e) || [];
-    message.state = object.state ?? 0;
-    message.withoutCommissions = object.withoutCommissions ?? false;
-    message.withoutTrades = object.withoutTrades ?? false;
-    message.withoutOvernights = object.withoutOvernights ?? false;
+    message.state = object.state ?? undefined;
+    message.withoutCommissions = object.withoutCommissions ?? undefined;
+    message.withoutTrades = object.withoutTrades ?? undefined;
+    message.withoutOvernights = object.withoutOvernights ?? undefined;
     return message;
   },
 };

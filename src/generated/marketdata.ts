@@ -775,7 +775,7 @@ export interface GetCandlesRequest {
    *
    * @deprecated
    */
-  figi: string;
+  figi?: string | undefined;
   /** Начало запрашиваемого периода в часовом поясе UTC. */
   from: Date | undefined;
   /** Окончание запрашиваемого периода в часовом поясе UTC. */
@@ -783,7 +783,7 @@ export interface GetCandlesRequest {
   /** Интервал запрошенных свечей. */
   interval: CandleInterval;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
-  instrumentId: string;
+  instrumentId?: string | undefined;
 }
 
 /** Список свечей. */
@@ -847,11 +847,11 @@ export interface GetOrderBookRequest {
    *
    * @deprecated
    */
-  figi: string;
+  figi?: string | undefined;
   /** Глубина стакана. */
   depth: number;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
-  instrumentId: string;
+  instrumentId?: string | undefined;
 }
 
 /** Информация о стакане. */
@@ -889,9 +889,9 @@ export interface GetTradingStatusRequest {
    *
    * @deprecated
    */
-  figi: string;
+  figi?: string | undefined;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
-  instrumentId: string;
+  instrumentId?: string | undefined;
 }
 
 /** Запрос получения торгового статуса. */
@@ -929,13 +929,13 @@ export interface GetLastTradesRequest {
    *
    * @deprecated
    */
-  figi: string;
+  figi?: string | undefined;
   /** Начало запрашиваемого периода в часовом поясе UTC. */
   from: Date | undefined;
   /** Окончание запрашиваемого периода в часовом поясе UTC. */
   to: Date | undefined;
   /** Идентификатор инструмента, принимает значение figi или instrument_uid. */
-  instrumentId: string;
+  instrumentId?: string | undefined;
 }
 
 /** Обезличенных сделок за последний час. */
@@ -3336,12 +3336,12 @@ export const TradingStatus = {
 };
 
 function createBaseGetCandlesRequest(): GetCandlesRequest {
-  return { figi: '', from: undefined, to: undefined, interval: 0, instrumentId: '' };
+  return { figi: undefined, from: undefined, to: undefined, interval: 0, instrumentId: undefined };
 }
 
 export const GetCandlesRequest = {
   encode(message: GetCandlesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== undefined) {
       writer.uint32(10).string(message.figi);
     }
     if (message.from !== undefined) {
@@ -3353,7 +3353,7 @@ export const GetCandlesRequest = {
     if (message.interval !== 0) {
       writer.uint32(32).int32(message.interval);
     }
-    if (message.instrumentId !== '') {
+    if (message.instrumentId !== undefined) {
       writer.uint32(42).string(message.instrumentId);
     }
     return writer;
@@ -3391,11 +3391,11 @@ export const GetCandlesRequest = {
 
   fromJSON(object: any): GetCandlesRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : undefined,
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
       interval: isSet(object.interval) ? candleIntervalFromJSON(object.interval) : 0,
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : undefined,
     };
   },
 
@@ -3411,11 +3411,11 @@ export const GetCandlesRequest = {
 
   fromPartial(object: DeepPartial<GetCandlesRequest>): GetCandlesRequest {
     const message = createBaseGetCandlesRequest();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? undefined;
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
     message.interval = object.interval ?? 0;
-    message.instrumentId = object.instrumentId ?? '';
+    message.instrumentId = object.instrumentId ?? undefined;
     return message;
   },
 };
@@ -3782,18 +3782,18 @@ export const LastPrice = {
 };
 
 function createBaseGetOrderBookRequest(): GetOrderBookRequest {
-  return { figi: '', depth: 0, instrumentId: '' };
+  return { figi: undefined, depth: 0, instrumentId: undefined };
 }
 
 export const GetOrderBookRequest = {
   encode(message: GetOrderBookRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== undefined) {
       writer.uint32(10).string(message.figi);
     }
     if (message.depth !== 0) {
       writer.uint32(16).int32(message.depth);
     }
-    if (message.instrumentId !== '') {
+    if (message.instrumentId !== undefined) {
       writer.uint32(26).string(message.instrumentId);
     }
     return writer;
@@ -3825,9 +3825,9 @@ export const GetOrderBookRequest = {
 
   fromJSON(object: any): GetOrderBookRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : undefined,
       depth: isSet(object.depth) ? Number(object.depth) : 0,
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : undefined,
     };
   },
 
@@ -3841,9 +3841,9 @@ export const GetOrderBookRequest = {
 
   fromPartial(object: DeepPartial<GetOrderBookRequest>): GetOrderBookRequest {
     const message = createBaseGetOrderBookRequest();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? undefined;
     message.depth = object.depth ?? 0;
-    message.instrumentId = object.instrumentId ?? '';
+    message.instrumentId = object.instrumentId ?? undefined;
     return message;
   },
 };
@@ -4027,15 +4027,15 @@ export const GetOrderBookResponse = {
 };
 
 function createBaseGetTradingStatusRequest(): GetTradingStatusRequest {
-  return { figi: '', instrumentId: '' };
+  return { figi: undefined, instrumentId: undefined };
 }
 
 export const GetTradingStatusRequest = {
   encode(message: GetTradingStatusRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== undefined) {
       writer.uint32(10).string(message.figi);
     }
-    if (message.instrumentId !== '') {
+    if (message.instrumentId !== undefined) {
       writer.uint32(18).string(message.instrumentId);
     }
     return writer;
@@ -4064,8 +4064,8 @@ export const GetTradingStatusRequest = {
 
   fromJSON(object: any): GetTradingStatusRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
+      figi: isSet(object.figi) ? String(object.figi) : undefined,
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : undefined,
     };
   },
 
@@ -4078,8 +4078,8 @@ export const GetTradingStatusRequest = {
 
   fromPartial(object: DeepPartial<GetTradingStatusRequest>): GetTradingStatusRequest {
     const message = createBaseGetTradingStatusRequest();
-    message.figi = object.figi ?? '';
-    message.instrumentId = object.instrumentId ?? '';
+    message.figi = object.figi ?? undefined;
+    message.instrumentId = object.instrumentId ?? undefined;
     return message;
   },
 };
@@ -4296,12 +4296,12 @@ export const GetTradingStatusResponse = {
 };
 
 function createBaseGetLastTradesRequest(): GetLastTradesRequest {
-  return { figi: '', from: undefined, to: undefined, instrumentId: '' };
+  return { figi: undefined, from: undefined, to: undefined, instrumentId: undefined };
 }
 
 export const GetLastTradesRequest = {
   encode(message: GetLastTradesRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.figi !== '') {
+    if (message.figi !== undefined) {
       writer.uint32(10).string(message.figi);
     }
     if (message.from !== undefined) {
@@ -4310,7 +4310,7 @@ export const GetLastTradesRequest = {
     if (message.to !== undefined) {
       Timestamp.encode(toTimestamp(message.to), writer.uint32(26).fork()).ldelim();
     }
-    if (message.instrumentId !== '') {
+    if (message.instrumentId !== undefined) {
       writer.uint32(34).string(message.instrumentId);
     }
     return writer;
@@ -4345,10 +4345,10 @@ export const GetLastTradesRequest = {
 
   fromJSON(object: any): GetLastTradesRequest {
     return {
-      figi: isSet(object.figi) ? String(object.figi) : '',
+      figi: isSet(object.figi) ? String(object.figi) : undefined,
       from: isSet(object.from) ? fromJsonTimestamp(object.from) : undefined,
       to: isSet(object.to) ? fromJsonTimestamp(object.to) : undefined,
-      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : '',
+      instrumentId: isSet(object.instrumentId) ? String(object.instrumentId) : undefined,
     };
   },
 
@@ -4363,10 +4363,10 @@ export const GetLastTradesRequest = {
 
   fromPartial(object: DeepPartial<GetLastTradesRequest>): GetLastTradesRequest {
     const message = createBaseGetLastTradesRequest();
-    message.figi = object.figi ?? '';
+    message.figi = object.figi ?? undefined;
     message.from = object.from ?? undefined;
     message.to = object.to ?? undefined;
-    message.instrumentId = object.instrumentId ?? '';
+    message.instrumentId = object.instrumentId ?? undefined;
     return message;
   },
 };
