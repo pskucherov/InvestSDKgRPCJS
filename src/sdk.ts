@@ -1,33 +1,39 @@
 import { createMetadata, createMetadataCredentials, createSSLCredentials, makeChannel } from './utils';
 import { createClientFactory } from 'nice-grpc';
-import stopOrders, { StopOrdersServiceDefinition } from './generated/stoporders';
+import * as stopOrders from './generated/stoporders';
 import { API_URL } from './constants';
-import instruments, { InstrumentsServiceDefinition, InstrumentStatus, InstrumentIdType } from './generated/instruments';
-import marketData, {
+import * as instruments from './generated/instruments';
+
+import * as marketData from './generated/marketdata';
+import * as operations from './generated/operations';
+
+import * as orders from './generated/orders';
+import * as users from './generated/users';
+import * as sandbox from './generated/sandbox';
+import { getMiddleware, TypeLoggerCb } from './middlewares/response';
+
+const { SandboxServiceDefinition } = sandbox;
+const { UsersServiceDefinition, AccountType, AccountStatus, AccessLevel } = users;
+const { OrdersServiceDefinition, OrdersStreamServiceDefinition, OrderDirection, OrderType } = orders;
+const { StopOrdersServiceDefinition } = stopOrders;
+const { InstrumentsServiceDefinition, InstrumentStatus, InstrumentIdType } = instruments;
+const {
   MarketDataServiceDefinition,
   MarketDataStreamServiceDefinition,
   CandleInterval,
   MarketDataRequest,
   SubscriptionAction,
   SubscriptionInterval,
-} from './generated/marketdata';
-import operations, {
+} = marketData;
+
+const {
   OperationsServiceDefinition,
   OperationsStreamServiceDefinition,
   OperationState,
   OperationType,
   PortfolioSubscriptionStatus,
   PositionsAccountSubscriptionStatus,
-} from './generated/operations';
-import orders, {
-  OrdersServiceDefinition,
-  OrdersStreamServiceDefinition,
-  OrderDirection,
-  OrderType,
-} from './generated/orders';
-import users, { UsersServiceDefinition, AccountType, AccountStatus, AccessLevel } from './generated/users';
-import sandbox, { SandboxServiceDefinition } from './generated/sandbox';
-import { getMiddleware, TypeLoggerCb } from './middlewares/response';
+} = operations;
 
 export const createSdk = (token: string, appName?: string, loggerCb?: TypeLoggerCb) => {
   const metadata = createMetadata(token, appName);
