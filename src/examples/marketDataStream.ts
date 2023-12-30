@@ -26,7 +26,7 @@ import { DeepPartial, MarketDataRequest, SubscriptionAction, SubscriptionInterva
   }
 
   //генератор для торгового статуса инструмента
-  async function* createSubscriptionInfoRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> {
+  async function* createSubscriptionInfoRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> { // eslint-disable-line
     while (keepCalling) {
       await timer(1000);
       yield MarketDataRequest.fromPartial({
@@ -39,7 +39,7 @@ import { DeepPartial, MarketDataRequest, SubscriptionAction, SubscriptionInterva
   }
 
   // генератор для получения обезличенных сделок
-  async function* createSubscriptionTradesRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> {
+  async function* createSubscriptionTradesRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> { // eslint-disable-line
     while (keepCalling) {
       await timer(1000);
       yield MarketDataRequest.fromPartial({
@@ -52,7 +52,7 @@ import { DeepPartial, MarketDataRequest, SubscriptionAction, SubscriptionInterva
   }
 
   //генератор подписка на стаканы
-  async function* createSubscriptionOrderBookRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> {
+  async function* createSubscriptionOrderBookRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> { // eslint-disable-line
     while (keepCalling) {
       await timer(1000);
       yield MarketDataRequest.fromPartial({
@@ -65,7 +65,7 @@ import { DeepPartial, MarketDataRequest, SubscriptionAction, SubscriptionInterva
   }
 
   //генератор подписки на свечи
-  async function* createSubscriptionCandleRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> {
+  async function* createSubscriptionCandleRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> { // eslint-disable-line
     while (keepCalling) {
       await timer(1000);
       yield MarketDataRequest.fromPartial({

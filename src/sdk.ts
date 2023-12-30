@@ -1,10 +1,9 @@
 import { createMetadata, createMetadataCredentials, createSSLCredentials, makeChannel } from './utils';
 import { createClientFactory } from 'nice-grpc';
-import { UsersServiceDefinition } from './generated/users';
-import { StopOrdersServiceDefinition } from './generated/stoporders';
+import stopOrders, { StopOrdersServiceDefinition } from './generated/stoporders';
 import { API_URL } from './constants';
-import { InstrumentsServiceDefinition, InstrumentStatus, InstrumentIdType } from './generated/instruments';
-import {
+import instruments, { InstrumentsServiceDefinition, InstrumentStatus, InstrumentIdType } from './generated/instruments';
+import marketData, {
   MarketDataServiceDefinition,
   MarketDataStreamServiceDefinition,
   CandleInterval,
@@ -12,7 +11,7 @@ import {
   SubscriptionAction,
   SubscriptionInterval,
 } from './generated/marketdata';
-import {
+import operations, {
   OperationsServiceDefinition,
   OperationsStreamServiceDefinition,
   OperationState,
@@ -20,9 +19,14 @@ import {
   PortfolioSubscriptionStatus,
   PositionsAccountSubscriptionStatus,
 } from './generated/operations';
-import { OrdersServiceDefinition, OrdersStreamServiceDefinition, OrderDirection, OrderType } from './generated/orders';
-import { AccountType, AccountStatus, AccessLevel } from './generated/users';
-import { SandboxServiceDefinition } from './generated/sandbox';
+import orders, {
+  OrdersServiceDefinition,
+  OrdersStreamServiceDefinition,
+  OrderDirection,
+  OrderType,
+} from './generated/orders';
+import users, { UsersServiceDefinition, AccountType, AccountStatus, AccessLevel } from './generated/users';
+import sandbox, { SandboxServiceDefinition } from './generated/sandbox';
 import { getMiddleware, TypeLoggerCb } from './middlewares/response';
 
 export const createSdk = (token: string, appName?: string, loggerCb?: TypeLoggerCb) => {
@@ -44,6 +48,16 @@ export const createSdk = (token: string, appName?: string, loggerCb?: TypeLogger
     sandbox: clientFactory.create(SandboxServiceDefinition, channel),
     stopOrders: clientFactory.create(StopOrdersServiceDefinition, channel),
     users: clientFactory.create(UsersServiceDefinition, channel),
+
+    structures: {
+      users,
+      stopOrders,
+      instruments,
+      marketData,
+      operations,
+      orders,
+      sandbox,
+    },
 
     CandleInterval,
 
