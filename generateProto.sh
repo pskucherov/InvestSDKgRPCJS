@@ -14,6 +14,8 @@ chmod 755 ./src/generated
 
 ./node_modules/.bin/grpc_tools_node_protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_opt=esModuleInterop=true --ts_proto_out=./src/generated --ts_proto_opt=outputServices=generic-definitions,useExactTypes=false -I ./protos/ ./protos/*.proto --experimental_allow_proto3_optional
 
+cp ./src/errors/api_errors.json ./dist/errors
+
 if [ $? -eq 0 ]
 then
   echo "Successfully generated types"
