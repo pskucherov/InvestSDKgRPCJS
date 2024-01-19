@@ -1,7 +1,7 @@
 import { createMetadata, createMetadataCredentials, createSSLCredentials, makeChannel } from './utils';
 import { createClientFactory } from 'nice-grpc';
 import * as stopOrders from './generated/stoporders';
-import { API_URL } from './constants';
+import { API_URL, API_SANDBOX_URL } from './constants';
 import * as instruments from './generated/instruments';
 
 import * as marketData from './generated/marketdata';
@@ -35,11 +35,20 @@ const {
   PositionsAccountSubscriptionStatus,
 } = operations;
 
-export const createSdk = (token: string, appName?: string, loggerCb?: TypeLoggerCb) => {
+export const createSdk = (
+  token: string,
+  appName?: string,
+  loggerCb?: TypeLoggerCb,
+  options?: {
+    isSandbox?: boolean;
+  },
+) => {
   const metadata = createMetadata(token, appName);
   const metadataCred = createMetadataCredentials(metadata);
   const sslCred = createSSLCredentials(metadataCred);
-  const channel = makeChannel(API_URL, sslCred);
+
+  const url = options?.isSandbox ? API_SANDBOX_URL : API_URL;
+  const channel = makeChannel(url, sslCred);
 
   const clientFactory = createClientFactory().use(getMiddleware(loggerCb));
 
