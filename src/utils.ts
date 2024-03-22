@@ -18,4 +18,9 @@ export const createMetadataCredentials = (metadata: Metadata): CallCredentials =
 export const createSSLCredentials = (metadataCreds: CallCredentials): ChannelCredentials =>
   credentials.combineChannelCredentials(credentials.createSsl(), metadataCreds);
 
-export const makeChannel = (url: string, ssl_creds: ChannelCredentials) => createChannel(url, ssl_creds);
+const grpcOptions = {
+  'grpc.max_receive_message_length': 50 * 1024 * 1024,
+  'grpc.max_send_message_length': 50 * 1024 * 1024,
+};
+
+export const makeChannel = (url: string, ssl_creds: ChannelCredentials) => createChannel(url, ssl_creds, grpcOptions);
