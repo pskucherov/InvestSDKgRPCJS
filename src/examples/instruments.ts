@@ -1,5 +1,6 @@
 import { createSdk } from '../sdk';
-import { InstrumentIdType, InstrumentStatus } from '../generated/instruments';
+import { InstrumentIdType } from '../generated/instruments';
+import { InstrumentStatus } from '../generated/common';
 
 !(async function example() {
   const { instruments } = createSdk('YOUR_TOKEN');

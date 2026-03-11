@@ -4,7 +4,9 @@
   "description": "",
   "main": "dist/sdk.js",
   "scripts": {
-    "build": "npx tsc",
+    "build": "npx tsc && mkdir -p dist/errors && cp src/errors/api_errors.json dist/errors/api_errors.json",
+    "generate:proto": "bash ./generateProto.sh",
+    "generate:proto:debug": "INVEST_PROTO_DEBUG=1 bash ./generateProto.sh",
     "lint-fix": "eslint \"src/**/{*.ts,*.tsx}\" --fix"
   },
   "repository": {
@@ -32,7 +34,7 @@
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "grpc-tools": "1.10.0",
+    "protoc": "^34.0.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.1",
     "ts-node": "^10.7.0",

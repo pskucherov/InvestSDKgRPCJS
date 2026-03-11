@@ -2,6 +2,7 @@ import { createMetadata, createMetadataCredentials, createSSLCredentials, makeCh
 import { createClientFactory } from 'nice-grpc';
 import * as stopOrders from './generated/stoporders';
 import { API_URL, API_SANDBOX_URL } from './constants';
+import * as common from './generated/common';
 import * as instruments from './generated/instruments';
 
 import * as marketData from './generated/marketdata';
@@ -16,7 +17,8 @@ const { SandboxServiceDefinition } = sandbox;
 const { UsersServiceDefinition, AccountType, AccountStatus, AccessLevel } = users;
 const { OrdersServiceDefinition, OrdersStreamServiceDefinition, OrderDirection, OrderType } = orders;
 const { StopOrdersServiceDefinition } = stopOrders;
-const { InstrumentsServiceDefinition, InstrumentStatus, InstrumentIdType } = instruments;
+const { InstrumentsServiceDefinition, InstrumentIdType } = instruments;
+const { InstrumentStatus } = common;
 const {
   MarketDataServiceDefinition,
   MarketDataStreamServiceDefinition,
