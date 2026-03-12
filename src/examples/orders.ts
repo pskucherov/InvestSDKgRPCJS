@@ -15,7 +15,7 @@ import { OrderDirection, OrderType } from '../generated/orders';
   //==============================================================================================================
   const setOrder = await orders.postOrder({
     accountId: '1234567890',
-    figi: 'BBG006L8G4H1',
+    instrumentId: 'BBG006L8G4H1',
     quantity: 1,
     price: { units: 4400, nano: 0 },
     direction: OrderDirection.ORDER_DIRECTION_BUY,

@@ -1,4 +1,5 @@
-import { createMetadata, createMetadataCredentials, createSSLCredentials, makeChannel } from './utils';
+import { ChannelOptions } from '@grpc/grpc-js';
+import { createMetadata, createMetadataCredentials, createSSLCredentials, createChannels, closeChannels } from './utils';
 import { createClientFactory } from 'nice-grpc';
 import * as stopOrders from './generated/stoporders';
 import { API_URL, API_SANDBOX_URL } from './constants';
@@ -11,13 +12,15 @@ import * as operations from './generated/operations';
 import * as orders from './generated/orders';
 import * as users from './generated/users';
 import * as sandbox from './generated/sandbox';
-import { getMiddleware, TypeLoggerCb } from './middlewares/response';
+import * as signals from './generated/signals';
+import { getMiddleware, MiddlewareOptions, TypeLoggerCb } from './middlewares/response';
 
 const { SandboxServiceDefinition } = sandbox;
 const { UsersServiceDefinition, AccountType, AccountStatus, AccessLevel } = users;
 const { OrdersServiceDefinition, OrdersStreamServiceDefinition, OrderDirection, OrderType } = orders;
 const { StopOrdersServiceDefinition } = stopOrders;
 const { InstrumentsServiceDefinition, InstrumentIdType } = instruments;
+const { SignalServiceDefinition } = signals;
 const { InstrumentStatus } = common;
 const {
   MarketDataServiceDefinition,
@@ -37,34 +40,61 @@ const {
   PositionsAccountSubscriptionStatus,
 } = operations;
 
+export type CreateSdkOptions = {
+  isSandbox?: boolean;
+  apiUrl?: string;
+  sandboxApiUrl?: string;
+  grpcChannelOptions?: ChannelOptions;
+  splitChannels?: boolean;
+  middleware?: MiddlewareOptions;
+};
+
+export const resolveSdkUrl = (options?: CreateSdkOptions): string => {
+  if (options?.isSandbox) {
+    return options?.sandboxApiUrl || API_SANDBOX_URL;
+  }
+
+  return options?.apiUrl || API_URL;
+};
+
 export const createSdk = (
   token: string,
   appName?: string,
   loggerCb?: TypeLoggerCb,
-  options?: {
-    isSandbox?: boolean;
-  },
+  options?: CreateSdkOptions,
 ) => {
   const metadata = createMetadata(token, appName);
   const metadataCred = createMetadataCredentials(metadata);
   const sslCred = createSSLCredentials(metadataCred);
+  const url = resolveSdkUrl(options);
+  const channels = createChannels(url, sslCred, {
+    splitChannels: options?.splitChannels,
+    grpcChannelOptions: options?.grpcChannelOptions,
+  });
+  const clientFactory = createClientFactory().use(getMiddleware(loggerCb, options?.middleware));
+  let disconnected = false;
 
-  const url = options?.isSandbox ? API_SANDBOX_URL : API_URL;
-  const channel = makeChannel(url, sslCred);
+  const disconnect = async () => {
+    if (disconnected) {
+      return;
+    }
 
-  const clientFactory = createClientFactory().use(getMiddleware(loggerCb));
+    disconnected = true;
+    await closeChannels(channels);
+  };
 
   return {
-    instruments: clientFactory.create(InstrumentsServiceDefinition, channel),
-    marketData: clientFactory.create(MarketDataServiceDefinition, channel),
-    marketDataStream: clientFactory.create(MarketDataStreamServiceDefinition, channel),
-    operations: clientFactory.create(OperationsServiceDefinition, channel),
-    operationsStream: clientFactory.create(OperationsStreamServiceDefinition, channel),
-    orders: clientFactory.create(OrdersServiceDefinition, channel),
-    ordersStream: clientFactory.create(OrdersStreamServiceDefinition, channel),
-    sandbox: clientFactory.create(SandboxServiceDefinition, channel),
-    stopOrders: clientFactory.create(StopOrdersServiceDefinition, channel),
-    users: clientFactory.create(UsersServiceDefinition, channel),
+    instruments: clientFactory.create(InstrumentsServiceDefinition, channels.unaryChannel),
+    marketData: clientFactory.create(MarketDataServiceDefinition, channels.unaryChannel),
+    marketDataStream: clientFactory.create(MarketDataStreamServiceDefinition, channels.marketDataStreamChannel),
+    operations: clientFactory.create(OperationsServiceDefinition, channels.unaryChannel),
+    operationsStream: clientFactory.create(OperationsStreamServiceDefinition, channels.operationsStreamChannel),
+    orders: clientFactory.create(OrdersServiceDefinition, channels.unaryChannel),
+    ordersStream: clientFactory.create(OrdersStreamServiceDefinition, channels.ordersStreamChannel),
+    sandbox: clientFactory.create(SandboxServiceDefinition, channels.unaryChannel),
+    stopOrders: clientFactory.create(StopOrdersServiceDefinition, channels.unaryChannel),
+    users: clientFactory.create(UsersServiceDefinition, channels.unaryChannel),
+    signals: clientFactory.create(SignalServiceDefinition, channels.unaryChannel),
 
     structures: {
       users,
@@ -74,6 +104,7 @@ export const createSdk = (
       operations,
       orders,
       sandbox,
+      signals,
     },
 
     CandleInterval,
@@ -96,5 +127,10 @@ export const createSdk = (
     OperationType,
     PortfolioSubscriptionStatus,
     PositionsAccountSubscriptionStatus,
+
+    disconnect,
   };
 };
+
+export { createMarketDataStreamController } from './marketDataStreamController';
+export type { CreateMarketDataStreamControllerOptions, MarketDataStreamController } from './marketDataStreamController';

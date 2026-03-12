@@ -6,7 +6,7 @@ import { CandleInterval } from '../generated/marketdata';
 
   //==============================================================================================================
   const candles = await marketData.getCandles({
-    figi: 'BBG0047315Y7',
+    instrumentId: 'BBG0047315Y7',
     from: new Date('2022-04-04T11:00:00Z'),
     to: new Date('2022-04-04T11:20:59Z'),
     interval: CandleInterval.CANDLE_INTERVAL_5_MIN,
@@ -17,7 +17,7 @@ import { CandleInterval } from '../generated/marketdata';
 
   //==============================================================================================================
   const lastPrice = await marketData.getLastPrices({
-    figi: ['BBG0047315Y7'],
+    instrumentId: ['BBG0047315Y7'],
   });
 
   console.log('Запрос последних цен по инструментам: ', lastPrice);
@@ -25,7 +25,7 @@ import { CandleInterval } from '../generated/marketdata';
 
   //==============================================================================================================
   const orderBook = await marketData.getOrderBook({
-    figi: 'BBG0047315Y7',
+    instrumentId: 'BBG0047315Y7',
     depth: 5,
   });
 
@@ -34,7 +34,7 @@ import { CandleInterval } from '../generated/marketdata';
 
   //==============================================================================================================
   const tradingStatus = await marketData.getTradingStatus({
-    figi: 'BBG0047315Y7',
+    instrumentId: 'BBG0047315Y7',
   });
 
   console.log('Запрос статуса торгов по инструментам: ', tradingStatus);
@@ -42,7 +42,7 @@ import { CandleInterval } from '../generated/marketdata';
 
   //==============================================================================================================
   const lastTrades = await marketData.getLastTrades({
-    figi: 'BBG0047315Y7',
+    instrumentId: 'BBG0047315Y7',
   });
 
   console.log('Запрос статуса торгов по инструментам: ', lastTrades);

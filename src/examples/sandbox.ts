@@ -40,7 +40,7 @@ import { OrderDirection, OrderType } from '../generated/orders';
   //==============================================================================================================
   const postSandboxOrder = await sandbox.postSandboxOrder({
     accountId: 'a4667599-8ce5-4f49-99e1-2dcfc0e5fc2f',
-    figi: 'FUTMXI062200',
+    instrumentId: 'FUTMXI062200',
     quantity: 1,
     price: { units: 2598, nano: 0 },
     direction: OrderDirection.ORDER_DIRECTION_BUY,

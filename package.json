@@ -5,6 +5,8 @@
   "main": "dist/sdk.js",
   "scripts": {
     "build": "npx tsc && mkdir -p dist/errors && cp src/errors/api_errors.json dist/errors/api_errors.json",
+    "test": "node -r ts-node/register/transpile-only --test ./test/**/*.test.ts",
+    "check": "npm run build && npm run test",
     "generate:proto": "bash ./generateProto.sh",
     "generate:proto:debug": "INVEST_PROTO_DEBUG=1 bash ./generateProto.sh",
     "lint-fix": "eslint \"src/**/{*.ts,*.tsx}\" --fix"

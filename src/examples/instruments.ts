@@ -27,13 +27,13 @@ import { InstrumentStatus } from '../generated/common';
     id: 'BBG011FHF1F7',
   });
   const bondCoupons = await instruments.getBondCoupons({
-    figi: 'BBG011FHF1F7',
+    instrumentId: 'BBG011FHF1F7',
     from: new Date('2022-01-01T00:00:00Z'),
     to: new Date('2022-12-31:20:55:59Z'),
   });
 
   const accruedInterests = await instruments.getAccruedInterests({
-    figi: 'BBG011FHF1F7',
+    instrumentId: 'BBG011FHF1F7',
     from: new Date('2022-01-01T00:00:00Z'),
     to: new Date('2022-01-31:20:55:59Z'),
   });
@@ -81,7 +81,7 @@ import { InstrumentStatus } from '../generated/common';
   });
 
   const futuresMargin = await instruments.getFuturesMargin({
-    figi: 'FUTSI0623000',
+    instrumentId: 'FUTSI0623000',
   });
 
   console.log('Получения фьючерсов, допущенных к торговле через API: ', futures);
@@ -109,7 +109,7 @@ import { InstrumentStatus } from '../generated/common';
   });
 
   const dividends = await instruments.getDividends({
-    figi: 'BBG0047315Y7',
+    instrumentId: 'BBG0047315Y7',
     from: new Date('2021-01-01T00:00:00Z'),
     to: new Date('2021-12-31T20:55:59Z'),
   });

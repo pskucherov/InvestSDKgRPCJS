@@ -1,85 +1,33 @@
-import { createSdk } from '../sdk';
-import { DeepPartial, MarketDataRequest, SubscriptionAction, SubscriptionInterval } from '../generated/marketdata';
+import { createMarketDataStreamController, createSdk } from '../sdk';
+import { SubscriptionInterval } from '../generated/marketdata';
 
 !(async function example() {
-  const { marketDataStream } = createSdk('YOUR_TOKEN');
+  const sdk = createSdk('YOUR_TOKEN', 'example.market-data-stream', undefined, {
+    splitChannels: true,
+  });
 
-  let keepCalling = true;
+  const controller = createMarketDataStreamController(sdk.marketDataStream, {
+    closeGraceMs: 100,
+  });
 
-  setTimeout(function () {
-    keepCalling = false;
-  }, 5000);
+  controller.subscribeLastPrice('BBG000N9MNX3');
+  controller.subscribeCandles('BBG000N9MNX3', {
+    interval: SubscriptionInterval.SUBSCRIPTION_INTERVAL_ONE_MINUTE,
+    waitingClose: true,
+  });
 
-  const timer = (time: number) => new Promise(resolve => setTimeout(resolve, time));
+  let messagesRead = 0;
+  for await (const message of controller.response) {
+    console.log('stream event', message);
+    messagesRead += 1;
 
-  //генератор для последней цены инструмента
-  async function* createLastPriceRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> {
-    while (keepCalling) {
-      await timer(1000);
-      yield MarketDataRequest.fromPartial({
-        subscribeLastPriceRequest: {
-          subscriptionAction: SubscriptionAction.SUBSCRIPTION_ACTION_SUBSCRIBE,
-          instruments: [{ figi: 'BBG000N9MNX3' }],
-        },
-      });
+    if (messagesRead >= 5) {
+      break;
     }
   }
 
-  //генератор для торгового статуса инструмента
-  async function* createSubscriptionInfoRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> { // eslint-disable-line
-    while (keepCalling) {
-      await timer(1000);
-      yield MarketDataRequest.fromPartial({
-        subscribeInfoRequest: {
-          subscriptionAction: SubscriptionAction.SUBSCRIPTION_ACTION_SUBSCRIBE,
-          instruments: [{ figi: 'BBG000N9MNX3' }],
-        },
-      });
-    }
-  }
-
-  // генератор для получения обезличенных сделок
-  async function* createSubscriptionTradesRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> { // eslint-disable-line
-    while (keepCalling) {
-      await timer(1000);
-      yield MarketDataRequest.fromPartial({
-        subscribeTradesRequest: {
-          subscriptionAction: SubscriptionAction.SUBSCRIPTION_ACTION_SUBSCRIBE,
-          instruments: [{ figi: 'BBG000N9MNX3' }],
-        },
-      });
-    }
-  }
-
-  //генератор подписка на стаканы
-  async function* createSubscriptionOrderBookRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> { // eslint-disable-line
-    while (keepCalling) {
-      await timer(1000);
-      yield MarketDataRequest.fromPartial({
-        subscribeOrderBookRequest: {
-          subscriptionAction: SubscriptionAction.SUBSCRIPTION_ACTION_SUBSCRIBE,
-          instruments: [{ figi: 'BBG000N9MNX3', depth: 5 }],
-        },
-      });
-    }
-  }
-
-  //генератор подписки на свечи
-  async function* createSubscriptionCandleRequest(): AsyncIterable<DeepPartial<MarketDataRequest>> { // eslint-disable-line
-    while (keepCalling) {
-      await timer(1000);
-      yield MarketDataRequest.fromPartial({
-        subscribeCandlesRequest: {
-          subscriptionAction: SubscriptionAction.SUBSCRIPTION_ACTION_SUBSCRIBE,
-          instruments: [{ figi: 'BBG000N9MNX3', interval: SubscriptionInterval.SUBSCRIPTION_INTERVAL_ONE_MINUTE }],
-        },
-      });
-    }
-  }
-
-  const response = marketDataStream.marketDataStream(createLastPriceRequest());
-
-  for await (const num of response) {
-    console.log(num);
-  }
+  controller.unsubscribeCandles('BBG000N9MNX3');
+  controller.unsubscribeLastPrice('BBG000N9MNX3');
+  await controller.close();
+  await sdk.disconnect();
 })();

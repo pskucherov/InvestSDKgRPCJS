@@ -21,7 +21,7 @@ import { createSdk } from '../sdk';
   //==============================================================================================================
   const setStopOrder = await stopOrders.postStopOrder({
     accountId: '1234567890',
-    figi: 'BBG006L8G4H1',
+    instrumentId: 'BBG006L8G4H1',
     quantity: 1,
     price: { units: 4500, nano: 100000000 },
     stopPrice: undefined,

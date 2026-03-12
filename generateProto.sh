@@ -5,14 +5,18 @@ set -Eeuo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONTRACTS_REPO_URL="${INVEST_CONTRACTS_REPO_URL:-https://opensource.tbank.ru/invest/invest-contracts.git}"
 CONTRACTS_REF="${INVEST_CONTRACTS_REF:-master}"
+CONTRACTS_LOCAL_DIR="${INVEST_CONTRACTS_LOCAL_DIR:-}"
 DEBUG_MODE="${INVEST_PROTO_DEBUG:-0}"
 HEARTBEAT_SEC="${INVEST_PROTO_HEARTBEAT_SEC:-15}"
 SKIP_NPM_CI="${INVEST_PROTO_SKIP_NPM_CI:-0}"
 NPM_CI_TIMEOUT_SEC="${INVEST_PROTO_NPM_CI_TIMEOUT_SEC:-600}"
 TMP_DIR="$(mktemp -d)"
 REPO_DIR="$TMP_DIR/invest-contracts"
-CONTRACTS_DIR="$REPO_DIR/src/docs/contracts"
-ERRORS_FILE="$REPO_DIR/src/docs/errors/api_errors.json"
+CONTRACTS_DIR=""
+ERRORS_FILE=""
+CONTRACTS_SOURCE_TYPE="remote"
+CONTRACTS_COMMIT=""
+MANIFEST_FILE="./src/generated/contracts-manifest.json"
 CURRENT_STEP="initialization"
 TOTAL_START="$SECONDS"
 
@@ -75,6 +79,22 @@ cleanup() {
   rm -rf "$TMP_DIR"
 }
 
+write_manifest() {
+  cat > "$MANIFEST_FILE" <<EOF
+{
+  "generatedAt": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+  "sourceType": "${CONTRACTS_SOURCE_TYPE}",
+  "sourceRepo": "${CONTRACTS_REPO_URL}",
+  "sourceRef": "${CONTRACTS_REF}",
+  "sourceCommit": "${CONTRACTS_COMMIT}",
+  "localSourceDir": "${CONTRACTS_LOCAL_DIR}",
+  "contractsDir": "${CONTRACTS_DIR}",
+  "errorsFile": "${ERRORS_FILE}",
+  "protoFilesCount": ${#proto_files[@]}
+}
+EOF
+}
+
 trap cleanup EXIT
 trap on_error ERR
 
@@ -105,14 +125,42 @@ if [[ -n "${INVEST_CONTRACTS_DIR:-}" || -n "${INVEST_ERRORS_FILE:-}" ]]; then
   exit 1
 fi
 
-if ! command -v git >/dev/null 2>&1; then
-  echo "git is required to fetch contracts from $CONTRACTS_REPO_URL" >&2
-  exit 1
-fi
+if [[ -n "$CONTRACTS_LOCAL_DIR" ]]; then
+  CONTRACTS_SOURCE_TYPE="local"
+  CONTRACTS_DIR="$CONTRACTS_LOCAL_DIR/src/docs/contracts"
+  ERRORS_FILE="$CONTRACTS_LOCAL_DIR/src/docs/errors/api_errors.json"
 
-run_step \
-  "clone contracts from ${CONTRACTS_REPO_URL} (ref: ${CONTRACTS_REF})" \
-  git clone --depth 1 --branch "$CONTRACTS_REF" "$CONTRACTS_REPO_URL" "$REPO_DIR"
+  if [[ ! -d "$CONTRACTS_DIR" ]]; then
+    echo "Local contracts directory not found: $CONTRACTS_DIR" >&2
+    echo "Set INVEST_CONTRACTS_LOCAL_DIR to invest-contracts repository root." >&2
+    exit 1
+  fi
+
+  if [[ ! -f "$ERRORS_FILE" ]]; then
+    echo "Local errors file not found: $ERRORS_FILE" >&2
+    exit 1
+  fi
+
+  if command -v git >/dev/null 2>&1 && git -C "$CONTRACTS_LOCAL_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    CONTRACTS_COMMIT="$(git -C "$CONTRACTS_LOCAL_DIR" rev-parse HEAD)"
+  fi
+
+  log "Using local contracts source: $CONTRACTS_LOCAL_DIR"
+else
+  CONTRACTS_DIR="$REPO_DIR/src/docs/contracts"
+  ERRORS_FILE="$REPO_DIR/src/docs/errors/api_errors.json"
+
+  if ! command -v git >/dev/null 2>&1; then
+    echo "git is required to fetch contracts from $CONTRACTS_REPO_URL" >&2
+    exit 1
+  fi
+
+  run_step \
+    "clone contracts from ${CONTRACTS_REPO_URL} (ref: ${CONTRACTS_REF})" \
+    git clone --depth 1 --branch "$CONTRACTS_REF" "$CONTRACTS_REPO_URL" "$REPO_DIR"
+
+  CONTRACTS_COMMIT="$(git -C "$REPO_DIR" rev-parse HEAD)"
+fi
 
 if [[ ! -d "$CONTRACTS_DIR" ]]; then
   echo "Contracts directory not found: $CONTRACTS_DIR" >&2
@@ -149,6 +197,7 @@ fi
 run_step "cleanup dist and generated output" rm -rf ./dist ./src/generated/
 run_step "create generated directory" mkdir -p ./src/generated/
 run_step "set permissions on generated directory" chmod 755 ./src/generated
+run_step "write contracts source manifest" write_manifest
 
 run_step "copy api_errors.json" cp "$ERRORS_FILE" ./src/errors/api_errors.json
 
