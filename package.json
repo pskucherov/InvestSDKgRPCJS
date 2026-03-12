@@ -3,6 +3,15 @@
   "version": "2.0.0",
   "description": "",
   "main": "dist/sdk.js",
+  "files": [
+    "dist/**/*",
+    "src/**/*",
+    "README.md",
+    "generateProto.sh",
+    "tsconfig.json",
+    ".eslintrc",
+    ".prettierrc"
+  ],
   "scripts": {
     "build": "npx tsc && mkdir -p dist/errors && cp src/errors/api_errors.json dist/errors/api_errors.json",
     "test": "node -r ts-node/register/transpile-only --test ./test/**/*.test.ts",
